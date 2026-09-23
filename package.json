@@ -1,0 +1,19 @@
+{
+  "name": "tbi-global",
+  "version": "1.0.0",
+  "description": "TBI Global — Full-Stack Discovery Platform for Technology Business Incubators",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "seed": "npm run seed --prefix server",
+    "import-data": "npm run import-data --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "author": "Jyoti Negi",
+  "license": "MIT"
+}

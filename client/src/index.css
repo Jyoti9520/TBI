@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --palette-black: #000000;
-  --palette-espresso: #1F150C;
-  --palette-amber-brown: #412D15;
-  --palette-cream: #E1DCC9;
+  --palette-burgundy: #5E0B15;
+  --palette-wine: #90323D;
+  --palette-cream: #D9CAB3;
+  --palette-gold: #BC8034;
+  --palette-taupe: #8C7A6B;
 }
 
 @layer base {
@@ -16,21 +17,21 @@
   }
 }
 
-/* Custom Scrollbar styled with Color Hunt Palette */
+/* Custom Scrollbar styled with Coolors Palette */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #E1DCC9;
+  background: #D9CAB3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #412D15;
+  background: #BC8034;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1F150C;
+  background: #5E0B15;
 }

@@ -57,12 +57,12 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
   const isUnderVerification = tbi.status === 'Under Verification';
 
   return (
-    <div className="bg-surface border border-slate-border rounded-xl p-5 shadow-card hover:shadow-hover hover:border-[#412D15] transition-all duration-200 flex flex-col justify-between group relative">
+    <div className="bg-surface border border-slate-border rounded-xl p-5 shadow-card hover:shadow-hover hover:border-[#90323D] transition-all duration-200 flex flex-col justify-between group relative">
       {/* Top Header with Avatar & Favorite Heart */}
       <div>
         <div className="flex items-start justify-between gap-3 mb-3">
           {/* Avatar / Logo */}
-          <div className="w-12 h-12 rounded-xl bg-[#E1DCC9] border border-[#CFC6A9] flex items-center justify-center font-extrabold text-[#1F150C] text-lg shrink-0 shadow-sm overflow-hidden">
+          <div className="w-12 h-12 rounded-xl bg-[#D9CAB3] border border-[#8C7A6B] flex items-center justify-center font-extrabold text-[#5E0B15] text-lg shrink-0 shadow-sm overflow-hidden">
             {tbi.logo ? (
               <img
                 src={tbi.logo}
@@ -80,8 +80,8 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
           <div className="flex items-center space-x-1.5">
             {/* Distance Badge if available */}
             {tbi.distance !== null && tbi.distance !== undefined && (
-              <span className="flex items-center space-x-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-[#E1DCC9] text-[#1F150C] border border-[#412D15]/30">
-                <Navigation className="w-3 h-3 text-[#412D15]" />
+              <span className="flex items-center space-x-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-[#D9CAB3] text-[#5E0B15] border border-[#90323D]/30">
+                <Navigation className="w-3 h-3 text-[#90323D]" />
                 <span>{tbi.distance} km</span>
               </span>
             )}
@@ -108,7 +108,7 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
         </div>
 
         {/* Title and University */}
-        <h3 className="text-base font-bold text-slate group-hover:text-[#412D15] transition-colors line-clamp-2 leading-snug">
+        <h3 className="text-base font-bold text-slate group-hover:text-[#90323D] transition-colors line-clamp-2 leading-snug">
           <Link to={`/tbi/${tbi.id}`}>{tbi.name}</Link>
         </h3>
 
@@ -116,10 +116,10 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
           {tbi.university}
         </p>
 
-        {/* Incubator Type Pill styled with Color Hunt #E1DCC9 and #412D15 */}
+        {/* Incubator Type Pill styled with Color Hunt #D9CAB3 and #90323D */}
         {tbi.incubatorType && (
           <div className="mt-2.5">
-            <span className="inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-[#E1DCC9] text-[#1F150C] border border-[#CFC6A9] shadow-sm">
+            <span className="inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-[#D9CAB3] text-[#5E0B15] border border-[#8C7A6B] shadow-sm">
               {tbi.incubatorType}
             </span>
           </div>
@@ -128,16 +128,16 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
         {/* Location & Email Details */}
         <div className="mt-4 space-y-1.5 text-xs text-slate-muted">
           <div className="flex items-center space-x-2">
-            <MapPin className="w-3.5 h-3.5 text-[#412D15] shrink-0" />
+            <MapPin className="w-3.5 h-3.5 text-[#90323D] shrink-0" />
             <span className="truncate">{tbi.city || 'Location not specified'}</span>
           </div>
 
           <div className="flex items-center space-x-2">
-            <Mail className="w-3.5 h-3.5 text-[#634723] shrink-0" />
+            <Mail className="w-3.5 h-3.5 text-[#BC8034] shrink-0" />
             {tbi.email ? (
               <a
                 href={`mailto:${tbi.email}`}
-                className="truncate hover:text-[#412D15] hover:underline transition-colors"
+                className="truncate hover:text-[#90323D] hover:underline transition-colors"
                 title={`Send email to ${tbi.email}`}
               >
                 {tbi.email}
@@ -175,7 +175,7 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
               href={tbi.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg text-slate-muted hover:text-[#1F150C] hover:bg-[#E1DCC9]/40 transition-colors"
+              className="p-1.5 rounded-lg text-slate-muted hover:text-[#5E0B15] hover:bg-[#D9CAB3]/40 transition-colors"
               title="Visit official website"
             >
               <ExternalLink className="w-4 h-4" />
@@ -184,7 +184,7 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
 
           <Link
             to={`/tbi/${tbi.id}`}
-            className="px-3 py-1.5 rounded-lg bg-[#1F150C] hover:bg-[#412D15] text-[#E1DCC9] text-xs font-semibold transition-all shadow-sm"
+            className="px-3 py-1.5 rounded-lg bg-[#5E0B15] hover:bg-[#90323D] text-[#D9CAB3] text-xs font-semibold transition-all shadow-sm"
           >
             View Details
           </Link>

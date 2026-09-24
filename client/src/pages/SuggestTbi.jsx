@@ -62,8 +62,8 @@ export const SuggestTbi = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
-          <PlusCircle className="w-7 h-7 text-[#412D15]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
+          <PlusCircle className="w-7 h-7 text-[#90323D]" />
           <span>Suggest an Incubator</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -202,7 +202,7 @@ export const SuggestTbi = () => {
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-[#1F150C] hover:bg-[#412D15] disabled:opacity-50 text-[#E1DCC9] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#000000]"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 bg-[#5E0B15] hover:bg-[#90323D] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#5E0B15]"
             >
               <Send className="w-4 h-4" />
               <span>{loading ? 'Submitting...' : 'Submit Suggestion'}</span>

@@ -56,8 +56,8 @@ export const Settings = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
-          <SettingsIcon className="w-7 h-7 text-[#412D15]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
+          <SettingsIcon className="w-7 h-7 text-[#90323D]" />
           <span>Account Settings</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -113,8 +113,8 @@ export const Settings = () => {
 
           <hr className="border-slate-100 my-4" />
 
-          <h3 className="text-sm font-bold text-[#1F150C] flex items-center space-x-2">
-            <Lock className="w-4 h-4 text-[#412D15]" />
+          <h3 className="text-sm font-bold text-[#5E0B15] flex items-center space-x-2">
+            <Lock className="w-4 h-4 text-[#90323D]" />
             <span>Change Password (Optional)</span>
           </h3>
 
@@ -127,7 +127,7 @@ export const Settings = () => {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#412D15]/20 focus:border-[#412D15]"
+              className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#90323D]/20 focus:border-[#90323D]"
             />
           </div>
 
@@ -141,7 +141,7 @@ export const Settings = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#412D15]/20 focus:border-[#412D15]"
+                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#90323D]/20 focus:border-[#90323D]"
               />
             </div>
 
@@ -154,7 +154,7 @@ export const Settings = () => {
                 value={confirmNewPassword}
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#412D15]/20 focus:border-[#412D15]"
+                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#90323D]/20 focus:border-[#90323D]"
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ export const Settings = () => {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2.5 bg-[#1F150C] hover:bg-[#412D15] disabled:opacity-50 text-[#E1DCC9] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#000000]"
+              className="px-6 py-2.5 bg-[#5E0B15] hover:bg-[#90323D] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#5E0B15]"
             >
               {loading ? 'Saving...' : 'Save Settings'}
             </button>

@@ -86,8 +86,8 @@ export const Nearby = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
-          <MapPin className="w-7 h-7 text-[#412D15]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
+          <MapPin className="w-7 h-7 text-[#90323D]" />
           <span>Nearby TBIs</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -99,7 +99,7 @@ export const Nearby = () => {
       <div className="bg-surface p-5 rounded-2xl border border-slate-border shadow-card space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#E1DCC9] text-[#1F150C] flex items-center justify-center shrink-0 border border-[#CFC6A9]">
+            <div className="w-10 h-10 rounded-xl bg-[#D9CAB3] text-[#5E0B15] flex items-center justify-center shrink-0 border border-[#8C7A6B]">
               <Navigation className="w-5 h-5" />
             </div>
             <div>
@@ -120,7 +120,7 @@ export const Nearby = () => {
             <button
               onClick={requestLocation}
               disabled={loading}
-              className="px-4 py-2 bg-[#1F150C] text-[#E1DCC9] text-xs font-semibold rounded-lg hover:bg-[#412D15] disabled:opacity-50 transition-colors shadow-sm border border-[#000000]"
+              className="px-4 py-2 bg-[#5E0B15] text-[#D9CAB3] text-xs font-semibold rounded-lg hover:bg-[#90323D] disabled:opacity-50 transition-colors shadow-sm border border-[#5E0B15]"
             >
               {loading ? 'Detecting...' : 'Detect My Location'}
             </button>
@@ -137,10 +137,10 @@ export const Nearby = () => {
               <button
                 key={c.name}
                 onClick={() => handleCitySelect(c.name)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
                   selectedCity === c.name
-                    ? 'bg-teal text-white shadow-sm'
-                    : 'bg-slate-100 text-slate hover:bg-slate-200'
+                    ? 'bg-[#5E0B15] text-[#D9CAB3] border-[#5E0B15] shadow-sm'
+                    : 'bg-surface text-slate border-slate-border hover:bg-[#D9CAB3]/40'
                 }`}
               >
                 {c.name} ({c.count})

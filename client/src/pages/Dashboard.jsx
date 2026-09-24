@@ -101,7 +101,7 @@ export const Dashboard = () => {
     <div className="space-y-6">
       {/* Header Greeting */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C]">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15]">
           {getGreeting()}, {user?.name || 'Innovator'}
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -149,8 +149,8 @@ export const Dashboard = () => {
 
       {/* Main Grid Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-[#1F150C] flex items-center space-x-2">
-          <Compass className="w-5 h-5 text-[#412D15]" />
+        <h2 className="text-lg font-bold text-[#5E0B15] flex items-center space-x-2">
+          <Compass className="w-5 h-5 text-[#90323D]" />
           <span>Explore Incubators</span>
           <span className="text-xs font-normal text-slate-muted">
             ({totalCount} available)

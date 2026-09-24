@@ -269,8 +269,13 @@ const getSuggestions = async (req, res) => {
     // Fetch distinct universities, cities, and incubator types
     const [tbis, universities, cities] = await Promise.all([
       TBI.findAll({
-        where: { name: { [Op.like]: pattern } },
-        attributes: ['name', 'university', 'id'],
+        where: {
+          [Op.or]: [
+            { name: { [Op.like]: pattern } },
+            { universityType: { [Op.like]: pattern } }
+          ]
+        },
+        attributes: ['name', 'university', 'universityType', 'id'],
         limit: 4
       }),
       TBI.findAll({
@@ -312,12 +317,14 @@ const getSuggestions = async (req, res) => {
     });
 
     tbis.forEach(t => {
+      const isEmail = Boolean(t.name && t.name.includes('@'));
+      const tbiTitle = (!isEmail && t.name) ? t.name : (t.universityType || t.university);
       suggestions.push({
         type: 'tbi',
-        title: t.name,
+        title: tbiTitle,
         subtitle: t.university,
         id: t.id,
-        query: t.name
+        query: tbiTitle
       });
     });
 

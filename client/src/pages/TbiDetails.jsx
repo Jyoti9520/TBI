@@ -18,6 +18,7 @@ import {
 import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
 import { useAuth } from '../hooks/useAuth';
+import { getTbiDisplayData } from '../utils/tbiMapping';
 
 export const TbiDetails = () => {
   const { id } = useParams();
@@ -119,8 +120,18 @@ export const TbiDetails = () => {
     );
   }
 
-  const isVerified = tbi.status === 'Verified';
-  const isUnderVerification = tbi.status === 'Under Verification';
+  const {
+    universityName,
+    incubatorName,
+    incubatorType,
+    city,
+    email,
+    status: displayStatus,
+    firstLetter
+  } = getTbiDisplayData(tbi);
+
+  const isVerified = displayStatus === 'Verified';
+  const isUnderVerification = displayStatus === 'Under Verification';
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-12">
@@ -144,14 +155,14 @@ export const TbiDetails = () => {
               {tbi.logo ? (
                 <img
                   src={tbi.logo}
-                  alt={tbi.name}
+                  alt={universityName}
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.style.display = 'none';
                   }}
                 />
               ) : (
-                getFirstLetter(tbi.name)
+                firstLetter
               )}
             </div>
 
@@ -171,19 +182,22 @@ export const TbiDetails = () => {
                   <span className="text-xs text-slate-400">Unverified</span>
                 )}
 
-                {tbi.incubatorType && (
+                {incubatorType && (
                   <span className="text-xs font-bold text-[#5E0B15] bg-[#D9CAB3] px-2.5 py-0.5 rounded-full border border-[#8C7A6B] shadow-sm">
-                    {tbi.incubatorType}
+                    {incubatorType}
                   </span>
                 )}
               </div>
 
+              {/* Primary Title: University Name */}
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] leading-tight">
-                {tbi.name}
+                {universityName}
               </h1>
 
-              <p className="text-sm font-semibold text-slate-muted mt-1">
-                {tbi.university}
+              {/* Secondary prominent info: Incubator / TBI Name */}
+              <p className="text-base font-semibold text-[#90323D] mt-1.5 flex items-center space-x-2">
+                <Building2 className="w-4 h-4 shrink-0" />
+                <span>{incubatorName}</span>
               </p>
             </div>
           </div>
@@ -229,10 +243,20 @@ export const TbiDetails = () => {
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 University
               </p>
-              <p className="font-semibold text-slate mt-0.5">{tbi.university}</p>
-              {tbi.universityType && (
+              <p className="font-semibold text-slate mt-0.5">{universityName}</p>
+            </div>
+          </div>
+
+          <div className="flex items-start space-x-3">
+            <Layers className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
+                Incubator / Centre
+              </p>
+              <p className="font-semibold text-slate mt-0.5">{incubatorName}</p>
+              {incubatorType && (
                 <span className="text-xs text-[#90323D] font-semibold">
-                  {tbi.universityType}
+                  {incubatorType}
                 </span>
               )}
             </div>
@@ -245,7 +269,7 @@ export const TbiDetails = () => {
                 Location
               </p>
               <p className="font-semibold text-slate mt-0.5">
-                {tbi.city || 'City not specified'}
+                {city}
                 {tbi.state ? `, ${tbi.state}` : ''}
               </p>
               <span className="text-xs text-slate-muted">
@@ -260,12 +284,12 @@ export const TbiDetails = () => {
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Official Email
               </p>
-              {tbi.email ? (
+              {email ? (
                 <a
-                  href={`mailto:${tbi.email}`}
+                  href={`mailto:${email}`}
                   className="font-semibold text-[#90323D] hover:underline transition-colors mt-0.5 block"
                 >
-                  {tbi.email}
+                  {email}
                 </a>
               ) : (
                 <p className="text-xs text-slate-400 italic mt-0.5">Not available</p>

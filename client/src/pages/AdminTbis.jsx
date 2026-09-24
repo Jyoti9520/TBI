@@ -14,6 +14,7 @@ import {
 import { tbiService } from '../services/tbiService';
 import { adminService } from '../services/adminService';
 import { Pagination } from '../components/Pagination';
+import { getTbiDisplayData } from '../utils/tbiMapping';
 
 export const AdminTbis = () => {
   const [tbis, setTbis] = useState([]);
@@ -243,40 +244,42 @@ export const AdminTbis = () => {
                   </td>
                 </tr>
               ) : (
-                tbis.map((tbi) => (
-                  <tr key={tbi.id} className="hover:bg-slate-50/70 transition-colors">
-                    <td className="py-3.5 px-4">
-                      <div className="font-bold text-slate text-sm max-w-xs truncate">
-                        {tbi.name}
-                      </div>
-                      <div className="text-[11px] text-slate-muted max-w-xs truncate">
-                        {tbi.university}
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-4 text-slate">{tbi.city || '—'}</td>
-                    <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded bg-slate-100 text-slate font-semibold text-[11px]">
-                        {tbi.incubatorType || 'TBI'}
-                      </span>
-                    </td>
-                    <td className="py-3.5 px-4 text-slate-muted max-w-[150px] truncate">
-                      {tbi.email || '—'}
-                    </td>
-                    <td className="py-3.5 px-4">
-                      {tbi.status === 'Verified' ? (
-                        <span className="inline-flex items-center space-x-1 text-status-success font-semibold">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          <span>Verified</span>
+                tbis.map((tbi) => {
+                  const display = getTbiDisplayData(tbi);
+                  return (
+                    <tr key={tbi.id} className="hover:bg-slate-50/70 transition-colors">
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-slate text-sm max-w-xs truncate" title={display.universityName}>
+                          {display.universityName}
+                        </div>
+                        <div className="text-[11px] text-[#5E0B15] font-semibold max-w-xs truncate" title={display.incubatorName}>
+                          {display.incubatorName}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate">{display.city || '—'}</td>
+                      <td className="py-3.5 px-4">
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate font-semibold text-[11px]">
+                          {display.incubatorType || 'TBI'}
                         </span>
-                      ) : tbi.status === 'Under Verification' ? (
-                        <span className="inline-flex items-center space-x-1 text-amber-600 font-semibold">
-                          <Clock className="w-3.5 h-3.5" />
-                          <span>Under Review</span>
-                        </span>
-                      ) : (
-                        <span className="text-slate-400">Unverified</span>
-                      )}
-                    </td>
+                      </td>
+                      <td className="py-3.5 px-4 text-slate-muted max-w-[150px] truncate" title={display.email || ''}>
+                        {display.email || '—'}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        {display.status === 'Verified' ? (
+                          <span className="inline-flex items-center space-x-1 text-status-success font-semibold">
+                            <CheckCircle2 className="w-3.5 h-3.5" />
+                            <span>Verified</span>
+                          </span>
+                        ) : display.status === 'Under Verification' ? (
+                          <span className="inline-flex items-center space-x-1 text-amber-600 font-semibold">
+                            <Clock className="w-3.5 h-3.5" />
+                            <span>Under Review</span>
+                          </span>
+                        ) : (
+                          <span className="text-slate-400">Unverified</span>
+                        )}
+                      </td>
                     <td className="py-3.5 px-4 text-right">
                       <div className="flex items-center justify-end space-x-1">
                         <button
@@ -307,8 +310,9 @@ export const AdminTbis = () => {
                       </div>
                     </td>
                   </tr>
-                ))
-              )}
+                );
+              })
+            )}
             </tbody>
           </table>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Bookmark, CheckCircle2, Building2 } from 'lucide-react';
+import { Compass, Bookmark, BadgeCheck, University } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
@@ -114,7 +114,7 @@ export const Dashboard = () => {
         <StatsCard
           title="Total Incubation Centres"
           value={totalCount}
-          icon={Building2}
+          icon={University}
           color="navy"
           subtitle="Registered across institutions"
         />
@@ -128,7 +128,7 @@ export const Dashboard = () => {
         <StatsCard
           title="Verified Status"
           value="450+"
-          icon={CheckCircle2}
+          icon={BadgeCheck}
           color="green"
           subtitle="Accredited ecosystems"
         />
@@ -150,7 +150,9 @@ export const Dashboard = () => {
       {/* Main Grid Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold text-[#5E0B15] flex items-center space-x-2">
-          <Compass className="w-5 h-5 text-[#90323D]" />
+          <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
+            <Compass className="w-4 h-4 text-[#90323D]" />
+          </div>
           <span>Explore Incubators</span>
           <span className="text-xs font-normal text-slate-muted">
             ({totalCount} available)

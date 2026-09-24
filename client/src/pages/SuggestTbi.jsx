@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlusCircle, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { PlusCircle, Send, BadgeCheck, AlertCircle } from 'lucide-react';
 import { tbiService } from '../services/tbiService';
 
 export const SuggestTbi = () => {
@@ -62,8 +62,10 @@ export const SuggestTbi = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
-          <PlusCircle className="w-7 h-7 text-[#90323D]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
+            <PlusCircle className="w-5 h-5 text-[#90323D]" />
+          </div>
           <span>Suggest an Incubator</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -73,8 +75,8 @@ export const SuggestTbi = () => {
 
       <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card">
         {success && (
-          <div className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-status-success text-xs sm:text-sm flex items-center space-x-2">
-            <CheckCircle2 className="w-5 h-5 shrink-0" />
+          <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center space-x-2">
+            <BadgeCheck className="w-5 h-5 shrink-0 text-emerald-600" />
             <span>{success}</span>
           </div>
         )}

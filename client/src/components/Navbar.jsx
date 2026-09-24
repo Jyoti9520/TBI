@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, LogOut, Shield } from 'lucide-react';
+import { User, LogOut, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
 export const Navbar = () => {
@@ -38,9 +38,9 @@ export const Navbar = () => {
                 {isAdmin && (
                   <Link
                     to="/admin"
-                    className="flex items-center space-x-1 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-[#D9CAB3] text-[#5E0B15] border border-[#90323D]/30 hover:bg-[#8C7A6B] transition-colors"
+                    className="flex items-center space-x-1.5 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-[#D9CAB3] text-[#5E0B15] border border-[#90323D]/30 hover:bg-[#8C7A6B] hover:text-white transition-colors duration-200 group"
                   >
-                    <Shield className="w-3.5 h-3.5 text-[#90323D]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#90323D] group-hover:text-white transition-transform duration-200 group-hover:scale-105" />
                     <span>Admin</span>
                   </Link>
                 )}

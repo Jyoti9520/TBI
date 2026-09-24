@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
-  Building2,
+  University,
+  Rocket,
   MapPin,
   Mail,
   Globe,
   ExternalLink,
   Heart,
-  CheckCircle2,
+  BadgeCheck,
   Clock,
   Layers,
   Phone,
@@ -169,13 +170,13 @@ export const TbiDetails = () => {
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
                 {isVerified ? (
-                  <span className="inline-flex items-center space-x-1 text-xs font-semibold text-status-success bg-green-50 px-2.5 py-0.5 rounded-full border border-green-200">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-status-success bg-green-50 px-2.5 py-0.5 rounded-full border border-green-200">
+                    <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Verified Ecosystem</span>
                   </span>
                 ) : isUnderVerification ? (
-                  <span className="inline-flex items-center space-x-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                    <Clock className="w-3.5 h-3.5" />
+                  <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+                    <Clock className="w-3.5 h-3.5 text-amber-700" />
                     <span>Under Verification</span>
                   </span>
                 ) : (
@@ -196,7 +197,7 @@ export const TbiDetails = () => {
 
               {/* Secondary prominent info: Incubator / TBI Name */}
               <p className="text-base font-semibold text-[#90323D] mt-1.5 flex items-center space-x-2">
-                <Building2 className="w-4 h-4 shrink-0" />
+                <Rocket className="w-4 h-4 shrink-0 text-[#90323D]" />
                 <span>{incubatorName}</span>
               </p>
             </div>
@@ -238,7 +239,9 @@ export const TbiDetails = () => {
         {/* Detailed Metadata Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
           <div className="flex items-start space-x-3">
-            <Building2 className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
+              <University className="w-4 h-4 text-[#5E0B15]" />
+            </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 University
@@ -248,7 +251,9 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <Layers className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
+              <Rocket className="w-4 h-4 text-[#90323D]" />
+            </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Incubator / Centre
@@ -263,7 +268,9 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <MapPin className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
+              <MapPin className="w-4 h-4 text-[#90323D]" />
+            </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Location
@@ -279,7 +286,9 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <Mail className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
+              <Mail className="w-4 h-4 text-[#BC8034]" />
+            </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Official Email
@@ -298,7 +307,9 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <Globe className="w-5 h-5 text-[#90323D] shrink-0 mt-0.5" />
+            <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
+              <Globe className="w-4 h-4 text-[#90323D]" />
+            </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Website

@@ -86,8 +86,10 @@ export const Nearby = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
-          <MapPin className="w-7 h-7 text-[#90323D]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+            <MapPin className="w-5 h-5 text-[#BC8034]" />
+          </div>
           <span>Nearby TBIs</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">

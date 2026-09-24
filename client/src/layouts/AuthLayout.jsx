@@ -6,14 +6,14 @@ export const AuthLayout = () => {
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-background">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link to="/" className="inline-flex items-center space-x-2">
-          <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center text-white font-extrabold text-xl shadow-sm">
+          <div className="w-10 h-10 rounded-xl bg-[#1F150C] flex items-center justify-center text-[#E1DCC9] font-extrabold text-xl shadow-sm border border-[#000000]">
             T
           </div>
-          <span className="font-extrabold text-2xl tracking-tight text-navy">
+          <span className="font-extrabold text-2xl tracking-tight text-[#1F150C]">
             TBI GLOBAL
           </span>
         </Link>
-        <p className="text-xs uppercase tracking-widest text-teal font-bold mt-1">
+        <p className="text-xs uppercase tracking-widest text-[#412D15] font-bold mt-1">
           Technology Business Incubators
         </p>
       </div>

@@ -86,8 +86,8 @@ export const Nearby = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-navy flex items-center space-x-2">
-          <MapPin className="w-7 h-7 text-teal" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
+          <MapPin className="w-7 h-7 text-[#412D15]" />
           <span>Nearby TBIs</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -99,7 +99,7 @@ export const Nearby = () => {
       <div className="bg-surface p-5 rounded-2xl border border-slate-border shadow-card space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-[#E1DCC9] text-[#1F150C] flex items-center justify-center shrink-0 border border-[#CFC6A9]">
               <Navigation className="w-5 h-5" />
             </div>
             <div>
@@ -120,7 +120,7 @@ export const Nearby = () => {
             <button
               onClick={requestLocation}
               disabled={loading}
-              className="px-4 py-2 bg-navy text-white text-xs font-semibold rounded-lg hover:bg-navy-600 disabled:opacity-50 transition-colors shadow-sm"
+              className="px-4 py-2 bg-[#1F150C] text-[#E1DCC9] text-xs font-semibold rounded-lg hover:bg-[#412D15] disabled:opacity-50 transition-colors shadow-sm border border-[#000000]"
             >
               {loading ? 'Detecting...' : 'Detect My Location'}
             </button>

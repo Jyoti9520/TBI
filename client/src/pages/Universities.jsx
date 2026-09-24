@@ -34,8 +34,8 @@ export const Universities = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-navy flex items-center space-x-2">
-          <Building2 className="w-7 h-7 text-teal" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
+          <Building2 className="w-7 h-7 text-[#412D15]" />
           <span>University Directory</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">

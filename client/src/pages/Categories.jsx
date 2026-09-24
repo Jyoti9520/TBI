@@ -26,8 +26,8 @@ export const Categories = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-navy flex items-center space-x-2">
-          <Layers className="w-7 h-7 text-teal" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
+          <Layers className="w-7 h-7 text-[#412D15]" />
           <span>Incubator Categories</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -45,8 +45,8 @@ export const Categories = () => {
           {/* Incubator Types */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Layers className="w-5 h-5 text-teal" />
-              <h2 className="text-lg font-bold text-navy">Incubator Types & Programs</h2>
+              <Layers className="w-5 h-5 text-[#412D15]" />
+              <h2 className="text-lg font-bold text-[#1F150C]">Incubator Types & Programs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.incubatorTypes.map((cat) => (
@@ -58,8 +58,8 @@ export const Categories = () => {
           {/* University Types */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Building className="w-5 h-5 text-navy" />
-              <h2 className="text-lg font-bold text-navy">Institution Types</h2>
+              <Building className="w-5 h-5 text-[#412D15]" />
+              <h2 className="text-lg font-bold text-[#1F150C]">Institution Types</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.universityTypes.map((cat) => (
@@ -71,8 +71,8 @@ export const Categories = () => {
           {/* Cities Directory */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <MapPin className="w-5 h-5 text-amber-500" />
-              <h2 className="text-lg font-bold text-navy">Top Cities with Active TBIs</h2>
+              <MapPin className="w-5 h-5 text-[#412D15]" />
+              <h2 className="text-lg font-bold text-[#1F150C]">Top Cities with Active TBIs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {categories.cities.map((cat) => (

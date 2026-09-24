@@ -111,7 +111,7 @@ export const TbiDetails = () => {
         </p>
         <Link
           to="/explore"
-          className="px-4 py-2 bg-[#78A4CB] text-white text-xs font-bold rounded-lg shadow-sm hover:bg-[#5F8FB8] transition-colors"
+          className="px-4 py-2 bg-[#1F150C] text-[#E1DCC9] text-xs font-bold rounded-lg shadow-sm hover:bg-[#412D15] transition-colors"
         >
           Back to Explore
         </Link>
@@ -128,7 +128,7 @@ export const TbiDetails = () => {
       <div>
         <Link
           to="/explore"
-          className="inline-flex items-center space-x-1.5 text-xs font-bold text-[#78A4CB] hover:text-[#5F8FB8] transition-colors"
+          className="inline-flex items-center space-x-1.5 text-xs font-bold text-[#412D15] hover:text-[#1F150C] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Explore</span>
@@ -140,7 +140,7 @@ export const TbiDetails = () => {
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
           <div className="flex items-start space-x-4">
             {/* Avatar / Logo */}
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#B4E1EB]/40 border border-[#95BDD7]/40 flex items-center justify-center font-extrabold text-[#1B3650] text-2xl sm:text-3xl shrink-0 shadow-sm overflow-hidden">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#E1DCC9] border border-[#CFC6A9] flex items-center justify-center font-extrabold text-[#1F150C] text-2xl sm:text-3xl shrink-0 shadow-sm overflow-hidden">
               {tbi.logo ? (
                 <img
                   src={tbi.logo}
@@ -172,13 +172,13 @@ export const TbiDetails = () => {
                 )}
 
                 {tbi.incubatorType && (
-                  <span className="text-xs font-bold text-[#4A3B02] bg-[#F9E8A2] px-2.5 py-0.5 rounded-full border border-[#F4DB6F]/70 shadow-sm">
+                  <span className="text-xs font-bold text-[#1F150C] bg-[#E1DCC9] px-2.5 py-0.5 rounded-full border border-[#CFC6A9] shadow-sm">
                     {tbi.incubatorType}
                   </span>
                 )}
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1B3650] leading-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] leading-tight">
                 {tbi.name}
               </h1>
 
@@ -192,7 +192,7 @@ export const TbiDetails = () => {
           <div className="flex items-center space-x-2 shrink-0">
             <button
               onClick={handleShare}
-              className="p-2.5 rounded-xl border border-slate-border text-slate-muted hover:text-[#78A4CB] hover:bg-[#B4E1EB]/20 transition-colors"
+              className="p-2.5 rounded-xl border border-slate-border text-slate-muted hover:text-[#1F150C] hover:bg-[#E1DCC9]/40 transition-colors"
               title="Copy share link"
             >
               <Share2 className="w-4 h-4" />
@@ -214,7 +214,7 @@ export const TbiDetails = () => {
         </div>
 
         {copied && (
-          <div className="text-xs font-bold text-[#1B3650] bg-[#B4E1EB]/50 px-3 py-1.5 rounded-lg border border-[#78A4CB]/40 text-center animate-in fade-in">
+          <div className="text-xs font-bold text-[#1F150C] bg-[#E1DCC9] px-3 py-1.5 rounded-lg border border-[#412D15]/30 text-center animate-in fade-in">
             Link copied to clipboard!
           </div>
         )}
@@ -224,14 +224,14 @@ export const TbiDetails = () => {
         {/* Detailed Metadata Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
           <div className="flex items-start space-x-3">
-            <Building2 className="w-5 h-5 text-[#78A4CB] shrink-0 mt-0.5" />
+            <Building2 className="w-5 h-5 text-[#412D15] shrink-0 mt-0.5" />
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 University
               </p>
               <p className="font-semibold text-slate mt-0.5">{tbi.university}</p>
               {tbi.universityType && (
-                <span className="text-xs text-[#78A4CB] font-semibold">
+                <span className="text-xs text-[#412D15] font-semibold">
                   {tbi.universityType}
                 </span>
               )}
@@ -239,7 +239,7 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <MapPin className="w-5 h-5 text-[#78A4CB] shrink-0 mt-0.5" />
+            <MapPin className="w-5 h-5 text-[#412D15] shrink-0 mt-0.5" />
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Location
@@ -255,7 +255,7 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <Mail className="w-5 h-5 text-[#95BDD7] shrink-0 mt-0.5" />
+            <Mail className="w-5 h-5 text-[#412D15] shrink-0 mt-0.5" />
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Official Email
@@ -263,7 +263,7 @@ export const TbiDetails = () => {
               {tbi.email ? (
                 <a
                   href={`mailto:${tbi.email}`}
-                  className="font-semibold text-[#78A4CB] hover:underline transition-colors mt-0.5 block"
+                  className="font-semibold text-[#412D15] hover:underline transition-colors mt-0.5 block"
                 >
                   {tbi.email}
                 </a>
@@ -274,7 +274,7 @@ export const TbiDetails = () => {
           </div>
 
           <div className="flex items-start space-x-3">
-            <Globe className="w-5 h-5 text-[#78A4CB] shrink-0 mt-0.5" />
+            <Globe className="w-5 h-5 text-[#412D15] shrink-0 mt-0.5" />
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
                 Website
@@ -284,7 +284,7 @@ export const TbiDetails = () => {
                   href={tbi.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 font-bold text-[#78A4CB] hover:underline mt-0.5"
+                  className="inline-flex items-center space-x-1 font-bold text-[#412D15] hover:underline mt-0.5"
                 >
                   <span>Visit Official Website</span>
                   <ExternalLink className="w-3.5 h-3.5" />

@@ -36,12 +36,12 @@ export const Sidebar = () => {
   return (
     <aside className="w-64 bg-surface border-r border-slate-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
       {/* User Mini Profile */}
-      <div className="p-4 border-b border-slate-border flex items-center space-x-3 bg-gradient-to-r from-[#F4F9FD] to-white">
-        <div className="w-10 h-10 rounded-xl bg-[#78A4CB] text-white font-extrabold flex items-center justify-center shrink-0 shadow-sm border border-[#5F8FB8]">
+      <div className="p-4 border-b border-slate-border flex items-center space-x-3 bg-gradient-to-r from-[#FAF7F0] to-white">
+        <div className="w-10 h-10 rounded-xl bg-[#1F150C] text-[#E1DCC9] font-extrabold flex items-center justify-center shrink-0 shadow-sm border border-[#000000]">
           {user?.name ? user.name[0].toUpperCase() : 'U'}
         </div>
         <div className="overflow-hidden">
-          <p className="text-sm font-bold text-[#1B3650] truncate">{user?.name || 'User'}</p>
+          <p className="text-sm font-bold text-[#1F150C] truncate">{user?.name || 'User'}</p>
           <p className="text-xs text-slate-muted truncate">{user?.email}</p>
         </div>
       </div>
@@ -57,8 +57,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-[#78A4CB] text-white shadow-sm font-bold'
-                    : 'text-slate-muted hover:text-[#1B3650] hover:bg-[#B4E1EB]/20'
+                    ? 'bg-[#1F150C] text-[#E1DCC9] shadow-sm font-bold'
+                    : 'text-slate-muted hover:text-[#1F150C] hover:bg-[#E1DCC9]/40'
                 }`
               }
             >
@@ -80,19 +80,19 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-bold transition-all ${
                   isActive
-                    ? 'bg-[#F9E8A2] text-[#4A3B02] shadow-sm border border-[#F4DB6F]'
-                    : 'text-[#967D0C] hover:bg-[#F9E8A2]/30'
+                    ? 'bg-[#E1DCC9] text-[#1F150C] shadow-sm border border-[#CFC6A9]'
+                    : 'text-[#412D15] hover:bg-[#E1DCC9]/40'
                 }`
               }
             >
-              <Shield className="w-4 h-4 shrink-0 text-[#78A4CB]" />
+              <Shield className="w-4 h-4 shrink-0 text-[#412D15]" />
               <span>Admin Overview</span>
             </NavLink>
             <NavLink
               to="/admin/tbis"
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold pl-9 transition-all ${
-                  isActive ? 'text-[#4A3B02] font-bold bg-[#F9E8A2]/40' : 'text-slate-muted hover:text-slate'
+                  isActive ? 'text-[#1F150C] font-bold bg-[#E1DCC9]' : 'text-slate-muted hover:text-slate'
                 }`
               }
             >
@@ -102,7 +102,7 @@ export const Sidebar = () => {
               to="/admin/users"
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold pl-9 transition-all ${
-                  isActive ? 'text-[#4A3B02] font-bold bg-[#F9E8A2]/40' : 'text-slate-muted hover:text-slate'
+                  isActive ? 'text-[#1F150C] font-bold bg-[#E1DCC9]' : 'text-slate-muted hover:text-slate'
                 }`
               }
             >
@@ -112,7 +112,7 @@ export const Sidebar = () => {
               to="/admin/import"
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-3.5 py-2 rounded-lg text-xs font-semibold pl-9 transition-all ${
-                  isActive ? 'text-[#4A3B02] font-bold bg-[#F9E8A2]/40' : 'text-slate-muted hover:text-slate'
+                  isActive ? 'text-[#1F150C] font-bold bg-[#E1DCC9]' : 'text-slate-muted hover:text-slate'
                 }`
               }
             >
@@ -129,8 +129,8 @@ export const Sidebar = () => {
           className={({ isActive }) =>
             `flex items-center space-x-3 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
               isActive
-                ? 'bg-[#B4E1EB]/30 text-[#1B3650] font-bold'
-                : 'text-slate-muted hover:text-[#1B3650] hover:bg-[#B4E1EB]/15'
+                ? 'bg-[#E1DCC9] text-[#1F150C] font-bold'
+                : 'text-slate-muted hover:text-[#1F150C] hover:bg-[#E1DCC9]/40'
             }`
           }
         >

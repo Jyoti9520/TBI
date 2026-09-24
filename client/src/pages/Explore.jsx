@@ -125,8 +125,8 @@ export const Explore = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1B3650] flex items-center space-x-2">
-          <Compass className="w-7 h-7 text-[#78A4CB]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C] flex items-center space-x-2">
+          <Compass className="w-7 h-7 text-[#412D15]" />
           <span>Explore TBIs Directory</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -152,7 +152,7 @@ export const Explore = () => {
             <span className="text-xs font-bold text-slate-muted">Active:</span>
 
             {search && (
-              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#B4E1EB]/30 text-[#1B3650] border border-[#78A4CB]/40 text-xs font-bold">
+              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#E1DCC9] text-[#1F150C] border border-[#412D15]/30 text-xs font-bold">
                 <span>Query: "{search}"</span>
                 <button onClick={() => handleSearch('')} className="hover:text-status-error">
                   <X className="w-3 h-3" />
@@ -165,7 +165,7 @@ export const Explore = () => {
               return (
                 <span
                   key={k}
-                  className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#F9E8A2] text-[#4A3B02] border border-[#F4DB6F] text-xs font-bold shadow-sm"
+                  className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-[#E1DCC9] text-[#1F150C] border border-[#CFC6A9] text-xs font-bold shadow-sm"
                 >
                   <span className="capitalize">{k}: {v}</span>
                   <button onClick={() => removeFilterBadge(k)} className="hover:text-status-error">

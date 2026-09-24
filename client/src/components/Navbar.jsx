@@ -42,14 +42,14 @@ export const Navbar = () => {
           {/* Brand */}
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-9 h-9 rounded-xl bg-[#78A4CB] flex items-center justify-center text-white font-extrabold text-lg shadow-sm transition-transform group-hover:scale-105 border border-[#5F8FB8]">
+              <div className="w-9 h-9 rounded-xl bg-[#1F150C] flex items-center justify-center text-[#E1DCC9] font-extrabold text-lg shadow-sm transition-transform group-hover:scale-105 border border-[#412D15]">
                 T
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-[#1B3650] tracking-tight text-lg leading-tight">
+                <span className="font-extrabold text-[#1F150C] tracking-tight text-lg leading-tight">
                   TBI GLOBAL
                 </span>
-                <span className="text-[10px] uppercase tracking-wider text-[#78A4CB] font-bold">
+                <span className="text-[10px] uppercase tracking-wider text-[#412D15] font-bold">
                   Incubator Directory
                 </span>
               </div>
@@ -66,11 +66,11 @@ export const Navbar = () => {
                     to={link.path}
                     className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                       active
-                        ? 'bg-[#B4E1EB]/30 text-[#1B3650] font-bold border border-[#78A4CB]/30'
-                        : 'text-slate-muted hover:text-[#1B3650] hover:bg-[#B4E1EB]/15'
+                        ? 'bg-[#E1DCC9] text-[#1F150C] font-bold border border-[#412D15]/30'
+                        : 'text-slate-muted hover:text-[#1F150C] hover:bg-[#E1DCC9]/40'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${active ? 'text-[#78A4CB]' : 'text-slate-muted'}`} />
+                    <Icon className={`w-4 h-4 ${active ? 'text-[#1F150C]' : 'text-slate-muted'}`} />
                     <span>{link.name}</span>
                   </Link>
                 );
@@ -84,7 +84,7 @@ export const Navbar = () => {
               <div className="flex items-center space-x-3">
                 <Link
                   to="/suggest"
-                  className="flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-[#F9E8A2] text-[#4A3B02] hover:bg-[#F4DB6F] transition-colors shadow-sm border border-[#F4DB6F]"
+                  className="flex items-center space-x-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-[#E1DCC9] text-[#1F150C] hover:bg-[#CFC6A9] transition-colors shadow-sm border border-[#412D15]/30"
                 >
                   <PlusCircle className="w-3.5 h-3.5" />
                   <span>Suggest TBI</span>
@@ -94,8 +94,8 @@ export const Navbar = () => {
                   to="/saved"
                   className={`p-2 rounded-lg transition-colors ${
                     isActive('/saved')
-                      ? 'text-[#78A4CB] bg-[#B4E1EB]/30'
-                      : 'text-slate-muted hover:text-[#78A4CB] hover:bg-slate-50'
+                      ? 'text-[#1F150C] bg-[#E1DCC9]'
+                      : 'text-slate-muted hover:text-[#1F150C] hover:bg-slate-50'
                   }`}
                   title="Saved TBIs"
                 >
@@ -105,18 +105,18 @@ export const Navbar = () => {
                 {isAdmin && (
                   <Link
                     to="/admin"
-                    className="flex items-center space-x-1 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-[#F9E8A2] text-[#4A3B02] border border-[#F4DB6F] hover:bg-[#F4DB6F] transition-colors"
+                    className="flex items-center space-x-1 text-xs font-bold px-2.5 py-1.5 rounded-lg bg-[#E1DCC9] text-[#1F150C] border border-[#412D15]/30 hover:bg-[#CFC6A9] transition-colors"
                   >
-                    <Shield className="w-3.5 h-3.5 text-[#78A4CB]" />
+                    <Shield className="w-3.5 h-3.5 text-[#412D15]" />
                     <span>Admin</span>
                   </Link>
                 )}
 
                 <Link
                   to="/dashboard"
-                  className="flex items-center space-x-2 text-sm text-[#1B3650] font-medium px-3 py-1.5 rounded-lg hover:bg-[#B4E1EB]/15 border border-slate-border"
+                  className="flex items-center space-x-2 text-sm text-[#1F150C] font-medium px-3 py-1.5 rounded-lg hover:bg-[#E1DCC9]/40 border border-slate-border"
                 >
-                  <div className="w-6 h-6 rounded-full bg-[#78A4CB] text-white text-xs flex items-center justify-center font-bold">
+                  <div className="w-6 h-6 rounded-full bg-[#1F150C] text-[#E1DCC9] text-xs flex items-center justify-center font-bold">
                     {user?.name ? user.name[0].toUpperCase() : 'U'}
                   </div>
                   <span className="max-w-[120px] truncate">{user?.name}</span>
@@ -134,13 +134,13 @@ export const Navbar = () => {
               <div className="flex items-center space-x-2">
                 <Link
                   to="/login"
-                  className="text-sm font-semibold text-[#1B3650] hover:text-[#78A4CB] px-3.5 py-2 rounded-lg transition-colors"
+                  className="text-sm font-semibold text-[#1F150C] hover:text-[#412D15] px-3.5 py-2 rounded-lg transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="text-sm font-bold text-white bg-[#78A4CB] hover:bg-[#5F8FB8] px-4 py-2 rounded-lg shadow-sm transition-colors"
+                  className="text-sm font-bold text-[#E1DCC9] bg-[#1F150C] hover:bg-[#412D15] px-4 py-2 rounded-lg shadow-sm transition-colors border border-[#000000]"
                 >
                   Sign Up
                 </Link>
@@ -173,10 +173,10 @@ export const Navbar = () => {
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium ${
-                  active ? 'bg-[#B4E1EB]/30 text-[#1B3650] font-bold' : 'text-slate hover:bg-slate-50'
+                  active ? 'bg-[#E1DCC9] text-[#1F150C] font-bold' : 'text-slate hover:bg-slate-50'
                 }`}
               >
-                <Icon className="w-4 h-4 text-[#78A4CB]" />
+                <Icon className="w-4 h-4 text-[#412D15]" />
                 <span>{link.name}</span>
               </Link>
             );
@@ -188,9 +188,9 @@ export const Navbar = () => {
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-[#1B3650]"
+                  className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-[#1F150C]"
                 >
-                  <User className="w-4 h-4 text-[#78A4CB]" />
+                  <User className="w-4 h-4 text-[#412D15]" />
                   <span>Dashboard ({user?.name})</span>
                 </Link>
                 <Link
@@ -198,13 +198,13 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-slate"
                 >
-                  <Bookmark className="w-4 h-4 text-[#78A4CB]" />
+                  <Bookmark className="w-4 h-4 text-[#412D15]" />
                   <span>Saved TBIs</span>
                 </Link>
                 <Link
                   to="/suggest"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center space-x-2 px-3 py-2 text-sm font-bold text-[#4A3B02] bg-[#F9E8A2] rounded-lg"
+                  className="flex items-center space-x-2 px-3 py-2 text-sm font-bold text-[#1F150C] bg-[#E1DCC9] rounded-lg"
                 >
                   <PlusCircle className="w-4 h-4" />
                   <span>Suggest a TBI</span>
@@ -213,9 +213,9 @@ export const Navbar = () => {
                   <Link
                     to="/admin"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center space-x-2 px-3 py-2 text-sm font-bold text-[#4A3B02] bg-[#F9E8A2] rounded-lg"
+                    className="flex items-center space-x-2 px-3 py-2 text-sm font-bold text-[#1F150C] bg-[#E1DCC9] rounded-lg"
                   >
-                    <Shield className="w-4 h-4 text-[#78A4CB]" />
+                    <Shield className="w-4 h-4 text-[#412D15]" />
                     <span>Admin Panel</span>
                   </Link>
                 )}
@@ -235,14 +235,14 @@ export const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2 text-sm font-semibold border border-slate-border rounded-lg text-[#1B3650]"
+                  className="w-full text-center py-2 text-sm font-semibold border border-slate-border rounded-lg text-[#1F150C]"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2 text-sm font-bold bg-[#78A4CB] text-white rounded-lg"
+                  className="w-full text-center py-2 text-sm font-bold bg-[#1F150C] text-[#E1DCC9] rounded-lg"
                 >
                   Create Account
                 </Link>

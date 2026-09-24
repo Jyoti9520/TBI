@@ -88,7 +88,7 @@ export const SearchBar = ({
   return (
     <div ref={wrapperRef} className="relative w-full flex items-center gap-2">
       <div className="relative flex-1">
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#78A4CB]">
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#412D15]">
           <Search className="h-4 w-4" />
         </div>
         <input
@@ -100,7 +100,7 @@ export const SearchBar = ({
             if (suggestions.length > 0) setShowSuggestions(true);
           }}
           placeholder={placeholder}
-          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB] transition-all shadow-subtle"
+          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#412D15]/30 focus:border-[#412D15] transition-all shadow-subtle"
         />
         {searchTerm && (
           <button
@@ -124,8 +124,8 @@ export const SearchBar = ({
           onClick={onFilterToggle}
           className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-bold transition-all shrink-0 ${
             filterActive
-              ? 'bg-[#78A4CB] text-white border-[#5F8FB8] shadow-sm'
-              : 'bg-surface text-[#1B3650] border-slate-border hover:bg-[#B4E1EB]/20 hover:border-[#78A4CB]/50'
+              ? 'bg-[#1F150C] text-[#E1DCC9] border-[#000000] shadow-sm'
+              : 'bg-surface text-[#1F150C] border-slate-border hover:bg-[#E1DCC9]/40 hover:border-[#412D15]/50'
           }`}
           title="Filter Results"
         >

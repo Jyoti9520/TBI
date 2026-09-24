@@ -72,20 +72,20 @@ export const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background selection:bg-[#B4E1EB] selection:text-[#1B3650]">
+    <div className="min-h-screen flex flex-col bg-background selection:bg-[#E1DCC9] selection:text-[#1F150C]">
       <Navbar />
 
-      {/* Hero Section styled with palette gradient: #B4E1EB, #F4F9FD, #F9E8A2 */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-slate-border bg-gradient-to-b from-[#B4E1EB]/30 via-[#F4F9FD] to-[#F9E8A2]/20">
+      {/* Hero Section styled with palette gradient: #E1DCC9, #FAF7F0, #412D15 */}
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-slate-border bg-gradient-to-b from-[#E1DCC9]/40 via-[#FAF7F0] to-[#E1DCC9]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Subtle Pill using #F9E8A2 */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#F9E8A2] border border-[#F4DB6F] text-[#4A3B02] text-xs font-bold mb-6 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#C2A31B]" />
+          {/* Subtle Pill using #E1DCC9 and #412D15 */}
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#E1DCC9] border border-[#CFC6A9] text-[#1F150C] text-xs font-bold mb-6 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#412D15]" />
             <span>Discover University & Startup Incubators</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B3650] tracking-tight max-w-4xl mx-auto leading-tight sm:leading-tight">
-            Discover Where <span className="text-[#78A4CB] underline decoration-[#F9E8A2] decoration-4 underline-offset-4">Innovation</span> Begins.
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1F150C] tracking-tight max-w-4xl mx-auto leading-tight sm:leading-tight">
+            Discover Where <span className="text-[#412D15] underline decoration-[#E1DCC9] decoration-4 underline-offset-4">Innovation</span> Begins.
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-slate-muted max-w-2xl mx-auto font-normal">
@@ -94,9 +94,9 @@ export const Landing = () => {
 
           {/* Search Box on Landing */}
           <div className="mt-8 max-w-2xl mx-auto">
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center shadow-hover rounded-2xl bg-surface border border-slate-border p-1.5 focus-within:ring-2 focus-within:ring-[#78A4CB]/30 focus-within:border-[#78A4CB] transition-all">
+            <form onSubmit={handleSearchSubmit} className="relative flex items-center shadow-hover rounded-2xl bg-surface border border-slate-border p-1.5 focus-within:ring-2 focus-within:ring-[#412D15]/30 focus-within:border-[#412D15] transition-all">
               <div className="pl-4 pr-2 text-slate-muted">
-                <Search className="w-5 h-5 text-[#78A4CB]" />
+                <Search className="w-5 h-5 text-[#412D15]" />
               </div>
               <input
                 type="text"
@@ -107,7 +107,7 @@ export const Landing = () => {
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-[#78A4CB] hover:bg-[#5F8FB8] text-white font-bold text-sm rounded-xl transition-colors shrink-0 shadow-sm"
+                className="px-6 py-3 bg-[#1F150C] hover:bg-[#412D15] text-[#E1DCC9] font-bold text-sm rounded-xl transition-colors shrink-0 shadow-sm"
               >
                 Search
               </button>
@@ -118,16 +118,16 @@ export const Landing = () => {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               to="/explore"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#78A4CB] text-white text-sm font-bold hover:bg-[#5F8FB8] transition-colors shadow-sm"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#1F150C] text-[#E1DCC9] text-sm font-bold hover:bg-[#412D15] transition-colors shadow-sm"
             >
               <Compass className="w-4 h-4" />
               <span>Explore TBIs</span>
             </Link>
             <Link
               to="/universities"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-surface border border-slate-border text-[#1B3650] text-sm font-semibold hover:bg-[#B4E1EB]/20 transition-colors shadow-subtle"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-surface border border-slate-border text-[#1F150C] text-sm font-semibold hover:bg-[#E1DCC9]/40 transition-colors shadow-subtle"
             >
-              <Building2 className="w-4 h-4 text-[#78A4CB]" />
+              <Building2 className="w-4 h-4 text-[#412D15]" />
               <span>Browse Universities</span>
             </Link>
           </div>
@@ -139,7 +139,7 @@ export const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="p-2">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#78A4CB]">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#1F150C]">
                 {stats?.totalTbis ?? (loading ? '...' : '500+')}
               </p>
               <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
@@ -147,7 +147,7 @@ export const Landing = () => {
               </p>
             </div>
             <div className="p-2 border-l border-slate-100">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#95BDD7]">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#412D15]">
                 {stats?.uniqueUniversities ?? (loading ? '...' : '350+')}
               </p>
               <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
@@ -155,7 +155,7 @@ export const Landing = () => {
               </p>
             </div>
             <div className="p-2 border-l border-slate-100">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#78A4CB]">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#1F150C]">
                 {stats?.uniqueCities ?? (loading ? '...' : '150+')}
               </p>
               <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
@@ -163,7 +163,7 @@ export const Landing = () => {
               </p>
             </div>
             <div className="p-2 border-l border-slate-100">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#1B8251]">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#2E6F40]">
                 {stats?.verifiedTbis ?? (loading ? '...' : '400+')}
               </p>
               <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
@@ -178,18 +178,18 @@ export const Landing = () => {
       <section className="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="flex items-center space-x-2 text-[#78A4CB] text-xs font-bold uppercase tracking-wider mb-1">
-              <ShieldCheck className="w-4 h-4 text-[#78A4CB]" />
+            <div className="flex items-center space-x-2 text-[#412D15] text-xs font-bold uppercase tracking-wider mb-1">
+              <ShieldCheck className="w-4 h-4 text-[#412D15]" />
               <span>Verified Ecosystems</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B3650]">Featured TBIs</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C]">Featured TBIs</h2>
             <p className="text-sm text-slate-muted mt-1">
               Technology business incubators with verified credentials and contact details.
             </p>
           </div>
           <Link
             to="/explore"
-            className="inline-flex items-center space-x-1.5 text-sm font-bold text-[#78A4CB] hover:text-[#5F8FB8] transition-colors shrink-0"
+            className="inline-flex items-center space-x-1.5 text-sm font-bold text-[#412D15] hover:text-[#1F150C] transition-colors shrink-0"
           >
             <span>View all incubators</span>
             <ArrowRight className="w-4 h-4" />
@@ -217,14 +217,14 @@ export const Landing = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl font-extrabold text-[#1B3650]">Explore by Incubator Type</h2>
+                <h2 className="text-2xl font-extrabold text-[#1F150C]">Explore by Incubator Type</h2>
                 <p className="text-sm text-slate-muted mt-1">
                   Browse incubators based on institutional recognition and funding programs.
                 </p>
               </div>
               <Link
                 to="/categories"
-                className="text-sm font-bold text-[#78A4CB] hover:underline flex items-center space-x-1"
+                className="text-sm font-bold text-[#412D15] hover:underline flex items-center space-x-1"
               >
                 <span>All Categories</span>
                 <ArrowRight className="w-4 h-4" />
@@ -236,20 +236,20 @@ export const Landing = () => {
                 <Link
                   key={cat.name}
                   to={`/explore?incubatorType=${encodeURIComponent(cat.name)}`}
-                  className="p-4 rounded-xl border border-slate-border bg-background hover:bg-white hover:border-[#78A4CB] hover:shadow-hover transition-all flex items-center justify-between group"
+                  className="p-4 rounded-xl border border-slate-border bg-background hover:bg-white hover:border-[#412D15] hover:shadow-hover transition-all flex items-center justify-between group"
                 >
                   <div className="flex items-center space-x-3 overflow-hidden">
-                    <div className="w-9 h-9 rounded-lg bg-[#B4E1EB]/40 text-[#1B3650] flex items-center justify-center font-bold text-xs shrink-0 group-hover:bg-[#F9E8A2] group-hover:text-[#4A3B02] transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-[#E1DCC9] text-[#1F150C] flex items-center justify-center font-bold text-xs shrink-0 group-hover:bg-[#412D15] group-hover:text-[#E1DCC9] transition-colors">
                       <Layers className="w-4 h-4" />
                     </div>
                     <div className="truncate">
-                      <p className="text-sm font-bold text-slate group-hover:text-[#78A4CB] truncate">
+                      <p className="text-sm font-bold text-slate group-hover:text-[#412D15] truncate">
                         {cat.name}
                       </p>
                       <p className="text-xs text-slate-muted">{cat.count} TBIs registered</p>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#78A4CB] group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#412D15] group-hover:translate-x-1 transition-all" />
                 </Link>
               ))}
             </div>
@@ -262,14 +262,14 @@ export const Landing = () => {
         <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-extrabold text-[#1B3650]">Leading Innovation Universities</h2>
+              <h2 className="text-2xl font-extrabold text-[#1F150C]">Leading Innovation Universities</h2>
               <p className="text-sm text-slate-muted mt-1">
                 Colleges and universities pioneering entrepreneurial ecosystems.
               </p>
             </div>
             <Link
               to="/universities"
-              className="text-sm font-bold text-[#78A4CB] hover:underline flex items-center space-x-1"
+              className="text-sm font-bold text-[#412D15] hover:underline flex items-center space-x-1"
             >
               <span>View All Universities</span>
               <ArrowRight className="w-4 h-4" />
@@ -281,20 +281,20 @@ export const Landing = () => {
               <Link
                 key={uni.university}
                 to={`/explore?university=${encodeURIComponent(uni.university)}`}
-                className="p-4 rounded-xl border border-slate-border bg-surface hover:shadow-hover hover:border-[#78A4CB] transition-all flex items-center justify-between group"
+                className="p-4 rounded-xl border border-slate-border bg-surface hover:shadow-hover hover:border-[#412D15] transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center space-x-3 overflow-hidden">
-                  <div className="w-9 h-9 rounded-lg bg-[#B4E1EB]/30 text-[#1B3650] flex items-center justify-center shrink-0">
-                    <Building2 className="w-4 h-4 text-[#78A4CB]" />
+                  <div className="w-9 h-9 rounded-lg bg-[#E1DCC9]/60 text-[#1F150C] flex items-center justify-center shrink-0">
+                    <Building2 className="w-4 h-4 text-[#412D15]" />
                   </div>
                   <div className="truncate">
-                    <p className="text-sm font-bold text-slate group-hover:text-[#78A4CB] truncate">
+                    <p className="text-sm font-bold text-slate group-hover:text-[#412D15] truncate">
                       {uni.university}
                     </p>
                     <p className="text-xs text-slate-muted">{uni.city} • {uni.tbiCount} TBI</p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#78A4CB] group-hover:translate-x-0.5 transition-all shrink-0" />
+                <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#412D15] group-hover:translate-x-0.5 transition-all shrink-0" />
               </Link>
             ))}
           </div>
@@ -302,16 +302,16 @@ export const Landing = () => {
       )}
 
       {/* How It Works */}
-      <section className="py-16 bg-[#F4F9FD] border-t border-slate-border">
+      <section className="py-16 bg-[#F5EFE6] border-t border-slate-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B3650]">How TBI Global Works</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1F150C]">How TBI Global Works</h2>
           <p className="text-sm text-slate-muted mt-2 max-w-lg mx-auto">
             A frictionless directory empowering researchers, students, and founders.
           </p>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
-              <div className="w-10 h-10 rounded-xl bg-[#78A4CB] text-white flex items-center justify-center font-bold mb-4 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-[#1F150C] text-[#E1DCC9] flex items-center justify-center font-bold mb-4 shadow-sm border border-[#000000]">
                 1
               </div>
               <h3 className="text-base font-bold text-slate mb-1">Search & Filter</h3>
@@ -321,7 +321,7 @@ export const Landing = () => {
             </div>
 
             <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
-              <div className="w-10 h-10 rounded-xl bg-[#95BDD7] text-white flex items-center justify-center font-bold mb-4 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-[#412D15] text-[#E1DCC9] flex items-center justify-center font-bold mb-4 shadow-sm">
                 2
               </div>
               <h3 className="text-base font-bold text-slate mb-1">Inspect Verified Details</h3>
@@ -331,7 +331,7 @@ export const Landing = () => {
             </div>
 
             <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
-              <div className="w-10 h-10 rounded-xl bg-[#F9E8A2] text-[#4A3B02] flex items-center justify-center font-bold mb-4 shadow-sm border border-[#F4DB6F]">
+              <div className="w-10 h-10 rounded-xl bg-[#E1DCC9] text-[#1F150C] flex items-center justify-center font-bold mb-4 shadow-sm border border-[#CFC6A9]">
                 3
               </div>
               <h3 className="text-base font-bold text-slate mb-1">Save & Connect</h3>
@@ -343,25 +343,25 @@ export const Landing = () => {
         </div>
       </section>
 
-      {/* CTA styled with #78A4CB and #F9E8A2 */}
-      <section className="py-14 bg-gradient-to-r from-[#78A4CB] via-[#5F8FB8] to-[#48769D] text-white">
+      {/* CTA styled with #1F150C and #E1DCC9 */}
+      <section className="py-14 bg-gradient-to-r from-[#000000] via-[#1F150C] to-[#412D15] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#FAF7F0]">
             Ready to find the right incubator for your next idea?
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-white/90 max-w-xl mx-auto">
+          <p className="mt-3 text-sm sm:text-base text-[#E1DCC9] max-w-xl mx-auto">
             Join founders and researchers discovering incubation opportunities across university ecosystems.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
               to="/signup"
-              className="px-6 py-2.5 rounded-xl bg-[#F9E8A2] hover:bg-[#F4DB6F] text-[#4A3B02] text-sm font-bold transition-colors shadow-sm"
+              className="px-6 py-2.5 rounded-xl bg-[#E1DCC9] hover:bg-[#FAF7F0] text-[#1F150C] text-sm font-bold transition-colors shadow-sm"
             >
               Get Started Free
             </Link>
             <Link
               to="/explore"
-              className="px-6 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-sm font-semibold border border-white/30 transition-colors"
+              className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-[#E1DCC9] text-sm font-semibold border border-[#E1DCC9]/30 transition-colors"
             >
               Explore Directory
             </Link>
@@ -374,8 +374,8 @@ export const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center space-x-2 text-[#1B3650] font-bold text-base mb-2">
-                <div className="w-6 h-6 rounded bg-[#78A4CB] text-white text-xs flex items-center justify-center font-bold">
+              <div className="flex items-center space-x-2 text-[#1F150C] font-bold text-base mb-2">
+                <div className="w-6 h-6 rounded bg-[#1F150C] text-[#E1DCC9] text-xs flex items-center justify-center font-bold">
                   T
                 </div>
                 <span>TBI GLOBAL</span>
@@ -388,29 +388,29 @@ export const Landing = () => {
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B3650] mb-3">Explore</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F150C] mb-3">Explore</h4>
               <ul className="space-y-2 text-xs">
-                <li><Link to="/explore" className="hover:text-[#78A4CB]">Explore TBIs</Link></li>
-                <li><Link to="/universities" className="hover:text-[#78A4CB]">Universities</Link></li>
-                <li><Link to="/categories" className="hover:text-[#78A4CB]">Categories</Link></li>
-                <li><Link to="/nearby" className="hover:text-[#78A4CB]">Nearby TBIs</Link></li>
+                <li><Link to="/explore" className="hover:text-[#412D15]">Explore TBIs</Link></li>
+                <li><Link to="/universities" className="hover:text-[#412D15]">Universities</Link></li>
+                <li><Link to="/categories" className="hover:text-[#412D15]">Categories</Link></li>
+                <li><Link to="/nearby" className="hover:text-[#412D15]">Nearby TBIs</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B3650] mb-3">Platform</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F150C] mb-3">Platform</h4>
               <ul className="space-y-2 text-xs">
-                <li><Link to="/suggest" className="hover:text-[#78A4CB]">Suggest a TBI</Link></li>
-                <li><Link to="/saved" className="hover:text-[#78A4CB]">Saved TBIs</Link></li>
-                <li><Link to="/dashboard" className="hover:text-[#78A4CB]">Dashboard</Link></li>
+                <li><Link to="/suggest" className="hover:text-[#412D15]">Suggest a TBI</Link></li>
+                <li><Link to="/saved" className="hover:text-[#412D15]">Saved TBIs</Link></li>
+                <li><Link to="/dashboard" className="hover:text-[#412D15]">Dashboard</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1B3650] mb-3">Administration</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#1F150C] mb-3">Administration</h4>
               <ul className="space-y-2 text-xs">
-                <li><Link to="/login" className="hover:text-[#78A4CB]">Admin Login</Link></li>
-                <li><Link to="/admin" className="hover:text-[#78A4CB]">Admin Portal</Link></li>
+                <li><Link to="/login" className="hover:text-[#412D15]">Admin Login</Link></li>
+                <li><Link to="/admin" className="hover:text-[#412D15]">Admin Portal</Link></li>
               </ul>
             </div>
           </div>

@@ -10,7 +10,8 @@ import {
   Navigation,
   University,
   Rocket,
-  ArrowRight
+  ArrowRight,
+  Loader2
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -21,6 +22,7 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
   const navigate = useNavigate();
   const [isFavorited, setIsFavorited] = useState(tbi?.isFavorited || false);
   const [loadingFav, setLoadingFav] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Map backend dataset fields to clean UI representations
   const {
@@ -210,13 +212,28 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
             </a>
           ) : null}
 
-          {/* View Details Button with Arrow Animation */}
+          {/* View Details Button with Arrow Animation and Loading State */}
           <Link
             to={`/tbi/${tbi.id}`}
-            className="group/btn inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#5E0B15] hover:bg-[#90323D] text-[#D9CAB3] text-xs font-semibold shadow-xs transition-all duration-200"
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+                return;
+              }
+              setIsNavigating(true);
+            }}
+            className="group/btn inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-[#5E0B15] hover:bg-[#490911] text-white text-xs font-semibold shadow-xs hover:shadow-sm active:scale-[0.97] active:translate-y-[1px] transition-all duration-200 select-none"
           >
-            <span>View Details</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover/btn:translate-x-0.5" />
+            {isNavigating ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                <span>Opening...</span>
+              </>
+            ) : (
+              <>
+                <span>View Details</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover/btn:translate-x-1" />
+              </>
+            )}
           </Link>
         </div>
       </div>

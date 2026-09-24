@@ -23,7 +23,6 @@ export const SearchBar = ({
     setSearchTerm(value);
   }, [value]);
 
-  // Fetch suggestions when debounced value changes
   useEffect(() => {
     let active = true;
     const fetchSuggestions = async () => {
@@ -47,7 +46,6 @@ export const SearchBar = ({
     };
   }, [debouncedSearch]);
 
-  // Close suggestions when clicked outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
@@ -90,7 +88,7 @@ export const SearchBar = ({
   return (
     <div ref={wrapperRef} className="relative w-full flex items-center gap-2">
       <div className="relative flex-1">
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#78A4CB]">
           <Search className="h-4 w-4" />
         </div>
         <input
@@ -102,7 +100,7 @@ export const SearchBar = ({
             if (suggestions.length > 0) setShowSuggestions(true);
           }}
           placeholder={placeholder}
-          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy transition-all shadow-subtle"
+          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB] transition-all shadow-subtle"
         />
         {searchTerm && (
           <button
@@ -124,10 +122,10 @@ export const SearchBar = ({
       {showFilterButton && (
         <button
           onClick={onFilterToggle}
-          className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-semibold transition-all shrink-0 ${
+          className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-bold transition-all shrink-0 ${
             filterActive
-              ? 'bg-navy text-white border-navy shadow-sm'
-              : 'bg-surface text-slate border-slate-border hover:bg-slate-50'
+              ? 'bg-[#78A4CB] text-white border-[#5F8FB8] shadow-sm'
+              : 'bg-surface text-[#1B3650] border-slate-border hover:bg-[#B4E1EB]/20 hover:border-[#78A4CB]/50'
           }`}
           title="Filter Results"
         >

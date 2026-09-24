@@ -72,8 +72,8 @@ export const FilterPanel = ({
       <div className="w-full max-w-md bg-surface h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-200 border-l border-slate-border">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-border flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-navy">
-            <Filter className="w-5 h-5 text-teal" />
+          <div className="flex items-center space-x-2 text-[#1B3650]">
+            <Filter className="w-5 h-5 text-[#78A4CB]" />
             <h3 className="font-bold text-lg">Filter TBIs</h3>
           </div>
           <button
@@ -99,8 +99,8 @@ export const FilterPanel = ({
                   onClick={() => handleChange('status', st)}
                   className={`py-2 px-3 text-xs font-semibold rounded-lg border text-center transition-all ${
                     localFilters.status === st
-                      ? 'bg-navy text-white border-navy shadow-sm'
-                      : 'bg-surface text-slate border-slate-border hover:bg-slate-50'
+                      ? 'bg-[#78A4CB] text-white border-[#5F8FB8] shadow-sm font-bold'
+                      : 'bg-surface text-slate border-slate-border hover:bg-[#B4E1EB]/20'
                   }`}
                 >
                   {st === '' ? 'All Status' : st}
@@ -119,7 +119,7 @@ export const FilterPanel = ({
               value={localFilters.city || ''}
               onChange={(e) => handleChange('city', e.target.value)}
               placeholder="e.g. Mohali, Chennai, Bengaluru..."
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB]"
             />
             {options.cities.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
@@ -128,7 +128,7 @@ export const FilterPanel = ({
                     key={c.name}
                     type="button"
                     onClick={() => handleChange('city', c.name)}
-                    className="text-[11px] px-2 py-0.5 rounded bg-slate-100 text-slate-muted hover:text-navy hover:bg-slate-200 transition-colors"
+                    className="text-[11px] px-2 py-0.5 rounded bg-[#B4E1EB]/40 text-[#1B3650] hover:bg-[#78A4CB] hover:text-white transition-colors font-medium"
                   >
                     {c.name}
                   </button>
@@ -147,7 +147,7 @@ export const FilterPanel = ({
               value={localFilters.university || ''}
               onChange={(e) => handleChange('university', e.target.value)}
               placeholder="e.g. Chandigarh University..."
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB]"
             />
           </div>
 
@@ -159,7 +159,7 @@ export const FilterPanel = ({
             <select
               value={localFilters.incubatorType || ''}
               onChange={(e) => handleChange('incubatorType', e.target.value)}
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB]"
             >
               <option value="">All Incubator Types</option>
               {options.incubatorTypes.map((t) => (
@@ -178,7 +178,7 @@ export const FilterPanel = ({
             <select
               value={localFilters.universityType || ''}
               onChange={(e) => handleChange('universityType', e.target.value)}
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/30 focus:border-[#78A4CB]"
             >
               <option value="">All University Types</option>
               {options.universityTypes.map((u) => (
@@ -195,7 +195,7 @@ export const FilterPanel = ({
           <button
             type="button"
             onClick={handleReset}
-            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg border border-slate-border text-sm font-semibold text-slate-muted hover:text-slate hover:bg-slate-100 transition-colors"
+            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg border border-[#F4DB6F] text-xs font-bold bg-[#F9E8A2]/60 text-[#4A3B02] hover:bg-[#F9E8A2] transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Reset</span>
@@ -204,7 +204,7 @@ export const FilterPanel = ({
           <button
             type="button"
             onClick={handleApply}
-            className="flex-1 px-5 py-2.5 bg-navy hover:bg-navy-600 text-white text-sm font-semibold rounded-lg shadow-sm transition-colors text-center"
+            className="flex-1 px-5 py-2.5 bg-[#78A4CB] hover:bg-[#5F8FB8] text-white text-sm font-bold rounded-lg shadow-sm transition-colors text-center"
           >
             Apply Filters
           </button>

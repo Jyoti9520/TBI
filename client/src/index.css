@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --palette-yellow: #F9E8A2;
+  --palette-ice: #B4E1EB;
+  --palette-slate: #95BDD7;
+  --palette-blue: #78A4CB;
+}
+
 @layer base {
   body {
     @apply bg-background text-slate;
@@ -9,21 +16,21 @@
   }
 }
 
-/* Custom Scrollbar styled with Color Hunt Palette #B4E1EB & #95BDD7 */
+/* Custom Scrollbar styled with Color Hunt Palette */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4fafc;
+  background: #B4E1EB;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #b4e1eb;
-  border-radius: 3px;
+  background: #78A4CB;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #95bdd7;
+  background: #5F8FB8;
 }

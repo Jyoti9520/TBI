@@ -16,6 +16,7 @@ import {
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
 import { getTbiDisplayData } from '../utils/tbiMapping';
+import { showToast } from './Toast';
 
 export const TbiCard = ({ tbi, onFavoriteToggle }) => {
   const { isAuthenticated } = useAuth();
@@ -23,6 +24,11 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
   const [isFavorited, setIsFavorited] = useState(tbi?.isFavorited || false);
   const [loadingFav, setLoadingFav] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    setIsFavorited(tbi?.isFavorited || false);
+  }, [tbi?.isFavorited]);
 
   // Map backend dataset fields to clean UI representations
   const {
@@ -47,18 +53,28 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
     if (loadingFav) return;
     setLoadingFav(true);
 
+    const willBeFavorited = !isFavorited;
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 260);
+
     try {
       if (isFavorited) {
-        await userService.removeFavorite(tbi.id);
         setIsFavorited(false);
+        await userService.removeFavorite(tbi.id);
+        showToast('Removed from your TBIs');
         if (onFavoriteToggle) onFavoriteToggle(tbi.id, false);
+        window.dispatchEvent(new CustomEvent('favorites-updated', { detail: { id: tbi.id, isSaved: false } }));
       } else {
-        await userService.addFavorite(tbi.id);
         setIsFavorited(true);
+        await userService.addFavorite(tbi.id);
+        showToast('Saved to your TBIs');
         if (onFavoriteToggle) onFavoriteToggle(tbi.id, true);
+        window.dispatchEvent(new CustomEvent('favorites-updated', { detail: { id: tbi.id, isSaved: true } }));
       }
     } catch (err) {
       console.error('Favorite error:', err);
+      setIsFavorited(!willBeFavorited);
+      showToast('Could not update saved status', 'error');
     } finally {
       setLoadingFav(false);
     }
@@ -101,18 +117,18 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
             <button
               onClick={handleToggleFavorite}
               disabled={loadingFav}
-              className={`p-2 rounded-full transition-colors duration-200 ${
+              className={`p-2 rounded-full transition-all duration-200 cursor-pointer ${
                 isFavorited
-                  ? 'text-red-500 bg-red-50 hover:bg-red-100'
-                  : 'text-slate-muted hover:text-red-500 hover:bg-slate-100'
+                  ? 'text-red-500 bg-red-50 hover:bg-red-100 shadow-2xs'
+                  : 'text-slate-400 hover:text-red-500 hover:bg-red-50/60'
               }`}
-              title={isFavorited ? 'Remove from saved' : 'Save TBI'}
-              aria-label="Toggle Favorite"
+              title={isFavorited ? 'Remove from saved' : 'Save to your TBIs'}
+              aria-label={isFavorited ? 'Remove from saved' : 'Save to your TBIs'}
             >
               <Heart
-                className={`w-4 h-4 transition-transform duration-200 active:scale-125 ${
-                  isFavorited ? 'fill-current' : ''
-                }`}
+                className={`w-4 h-4 transition-colors duration-200 ${
+                  isFavorited ? 'fill-red-500 text-red-500' : 'fill-none stroke-current'
+                } ${isAnimating ? 'animate-heart-pop' : ''}`}
               />
             </button>
           </div>

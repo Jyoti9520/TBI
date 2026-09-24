@@ -20,6 +20,7 @@ import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
 import { useAuth } from '../hooks/useAuth';
 import { getTbiDisplayData } from '../utils/tbiMapping';
+import { showToast } from '../components/Toast';
 
 export const TbiDetails = () => {
   const { id } = useParams();
@@ -31,6 +32,7 @@ export const TbiDetails = () => {
   const [error, setError] = useState('');
   const [isFavorited, setIsFavorited] = useState(false);
   const [savingFav, setSavingFav] = useState(false);
+  const [isAnimatingFav, setIsAnimatingFav] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -68,16 +70,26 @@ export const TbiDetails = () => {
     if (savingFav || !tbi) return;
     setSavingFav(true);
 
+    const willBeFavorited = !isFavorited;
+    setIsAnimatingFav(true);
+    setTimeout(() => setIsAnimatingFav(false), 260);
+
     try {
       if (isFavorited) {
-        await userService.removeFavorite(tbi.id);
         setIsFavorited(false);
+        await userService.removeFavorite(tbi.id);
+        showToast('Removed from your TBIs');
+        window.dispatchEvent(new CustomEvent('favorites-updated', { detail: { id: tbi.id, isSaved: false } }));
       } else {
-        await userService.addFavorite(tbi.id);
         setIsFavorited(true);
+        await userService.addFavorite(tbi.id);
+        showToast('Saved to your TBIs');
+        window.dispatchEvent(new CustomEvent('favorites-updated', { detail: { id: tbi.id, isSaved: true } }));
       }
     } catch (err) {
       console.error('Favorite error:', err);
+      setIsFavorited(!willBeFavorited);
+      showToast('Could not update saved status', 'error');
     } finally {
       setSavingFav(false);
     }
@@ -216,13 +228,17 @@ export const TbiDetails = () => {
             <button
               onClick={handleToggleFavorite}
               disabled={savingFav}
-              className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl border text-xs font-bold transition-all ${
+              className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                 isFavorited
                   ? 'bg-red-50 text-red-600 border-red-200 shadow-sm'
-                  : 'bg-surface text-slate border-slate-border hover:bg-slate-50'
+                  : 'bg-surface text-slate-600 border-slate-border hover:bg-slate-50 hover:text-red-500'
               }`}
             >
-              <Heart className={`w-4 h-4 ${isFavorited ? 'fill-current text-red-500' : ''}`} />
+              <Heart
+                className={`w-4 h-4 transition-colors duration-200 ${
+                  isFavorited ? 'fill-red-500 text-red-500' : 'fill-none stroke-current'
+                } ${isAnimatingFav ? 'animate-heart-pop' : ''}`}
+              />
               <span>{isFavorited ? 'Saved' : 'Save TBI'}</span>
             </button>
           </div>

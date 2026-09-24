@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
@@ -16,10 +16,33 @@ import {
   FileSpreadsheet
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { userService } from '../services/userService';
 
 export const Sidebar = () => {
   const { user, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
+  const [savedCount, setSavedCount] = useState(0);
+
+  useEffect(() => {
+    if (!user) {
+      setSavedCount(0);
+      return;
+    }
+
+    const fetchSaved = () => {
+      userService
+        .getFavorites()
+        .then((res) => {
+          if (res.success) setSavedCount(res.total || 0);
+        })
+        .catch(() => {});
+    };
+
+    fetchSaved();
+
+    window.addEventListener('favorites-updated', fetchSaved);
+    return () => window.removeEventListener('favorites-updated', fetchSaved);
+  }, [user]);
 
   const handleLogout = async () => {
     await logout();
@@ -84,6 +107,17 @@ export const Sidebar = () => {
                     <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
                   </div>
                   <span className="truncate">{item.name}</span>
+                  {item.name === 'Saved TBIs' && savedCount > 0 && (
+                    <span
+                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                        isActive
+                          ? 'bg-white/20 text-white'
+                          : 'bg-[#D9CAB3]/70 text-[#5E0B15] group-hover:bg-[#5E0B15]/10'
+                      }`}
+                    >
+                      {savedCount}
+                    </span>
+                  )}
                 </>
               )}
             </NavLink>

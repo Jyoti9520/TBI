@@ -1,5 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CheckCircle2, AlertCircle, X } from 'lucide-react';
+
+export const showToast = (message, type = 'success') => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('app-toast', { detail: { message, type } }));
+  }
+};
+
+export const ToastContainer = () => {
+  const [toast, setToast] = useState(null);
+
+  useEffect(() => {
+    let timer;
+    const handleToast = (e) => {
+      if (e.detail?.message) {
+        setToast({ message: e.detail.message, type: e.detail.type || 'success' });
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          setToast(null);
+        }, 2800);
+      }
+    };
+
+    window.addEventListener('app-toast', handleToast);
+    return () => {
+      window.removeEventListener('app-toast', handleToast);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  if (!toast) return null;
+
+  return (
+    <Toast
+      message={toast.message}
+      type={toast.type}
+      onClose={() => setToast(null)}
+    />
+  );
+};
 
 export const Toast = ({ message, type = 'success', onClose }) => {
   if (!message) return null;

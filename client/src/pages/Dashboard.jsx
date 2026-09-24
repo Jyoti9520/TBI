@@ -61,14 +61,21 @@ export const Dashboard = () => {
     fetchTbis(page, search, filters);
   }, [page, filters]);
 
-  // Load saved count
+  // Load saved count & keep in sync with card favorite clicks
   useEffect(() => {
-    userService
-      .getFavorites()
-      .then((res) => {
-        if (res.success) setSavedCount(res.total || 0);
-      })
-      .catch(() => {});
+    const fetchSaved = () => {
+      userService
+        .getFavorites()
+        .then((res) => {
+          if (res.success) setSavedCount(res.total || 0);
+        })
+        .catch(() => {});
+    };
+
+    fetchSaved();
+
+    window.addEventListener('favorites-updated', fetchSaved);
+    return () => window.removeEventListener('favorites-updated', fetchSaved);
   }, []);
 
   const handleSearchSubmit = (searchTerm) => {

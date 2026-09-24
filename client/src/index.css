@@ -35,3 +35,21 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #5E0B15;
 }
+
+/* Heart Pop Micro-Interaction (1 -> 1.15 -> 1 under 300ms) */
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heart-pop {
+  animation: heart-pop 240ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+

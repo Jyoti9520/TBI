@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Compass, SlidersHorizontal, X } from 'lucide-react';
+import { Compass, SlidersHorizontal, X, LayoutGrid, MapPin } from 'lucide-react';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
 import { TbiGrid } from '../components/TbiGrid';
+import { TbiMapView } from '../components/TbiMapView';
 import { Pagination } from '../components/Pagination';
 import { tbiService } from '../services/tbiService';
 import { showToast } from '../components/Toast';
@@ -29,6 +30,7 @@ export const Explore = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
   const [isNearbyActive, setIsNearbyActive] = useState(false);
+  const [viewMode, setViewMode] = useState('list'); // 'list' | 'map'
 
   // Derive initial values from URL query params
   const initialSearch = searchParams.get('q') || '';
@@ -229,15 +231,63 @@ export const Explore = () => {
 
       {/* Search & Filter Bar */}
       <div className="bg-surface p-4 rounded-2xl border border-slate-border shadow-card space-y-3.5">
-        <SearchBar
-          value={search}
-          onChange={(val) => setSearch(val)}
-          onSearch={handleSearch}
-          placeholder="Search TBI name, university, city, or incubator type..."
-          showFilterButton={true}
-          onFilterToggle={() => setFilterOpen(true)}
-          filterActive={isFilterActive}
-        />
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="flex-1">
+            <SearchBar
+              value={search}
+              onChange={(val) => setSearch(val)}
+              onSearch={handleSearch}
+              placeholder="Search TBI name, university, city, or incubator type..."
+              showFilterButton={true}
+              onFilterToggle={() => setFilterOpen(true)}
+              filterActive={isFilterActive}
+            />
+          </div>
+
+          {/* List / Map View Toggle */}
+          <div className="flex items-center bg-[#FAF7F2] p-1 rounded-xl border border-[#D9CAB3]/70 shrink-0 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setViewMode('list')}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
+                viewMode === 'list'
+                  ? 'bg-[#5E0B15] text-white shadow-xs'
+                  : 'text-[#5E0B15] hover:bg-[#D9CAB3]/40'
+              }`}
+              title="List View"
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+              <span>List</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const hasCoordinates = tbis.some(
+                  (t) =>
+                    t?.latitude !== null &&
+                    t?.latitude !== undefined &&
+                    t?.longitude !== null &&
+                    t?.longitude !== undefined &&
+                    !isNaN(Number(t.latitude)) &&
+                    !isNaN(Number(t.longitude))
+                );
+                if (!hasCoordinates) {
+                  showToast('Map view requires location coordinates.', 'warning');
+                }
+                setViewMode('map');
+              }}
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
+                viewMode === 'map'
+                  ? 'bg-[#5E0B15] text-white shadow-xs'
+                  : 'text-[#5E0B15] hover:bg-[#D9CAB3]/40'
+              }`}
+              title="Map View"
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Map</span>
+            </button>
+          </div>
+        </div>
 
         {/* Quick Filter Chips */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-0.5 no-scrollbar select-none">
@@ -324,30 +374,40 @@ export const Explore = () => {
         )}
       </div>
 
-      {/* Results Count Summary */}
+      {/* Results Count & View Mode Summary */}
       <div className="flex items-center justify-between text-xs font-semibold text-slate-muted">
         <span>
           Showing {tbis.length} of {totalCount} incubators
         </span>
+        <span className="capitalize text-slate-muted">
+          View: <strong className="text-[#5E0B15]">{viewMode}</strong>
+        </span>
       </div>
 
-      {/* Grid */}
-      <TbiGrid
-        tbis={tbis}
-        loading={loading}
-        onClearFilters={handleResetFilters}
-      />
+      {/* Main View: List or Map */}
+      {viewMode === 'map' ? (
+        <TbiMapView tbis={tbis} onSwitchToList={() => setViewMode('list')} />
+      ) : (
+        <>
+          {/* Grid */}
+          <TbiGrid
+            tbis={tbis}
+            loading={loading}
+            onClearFilters={handleResetFilters}
+          />
 
-      {/* Pagination */}
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={(p) => {
-          setPage(p);
-          updateQueryParams(search, filters, p);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-      />
+          {/* Pagination */}
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={(p) => {
+              setPage(p);
+              updateQueryParams(search, filters, p);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        </>
+      )}
 
       {/* Filter Drawer */}
       <FilterPanel

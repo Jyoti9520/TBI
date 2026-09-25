@@ -86,7 +86,7 @@ export const Nearby = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
             <MapPin className="w-5 h-5 text-[#BC8034]" />
           </div>
@@ -101,7 +101,7 @@ export const Nearby = () => {
       <div className="bg-surface p-5 rounded-2xl border border-slate-border shadow-card space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#D9CAB3] text-[#5E0B15] flex items-center justify-center shrink-0 border border-[#8C7A6B]">
+            <div className="w-10 h-10 rounded-xl bg-[#D9CAB3] text-[#7A0B1A] flex items-center justify-center shrink-0 border border-[#8C7A6B]">
               <Navigation className="w-5 h-5" />
             </div>
             <div>
@@ -122,7 +122,7 @@ export const Nearby = () => {
             <button
               onClick={requestLocation}
               disabled={loading}
-              className="px-4 py-2 bg-[#5E0B15] text-[#D9CAB3] text-xs font-semibold rounded-lg hover:bg-[#90323D] disabled:opacity-50 transition-colors shadow-sm border border-[#5E0B15]"
+              className="px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg hover:bg-[#5B0712] disabled:opacity-50 transition-colors shadow-sm border border-[#7A0B1A]"
             >
               {loading ? 'Detecting...' : 'Detect My Location'}
             </button>
@@ -141,7 +141,7 @@ export const Nearby = () => {
                 onClick={() => handleCitySelect(c.name)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
                   selectedCity === c.name
-                    ? 'bg-[#5E0B15] text-[#D9CAB3] border-[#5E0B15] shadow-sm'
+                    ? 'bg-[#7A0B1A] text-[#D9CAB3] border-[#7A0B1A] shadow-sm'
                     : 'bg-surface text-slate border-slate-border hover:bg-[#D9CAB3]/40'
                 }`}
               >

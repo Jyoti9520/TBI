@@ -64,8 +64,8 @@ export const AdminDashboard = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
-            <Shield className="w-7 h-7 text-[#90323D]" />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
+            <Shield className="w-7 h-7 text-[#5B0712]" />
             <span>Administrator Control Center</span>
           </h1>
           <p className="text-sm text-slate-muted mt-1">
@@ -76,7 +76,7 @@ export const AdminDashboard = () => {
         <div className="flex items-center space-x-2 shrink-0">
           <Link
             to="/admin/import"
-            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#5E0B15] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#90323D] transition-colors border border-[#5E0B15]"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#5B0712] transition-colors border border-[#7A0B1A]"
           >
             <FileSpreadsheet className="w-4 h-4" />
             <span>Import Dataset</span>
@@ -148,8 +148,8 @@ export const AdminDashboard = () => {
       {/* Pending Suggestions Review Section */}
       <div className="bg-surface border border-slate-border rounded-2xl p-6 shadow-card space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <h2 className="text-base font-bold text-[#5E0B15] flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-[#90323D]" />
+          <h2 className="text-base font-bold text-[#7A0B1A] flex items-center space-x-2">
+            <Clock className="w-4 h-4 text-[#5B0712]" />
             <span>Pending Community Suggestions ({suggestions.length})</span>
           </h2>
         </div>

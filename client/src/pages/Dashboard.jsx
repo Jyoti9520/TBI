@@ -119,10 +119,10 @@ export const Dashboard = () => {
     <div className="space-y-6">
       {/* Header Greeting */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15]">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
           {getGreeting()}, {user?.name || 'Innovator'}
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-[#647C98] mt-1">
           Discover innovation and technology business incubators around you.
         </p>
       </div>
@@ -170,12 +170,12 @@ export const Dashboard = () => {
 
       {/* Main Grid Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-[#5E0B15] flex items-center space-x-2">
+        <h2 className="text-lg font-bold text-[#7A0B1A] flex items-center space-x-2">
           <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
-            <Compass className="w-4 h-4 text-[#90323D]" />
+            <Compass className="w-4 h-4 text-[#7A0B1A]" />
           </div>
           <span>Explore Incubators</span>
-          <span className="text-xs font-normal text-slate-muted">
+          <span className="text-xs font-normal text-[#647C98]">
             ({totalCount} available)
           </span>
         </h2>

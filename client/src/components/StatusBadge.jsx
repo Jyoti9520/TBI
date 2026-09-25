@@ -13,9 +13,9 @@ export const StatusBadge = ({ status, size = 'md' }) => {
   if (isVerified) {
     return (
       <span
-        className={`inline-flex items-center space-x-1.5 font-semibold text-emerald-800 bg-emerald-50 rounded-md border border-emerald-200/80 whitespace-nowrap ${containerPadding}`}
+        className={`inline-flex items-center space-x-1.5 font-semibold text-[#16A36A] bg-[#16A36A]/10 rounded-md border border-[#16A36A]/25 whitespace-nowrap ${containerPadding}`}
       >
-        <BadgeCheck className={`${iconClass} text-emerald-600 shrink-0`} />
+        <BadgeCheck className={`${iconClass} text-[#16A36A] shrink-0`} />
         <span>Verified</span>
       </span>
     );
@@ -24,9 +24,9 @@ export const StatusBadge = ({ status, size = 'md' }) => {
   if (isUnderVerification) {
     return (
       <span
-        className={`inline-flex items-center space-x-1.5 font-semibold text-amber-900 bg-amber-50 rounded-md border border-amber-200/80 whitespace-nowrap ${containerPadding}`}
+        className={`inline-flex items-center space-x-1.5 font-semibold text-[#D99A2B] bg-[#D99A2B]/10 rounded-md border border-[#D99A2B]/30 whitespace-nowrap ${containerPadding}`}
       >
-        <Clock className={`${iconClass} text-amber-700 shrink-0`} />
+        <Clock className={`${iconClass} text-[#D99A2B] shrink-0`} />
         <span>Under Verification</span>
       </span>
     );

@@ -149,9 +149,9 @@ export const SearchBar = ({
   return (
     <div ref={wrapperRef} className="relative w-full flex items-center gap-2">
       <div className="relative flex-1">
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#90323D]">
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5B0712]">
           {loadingSuggestions ? (
-            <Loader2 className="h-4 w-4 animate-spin text-[#90323D]" />
+            <Loader2 className="h-4 w-4 animate-spin text-[#5B0712]" />
           ) : (
             <Search className="h-4 w-4" />
           )}
@@ -169,7 +169,7 @@ export const SearchBar = ({
           placeholder={placeholder}
           aria-autocomplete="list"
           aria-expanded={showSuggestions}
-          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#90323D]/30 focus:border-[#90323D] transition-all shadow-subtle"
+          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712] transition-all shadow-subtle"
         />
         {searchTerm && (
           <button
@@ -199,8 +199,8 @@ export const SearchBar = ({
           type="button"
           className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-bold transition-all shrink-0 cursor-pointer ${
             filterActive
-              ? 'bg-[#5E0B15] text-[#D9CAB3] border-[#5E0B15] shadow-sm'
-              : 'bg-surface text-[#5E0B15] border-slate-border hover:bg-[#D9CAB3]/40 hover:border-[#90323D]/50'
+              ? 'bg-[#7A0B1A] text-[#D9CAB3] border-[#7A0B1A] shadow-sm'
+              : 'bg-surface text-[#7A0B1A] border-slate-border hover:bg-[#D9CAB3]/40 hover:border-[#5B0712]/50'
           }`}
           title="Filter Results"
         >

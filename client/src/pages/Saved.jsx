@@ -36,9 +36,9 @@ export const Saved = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <Bookmark className="w-5 h-5 text-[#90323D]" />
+            <Bookmark className="w-5 h-5 text-[#5B0712]" />
           </div>
           <span>Saved TBIs</span>
         </h1>
@@ -62,7 +62,7 @@ export const Saved = () => {
           </p>
           <Link
             to="/explore"
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-[#5E0B15] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#90323D] transition-colors border border-[#5E0B15]"
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#5B0712] transition-colors border border-[#7A0B1A]"
           >
             <Compass className="w-4 h-4" />
             <span>Explore TBIs</span>

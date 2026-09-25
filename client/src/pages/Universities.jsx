@@ -34,9 +34,9 @@ export const Universities = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <University className="w-5 h-5 text-[#5E0B15]" />
+            <University className="w-5 h-5 text-[#7A0B1A]" />
           </div>
           <span>University Directory</span>
         </h1>

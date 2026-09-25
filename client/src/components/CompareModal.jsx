@@ -53,13 +53,13 @@ export const CompareModal = ({
         {/* Modal Header */}
         <div className="px-5 py-4 sm:px-6 bg-[#FAF7F2] border-b border-[#D9CAB3] flex items-center justify-between gap-3 shrink-0">
           <div>
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
               <span>Compare TBIs</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#5E0B15] text-white">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#7A0B1A] text-white">
                 {selectedTbis.length} of 3
               </span>
             </h2>
-            <p className="text-xs text-slate-muted mt-0.5">
+            <p className="text-xs text-[#647C98] mt-0.5">
               Side-by-side comparison using verified directory records.
             </p>
           </div>
@@ -69,7 +69,7 @@ export const CompareModal = ({
               <button
                 type="button"
                 onClick={onClearAll}
-                className="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-muted hover:text-status-error hover:bg-red-50 border border-slate-200 transition-colors cursor-pointer"
+                className="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-slate-border transition-colors cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Clear All</span>
@@ -78,7 +78,7 @@ export const CompareModal = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-muted hover:text-slate-900 hover:bg-[#D9CAB3]/40 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-slate-muted hover:text-[#243447] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
               title="Close modal"
               aria-label="Close modal"
             >
@@ -91,33 +91,33 @@ export const CompareModal = ({
         <div className="flex-1 overflow-auto p-4 sm:p-6">
           {selectedTbis.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-sm font-semibold text-slate-muted">No TBIs selected for comparison.</p>
+              <p className="text-sm font-semibold text-[#647C98]">No TBIs selected for comparison.</p>
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-4 px-4 py-2 rounded-xl bg-[#5E0B15] text-white text-xs font-bold"
+                className="mt-4 px-4 py-2 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold"
               >
                 Return to Explore
               </button>
             </div>
           ) : (
-            <div className="overflow-x-auto border border-slate-200 rounded-xl">
+            <div className="overflow-x-auto border border-slate-border rounded-xl">
               <table className="w-full text-left border-collapse min-w-[640px]">
                 <thead>
-                  <tr className="bg-[#FAF7F2] border-b border-slate-200">
-                    <th className="p-3.5 sm:p-4 text-xs font-bold text-slate-muted w-40 sm:w-48 uppercase tracking-wider">
+                  <tr className="bg-[#FAF7F2] border-b border-slate-border">
+                    <th className="p-3.5 sm:p-4 text-xs font-bold text-[#647C98] w-40 sm:w-48 uppercase tracking-wider">
                       Attribute
                     </th>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <th key={tbi.id} className="p-3.5 sm:p-4 text-left border-l border-slate-200">
+                        <th key={tbi.id} className="p-3.5 sm:p-4 text-left border-l border-slate-border">
                           <div className="flex items-start justify-between gap-2">
                             <div>
-                              <div className="font-extrabold text-sm text-[#5E0B15] leading-snug">
+                              <div className="font-extrabold text-sm text-[#7A0B1A] leading-snug">
                                 {display.universityName}
                               </div>
-                              <div className="text-xs font-semibold text-[#90323D] mt-0.5 leading-snug">
+                              <div className="text-xs font-semibold text-[#647C98] mt-0.5 leading-snug">
                                 {display.incubatorName}
                               </div>
                             </div>
@@ -142,7 +142,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <University className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <University className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>University</span>
                       </div>
                     </td>
@@ -160,7 +160,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <MapPin className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <MapPin className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>City</span>
                       </div>
                     </td>
@@ -178,7 +178,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <Building2 className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <Building2 className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>University Type</span>
                       </div>
                     </td>
@@ -188,7 +188,7 @@ export const CompareModal = ({
                       return (
                         <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
                           {val ? (
-                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#5E0B15]">
+                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#7A0B1A]">
                               {val}
                             </span>
                           ) : (
@@ -203,7 +203,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <Rocket className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <Rocket className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>Incubator / TBI</span>
                       </div>
                     </td>
@@ -221,7 +221,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <Layers className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <Layers className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>Incubator Type</span>
                       </div>
                     </td>
@@ -230,7 +230,7 @@ export const CompareModal = ({
                       return (
                         <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
                           {display.incubatorType ? (
-                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#D9CAB3]/40 border border-[#8C7A6B]/30 text-xs font-semibold text-[#5E0B15]">
+                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#D9CAB3]/40 border border-[#8C7A6B]/30 text-xs font-semibold text-[#7A0B1A]">
                               {display.incubatorType}
                             </span>
                           ) : (
@@ -245,7 +245,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <Mail className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <Mail className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>Official Email</span>
                       </div>
                     </td>
@@ -256,7 +256,7 @@ export const CompareModal = ({
                           {display.email ? (
                             <a
                               href={`mailto:${display.email}`}
-                              className="text-[#90323D] hover:underline font-medium break-all"
+                              className="text-[#5B0712] hover:underline font-medium break-all"
                             >
                               {display.email}
                             </a>
@@ -272,7 +272,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <Globe className="w-4 h-4 text-[#90323D] shrink-0" />
+                        <Globe className="w-4 h-4 text-[#5B0712] shrink-0" />
                         <span>Website</span>
                       </div>
                     </td>
@@ -285,7 +285,7 @@ export const CompareModal = ({
                               href={tbi.websiteUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center space-x-1 text-[#5E0B15] hover:underline font-semibold"
+                              className="inline-flex items-center space-x-1 text-[#7A0B1A] hover:underline font-semibold"
                             >
                               <span className="truncate max-w-[180px]">{tbi.website}</span>
                               <ArrowRight className="w-3 h-3 shrink-0" />
@@ -302,7 +302,7 @@ export const CompareModal = ({
                   <tr className="hover:bg-slate-50/70 transition-colors">
                     <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
                       <div className="flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#5E0B15]" />
+                        <span className="w-2 h-2 rounded-full bg-[#7A0B1A]" />
                         <span>Status</span>
                       </div>
                     </td>
@@ -318,13 +318,13 @@ export const CompareModal = ({
 
                   {/* Actions / View Details row */}
                   <tr className="bg-slate-50/60">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600">Action</td>
+                    <td className="p-3.5 sm:p-4 font-bold text-[#647C98]">Action</td>
                     {selectedTbis.map((tbi) => (
                       <td key={tbi.id} className="p-3.5 sm:p-4 border-l border-slate-100">
                         <Link
                           to={`/tbi/${tbi.id}`}
                           onClick={onClose}
-                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#5E0B15] hover:bg-[#490911] text-white text-xs font-semibold shadow-xs hover:shadow transition-all"
+                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-semibold shadow-xs hover:shadow active:scale-[0.97] transition-all"
                         >
                           <span>View Details</span>
                           <ArrowRight className="w-3.5 h-3.5" />

@@ -17,7 +17,7 @@ export const CompareBar = ({
           
           {/* Left: Count and item pills */}
           <div className="flex items-center gap-3 overflow-x-auto w-full sm:w-auto py-1 no-scrollbar">
-            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#5E0B15] text-white text-xs font-bold shadow-xs">
+            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-xs">
               <span>{selectedTbis.length} {selectedTbis.length === 1 ? 'TBI' : 'TBIs'} selected</span>
               <span className="text-[#D9CAB3] text-[10px] font-normal">(max 3)</span>
             </div>
@@ -29,7 +29,7 @@ export const CompareBar = ({
                 return (
                   <span
                     key={tbi.id}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#5E0B15] max-w-[180px] sm:max-w-[200px]"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#7A0B1A] max-w-[180px] sm:max-w-[200px]"
                   >
                     <span className="truncate" title={display.universityName}>
                       {display.universityName}
@@ -54,7 +54,7 @@ export const CompareBar = ({
             <button
               type="button"
               onClick={onClearAll}
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-muted hover:text-status-error hover:bg-red-50 border border-transparent transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-transparent transition-all cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Clear All</span>
@@ -63,7 +63,7 @@ export const CompareBar = ({
             <button
               type="button"
               onClick={onCompare}
-              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-[#5E0B15] hover:bg-[#490911] text-white text-xs font-bold shadow-sm hover:shadow active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-bold shadow-sm hover:shadow active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Compare</span>
               <ArrowRight className="w-3.5 h-3.5" />

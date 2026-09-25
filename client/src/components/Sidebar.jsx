@@ -63,12 +63,12 @@ export const Sidebar = () => {
     <aside className="w-64 bg-surface border-r border-slate-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
       {/* User Mini Profile */}
       <div className="p-4 border-b border-slate-border flex items-center space-x-3 bg-gradient-to-r from-[#FAF7F2] to-white">
-        <div className="w-10 h-10 rounded-xl bg-[#5E0B15] text-[#D9CAB3] font-extrabold flex items-center justify-center shrink-0 shadow-xs border border-[#5E0B15] transition-transform duration-200 hover:scale-105">
+        <div className="w-10 h-10 rounded-xl bg-[#7A0B1A] text-white font-extrabold flex items-center justify-center shrink-0 shadow-xs border border-[#5B0712] transition-transform duration-200 hover:scale-105">
           {user?.name ? user.name[0].toUpperCase() : 'U'}
         </div>
         <div className="overflow-hidden">
-          <p className="text-sm font-bold text-[#5E0B15] truncate">{user?.name || 'User'}</p>
-          <p className="text-xs text-slate-muted truncate">{user?.email}</p>
+          <p className="text-sm font-bold text-[#7A0B1A] truncate">{user?.name || 'User'}</p>
+          <p className="text-xs text-[#647C98] truncate">{user?.email}</p>
         </div>
       </div>
 
@@ -83,8 +83,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
                   isActive
-                    ? 'bg-[#5E0B15] text-white shadow-xs font-semibold'
-                    : 'text-slate-600 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.06]'
+                    ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
+                    : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
                 }`
               }
             >
@@ -93,7 +93,7 @@ export const Sidebar = () => {
                   {/* Subtle Left Accent Indicator */}
                   {isActive && (
                     <span
-                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#BC8034] shadow-xs"
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
                       aria-hidden="true"
                     />
                   )}
@@ -101,7 +101,7 @@ export const Sidebar = () => {
                     className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
                       isActive
                         ? 'bg-white/15 text-white'
-                        : 'text-slate-500 group-hover:text-[#5E0B15] group-hover:bg-[#5E0B15]/[0.08]'
+                        : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
                     }`}
                   >
                     <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
@@ -112,7 +112,7 @@ export const Sidebar = () => {
                       className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
                         isActive
                           ? 'bg-white/20 text-white'
-                          : 'bg-[#D9CAB3]/70 text-[#5E0B15] group-hover:bg-[#5E0B15]/10'
+                          : 'bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] group-hover:bg-[#7A0B1A]/10'
                       }`}
                     >
                       {savedCount}
@@ -127,7 +127,7 @@ export const Sidebar = () => {
         {/* Admin Navigation */}
         {isAdmin && (
           <div className="pt-4 mt-3 border-t border-slate-border space-y-1">
-            <span className="px-3.5 text-[11px] font-bold text-slate-muted uppercase tracking-wider">
+            <span className="px-3.5 text-[11px] font-bold text-[#647C98] uppercase tracking-wider">
               Administration
             </span>
             <NavLink
@@ -136,8 +136,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
                   isActive
-                    ? 'bg-[#5E0B15] text-white shadow-xs font-semibold'
-                    : 'text-slate-600 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.06]'
+                    ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
+                    : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
                 }`
               }
             >
@@ -145,7 +145,7 @@ export const Sidebar = () => {
                 <>
                   {isActive && (
                     <span
-                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#BC8034] shadow-xs"
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
                       aria-hidden="true"
                     />
                   )}
@@ -153,7 +153,7 @@ export const Sidebar = () => {
                     className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
                       isActive
                         ? 'bg-white/15 text-white'
-                        : 'text-slate-500 group-hover:text-[#5E0B15] group-hover:bg-[#5E0B15]/[0.08]'
+                        : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
                     }`}
                   >
                     <ShieldCheck className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
@@ -167,8 +167,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
                   isActive
-                    ? 'text-[#5E0B15] font-bold bg-[#5E0B15]/[0.08]'
-                    : 'text-slate-500 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.05]'
+                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
+                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
                 }`
               }
             >
@@ -176,7 +176,7 @@ export const Sidebar = () => {
                 <>
                   {isActive && (
                     <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#BC8034]"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
                       aria-hidden="true"
                     />
                   )}
@@ -190,8 +190,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
                   isActive
-                    ? 'text-[#5E0B15] font-bold bg-[#5E0B15]/[0.08]'
-                    : 'text-slate-500 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.05]'
+                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
+                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
                 }`
               }
             >
@@ -199,7 +199,7 @@ export const Sidebar = () => {
                 <>
                   {isActive && (
                     <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#BC8034]"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
                       aria-hidden="true"
                     />
                   )}
@@ -213,8 +213,8 @@ export const Sidebar = () => {
               className={({ isActive }) =>
                 `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
                   isActive
-                    ? 'text-[#5E0B15] font-bold bg-[#5E0B15]/[0.08]'
-                    : 'text-slate-500 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.05]'
+                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
+                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
                 }`
               }
             >
@@ -222,7 +222,7 @@ export const Sidebar = () => {
                 <>
                   {isActive && (
                     <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#BC8034]"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
                       aria-hidden="true"
                     />
                   )}
@@ -242,8 +242,8 @@ export const Sidebar = () => {
           className={({ isActive }) =>
             `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
               isActive
-                ? 'bg-[#5E0B15] text-white shadow-xs font-semibold'
-                : 'text-slate-600 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.06]'
+                ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
+                : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
             }`
           }
         >
@@ -251,7 +251,7 @@ export const Sidebar = () => {
             <>
               {isActive && (
                 <span
-                  className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#BC8034] shadow-xs"
+                  className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
                   aria-hidden="true"
                 />
               )}
@@ -259,7 +259,7 @@ export const Sidebar = () => {
                 className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
                   isActive
                     ? 'bg-white/15 text-white'
-                    : 'text-slate-500 group-hover:text-[#5E0B15] group-hover:bg-[#5E0B15]/[0.08]'
+                    : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
                 }`}
               >
                 <Settings className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
@@ -270,9 +270,9 @@ export const Sidebar = () => {
         </NavLink>
         <button
           onClick={handleLogout}
-          className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-[#5E0B15] hover:bg-[#5E0B15]/[0.06] transition-all duration-200 ease-in-out group"
+          className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
         >
-          <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-slate-500 group-hover:text-[#5E0B15] group-hover:bg-[#5E0B15]/[0.08]">
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
             <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
           </div>
           <span className="truncate">Logout</span>

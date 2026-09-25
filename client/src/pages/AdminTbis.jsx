@@ -173,7 +173,7 @@ export const AdminTbis = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15]">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
             Manage Incubator Directory
           </h1>
           <p className="text-sm text-slate-muted mt-1">
@@ -183,7 +183,7 @@ export const AdminTbis = () => {
 
         <button
           onClick={handleOpenCreate}
-          className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#5E0B15] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#90323D] transition-colors shrink-0 border border-[#5E0B15]"
+          className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#5B0712] transition-colors shrink-0 border border-[#7A0B1A]"
         >
           <Plus className="w-4 h-4" />
           <span>Add New TBI</span>
@@ -210,7 +210,7 @@ export const AdminTbis = () => {
         </div>
         <button
           type="submit"
-          className="px-4 py-2 bg-[#5E0B15] hover:bg-[#90323D] text-[#D9CAB3] font-semibold text-xs rounded-xl shadow-sm transition-colors border border-[#5E0B15]"
+          className="px-4 py-2 bg-[#7A0B1A] hover:bg-[#5B0712] text-[#D9CAB3] font-semibold text-xs rounded-xl shadow-sm transition-colors border border-[#7A0B1A]"
         >
           Search
         </button>
@@ -252,7 +252,7 @@ export const AdminTbis = () => {
                         <div className="font-bold text-slate text-sm max-w-xs truncate" title={display.universityName}>
                           {display.universityName}
                         </div>
-                        <div className="text-[11px] text-[#5E0B15] font-semibold max-w-xs truncate" title={display.incubatorName}>
+                        <div className="text-[11px] text-[#7A0B1A] font-semibold max-w-xs truncate" title={display.incubatorName}>
                           {display.incubatorName}
                         </div>
                       </td>
@@ -295,7 +295,7 @@ export const AdminTbis = () => {
                         </button>
                         <button
                           onClick={() => handleOpenEdit(tbi)}
-                          className="p-1.5 rounded text-slate-muted hover:text-[#5E0B15] hover:bg-[#D9CAB3]/30 transition-colors"
+                          className="p-1.5 rounded text-slate-muted hover:text-[#7A0B1A] hover:bg-[#D9CAB3]/30 transition-colors"
                           title="Edit / Enrich"
                         >
                           <Edit2 className="w-4 h-4" />
@@ -330,7 +330,7 @@ export const AdminTbis = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate/40 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="bg-surface rounded-2xl border border-slate-border shadow-2xl max-w-2xl w-full p-6 my-8 animate-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between pb-4 border-b border-slate-border">
-              <h3 className="font-bold text-lg text-[#5E0B15]">
+              <h3 className="font-bold text-lg text-[#7A0B1A]">
                 {selectedTbi ? 'Edit & Enrich TBI Record' : 'Add New TBI Record'}
               </h3>
               <button
@@ -513,7 +513,7 @@ export const AdminTbis = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2 bg-[#5E0B15] hover:bg-[#90323D] disabled:opacity-50 text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm border border-[#5E0B15]"
+                  className="px-5 py-2 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm border border-[#7A0B1A]"
                 >
                   {saving ? 'Saving...' : 'Save Changes'}
                 </button>

@@ -79,8 +79,8 @@ export const AdminUsers = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-2">
-          <Users className="w-7 h-7 text-[#90323D]" />
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
+          <Users className="w-7 h-7 text-[#5B0712]" />
           <span>User Management</span>
         </h1>
         <p className="text-sm text-slate-muted mt-1">
@@ -122,12 +122,12 @@ export const AdminUsers = () => {
                     <tr key={u.id} className="hover:bg-slate-50/70 transition-colors">
                       <td className="py-3.5 px-4 font-bold text-slate">
                         <div className="flex items-center space-x-2">
-                          <div className="w-7 h-7 rounded-full bg-[#D9CAB3] text-[#5E0B15] font-bold flex items-center justify-center text-xs border border-[#8C7A6B]">
+                          <div className="w-7 h-7 rounded-full bg-[#D9CAB3] text-[#7A0B1A] font-bold flex items-center justify-center text-xs border border-[#8C7A6B]">
                             {u.name ? u.name[0].toUpperCase() : 'U'}
                           </div>
                           <span>{u.name}</span>
                           {isSelf && (
-                            <span className="text-[10px] text-[#5E0B15] font-bold bg-[#D9CAB3] px-1.5 py-0.5 rounded border border-[#8C7A6B]">
+                            <span className="text-[10px] text-[#7A0B1A] font-bold bg-[#D9CAB3] px-1.5 py-0.5 rounded border border-[#8C7A6B]">
                               You
                             </span>
                           )}

@@ -3,37 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --palette-burgundy: #5E0B15;
-  --palette-wine: #90323D;
+  --palette-burgundy: #7A0B1A;
+  --palette-dark-burgundy: #5B0712;
+  --palette-ivory: #FAF7F2;
+  --palette-white: #FFFFFF;
+  --palette-text-dark: #243447;
+  --palette-text-muted: #647C98;
+  --palette-amber: #D99A2B;
+  --palette-verified: #16A36A;
   --palette-cream: #D9CAB3;
-  --palette-gold: #BC8034;
-  --palette-taupe: #8C7A6B;
 }
 
 @layer base {
   body {
     @apply bg-background text-slate;
+    color: #243447;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
-/* Custom Scrollbar styled with Coolors Palette */
+/* Custom Scrollbar styled with Polished Palette */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #D9CAB3;
+  background: #FAF7F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #BC8034;
+  background: #D9CAB3;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5E0B15;
+  background: #7A0B1A;
 }
 
 /* Heart Pop Micro-Interaction (1 -> 1.15 -> 1 under 300ms) */

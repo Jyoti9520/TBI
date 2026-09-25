@@ -16,7 +16,7 @@ export const HighlightMatch = ({ text = '', query = '' }) => {
         part.toLowerCase() === query.trim().toLowerCase() ? (
           <span
             key={index}
-            className="bg-[#D9CAB3]/80 text-[#5E0B15] font-extrabold px-0.5 rounded-xs"
+            className="bg-[#D9CAB3]/80 text-[#7A0B1A] font-extrabold px-0.5 rounded-xs"
           >
             {part}
           </span>
@@ -53,13 +53,13 @@ export const SearchSuggestions = ({
       {/* Loading state */}
       {loading ? (
         <div className="p-5 flex items-center justify-center space-x-2 text-xs text-slate-muted">
-          <div className="w-3.5 h-3.5 border-2 border-[#90323D] border-t-transparent rounded-full animate-spin" />
+          <div className="w-3.5 h-3.5 border-2 border-[#5B0712] border-t-transparent rounded-full animate-spin" />
           <span>Searching ecosystem...</span>
         </div>
       ) : suggestions.length === 0 ? (
         /* Empty state: No matching TBIs found */
         <div className="p-6 text-center text-xs text-slate-muted">
-          <div className="w-8 h-8 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-2 text-[#90323D]">
+          <div className="w-8 h-8 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-2 text-[#5B0712]">
             <Search className="w-4 h-4" />
           </div>
           <p className="font-bold text-slate-800 text-sm">No matching TBIs found</p>
@@ -85,7 +85,7 @@ export const SearchSuggestions = ({
                 }}
                 className={`px-4 py-3 cursor-pointer transition-colors duration-150 flex items-center justify-between gap-3 group ${
                   isSelected
-                    ? 'bg-[#5E0B15]/[0.08] text-[#5E0B15]'
+                    ? 'bg-[#7A0B1A]/[0.08] text-[#7A0B1A]'
                     : 'hover:bg-[#FAF7F2]'
                 }`}
               >
@@ -94,8 +94,8 @@ export const SearchSuggestions = ({
                   <div
                     className={`w-9 h-9 rounded-xl border flex items-center justify-center shrink-0 transition-transform duration-150 group-hover:scale-105 ${
                       isSelected
-                        ? 'bg-[#5E0B15] text-white border-[#5E0B15]'
-                        : 'bg-[#FAF7F2] border-[#D9CAB3] text-[#90323D]'
+                        ? 'bg-[#7A0B1A] text-white border-[#7A0B1A]'
+                        : 'bg-[#FAF7F2] border-[#D9CAB3] text-[#5B0712]'
                     }`}
                   >
                     <University className="w-4 h-4" />
@@ -104,13 +104,13 @@ export const SearchSuggestions = ({
                   {/* Text details */}
                   <div className="overflow-hidden min-w-0 text-left">
                     {/* University Name */}
-                    <p className="text-sm font-bold text-slate-900 group-hover:text-[#5E0B15] truncate leading-tight">
+                    <p className="text-sm font-bold text-slate-900 group-hover:text-[#7A0B1A] truncate leading-tight">
                       <HighlightMatch text={display.universityName} query={query} />
                     </p>
 
                     {/* TBI / Incubator Name */}
-                    <p className="text-xs font-semibold text-[#90323D] flex items-center space-x-1.5 mt-0.5 truncate">
-                      <Rocket className="w-3 h-3 shrink-0 text-[#90323D]" />
+                    <p className="text-xs font-semibold text-[#5B0712] flex items-center space-x-1.5 mt-0.5 truncate">
+                      <Rocket className="w-3 h-3 shrink-0 text-[#5B0712]" />
                       <span className="truncate">
                         <HighlightMatch text={display.incubatorName} query={query} />
                       </span>
@@ -129,7 +129,7 @@ export const SearchSuggestions = ({
                 {/* Small category / status indicator */}
                 <div className="flex flex-col items-end shrink-0 gap-1.5">
                   {display.incubatorType && (
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#D9CAB3]/50 text-[#5E0B15] border border-[#8C7A6B]/30 whitespace-nowrap shadow-2xs">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#D9CAB3]/50 text-[#7A0B1A] border border-[#8C7A6B]/30 whitespace-nowrap shadow-2xs">
                       <HighlightMatch text={display.incubatorType} query={query} />
                     </span>
                   )}

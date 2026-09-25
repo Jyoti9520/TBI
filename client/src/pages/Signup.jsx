@@ -60,7 +60,7 @@ export const Signup = () => {
   return (
     <div>
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-extrabold text-[#5E0B15]">Create your account</h2>
+        <h2 className="text-2xl font-extrabold text-[#7A0B1A]">Create your account</h2>
         <p className="text-xs text-slate-muted mt-1">
           Join TBI Global to discover and save innovation hubs
         </p>
@@ -160,7 +160,7 @@ export const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 px-4 bg-[#5E0B15] hover:bg-[#90323D] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors mt-2 border border-[#5E0B15]"
+          className="w-full py-2.5 px-4 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors mt-2 border border-[#7A0B1A]"
         >
           {loading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -168,7 +168,7 @@ export const Signup = () => {
 
       <div className="mt-6 text-center text-xs text-slate-muted border-t border-slate-100 pt-4">
         <span>Already have an account? </span>
-        <Link to="/login" className="font-semibold text-[#90323D] hover:underline">
+        <Link to="/login" className="font-semibold text-[#5B0712] hover:underline">
           Login
         </Link>
       </div>

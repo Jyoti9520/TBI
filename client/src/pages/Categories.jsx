@@ -26,7 +26,7 @@ export const Categories = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
           <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
             <Layers className="w-5 h-5 text-[#8C7A6B]" />
           </div>
@@ -47,8 +47,8 @@ export const Categories = () => {
           {/* Incubator Types */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Layers className="w-5 h-5 text-[#90323D]" />
-              <h2 className="text-lg font-bold text-[#5E0B15]">Incubator Types & Programs</h2>
+              <Layers className="w-5 h-5 text-[#5B0712]" />
+              <h2 className="text-lg font-bold text-[#7A0B1A]">Incubator Types & Programs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.incubatorTypes.map((cat) => (
@@ -60,8 +60,8 @@ export const Categories = () => {
           {/* University Types */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Building className="w-5 h-5 text-[#90323D]" />
-              <h2 className="text-lg font-bold text-[#5E0B15]">Institution Types</h2>
+              <Building className="w-5 h-5 text-[#5B0712]" />
+              <h2 className="text-lg font-bold text-[#7A0B1A]">Institution Types</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.universityTypes.map((cat) => (
@@ -73,8 +73,8 @@ export const Categories = () => {
           {/* Cities Directory */}
           <section className="space-y-4">
             <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <MapPin className="w-5 h-5 text-[#90323D]" />
-              <h2 className="text-lg font-bold text-[#5E0B15]">Top Cities with Active TBIs</h2>
+              <MapPin className="w-5 h-5 text-[#5B0712]" />
+              <h2 className="text-lg font-bold text-[#7A0B1A]">Top Cities with Active TBIs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {categories.cities.map((cat) => (

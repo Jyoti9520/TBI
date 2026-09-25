@@ -22,10 +22,10 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
   if (tbisWithCoords.length === 0) {
     return (
       <div className="bg-surface border border-slate-border rounded-2xl p-10 sm:p-14 text-center shadow-card max-w-xl mx-auto my-6 animate-in fade-in duration-200">
-        <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#90323D] shadow-xs">
+        <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#5B0712] shadow-xs">
           <MapPin className="w-7 h-7" />
         </div>
-        <h3 className="text-xl font-extrabold text-[#5E0B15]">
+        <h3 className="text-xl font-extrabold text-[#7A0B1A]">
           Map view requires location coordinates.
         </h3>
         <p className="text-sm text-slate-muted mt-2 leading-relaxed">
@@ -35,7 +35,7 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
           <button
             type="button"
             onClick={onSwitchToList}
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#5E0B15] text-white text-xs font-bold shadow-sm hover:bg-[#490911] transition-all cursor-pointer"
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-sm hover:bg-[#490911] transition-all cursor-pointer"
           >
             <LayoutGrid className="w-4 h-4" />
             <span>Switch to List View</span>
@@ -62,8 +62,8 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                 onClick={() => setSelectedTbi(tbi)}
                 className={`absolute p-2 rounded-full shadow-md transition-transform duration-200 hover:scale-125 cursor-pointer ${
                   isSelected
-                    ? 'bg-[#5E0B15] text-white ring-4 ring-[#90323D]/30 scale-125 z-20'
-                    : 'bg-white text-[#90323D] border border-[#D9CAB3] z-10'
+                    ? 'bg-[#7A0B1A] text-white ring-4 ring-[#5B0712]/30 scale-125 z-20'
+                    : 'bg-white text-[#5B0712] border border-[#D9CAB3] z-10'
                 }`}
                 title={display.universityName}
               >
@@ -86,7 +86,7 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                     <h4 className="text-sm font-bold text-slate-900 line-clamp-1">
                       {display.universityName}
                     </h4>
-                    <p className="text-xs font-semibold text-[#90323D] flex items-center space-x-1.5 mt-0.5 line-clamp-1">
+                    <p className="text-xs font-semibold text-[#5B0712] flex items-center space-x-1.5 mt-0.5 line-clamp-1">
                       <Rocket className="w-3.5 h-3.5 shrink-0" />
                       <span>{display.incubatorName}</span>
                     </p>
@@ -109,7 +109,7 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                   <StatusBadge status={display.status} size="sm" />
                   <Link
                     to={`/tbi/${selectedTbi.id}`}
-                    className="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-[#5E0B15] hover:bg-[#490911] text-white text-xs font-semibold shadow-xs transition-colors"
+                    className="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-[#7A0B1A] hover:bg-[#490911] text-white text-xs font-semibold shadow-xs transition-colors"
                   >
                     <span>View Details</span>
                     <ArrowRight className="w-3 h-3" />

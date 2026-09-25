@@ -11,78 +11,82 @@ export default {
         background: '#FAF7F2',
         surface: '#FFFFFF',
 
-        palette: {
-          burgundy: '#5E0B15',
-          wine: '#90323D',
-          cream: '#D9CAB3',
-          gold: '#BC8034',
-          taupe: '#8C7A6B',
+        // Primary Brand Colors
+        burgundy: {
+          DEFAULT: '#7A0B1A',
+          dark: '#5B0712',
+          light: '#901222',
+          subtle: '#FAF5F5',
         },
 
-        // Primary Brand mapped to Deep Burgundy (#5E0B15) and Wine (#90323D)
+        // Palette mapping
+        palette: {
+          burgundy: '#7A0B1A',
+          darkBurgundy: '#5B0712',
+          ivory: '#FAF7F2',
+          white: '#FFFFFF',
+          textDark: '#243447',
+          textMuted: '#647C98',
+          amber: '#D99A2B',
+          verifiedGreen: '#16A36A',
+          cream: '#D9CAB3',
+        },
+
+        // Semantic & backward-compatible aliases
         navy: {
-          DEFAULT: '#5E0B15',
+          DEFAULT: '#7A0B1A',
           50: '#FAF5F5',
           100: '#F4E8EA',
-          200: '#D9CAB3', // Palette Cream
-          300: '#BC8034', // Palette Gold
-          400: '#90323D', // Palette Wine
-          500: '#5E0B15', // Palette Burgundy
-          600: '#4E0911',
-          700: '#3E070E',
-          800: '#2E050A',
-          900: '#1F0307',
+          200: '#D9CAB3',
+          300: '#D99A2B',
+          400: '#901222',
+          500: '#7A0B1A',
+          600: '#5B0712',
+          700: '#48050E',
+          800: '#35030A',
+          900: '#220206',
         },
 
-        // Secondary / Rich Wine mapped to #90323D
         teal: {
-          DEFAULT: '#90323D',
-          50: '#FAF3F4',
-          100: '#F5E6E8',
-          200: '#D9CAB3',
-          300: '#BC8034',
-          400: '#A63B48',
-          500: '#90323D',
-          600: '#7A2A34',
-          700: '#5E0B15',
-          800: '#47161C',
-          900: '#2E050A',
+          DEFAULT: '#7A0B1A',
+          500: '#7A0B1A',
         },
 
-        // Golden Amber / Ochre Accent mapped to #BC8034
+        // Amber Accent (#D99A2B)
         amber: {
-          DEFAULT: '#BC8034',
-          50: '#FDF9F3',
-          100: '#FAF2E6',
-          200: '#D9CAB3',
-          300: '#D1B487',
-          400: '#C79A5E',
-          500: '#BC8034',
-          600: '#A66F2A',
-          700: '#8B5C20',
-          800: '#6F4818',
-          900: '#523410',
+          DEFAULT: '#D99A2B',
+          50: '#FDF9F2',
+          100: '#FAF1E2',
+          200: '#F4DFC0',
+          300: '#EDCC9A',
+          400: '#E4B363',
+          500: '#D99A2B',
+          600: '#BA801F',
+          700: '#966517',
+          800: '#734B11',
+          900: '#52340B',
         },
 
+        // Dark text (#243447), Muted text (#647C98), and Border (#E5E9EF)
         slate: {
-          DEFAULT: '#5E0B15',
-          muted: '#8C7A6B',
-          border: '#D9CAB3',
+          DEFAULT: '#243447',
+          muted: '#647C98',
+          border: '#E2E8F0',
         },
 
         status: {
-          success: '#2E6F40',
-          warning: '#BC8034',
-          error: '#90323D',
+          success: '#16A36A',
+          warning: '#D99A2B',
+          error: '#7A0B1A',
         },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        subtle: '0 1px 3px 0 rgba(94, 11, 21, 0.06), 0 1px 2px 0 rgba(94, 11, 21, 0.04)',
-        card: '0 2px 8px -1px rgba(94, 11, 21, 0.08), 0 2px 4px -1px rgba(94, 11, 21, 0.04)',
-        hover: '0 12px 24px -3px rgba(94, 11, 21, 0.16), 0 4px 6px -2px rgba(94, 11, 21, 0.06)',
+        subtle: '0 1px 3px 0 rgba(36, 52, 71, 0.05), 0 1px 2px 0 rgba(36, 52, 71, 0.03)',
+        card: '0 2px 8px -1px rgba(36, 52, 71, 0.06), 0 2px 4px -1px rgba(36, 52, 71, 0.03)',
+        hover: '0 10px 20px -3px rgba(36, 52, 71, 0.10), 0 4px 6px -2px rgba(36, 52, 71, 0.04)',
       },
     },
   },

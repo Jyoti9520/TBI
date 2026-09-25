@@ -46,7 +46,7 @@ export const Login = () => {
   return (
     <div>
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-extrabold text-[#5E0B15]">Welcome back</h2>
+        <h2 className="text-2xl font-extrabold text-[#7A0B1A]">Welcome back</h2>
         <p className="text-xs text-slate-muted mt-1">
           Access your saved incubators and dashboard
         </p>
@@ -74,7 +74,7 @@ export const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@domain.com"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#90323D]/20 focus:border-[#90323D]"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712]"
             />
           </div>
         </div>
@@ -84,7 +84,7 @@ export const Login = () => {
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted">
               Password
             </label>
-            <span className="text-xs text-[#90323D] hover:underline cursor-pointer">
+            <span className="text-xs text-[#5B0712] hover:underline cursor-pointer">
               Forgot password?
             </span>
           </div>
@@ -98,7 +98,7 @@ export const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-10 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#90323D]/20 focus:border-[#90323D]"
+              className="w-full pl-10 pr-10 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712]"
             />
             <button
               type="button"
@@ -113,7 +113,7 @@ export const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 px-4 bg-[#5E0B15] hover:bg-[#90323D] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors mt-2 border border-[#5E0B15]"
+          className="w-full py-2.5 px-4 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors mt-2 border border-[#7A0B1A]"
         >
           {loading ? 'Signing in...' : 'Login'}
         </button>
@@ -121,7 +121,7 @@ export const Login = () => {
 
       <div className="mt-6 text-center text-xs text-slate-muted border-t border-slate-100 pt-4">
         <span>Don't have an account? </span>
-        <Link to="/signup" className="font-semibold text-[#90323D] hover:underline">
+        <Link to="/signup" className="font-semibold text-[#5B0712] hover:underline">
           Create account
         </Link>
       </div>

@@ -20,6 +20,7 @@ import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
 import { useAuth } from '../hooks/useAuth';
 import { getTbiDisplayData } from '../utils/tbiMapping';
+import { addRecentlyViewed } from '../utils/recentTbis';
 import { showToast } from '../components/Toast';
 import { StatusBadge } from '../components/StatusBadge';
 
@@ -46,6 +47,7 @@ export const TbiDetails = () => {
         if (active && res.success) {
           setTbi(res.data);
           setIsFavorited(res.data.isFavorited || false);
+          addRecentlyViewed(res.data);
         }
       } catch (err) {
         if (active) {

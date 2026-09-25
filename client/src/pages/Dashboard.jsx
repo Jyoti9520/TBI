@@ -6,8 +6,10 @@ import { FilterPanel } from '../components/FilterPanel';
 import { TbiGrid } from '../components/TbiGrid';
 import { Pagination } from '../components/Pagination';
 import { StatsCard } from '../components/StatsCard';
+import { RecentlyViewed } from '../components/RecentlyViewed';
 import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
+import { getRecentlyViewed } from '../utils/recentTbis';
 
 export const Dashboard = () => {
   const { user } = useAuth();
@@ -26,6 +28,15 @@ export const Dashboard = () => {
     status: ''
   });
   const [savedCount, setSavedCount] = useState(0);
+  const [recentlyViewed, setRecentlyViewed] = useState(() => getRecentlyViewed());
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setRecentlyViewed(getRecentlyViewed());
+    };
+    window.addEventListener('recently-viewed-updated', handleUpdate);
+    return () => window.removeEventListener('recently-viewed-updated', handleUpdate);
+  }, []);
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -153,6 +164,9 @@ export const Dashboard = () => {
           filterActive={isFilterActive}
         />
       </div>
+
+      {/* Recently Viewed Section */}
+      <RecentlyViewed items={recentlyViewed} />
 
       {/* Main Grid Header */}
       <div className="flex items-center justify-between">

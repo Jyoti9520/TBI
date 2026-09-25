@@ -17,10 +17,10 @@ const createSuggestion = async (req, res) => {
       description
     } = req.body;
 
-    if (!university || !tbiName) {
+    if (!university || !tbiName || !city) {
       return res.status(400).json({
         success: false,
-        message: 'University name and TBI name are required'
+        message: 'University name, TBI name, and City are required'
       });
     }
 

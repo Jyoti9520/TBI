@@ -5,10 +5,10 @@ const {
   getSuggestions,
   updateSuggestionStatus
 } = require('../controllers/suggestionController');
-const { protect } = require('../middleware/authMiddleware');
+const { protect, optionalAuth } = require('../middleware/authMiddleware');
 const { adminOnly } = require('../middleware/adminMiddleware');
 
-router.post('/', protect, createSuggestion);
+router.post('/', optionalAuth, createSuggestion);
 router.get('/', protect, getSuggestions);
 router.put('/:id', protect, adminOnly, updateSuggestionStatus);
 

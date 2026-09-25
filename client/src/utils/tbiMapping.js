@@ -18,6 +18,38 @@ const isEmailLike = (val) => {
   return trimmed.includes('@') && !trimmed.includes(' ') && trimmed.includes('.');
 };
 
+export const isValidUrl = (string) => {
+  if (!string || typeof string !== 'string') return false;
+  const trimmed = string.trim();
+  // Filter out non-url labels like "CU-TBI", "-", "CIIF", etc.
+  try {
+    const url = new URL(trimmed.startsWith('http://') || trimmed.startsWith('https://') ? trimmed : `https://${trimmed}`);
+    return url.hostname.includes('.') && !url.hostname.endsWith('.');
+  } catch (_) {
+    return false;
+  }
+};
+
+export const normalizeUrl = (string) => {
+  if (!isValidUrl(string)) return null;
+  const trimmed = string.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+};
+
+export const getDisplayHostname = (string) => {
+  if (!isValidUrl(string)) return null;
+  try {
+    const norm = normalizeUrl(string);
+    const url = new URL(norm);
+    return url.hostname.replace(/^www\./i, '');
+  } catch (_) {
+    return string;
+  }
+};
+
 export const getTbiDisplayData = (tbi) => {
   if (!tbi) {
     return {
@@ -26,6 +58,10 @@ export const getTbiDisplayData = (tbi) => {
       incubatorType: null,
       city: 'Location not specified',
       email: null,
+      website: null,
+      websiteUrl: null,
+      hasValidWebsite: false,
+      displayHostname: null,
       status: 'Unverified',
       firstLetter: 'U'
     };
@@ -80,6 +116,12 @@ export const getTbiDisplayData = (tbi) => {
   // 6. Status
   const status = tbi.status || 'Unverified';
 
+  // 7. Website
+  const rawWebsite = typeof tbi.website === 'string' ? tbi.website.trim() : '';
+  const hasValidWebsite = Boolean(tbi.hasValidWebsite || isValidUrl(rawWebsite));
+  const websiteUrl = tbi.websiteUrl || (hasValidWebsite ? normalizeUrl(rawWebsite) : null);
+  const displayHostname = websiteUrl ? getDisplayHostname(websiteUrl) : null;
+
   // First letter for avatar (from University name or Incubator name)
   let firstLetter = 'U';
   const cleanUnivForLetter = universityName.replace(/[^a-zA-Z0-9]/g, ' ').trim();
@@ -98,6 +140,10 @@ export const getTbiDisplayData = (tbi) => {
     incubatorType,
     city,
     email,
+    website: rawWebsite || null,
+    websiteUrl,
+    hasValidWebsite,
+    displayHostname,
     status,
     firstLetter
   };

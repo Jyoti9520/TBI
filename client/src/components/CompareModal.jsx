@@ -277,21 +277,21 @@ export const CompareModal = ({
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
-                      const hasWebsite = tbi?.hasValidWebsite && tbi?.websiteUrl;
+                      const display = getTbiDisplayData(tbi);
                       return (
                         <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
-                          {hasWebsite ? (
+                          {display.hasValidWebsite && display.websiteUrl ? (
                             <a
-                              href={tbi.websiteUrl}
+                              href={display.websiteUrl}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center space-x-1 text-[#7A0B1A] hover:underline font-semibold"
                             >
-                              <span className="truncate max-w-[180px]">{tbi.website}</span>
+                              <span className="truncate max-w-[180px]">{display.displayHostname || display.websiteUrl}</span>
                               <ArrowRight className="w-3 h-3 shrink-0" />
                             </a>
                           ) : (
-                            <span className="text-slate-400 italic">Not available</span>
+                            <span className="text-slate-400 italic text-xs">Website URL not available</span>
                           )}
                         </td>
                       );

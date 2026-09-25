@@ -45,6 +45,9 @@ export const TbiCard = ({
     incubatorType,
     city,
     email,
+    websiteUrl,
+    hasValidWebsite,
+    displayHostname,
     status,
     firstLetter
   } = getTbiDisplayData(tbi);
@@ -242,13 +245,13 @@ export const TbiCard = ({
 
         {/* View Details Button & Official Website */}
         <div className="flex items-center space-x-2">
-          {tbi?.hasValidWebsite && tbi?.websiteUrl ? (
+          {hasValidWebsite && websiteUrl ? (
             <a
-              href={tbi.websiteUrl}
+              href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="p-1.5 rounded-lg text-slate-muted hover:text-[#7A0B1A] hover:bg-[#FAF7F2] transition-colors duration-200"
-              title="Visit official website"
+              title={`Visit official website: ${displayHostname || websiteUrl}`}
             >
               <Globe className="w-3.5 h-3.5 text-[#7A0B1A]" />
             </a>

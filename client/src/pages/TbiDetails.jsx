@@ -142,6 +142,10 @@ export const TbiDetails = () => {
     incubatorType,
     city,
     email,
+    website,
+    websiteUrl,
+    hasValidWebsite,
+    displayHostname,
     status: displayStatus,
     firstLetter
   } = getTbiDisplayData(tbi);
@@ -315,28 +319,26 @@ export const TbiDetails = () => {
 
           <div className="flex items-start space-x-3">
             <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 mt-0.5">
-              <Globe className="w-4 h-4 text-[#5B0712]" />
+              <Globe className="w-4 h-4 text-[#7A0B1A]" />
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-muted">
-                Website
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-muted flex items-center space-x-1">
+                <span>🌐</span>
+                <span>Website</span>
               </p>
-              {tbi.hasValidWebsite && tbi.websiteUrl ? (
+              {hasValidWebsite && websiteUrl ? (
                 <a
-                  href={tbi.websiteUrl}
+                  href={websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 font-bold text-[#5B0712] hover:underline mt-0.5"
+                  className="inline-flex items-center space-x-1.5 font-bold text-[#7A0B1A] hover:text-[#5B0712] hover:underline mt-0.5"
+                  title={`Open ${websiteUrl} in new tab`}
                 >
-                  <span>Visit Official Website</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{displayHostname || websiteUrl}</span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#7A0B1A]" />
                 </a>
-              ) : tbi.website ? (
-                <p className="font-medium text-slate text-xs mt-0.5">
-                  {tbi.website} <span className="text-slate-400">(Portal reference)</span>
-                </p>
               ) : (
-                <p className="text-xs text-slate-400 italic mt-0.5">Not available</p>
+                <p className="text-xs text-slate-400 italic mt-0.5">Website URL not available</p>
               )}
             </div>
           </div>

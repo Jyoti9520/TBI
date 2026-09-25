@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Compass, Bookmark, BadgeCheck, University, Rocket, MapPin } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { SearchBar } from '../components/SearchBar';
@@ -7,12 +8,21 @@ import { TbiGrid } from '../components/TbiGrid';
 import { Pagination } from '../components/Pagination';
 import { StatsCard } from '../components/StatsCard';
 import { RecentlyViewed } from '../components/RecentlyViewed';
+import { CompareBar } from '../components/CompareBar';
 import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
 import { getRecentlyViewed } from '../utils/recentTbis';
+import { showToast } from '../components/Toast';
+import {
+  getCompareTbis,
+  toggleCompareTbi,
+  removeCompareTbi,
+  clearCompareTbis
+} from '../utils/compareStorage';
 
 export const Dashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [tbis, setTbis] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -29,6 +39,7 @@ export const Dashboard = () => {
   });
   const [savedCount, setSavedCount] = useState(0);
   const [recentlyViewed, setRecentlyViewed] = useState(() => getRecentlyViewed());
+  const [selectedCompareTbis, setSelectedCompareTbis] = useState(() => getCompareTbis());
   const [metrics, setMetrics] = useState({
     totalIncubators: 0,
     totalUniversities: 0,
@@ -43,6 +54,29 @@ export const Dashboard = () => {
     window.addEventListener('recently-viewed-updated', handleUpdate);
     return () => window.removeEventListener('recently-viewed-updated', handleUpdate);
   }, []);
+
+  useEffect(() => {
+    const handleCompareUpdate = (e) => {
+      setSelectedCompareTbis(e.detail || getCompareTbis());
+    };
+    window.addEventListener('compare-tbis-updated', handleCompareUpdate);
+    return () => window.removeEventListener('compare-tbis-updated', handleCompareUpdate);
+  }, []);
+
+  const handleToggleCompare = (tbi) => {
+    const result = toggleCompareTbi(tbi);
+    if (result.action === 'limit_reached') {
+      showToast('You can compare up to 3 TBIs.', 'warning');
+    }
+  };
+
+  const handleRemoveCompare = (tbiId) => {
+    removeCompareTbi(tbiId);
+  };
+
+  const handleClearAllCompare = () => {
+    clearCompareTbis();
+  };
 
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -152,7 +186,7 @@ export const Dashboard = () => {
   const isFilterActive = Object.values(filters).some((v) => !!v);
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${selectedCompareTbis.length > 0 ? 'pb-24 sm:pb-20' : ''}`}>
       {/* 1. Header Greeting */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
@@ -232,6 +266,8 @@ export const Dashboard = () => {
         onFavoriteToggle={() => {
           userService.getFavorites().then(r => r.success && setSavedCount(r.total || 0));
         }}
+        selectedCompareIds={selectedCompareTbis.map((t) => t.id)}
+        onToggleCompare={handleToggleCompare}
       />
 
       {/* Pagination */}
@@ -239,6 +275,14 @@ export const Dashboard = () => {
         currentPage={page}
         totalPages={totalPages}
         onPageChange={(newPage) => setPage(newPage)}
+      />
+
+      {/* Sticky Bottom Comparison Bar */}
+      <CompareBar
+        selectedTbis={selectedCompareTbis}
+        onRemove={handleRemoveCompare}
+        onClearAll={handleClearAllCompare}
+        onCompare={() => navigate('/compare')}
       />
 
       {/* Filter Drawer */}

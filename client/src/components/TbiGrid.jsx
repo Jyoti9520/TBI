@@ -41,7 +41,7 @@ export const TbiGrid = ({
           key={tbi.id}
           tbi={tbi}
           onFavoriteToggle={onFavoriteToggle}
-          isComparing={selectedCompareIds.includes(tbi.id)}
+          isComparing={selectedCompareIds.some((id) => String(id) === String(tbi.id))}
           onToggleCompare={onToggleCompare}
         />
       ))}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { University, Rocket, MapPin, BadgeCheck, Clock, Search, AlertCircle } from 'lucide-react';
+import { University, Rocket, MapPin, Search } from 'lucide-react';
 import { getTbiDisplayData } from '../utils/tbiMapping';
+import { StatusBadge } from './StatusBadge';
 
 export const HighlightMatch = ({ text = '', query = '' }) => {
   if (!text) return null;
@@ -133,17 +134,7 @@ export const SearchSuggestions = ({
                     </span>
                   )}
 
-                  {display.status === 'Verified' ? (
-                    <span className="inline-flex items-center space-x-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 whitespace-nowrap">
-                      <BadgeCheck className="w-3 h-3 text-emerald-600" />
-                      <span>Verified</span>
-                    </span>
-                  ) : display.status === 'Under Verification' ? (
-                    <span className="inline-flex items-center space-x-1 text-[10px] font-semibold text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200/60 whitespace-nowrap">
-                      <Clock className="w-3 h-3 text-amber-700" />
-                      <span>Under Verification</span>
-                    </span>
-                  ) : null}
+                  <StatusBadge status={display.status} size="sm" />
                 </div>
               </li>
             );

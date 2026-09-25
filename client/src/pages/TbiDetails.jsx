@@ -21,6 +21,7 @@ import { userService } from '../services/userService';
 import { useAuth } from '../hooks/useAuth';
 import { getTbiDisplayData } from '../utils/tbiMapping';
 import { showToast } from '../components/Toast';
+import { StatusBadge } from '../components/StatusBadge';
 
 export const TbiDetails = () => {
   const { id } = useParams();
@@ -181,22 +182,10 @@ export const TbiDetails = () => {
 
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                {isVerified ? (
-                  <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-status-success bg-green-50 px-2.5 py-0.5 rounded-full border border-green-200">
-                    <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Verified Ecosystem</span>
-                  </span>
-                ) : isUnderVerification ? (
-                  <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
-                    <Clock className="w-3.5 h-3.5 text-amber-700" />
-                    <span>Under Verification</span>
-                  </span>
-                ) : (
-                  <span className="text-xs text-slate-400">Unverified</span>
-                )}
+                <StatusBadge status={displayStatus} />
 
                 {incubatorType && (
-                  <span className="text-xs font-bold text-[#5E0B15] bg-[#D9CAB3] px-2.5 py-0.5 rounded-full border border-[#8C7A6B] shadow-sm">
+                  <span className="text-xs font-bold text-[#5E0B15] bg-[#D9CAB3] px-2.5 py-0.5 rounded-md border border-[#8C7A6B]/40 shadow-xs">
                     {incubatorType}
                   </span>
                 )}

@@ -17,6 +17,7 @@ import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
 import { getTbiDisplayData } from '../utils/tbiMapping';
 import { showToast } from './Toast';
+import { StatusBadge } from './StatusBadge';
 
 export const TbiCard = ({ tbi, onFavoriteToggle }) => {
   const { isAuthenticated } = useAuth();
@@ -195,24 +196,8 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
 
       {/* Bottom Section: Verification Status & View Details Button */}
       <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-        {/* Verification Status (BadgeCheck for verified, Clock for under verification) */}
-        <div>
-          {isVerified ? (
-            <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
-              <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Verified</span>
-            </span>
-          ) : isUnderVerification ? (
-            <span className="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
-              <Clock className="w-3.5 h-3.5 text-amber-700" />
-              <span>Under Verification</span>
-            </span>
-          ) : (
-            <span className="inline-flex items-center text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
-              Unverified
-            </span>
-          )}
-        </div>
+        {/* Verification Status */}
+        <StatusBadge status={status} />
 
         {/* View Details Button & Official Website */}
         <div className="flex items-center space-x-2">

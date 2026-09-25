@@ -16,6 +16,7 @@ import { Explore } from './pages/Explore';
 import { Nearby } from './pages/Nearby';
 import { Universities } from './pages/Universities';
 import { Categories } from './pages/Categories';
+import { Compare } from './pages/Compare';
 import { Saved } from './pages/Saved';
 import { TbiDetails } from './pages/TbiDetails';
 import { SuggestTbi } from './pages/SuggestTbi';
@@ -43,6 +44,7 @@ export const App = () => {
         <Route element={<DashboardLayout />}>
           {/* Public Discovery Routes in App Layout */}
           <Route path="/explore" element={<Explore />} />
+          <Route path="/compare" element={<Compare />} />
           <Route path="/tbi/:id" element={<TbiDetails />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/categories" element={<Categories />} />

@@ -95,7 +95,13 @@ export const TbiCard = ({
   const isUnderVerification = status === 'Under Verification';
 
   return (
-    <div className="bg-surface border border-slate-border rounded-xl p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 hover:border-[#7A0B1A]/40 transition-all duration-200 ease-out flex flex-col justify-between group relative">
+    <div
+      className={`rounded-xl p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between group relative ${
+        isComparing
+          ? 'bg-[#FAF7F2] border-2 border-[#7A0B1A]/80 shadow-xs ring-1 ring-[#7A0B1A]/20'
+          : 'bg-surface border border-slate-border hover:border-[#7A0B1A]/40'
+      }`}
+    >
       {/* Top Section: University/Logo/Initial & Favorite Heart Button */}
       <div>
         <div className="flex items-start justify-between gap-3 mb-3.5">

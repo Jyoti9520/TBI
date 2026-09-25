@@ -51,22 +51,33 @@ export const CompareBar = ({
 
           {/* Right: Actions */}
           <div className="flex items-center justify-end gap-2.5 w-full sm:w-auto shrink-0">
+            {selectedTbis.length === 1 && (
+              <span className="text-xs text-[#7A0B1A] font-semibold italic hidden sm:inline-block">
+                Select one more TBI to compare.
+              </span>
+            )}
+
             <button
               type="button"
               onClick={onClearAll}
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-transparent transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-slate-200 transition-all cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
-              <span>Clear All</span>
+              <span>Clear</span>
             </button>
 
             <button
               type="button"
               onClick={onCompare}
-              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-bold shadow-sm hover:shadow active:scale-[0.98] transition-all cursor-pointer"
+              disabled={selectedTbis.length < 2}
+              className={`inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all ${
+                selectedTbis.length >= 2
+                  ? 'bg-[#7A0B1A] hover:bg-[#5B0712] text-white active:scale-[0.98] cursor-pointer'
+                  : 'bg-slate-200 text-slate-400 cursor-not-allowed opacity-75'
+              }`}
+              title={selectedTbis.length < 2 ? 'Select at least 2 TBIs to compare' : 'Compare TBIs'}
             >
-              <span>Compare</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Compare TBIs →</span>
             </button>
           </div>
 

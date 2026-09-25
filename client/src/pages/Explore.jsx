@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Compass, SlidersHorizontal, X, LayoutGrid, MapPin } from 'lucide-react';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
 import { TbiGrid } from '../components/TbiGrid';
 import { TbiMapView } from '../components/TbiMapView';
 import { CompareBar } from '../components/CompareBar';
-import { CompareModal } from '../components/CompareModal';
 import { Pagination } from '../components/Pagination';
 import { tbiService } from '../services/tbiService';
 import { showToast } from '../components/Toast';
+import {
+  getCompareTbis,
+  toggleCompareTbi,
+  removeCompareTbi,
+  clearCompareTbis
+} from '../utils/compareStorage';
 
 const QUICK_FILTERS = [
   { id: 'all', label: 'All' },
@@ -24,6 +29,7 @@ const QUICK_FILTERS = [
 
 export const Explore = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const [tbis, setTbis] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,30 +39,29 @@ export const Explore = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [isNearbyActive, setIsNearbyActive] = useState(false);
   const [viewMode, setViewMode] = useState('list'); // 'list' | 'map'
-  const [selectedCompareTbis, setSelectedCompareTbis] = useState([]);
-  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [selectedCompareTbis, setSelectedCompareTbis] = useState(() => getCompareTbis());
+
+  useEffect(() => {
+    const handleCompareUpdate = (e) => {
+      setSelectedCompareTbis(e.detail || getCompareTbis());
+    };
+    window.addEventListener('compare-tbis-updated', handleCompareUpdate);
+    return () => window.removeEventListener('compare-tbis-updated', handleCompareUpdate);
+  }, []);
 
   const handleToggleCompare = (tbi) => {
-    setSelectedCompareTbis((prev) => {
-      const exists = prev.some((item) => item.id === tbi.id);
-      if (exists) {
-        return prev.filter((item) => item.id !== tbi.id);
-      }
-      if (prev.length >= 3) {
-        showToast('You can compare a maximum of 3 TBIs at a time.', 'warning');
-        return prev;
-      }
-      return [...prev, tbi];
-    });
+    const result = toggleCompareTbi(tbi);
+    if (result.action === 'limit_reached') {
+      showToast('You can compare up to 3 TBIs.', 'warning');
+    }
   };
 
   const handleRemoveCompare = (tbiId) => {
-    setSelectedCompareTbis((prev) => prev.filter((item) => item.id !== tbiId));
+    removeCompareTbi(tbiId);
   };
 
   const handleClearAllCompare = () => {
-    setSelectedCompareTbis([]);
-    setIsCompareModalOpen(false);
+    clearCompareTbis();
   };
 
   // Derive initial values from URL query params
@@ -443,16 +448,7 @@ export const Explore = () => {
         selectedTbis={selectedCompareTbis}
         onRemove={handleRemoveCompare}
         onClearAll={handleClearAllCompare}
-        onCompare={() => setIsCompareModalOpen(true)}
-      />
-
-      {/* Comparison Modal */}
-      <CompareModal
-        isOpen={isCompareModalOpen}
-        onClose={() => setIsCompareModalOpen(false)}
-        selectedTbis={selectedCompareTbis}
-        onRemove={handleRemoveCompare}
-        onClearAll={handleClearAllCompare}
+        onCompare={() => navigate('/compare')}
       />
 
       {/* Filter Drawer */}

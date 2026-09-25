@@ -420,6 +420,7 @@ export const Landing = () => {
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-[#7A0B1A] mb-3">Platform</h4>
               <ul className="space-y-2 text-xs">
+                <li><Link to="/compare" className="hover:text-[#5B0712]">Compare TBIs</Link></li>
                 <li><Link to="/suggest" className="hover:text-[#5B0712]">Suggest a TBI</Link></li>
                 <li><Link to="/saved" className="hover:text-[#5B0712]">Saved TBIs</Link></li>
                 <li><Link to="/dashboard" className="hover:text-[#5B0712]">Dashboard</Link></li>

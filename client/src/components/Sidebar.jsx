@@ -13,15 +13,26 @@ import {
   LogOut,
   FolderTree,
   Users,
-  FileSpreadsheet
+  FileSpreadsheet,
+  GitCompare
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
+import { getCompareTbis } from '../utils/compareStorage';
 
 export const Sidebar = () => {
   const { user, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
   const [savedCount, setSavedCount] = useState(0);
+  const [compareCount, setCompareCount] = useState(() => getCompareTbis().length);
+
+  useEffect(() => {
+    const handleCompareUpdate = (e) => {
+      setCompareCount(e.detail ? e.detail.length : getCompareTbis().length);
+    };
+    window.addEventListener('compare-tbis-updated', handleCompareUpdate);
+    return () => window.removeEventListener('compare-tbis-updated', handleCompareUpdate);
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -55,6 +66,7 @@ export const Sidebar = () => {
     { name: 'Nearby', path: '/nearby', icon: MapPin },
     { name: 'Universities', path: '/universities', icon: University },
     { name: 'Categories', path: '/categories', icon: Layers },
+    { name: 'Compare TBIs', path: '/compare', icon: GitCompare },
     { name: 'Saved TBIs', path: '/saved', icon: Bookmark },
     { name: 'Suggest a TBI', path: '/suggest', icon: PlusCircle },
   ];
@@ -116,6 +128,17 @@ export const Sidebar = () => {
                       }`}
                     >
                       {savedCount}
+                    </span>
+                  )}
+                  {item.name === 'Compare TBIs' && compareCount > 0 && (
+                    <span
+                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                        isActive
+                          ? 'bg-white/20 text-white'
+                          : 'bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] group-hover:bg-[#7A0B1A]/10'
+                      }`}
+                    >
+                      {compareCount}
                     </span>
                   )}
                 </>

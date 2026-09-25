@@ -260,77 +260,87 @@ const searchTbis = async (req, res) => {
 const getSuggestions = async (req, res) => {
   try {
     const q = req.query.q ? req.query.q.trim() : '';
-    if (!q || q.length < 2) {
+    if (!q || q.length < 1) {
       return res.status(200).json({ success: true, data: [] });
     }
 
     const pattern = `%${q}%`;
 
-    // Fetch distinct universities, cities, and incubator types
-    const [tbis, universities, cities] = await Promise.all([
-      TBI.findAll({
-        where: {
-          [Op.or]: [
-            { name: { [Op.like]: pattern } },
-            { universityType: { [Op.like]: pattern } }
-          ]
-        },
-        attributes: ['name', 'university', 'universityType', 'id'],
-        limit: 4
-      }),
-      TBI.findAll({
-        where: { university: { [Op.like]: pattern } },
-        attributes: ['university'],
-        group: ['university'],
-        limit: 4
-      }),
-      TBI.findAll({
-        where: { city: { [Op.like]: pattern } },
-        attributes: ['city'],
-        group: ['city'],
-        limit: 3
-      })
-    ]);
-
-    const suggestions = [];
-
-    universities.forEach(u => {
-      if (u.university) {
-        suggestions.push({
-          type: 'university',
-          title: u.university,
-          subtitle: 'University',
-          query: u.university
-        });
-      }
+    // Search across University, Name (TBI/Incubator), City, Incubator Type, and Status
+    const rows = await TBI.findAll({
+      where: {
+        [Op.or]: [
+          { university: { [Op.like]: pattern } },
+          { name: { [Op.like]: pattern } },
+          { city: { [Op.like]: pattern } },
+          { incubatorType: { [Op.like]: pattern } },
+          { status: { [Op.like]: pattern } }
+        ]
+      },
+      attributes: [
+        'id',
+        'university',
+        'name',
+        'city',
+        'incubatorType',
+        'universityType',
+        'status',
+        'website'
+      ],
+      limit: 15
     });
 
-    cities.forEach(c => {
-      if (c.city) {
-        suggestions.push({
-          type: 'city',
-          title: `TBIs in ${c.city}`,
-          subtitle: `City: ${c.city}`,
-          query: c.city
-        });
-      }
+    const queryLower = q.toLowerCase();
+
+    // Rank matching rows by relevance
+    const scoredRows = rows.map(item => {
+      let score = 0;
+      const u = (item.university || '').toLowerCase();
+      const n = (item.name || '').toLowerCase();
+      const c = (item.city || '').toLowerCase();
+      const t = (item.incubatorType || '').toLowerCase();
+      const s = (item.status || '').toLowerCase();
+
+      // Highest weight for University name matching query
+      if (u === queryLower) score += 100;
+      else if (u.startsWith(queryLower)) score += 60;
+      else if (u.includes(queryLower)) score += 30;
+
+      // Next weight for TBI / Incubator name
+      if (n === queryLower) score += 90;
+      else if (n.startsWith(queryLower)) score += 50;
+      else if (n.includes(queryLower)) score += 25;
+
+      // City match
+      if (c === queryLower) score += 40;
+      else if (c.startsWith(queryLower)) score += 30;
+      else if (c.includes(queryLower)) score += 20;
+
+      // Incubator Type match
+      if (t === queryLower) score += 30;
+      else if (t.includes(queryLower)) score += 15;
+
+      // Status match
+      if (s === queryLower) score += 20;
+      else if (s.includes(queryLower)) score += 10;
+
+      return {
+        id: item.id,
+        university: item.university,
+        name: item.name,
+        city: item.city,
+        incubatorType: item.incubatorType,
+        universityType: item.universityType,
+        status: item.status,
+        score
+      };
     });
 
-    tbis.forEach(t => {
-      const isEmail = Boolean(t.name && t.name.includes('@'));
-      const tbiTitle = (!isEmail && t.name) ? t.name : (t.universityType || t.university);
-      suggestions.push({
-        type: 'tbi',
-        title: tbiTitle,
-        subtitle: t.university,
-        id: t.id,
-        query: tbiTitle
-      });
-    });
+    scoredRows.sort((a, b) => b.score - a.score);
 
     return res.status(200).json({
       success: true,
-      data: suggestions.slice(0, 8)
+      data: scoredRows.slice(0, 8)
     });
   } catch (error) {
     console.error('getSuggestions error:', error);

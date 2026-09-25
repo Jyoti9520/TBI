@@ -19,6 +19,7 @@ import { tbiService } from '../services/tbiService';
 import { adminService } from '../services/adminService';
 import { TbiCard } from '../components/TbiCard';
 import { SkeletonCard } from '../components/SkeletonCard';
+import { SearchBar } from '../components/SearchBar';
 
 export const Landing = () => {
   const [query, setQuery] = useState('');
@@ -62,10 +63,10 @@ export const Landing = () => {
     };
   }, []);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      navigate(`/explore?q=${encodeURIComponent(query.trim())}`);
+  const handleSearchSubmit = (searchTerm) => {
+    const term = typeof searchTerm === 'string' ? searchTerm : query;
+    if (term && term.trim()) {
+      navigate(`/explore?q=${encodeURIComponent(term.trim())}`);
     } else {
       navigate('/explore');
     }
@@ -93,25 +94,14 @@ export const Landing = () => {
           </p>
 
           {/* Search Box on Landing */}
-          <div className="mt-8 max-w-2xl mx-auto">
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center shadow-hover rounded-2xl bg-surface border border-slate-border p-1.5 focus-within:ring-2 focus-within:ring-[#90323D]/30 focus-within:border-[#90323D] transition-all">
-              <div className="pl-4 pr-2 text-slate-muted">
-                <Search className="w-5 h-5 text-[#90323D]" />
-              </div>
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search universities, TBIs, cities or incubator types..."
-                className="w-full py-3 pr-4 text-sm sm:text-base text-slate placeholder:text-slate-muted bg-transparent focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#5E0B15] hover:bg-[#90323D] text-[#D9CAB3] font-bold text-sm rounded-xl transition-colors shrink-0 shadow-sm"
-              >
-                Search
-              </button>
-            </form>
+          <div className="mt-8 max-w-2xl mx-auto bg-surface p-2 rounded-2xl border border-slate-border shadow-hover">
+            <SearchBar
+              value={query}
+              onChange={(val) => setQuery(val)}
+              onSearch={handleSearchSubmit}
+              placeholder="Search universities, TBIs, cities, or incubator types..."
+              showFilterButton={false}
+            />
           </div>
 
           {/* Action CTAs */}

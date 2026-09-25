@@ -14,7 +14,8 @@ import {
   FolderTree,
   Users,
   FileSpreadsheet,
-  GitCompare
+  GitCompare,
+  Sparkles
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -63,6 +64,7 @@ export const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Explore TBIs', path: '/explore', icon: Compass },
+    { name: 'Find My TBI', path: '/find-tbi', icon: Sparkles },
     { name: 'Nearby', path: '/nearby', icon: MapPin },
     { name: 'Universities', path: '/universities', icon: University },
     { name: 'Categories', path: '/categories', icon: Layers },

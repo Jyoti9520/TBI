@@ -39,8 +39,8 @@ const getCategories = async (req, res) => {
           city: { [Op.ne]: null, [Op.ne]: '' }
         },
         group: ['city'],
-        order: [[literal('count'), 'DESC']],
-        limit: 20
+        order: req.query.allCities === 'true' ? [['city', 'ASC']] : [[literal('count'), 'DESC']],
+        limit: req.query.allCities === 'true' ? 500 : (parseInt(req.query.cityLimit, 10) || 20)
       })
     ]);
 

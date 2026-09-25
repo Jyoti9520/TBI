@@ -36,8 +36,8 @@ export const tbiService = {
     return res.data;
   },
 
-  async getCategories() {
-    const res = await api.get('/categories');
+  async getCategories(params = {}) {
+    const res = await api.get('/categories', { params });
     return res.data;
   },
 

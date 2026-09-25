@@ -57,10 +57,10 @@ export const Navbar = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="flex items-center space-x-1.5 p-2 text-slate-muted hover:text-status-error hover:bg-red-50 rounded-lg transition-colors text-xs font-semibold"
+                  className="flex items-center space-x-1.5 p-2 text-slate-muted hover:text-status-error hover:bg-red-50 active:scale-[0.97] rounded-lg transition-all duration-200 text-xs font-semibold cursor-pointer"
                   title="Logout"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-4 h-4 transition-transform duration-200 hover:scale-105" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
               </div>
@@ -68,13 +68,13 @@ export const Navbar = () => {
               <div className="flex items-center space-x-2.5">
                 <Link
                   to="/login"
-                  className="text-sm font-bold text-[#5E0B15] hover:text-[#90323D] px-4 py-2 rounded-xl transition-colors hover:bg-[#D9CAB3]/30"
+                  className="text-sm font-bold text-[#5E0B15] hover:text-[#90323D] px-4 py-2 rounded-xl transition-all duration-200 hover:bg-[#D9CAB3]/30 active:scale-[0.97]"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="text-sm font-bold text-[#D9CAB3] bg-[#5E0B15] hover:bg-[#90323D] px-5 py-2 rounded-xl shadow-sm transition-colors border border-[#5E0B15]"
+                  className="text-sm font-bold text-[#D9CAB3] bg-[#5E0B15] hover:bg-[#90323D] px-5 py-2 rounded-xl shadow-xs hover:shadow-sm active:scale-[0.97] active:translate-y-[1px] transition-all duration-200 border border-[#5E0B15]"
                 >
                   Sign Up
                 </Link>

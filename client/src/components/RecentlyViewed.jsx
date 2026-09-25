@@ -33,7 +33,7 @@ export const RecentlyViewed = ({ items = [] }) => {
             return (
               <div
                 key={tbi.id}
-                className="group relative flex flex-col justify-between p-3.5 rounded-xl bg-surface border border-slate-border hover:border-[#90323D]/50 hover:shadow-card hover:-translate-y-0.5 transition-all duration-200"
+                className="group relative flex flex-col justify-between p-3.5 rounded-xl bg-surface border border-slate-border hover:border-[#90323D]/50 hover:shadow-card hover:-translate-y-1 transition-all duration-200 ease-out"
               >
                 <div>
                   {/* Top: Small Avatar / Icon */}
@@ -85,10 +85,10 @@ export const RecentlyViewed = ({ items = [] }) => {
                 <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-end">
                   <Link
                     to={`/tbi/${tbi.id}`}
-                    className="group/link inline-flex items-center space-x-1 text-xs font-bold text-[#5E0B15] hover:text-[#90323D] transition-colors"
+                    className="group/link inline-flex items-center space-x-1 text-xs font-bold text-[#5E0B15] hover:text-[#90323D] active:scale-[0.97] transition-all duration-200 select-none"
                   >
                     <span>View Details</span>
-                    <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+                    <ArrowRight className="w-3 h-3 transition-transform duration-200 ease-out group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </div>

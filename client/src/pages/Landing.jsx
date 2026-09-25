@@ -12,14 +12,14 @@ import {
   ExternalLink,
   ShieldCheck,
   TrendingUp,
-  Globe2
+  Globe2,
+  GitCompare
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { tbiService } from '../services/tbiService';
 import { adminService } from '../services/adminService';
 import { TbiCard } from '../components/TbiCard';
 import { SkeletonCard } from '../components/SkeletonCard';
-import { SearchBar } from '../components/SearchBar';
 
 export const Landing = () => {
   const [query, setQuery] = useState('');
@@ -93,33 +93,63 @@ export const Landing = () => {
             Find Technology Business Incubators (TBIs), university incubation centres, and startup ecosystems across institutions in India.
           </p>
 
-          {/* Search Box on Landing */}
-          <div className="mt-8 max-w-2xl mx-auto bg-surface p-2 rounded-2xl border border-slate-border shadow-hover">
-            <SearchBar
-              value={query}
-              onChange={(val) => setQuery(val)}
-              onSearch={handleSearchSubmit}
-              placeholder="Search universities, TBIs, cities, or incubator types..."
-              showFilterButton={false}
-            />
-          </div>
-
           {/* Action CTAs */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/explore"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-[#D9CAB3] text-sm font-bold hover:bg-[#5B0712] transition-colors shadow-sm"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold hover:bg-[#5B0712] active:scale-[0.98] transition-all duration-200 shadow-sm"
             >
-              <Compass className="w-4 h-4" />
-              <span>Explore TBIs</span>
+              <span>Explore TBIs →</span>
             </Link>
             <Link
               to="/universities"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-surface border border-slate-border text-[#7A0B1A] text-sm font-semibold hover:bg-[#D9CAB3]/40 transition-colors shadow-subtle"
+              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-surface border border-slate-border text-[#7A0B1A] text-sm font-semibold hover:bg-[#FAF7F2] active:scale-[0.98] transition-all duration-200 shadow-subtle"
             >
-              <Building2 className="w-4 h-4 text-[#5B0712]" />
+              <Building2 className="w-4 h-4 text-[#7A0B1A]" />
               <span>Browse Universities</span>
             </Link>
+          </div>
+
+          {/* 3 Feature Cards */}
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto text-left">
+            {/* Card 1: Search & Discover */}
+            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <Search className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                Search &amp; Discover
+              </h3>
+              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
+                Find TBIs across universities and institutions.
+              </p>
+            </div>
+
+            {/* Card 2: Explore by Location */}
+            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <MapPin className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                Explore by Location
+              </h3>
+              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
+                Explore incubators by city and institution.
+              </p>
+            </div>
+
+            {/* Card 3: Save & Compare */}
+            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <GitCompare className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                Save &amp; Compare
+              </h3>
+              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
+                Save and compare incubators easily.
+              </p>
+            </div>
           </div>
         </div>
       </section>

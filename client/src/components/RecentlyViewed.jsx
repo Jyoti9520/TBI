@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { History, ArrowRight, MapPin, Rocket, University } from 'lucide-react';
 import { getTbiDisplayData } from '../utils/tbiMapping';
+import { StatusBadge } from './StatusBadge';
 
 export const RecentlyViewed = ({ items = [] }) => {
   return (
@@ -23,7 +24,7 @@ export const RecentlyViewed = ({ items = [] }) => {
       {items.length === 0 ? (
         <div className="py-6 px-4 text-center rounded-xl bg-[#FAF7F2]/60 border border-dashed border-[#D9CAB3]">
           <p className="text-xs font-medium text-[#647C98]">
-            TBIs you view will appear here.
+            No recently viewed TBIs yet.
           </p>
         </div>
       ) : (
@@ -36,7 +37,7 @@ export const RecentlyViewed = ({ items = [] }) => {
                 className="group relative flex flex-col justify-between p-3.5 rounded-xl bg-surface border border-slate-border hover:border-[#7A0B1A]/40 hover:shadow-card hover:-translate-y-1 transition-all duration-200 ease-out"
               >
                 <div>
-                  {/* Top: Small Avatar / Icon */}
+                  {/* Top: Small Avatar / Icon and Status Badge */}
                   <div className="flex items-center justify-between gap-2 mb-2.5">
                     <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center font-bold text-[#7A0B1A] text-xs shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                       {tbi.logo ? (
@@ -52,6 +53,9 @@ export const RecentlyViewed = ({ items = [] }) => {
                         display.firstLetter
                       )}
                     </div>
+                    {display.status && (
+                      <StatusBadge status={display.status} size="sm" />
+                    )}
                   </div>
 
                   {/* University Name */}

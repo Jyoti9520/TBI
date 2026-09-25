@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Compass, Bookmark, BadgeCheck, University } from 'lucide-react';
+import { Compass, Bookmark, BadgeCheck, University, Rocket, MapPin } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
@@ -29,6 +29,12 @@ export const Dashboard = () => {
   });
   const [savedCount, setSavedCount] = useState(0);
   const [recentlyViewed, setRecentlyViewed] = useState(() => getRecentlyViewed());
+  const [metrics, setMetrics] = useState({
+    totalIncubators: 0,
+    totalUniversities: 0,
+    verifiedTbis: 0,
+    citiesCovered: 0
+  });
 
   useEffect(() => {
     const handleUpdate = () => {
@@ -44,6 +50,36 @@ export const Dashboard = () => {
     if (hour < 18) return 'Good afternoon';
     return 'Good evening';
   };
+
+  // Fetch real statistics from public endpoints (tbis, universities, categories)
+  useEffect(() => {
+    const fetchMetrics = async () => {
+      try {
+        const [allTbisRes, verifiedRes, unisRes, catsRes] = await Promise.all([
+          tbiService.getTbis({ limit: 1 }),
+          tbiService.getTbis({ status: 'Verified', limit: 1 }),
+          tbiService.getUniversities(),
+          tbiService.getCategories()
+        ]);
+
+        const totalIncubators = allTbisRes.success ? (allTbisRes.total || 0) : 0;
+        const verifiedTbis = verifiedRes.success ? (verifiedRes.total || 0) : 0;
+        const totalUniversities = unisRes.success ? (unisRes.total || (unisRes.data ? unisRes.data.length : 0)) : 0;
+        const citiesCovered = (catsRes.success && catsRes.data?.cities) ? catsRes.data.cities.length : 0;
+
+        setMetrics({
+          totalIncubators,
+          totalUniversities,
+          verifiedTbis,
+          citiesCovered
+        });
+      } catch (err) {
+        console.error('Error fetching dashboard statistics:', err);
+      }
+    };
+
+    fetchMetrics();
+  }, []);
 
   const fetchTbis = async (currentPage = 1, currentSearch = '', currentFilters = {}) => {
     setLoading(true);
@@ -117,59 +153,66 @@ export const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header Greeting */}
+      {/* 1. Header Greeting */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
-          {getGreeting()}, {user?.name || 'Innovator'}
+          {getGreeting()}, {user?.name || 'Jyoti'}
         </h1>
         <p className="text-sm text-[#647C98] mt-1">
           Discover innovation and technology business incubators around you.
         </p>
       </div>
 
-      {/* Quick Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatsCard
-          title="Total Incubation Centres"
-          value={totalCount}
-          icon={University}
-          color="navy"
-          subtitle="Registered across institutions"
-        />
-        <StatsCard
-          title="Your Saved TBIs"
-          value={savedCount}
-          icon={Bookmark}
-          color="teal"
-          subtitle="Saved to your account"
-        />
-        <StatsCard
-          title="Verified Status"
-          value="450+"
-          icon={BadgeCheck}
-          color="green"
-          subtitle="Accredited ecosystems"
-        />
-      </div>
-
-      {/* Large Search Bar (Section 25) */}
-      <div className="bg-surface p-4 rounded-2xl border border-slate-border shadow-card">
+      {/* 2. Main Search (Visually prominent, placed immediately below greeting/subtitle) */}
+      <div className="bg-surface p-4 sm:p-5 rounded-2xl border-2 border-slate-200 shadow-card focus-within:border-[#7A0B1A] transition-colors duration-200">
         <SearchBar
           value={search}
           onChange={(val) => setSearch(val)}
           onSearch={handleSearchSubmit}
-          placeholder="Search TBI, university, city or incubator type..."
+          placeholder="Search TBIs, universities, cities or incubator types..."
           showFilterButton={true}
           onFilterToggle={() => setFilterOpen(true)}
           filterActive={isFilterActive}
         />
       </div>
 
-      {/* Recently Viewed Section */}
+      {/* 3. Statistics (4 real database count cards) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatsCard
+          title="Total Incubators"
+          value={metrics.totalIncubators || totalCount || '—'}
+          icon={Rocket}
+          color="navy"
+          subtitle="Registered in directory"
+        />
+        <StatsCard
+          title="Universities"
+          value={metrics.totalUniversities || '—'}
+          icon={University}
+          color="teal"
+          subtitle="Host institutions"
+        />
+        <StatsCard
+          title="Verified TBIs"
+          value={metrics.verifiedTbis || '—'}
+          icon={BadgeCheck}
+          color="green"
+          subtitle="Accredited ecosystems"
+        />
+        <StatsCard
+          title="Cities Covered"
+          value={metrics.citiesCovered || '—'}
+          icon={MapPin}
+          color="amber"
+          subtitle="Pan-India presence"
+        />
+      </div>
+
+      {/* 4. Recently Viewed Section */}
       <RecentlyViewed items={recentlyViewed} />
 
-      {/* Main Grid Header */}
-      <div className="flex items-center justify-between">
+      {/* 5. Discovery Content (Main Grid Header & Cards) */}
+      <div className="flex items-center justify-between pt-2">
         <h2 className="text-lg font-bold text-[#7A0B1A] flex items-center space-x-2">
           <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
             <Compass className="w-4 h-4 text-[#7A0B1A]" />

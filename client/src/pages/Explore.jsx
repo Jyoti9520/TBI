@@ -5,6 +5,8 @@ import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
 import { TbiGrid } from '../components/TbiGrid';
 import { TbiMapView } from '../components/TbiMapView';
+import { CompareBar } from '../components/CompareBar';
+import { CompareModal } from '../components/CompareModal';
 import { Pagination } from '../components/Pagination';
 import { tbiService } from '../services/tbiService';
 import { showToast } from '../components/Toast';
@@ -31,6 +33,31 @@ export const Explore = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [isNearbyActive, setIsNearbyActive] = useState(false);
   const [viewMode, setViewMode] = useState('list'); // 'list' | 'map'
+  const [selectedCompareTbis, setSelectedCompareTbis] = useState([]);
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+
+  const handleToggleCompare = (tbi) => {
+    setSelectedCompareTbis((prev) => {
+      const exists = prev.some((item) => item.id === tbi.id);
+      if (exists) {
+        return prev.filter((item) => item.id !== tbi.id);
+      }
+      if (prev.length >= 3) {
+        showToast('You can compare a maximum of 3 TBIs at a time.', 'warning');
+        return prev;
+      }
+      return [...prev, tbi];
+    });
+  };
+
+  const handleRemoveCompare = (tbiId) => {
+    setSelectedCompareTbis((prev) => prev.filter((item) => item.id !== tbiId));
+  };
+
+  const handleClearAllCompare = () => {
+    setSelectedCompareTbis([]);
+    setIsCompareModalOpen(false);
+  };
 
   // Derive initial values from URL query params
   const initialSearch = searchParams.get('q') || '';
@@ -215,7 +242,7 @@ export const Explore = () => {
   const isFilterActive = Object.values(filters).some(Boolean) || isNearbyActive;
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${selectedCompareTbis.length > 0 ? 'pb-24 sm:pb-20' : ''}`}>
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#5E0B15] flex items-center space-x-3">
@@ -394,6 +421,8 @@ export const Explore = () => {
             tbis={tbis}
             loading={loading}
             onClearFilters={handleResetFilters}
+            selectedCompareIds={selectedCompareTbis.map((t) => t.id)}
+            onToggleCompare={handleToggleCompare}
           />
 
           {/* Pagination */}
@@ -408,6 +437,23 @@ export const Explore = () => {
           />
         </>
       )}
+
+      {/* Sticky Bottom Comparison Bar */}
+      <CompareBar
+        selectedTbis={selectedCompareTbis}
+        onRemove={handleRemoveCompare}
+        onClearAll={handleClearAllCompare}
+        onCompare={() => setIsCompareModalOpen(true)}
+      />
+
+      {/* Comparison Modal */}
+      <CompareModal
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        selectedTbis={selectedCompareTbis}
+        onRemove={handleRemoveCompare}
+        onClearAll={handleClearAllCompare}
+      />
 
       {/* Filter Drawer */}
       <FilterPanel

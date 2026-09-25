@@ -9,7 +9,9 @@ export const TbiGrid = ({
   emptyTitle = 'No TBIs found',
   emptyMessage = 'Try adjusting your search or filters to discover incubators.',
   onClearFilters,
-  onFavoriteToggle
+  onFavoriteToggle,
+  selectedCompareIds = [],
+  onToggleCompare
 }) => {
   if (loading) {
     return (
@@ -39,6 +41,8 @@ export const TbiGrid = ({
           key={tbi.id}
           tbi={tbi}
           onFavoriteToggle={onFavoriteToggle}
+          isComparing={selectedCompareIds.includes(tbi.id)}
+          onToggleCompare={onToggleCompare}
         />
       ))}
     </div>

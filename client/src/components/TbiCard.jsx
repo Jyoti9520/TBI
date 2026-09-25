@@ -11,7 +11,9 @@ import {
   University,
   Rocket,
   ArrowRight,
-  Loader2
+  Loader2,
+  Check,
+  GitCompare
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -19,7 +21,12 @@ import { getTbiDisplayData } from '../utils/tbiMapping';
 import { showToast } from './Toast';
 import { StatusBadge } from './StatusBadge';
 
-export const TbiCard = ({ tbi, onFavoriteToggle }) => {
+export const TbiCard = ({
+  tbi,
+  onFavoriteToggle,
+  isComparing = false,
+  onToggleCompare
+}) => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isFavorited, setIsFavorited] = useState(tbi?.isFavorited || false);
@@ -112,6 +119,38 @@ export const TbiCard = ({ tbi, onFavoriteToggle }) => {
                 <Navigation className="w-3 h-3 text-[#90323D]" />
                 <span>{tbi.distance} km</span>
               </span>
+            )}
+
+            {/* Compare Checkbox / Button */}
+            {onToggleCompare && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onToggleCompare(tbi);
+                }}
+                className={`inline-flex items-center space-x-1 px-2 py-1 rounded-lg text-[11px] font-semibold transition-all duration-200 cursor-pointer border ${
+                  isComparing
+                    ? 'bg-[#5E0B15] text-white border-[#5E0B15] shadow-xs'
+                    : 'bg-white text-slate-600 border-slate-200 hover:text-[#5E0B15] hover:border-[#D9CAB3] hover:bg-[#FAF7F2]'
+                }`}
+                title={isComparing ? 'Remove from compare' : 'Add to compare (max 3)'}
+                aria-pressed={isComparing}
+              >
+                <div
+                  className={`w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors ${
+                    isComparing
+                      ? 'bg-white text-[#5E0B15] border-white'
+                      : 'border-slate-300 bg-white'
+                  }`}
+                >
+                  {isComparing ? (
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
+                  ) : null}
+                </div>
+                <span>Compare</span>
+              </button>
             )}
 
             {/* Favorite Heart Button */}

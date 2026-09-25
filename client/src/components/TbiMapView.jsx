@@ -21,24 +21,27 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
   // If precise coordinates are unavailable in the database, do NOT invent data
   if (tbisWithCoords.length === 0) {
     return (
-      <div className="bg-surface border border-slate-border rounded-2xl p-10 sm:p-14 text-center shadow-card max-w-xl mx-auto my-6 animate-in fade-in duration-200">
-        <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#5B0712] shadow-xs">
+      <div className="bg-surface border border-dashed border-[#D9CAB3] rounded-2xl p-10 sm:p-14 text-center shadow-card max-w-xl mx-auto my-6 animate-in fade-in duration-200">
+        <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#7A0B1A] shadow-xs">
           <MapPin className="w-7 h-7" />
         </div>
         <h3 className="text-xl font-extrabold text-[#7A0B1A]">
-          Map view requires location coordinates.
+          Map view is not available yet
         </h3>
-        <p className="text-sm text-slate-muted mt-2 leading-relaxed">
-          Geographical latitude and longitude coordinates are currently not available in this dataset. Please browse the verified incubators using the List view.
+        <p className="text-sm font-semibold text-[#243447] mt-2">
+          Location coordinates are not available for these records.
+        </p>
+        <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed max-w-md mx-auto">
+          You can still explore TBIs by city using the search and filters.
         </p>
         <div className="mt-6 flex justify-center">
           <button
             type="button"
             onClick={onSwitchToList}
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-sm hover:bg-[#490911] transition-all cursor-pointer"
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-sm hover:bg-[#5B0712] active:scale-[0.98] transition-all cursor-pointer"
           >
             <LayoutGrid className="w-4 h-4" />
-            <span>Switch to List View</span>
+            <span>Return to List →</span>
           </button>
         </div>
       </div>
@@ -109,10 +112,9 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                   <StatusBadge status={display.status} size="sm" />
                   <Link
                     to={`/tbi/${selectedTbi.id}`}
-                    className="inline-flex items-center space-x-1 px-3 py-1 rounded-lg bg-[#7A0B1A] hover:bg-[#490911] text-white text-xs font-semibold shadow-xs transition-colors"
+                    className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-bold shadow-xs active:scale-[0.98] transition-all"
                   >
-                    <span>View Details</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <span>View Details →</span>
                   </Link>
                 </div>
               </div>

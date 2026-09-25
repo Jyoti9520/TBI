@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { Compass, SlidersHorizontal, X, LayoutGrid, MapPin } from 'lucide-react';
+import { Compass, SlidersHorizontal, X, LayoutGrid, Map, MapPin } from 'lucide-react';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
 import { TbiGrid } from '../components/TbiGrid';
@@ -277,14 +277,14 @@ export const Explore = () => {
           </div>
 
           {/* List / Map View Toggle */}
-          <div className="flex items-center bg-[#FAF7F2] p-1 rounded-xl border border-[#D9CAB3]/70 shrink-0 self-start sm:self-auto">
+          <div className="flex items-center space-x-1.5 bg-[#FAF7F2] p-1.5 rounded-xl border border-[#D9CAB3]/80 shrink-0 self-start sm:self-auto">
             <button
               type="button"
               onClick={() => setViewMode('list')}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
+              className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 viewMode === 'list'
                   ? 'bg-[#7A0B1A] text-white shadow-xs'
-                  : 'text-[#7A0B1A] hover:bg-[#D9CAB3]/40'
+                  : 'bg-white text-[#7A0B1A] border border-[#D9CAB3] hover:bg-[#FAF7F2] hover:border-[#7A0B1A]/40'
               }`}
               title="List View"
             >
@@ -308,14 +308,14 @@ export const Explore = () => {
                 }
                 setViewMode('map');
               }}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
+              className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 cursor-pointer ${
                 viewMode === 'map'
                   ? 'bg-[#7A0B1A] text-white shadow-xs'
-                  : 'text-[#7A0B1A] hover:bg-[#D9CAB3]/40'
+                  : 'bg-white text-[#7A0B1A] border border-[#D9CAB3] hover:bg-[#FAF7F2] hover:border-[#7A0B1A]/40'
               }`}
               title="Map View"
             >
-              <MapPin className="w-3.5 h-3.5" />
+              <Map className="w-3.5 h-3.5" />
               <span>Map</span>
             </button>
           </div>

@@ -13,7 +13,8 @@ import {
   ShieldCheck,
   TrendingUp,
   Globe2,
-  GitCompare
+  GitCompare,
+  ChevronDown
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { tbiService } from '../services/tbiService';
@@ -76,80 +77,147 @@ export const Landing = () => {
     <div className="min-h-screen flex flex-col bg-background selection:bg-[#D9CAB3] selection:text-[#7A0B1A]">
       <Navbar />
 
-      {/* Hero Section styled with palette gradient: #D9CAB3, #FAF7F2, #5B0712 */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 border-b border-slate-border bg-gradient-to-b from-[#D9CAB3]/40 via-[#FAF7F2] to-[#D9CAB3]/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Subtle Pill using #D9CAB3 and #5B0712 */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#D9CAB3] border border-[#8C7A6B] text-[#7A0B1A] text-xs font-bold mb-6 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-[#5B0712]" />
-            <span>Discover University & Startup Incubators</span>
-          </div>
+      {/* Hero Section (First Viewport: Navbar -> Badge -> Headline -> Description -> CTA -> Scroll Indicator) */}
+      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-between pt-8 sm:pt-12 pb-4 sm:pb-6 border-b border-slate-border bg-gradient-to-b from-[#D9CAB3]/25 via-[#FAF7F2] to-[#FAF7F2] overflow-hidden">
+        {/* Extremely Subtle Ambient Warm Glow */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_40%,rgba(217,202,179,0.22),transparent_70%)]" />
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#7A0B1A] tracking-tight max-w-4xl mx-auto leading-tight sm:leading-tight">
-            Discover Where <span className="text-[#5B0712] underline decoration-[#D9CAB3] decoration-4 underline-offset-4">Innovation</span> Begins.
-          </h1>
+        {/* Top Spacer for Vertical Balance */}
+        <div className="hidden sm:block sm:h-2" />
 
-          <p className="mt-5 text-base sm:text-lg text-slate-muted max-w-2xl mx-auto font-normal">
-            Find Technology Business Incubators (TBIs), university incubation centres, and startup ecosystems across institutions in India.
+        {/* Centered Hero Content */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto flex flex-col items-center relative z-10">
+          {/* 1. Ecosystem Subheading / Tagline */}
+          <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#7A0B1A]/80 mb-4 sm:mb-6">
+            India's Verified University &amp; Startup Incubator Ecosystem
           </p>
 
-          {/* Action CTAs */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {/* 2. Main Hero Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[68px] font-extrabold text-[#7A0B1A] tracking-tight leading-[1.12] sm:leading-[1.14] max-w-3xl mx-auto">
+            Discover Where{' '}
+            <span className="text-[#5B0712] underline decoration-[#D99A2B] decoration-4 underline-offset-8">
+              Innovation
+            </span>{' '}
+            Begins.
+          </h1>
+
+          {/* 3. Short Supporting Description */}
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg lg:text-xl text-[#647C98] max-w-2xl mx-auto font-normal leading-relaxed">
+            Discover verified university incubators, innovation hubs, and startup ecosystems across India.
+          </p>
+
+          {/* 4. Primary and Secondary Action CTAs */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/explore"
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold hover:bg-[#5B0712] active:scale-[0.98] transition-all duration-200 shadow-sm"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold hover:bg-[#5B0712] active:scale-[0.98] transition-all duration-200 shadow-sm hover:shadow-md border border-[#7A0B1A]"
             >
-              <span>Explore TBIs →</span>
+              <span>Explore Incubators →</span>
             </Link>
             <Link
               to="/universities"
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-surface border border-slate-border text-[#7A0B1A] text-sm font-semibold hover:bg-[#FAF7F2] active:scale-[0.98] transition-all duration-200 shadow-subtle"
+              className="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-white border border-[#D9CAB3] text-[#7A0B1A] text-sm font-bold hover:bg-[#FAF7F2] hover:border-[#7A0B1A] active:scale-[0.98] transition-all duration-200 shadow-2xs"
             >
-              <Building2 className="w-4 h-4 text-[#7A0B1A]" />
+              <Building2 className="w-4 h-4 text-[#D99A2B]" />
               <span>Browse Universities</span>
             </Link>
           </div>
+        </div>
 
-          {/* 3 Feature Cards */}
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto text-left">
-            {/* Card 1: Search & Discover */}
-            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+        {/* 5. Subtle Scroll Indicator */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-4 pb-2">
+          <a
+            href="#explore-features"
+            className="inline-flex flex-col items-center space-y-1.5 text-xs font-semibold text-[#647C98] hover:text-[#7A0B1A] transition-colors cursor-pointer group"
+          >
+            <span className="text-[11px] tracking-wider uppercase opacity-75 group-hover:opacity-100 transition-opacity">
+              Scroll to explore
+            </span>
+            <ChevronDown className="w-4 h-4 text-[#7A0B1A] animate-bounce" />
+          </a>
+        </div>
+      </section>
+
+      {/* Feature Cards Section (Below the fold) */}
+      <section id="explore-features" className="py-16 md:py-20 bg-surface border-b border-slate-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] tracking-tight">
+              Explore TBI Nexus
+            </h2>
+            <p className="mt-2 text-sm text-[#647C98]">
+              Comprehensive discovery and benchmarking tools for India's technology incubation infrastructure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+            <Link
+              to="/explore"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                 <Search className="w-5 h-5 text-[#7A0B1A]" />
               </div>
-              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                Search &amp; Discover
-              </h3>
-              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
-                Find TBIs across universities and institutions.
-              </p>
-            </div>
-
-            {/* Card 2: Explore by Location */}
-            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                <MapPin className="w-5 h-5 text-[#7A0B1A]" />
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Search &amp; Filter
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Search by city, university, incubator scheme, and sector.
+                </p>
               </div>
-              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                Explore by Location
-              </h3>
-              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
-                Explore incubators by city and institution.
-              </p>
-            </div>
+            </Link>
 
-            {/* Card 3: Save & Compare */}
-            <div className="group bg-surface p-5 rounded-2xl border border-slate-border shadow-card hover:border-[#7A0B1A]/40 hover:-translate-y-1 hover:shadow-hover transition-all duration-200 ease-out">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] mb-3.5 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+            <Link
+              to="/explore?status=Verified"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <ShieldCheck className="w-5 h-5 text-[#16A36A]" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Verified Hubs
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Direct official contact emails, directors, and websites.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              to="/compare"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                 <GitCompare className="w-5 h-5 text-[#7A0B1A]" />
               </div>
-              <h3 className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                Save &amp; Compare
-              </h3>
-              <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed">
-                Save and compare incubators easily.
-              </p>
-            </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Compare TBIs
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Side-by-side comparison of focus areas and amenities.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              to="/explore"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <MapPin className="w-5 h-5 text-[#D99A2B]" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Nearby Proximity
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Nationwide directory covering incubators in 150+ cities.
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -394,11 +462,13 @@ export const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center space-x-2 text-[#7A0B1A] font-bold text-base mb-2">
-                <div className="w-6 h-6 rounded bg-[#7A0B1A] text-[#D9CAB3] text-xs flex items-center justify-center font-bold">
-                  T
-                </div>
-                <span>TBI GLOBAL</span>
+              <div className="flex items-center space-x-2.5 text-[#7A0B1A] font-bold text-base mb-2">
+                <img
+                  src="/tbi-nexus-logo.png"
+                  alt="TBI Nexus"
+                  className="w-7 h-7 rounded-lg object-cover border border-[#5B0712] shadow-2xs"
+                />
+                <span>TBI NEXUS</span>
               </div>
               <p className="text-xs text-slate-muted mt-1 leading-relaxed">
                 Find. Connect. Innovate.
@@ -413,7 +483,6 @@ export const Landing = () => {
                 <li><Link to="/explore" className="hover:text-[#5B0712]">Explore TBIs</Link></li>
                 <li><Link to="/universities" className="hover:text-[#5B0712]">Universities</Link></li>
                 <li><Link to="/categories" className="hover:text-[#5B0712]">Categories</Link></li>
-                <li><Link to="/nearby" className="hover:text-[#5B0712]">Nearby TBIs</Link></li>
               </ul>
             </div>
 
@@ -437,7 +506,7 @@ export const Landing = () => {
           </div>
 
           <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
-            <p>© 2026 TBI Global. All rights reserved.</p>
+            <p>© 2026 TBI Nexus. All rights reserved.</p>
             <p className="mt-2 sm:mt-0 text-[11px]">
               Independent incubator discovery directory grounded in verified university records.
             </p>

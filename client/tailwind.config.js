@@ -82,6 +82,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Montserrat', 'Inter', 'sans-serif'],
+        brand: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
       },
       boxShadow: {
         subtle: '0 1px 3px 0 rgba(36, 52, 71, 0.05), 0 1px 2px 0 rgba(36, 52, 71, 0.03)',

@@ -19,6 +19,15 @@ export const authService = {
     return res.data;
   },
 
+  async googleLogin(googleData) {
+    const res = await api.post('/auth/google', googleData);
+    if (res.data?.data?.token) {
+      localStorage.setItem('tbi_token', res.data.data.token);
+      localStorage.setItem('tbi_user', JSON.stringify(res.data.data));
+    }
+    return res.data;
+  },
+
   async getMe() {
     const res = await api.get('/auth/me');
     return res.data;

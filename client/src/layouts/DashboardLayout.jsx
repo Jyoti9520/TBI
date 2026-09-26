@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Sidebar } from '../components/Sidebar';
 import { ToastContainer } from '../components/Toast';
+import { AuthRequiredModal } from '../components/AuthRequiredModal';
 
 export const DashboardLayout = () => {
   const location = useLocation();
@@ -22,6 +23,7 @@ export const DashboardLayout = () => {
         </main>
       </div>
       <ToastContainer />
+      <AuthRequiredModal />
     </div>
   );
 };

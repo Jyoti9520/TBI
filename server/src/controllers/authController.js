@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+const { OAuth2Client } = require('google-auth-library');
 const { User } = require('../models');
 const generateToken = require('../utils/generateToken');
 
@@ -49,6 +51,8 @@ const register = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        avatar: user.avatar || null,
+        authProvider: user.authProvider || 'local',
         token
       }
     });
@@ -110,6 +114,8 @@ const login = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        avatar: user.avatar || null,
+        authProvider: user.authProvider || 'local',
         token
       }
     });
@@ -161,9 +167,131 @@ const logout = async (req, res) => {
   });
 };
 
+// @desc    Google Sign-In / OAuth exchange (real ID token verification)
+// @route   POST /api/auth/google
+// @access  Public
+const googleAuth = async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    if (!credential) {
+      return res.status(400).json({
+        success: false,
+        message: 'Google ID token credential is required. Fake or unverified sign-in requests are not permitted.'
+      });
+    }
+
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const client = new OAuth2Client(clientId);
+
+    let payload;
+    try {
+      const ticket = await client.verifyIdToken({
+        idToken: credential,
+        audience: clientId || undefined
+      });
+      payload = ticket.getPayload();
+    } catch (verifyError) {
+      console.error('Google token verification failed:', verifyError.message);
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid, malformed, or expired Google authentication credential'
+      });
+    }
+
+    if (!payload || !payload.email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Google authentication credential did not contain a valid email address'
+      });
+    }
+
+    const googleId = payload.sub;
+    const email = payload.email.toLowerCase().trim();
+    const name = payload.name || payload.given_name || 'Google User';
+    const avatar = payload.picture || null;
+
+    // Locate existing user by email or googleId
+    let user = await User.findOne({
+      where: {
+        [Op.or]: [
+          { email },
+          ...(googleId ? [{ googleId }] : [])
+        ]
+      }
+    });
+
+    if (user) {
+      if (!user.isActive) {
+        return res.status(403).json({
+          success: false,
+          message: 'Your account has been deactivated. Please contact support.'
+        });
+      }
+
+      // Link Google metadata if missing or previously local
+      let updated = false;
+      if (!user.googleId && googleId) {
+        user.googleId = googleId;
+        updated = true;
+      }
+      if (!user.avatar && avatar) {
+        user.avatar = avatar;
+        updated = true;
+      }
+      if (user.authProvider === 'local') {
+        user.authProvider = 'google';
+        updated = true;
+      }
+
+      if (updated) {
+        await user.save();
+      }
+    } else {
+      // First-time Google user - create new account with high-entropy random password
+      const crypto = require('crypto');
+      const securePassword = crypto.randomBytes(32).toString('hex');
+
+      user = await User.create({
+        name: name.trim(),
+        email,
+        password: securePassword,
+        role: 'USER',
+        authProvider: 'google',
+        googleId,
+        avatar,
+        isActive: true
+      });
+    }
+
+    const token = generateToken(user.id, user.role);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Signed in with Google successfully',
+      data: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        avatar: user.avatar || avatar,
+        authProvider: user.authProvider || 'google',
+        token
+      }
+    });
+  } catch (error) {
+    console.error('Google auth error:', error);
+    return res.status(500).json({
+      success: false,
+      message: error.message || 'Server error during Google authentication'
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
   getMe,
-  logout
+  logout,
+  googleAuth
 };

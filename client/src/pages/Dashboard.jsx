@@ -144,6 +144,11 @@ export const Dashboard = () => {
 
   // Load saved count & keep in sync with card favorite clicks
   useEffect(() => {
+    if (!user) {
+      setSavedCount(0);
+      return;
+    }
+
     const fetchSaved = () => {
       userService
         .getFavorites()
@@ -157,7 +162,7 @@ export const Dashboard = () => {
 
     window.addEventListener('favorites-updated', fetchSaved);
     return () => window.removeEventListener('favorites-updated', fetchSaved);
-  }, []);
+  }, [user]);
 
   const handleSearchSubmit = (searchTerm) => {
     setSearch(searchTerm);
@@ -190,7 +195,7 @@ export const Dashboard = () => {
       {/* 1. Header Greeting */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
-          {getGreeting()}, {user?.name || 'Jyoti'}
+          {user ? `${getGreeting()}, ${user.name}` : 'Welcome to TBI Nexus'}
         </h1>
         <p className="text-sm text-[#647C98] mt-1">
           Discover innovation and technology business incubators around you.

@@ -13,8 +13,6 @@ import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Dashboard } from './pages/Dashboard';
 import { Explore } from './pages/Explore';
-import { FindMyTbi } from './pages/FindMyTbi';
-import { Nearby } from './pages/Nearby';
 import { Universities } from './pages/Universities';
 import { Categories } from './pages/Categories';
 import { Compare } from './pages/Compare';
@@ -44,36 +42,22 @@ export const App = () => {
         {/* Main Application with Top Bar & Sidebar */}
         <Route element={<DashboardLayout />}>
           {/* Public Discovery Routes in App Layout */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/find-tbi" element={<FindMyTbi />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/tbi/:id" element={<TbiDetails />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/nearby" element={<Nearby />} />
+          <Route path="/suggest" element={<SuggestTbi />} />
+          <Route path="/find-tbi" element={<Navigate to="/explore" replace />} />
+          <Route path="/nearby" element={<Navigate to="/explore" replace />} />
 
           {/* Authenticated Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/saved"
             element={
               <ProtectedRoute>
                 <Saved />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/suggest"
-            element={
-              <ProtectedRoute>
-                <SuggestTbi />
               </ProtectedRoute>
             }
           />

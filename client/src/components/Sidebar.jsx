@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Compass,
-  MapPin,
   University,
   Layers,
   Bookmark,
@@ -14,15 +13,14 @@ import {
   FolderTree,
   Users,
   FileSpreadsheet,
-  GitCompare,
-  Sparkles
+  GitCompare
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
 import { getCompareTbis } from '../utils/compareStorage';
 
 export const Sidebar = () => {
-  const { user, isAdmin, logout } = useAuth();
+  const { user, isAuthenticated, isAdmin, logout, openAuthModal } = useAuth();
   const navigate = useNavigate();
   const [savedCount, setSavedCount] = useState(0);
   const [compareCount, setCompareCount] = useState(() => getCompareTbis().length);
@@ -64,28 +62,15 @@ export const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Explore TBIs', path: '/explore', icon: Compass },
-    { name: 'Find My TBI', path: '/find-tbi', icon: Sparkles },
-    { name: 'Nearby', path: '/nearby', icon: MapPin },
     { name: 'Universities', path: '/universities', icon: University },
     { name: 'Categories', path: '/categories', icon: Layers },
     { name: 'Compare TBIs', path: '/compare', icon: GitCompare },
-    { name: 'Saved TBIs', path: '/saved', icon: Bookmark },
+    { name: 'Saved TBIs', path: '/saved', icon: Bookmark, requiresAuth: true, context: 'saved', contextMessage: 'Login to access and manage your bookmarked incubators.' },
     { name: 'Suggest a TBI', path: '/suggest', icon: PlusCircle },
   ];
 
   return (
     <aside className="w-64 bg-surface border-r border-slate-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
-      {/* User Mini Profile */}
-      <div className="p-4 border-b border-slate-border flex items-center space-x-3 bg-gradient-to-r from-[#FAF7F2] to-white">
-        <div className="w-10 h-10 rounded-xl bg-[#7A0B1A] text-white font-extrabold flex items-center justify-center shrink-0 shadow-xs border border-[#5B0712] transition-transform duration-200 hover:scale-105">
-          {user?.name ? user.name[0].toUpperCase() : 'U'}
-        </div>
-        <div className="overflow-hidden">
-          <p className="text-sm font-bold text-[#7A0B1A] truncate">{user?.name || 'User'}</p>
-          <p className="text-xs text-[#647C98] truncate">{user?.email}</p>
-        </div>
-      </div>
-
       {/* Main Nav */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
@@ -94,6 +79,18 @@ export const Sidebar = () => {
             <NavLink
               key={item.path}
               to={item.path}
+              onClick={(e) => {
+                if (item.requiresAuth && !isAuthenticated) {
+                  e.preventDefault();
+                  openAuthModal({
+                    title: `Login to view ${item.name}`,
+                    subtitle: 'Create an account or login to access this user feature.',
+                    contextMessage: item.contextMessage,
+                    context: item.context || 'general',
+                    returnPath: item.path
+                  });
+                }
+              }}
               className={({ isActive }) =>
                 `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
                   isActive
@@ -264,6 +261,18 @@ export const Sidebar = () => {
       <div className="p-3 border-t border-slate-border space-y-1">
         <NavLink
           to="/settings"
+          onClick={(e) => {
+            if (!isAuthenticated) {
+              e.preventDefault();
+              openAuthModal({
+                title: 'Login to access Settings',
+                subtitle: 'Manage your profile and account preferences.',
+                contextMessage: 'Login to customize your account and notifications.',
+                context: 'settings',
+                returnPath: '/settings'
+              });
+            }
+          }}
           className={({ isActive }) =>
             `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
               isActive
@@ -293,15 +302,35 @@ export const Sidebar = () => {
             </>
           )}
         </NavLink>
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
-        >
-          <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
-            <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
-          </div>
-          <span className="truncate">Logout</span>
-        </button>
+
+        {isAuthenticated ? (
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
+          >
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
+              <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+            </div>
+            <span className="truncate">Logout</span>
+          </button>
+        ) : (
+          <button
+            onClick={() =>
+              openAuthModal({
+                title: 'Login to continue',
+                subtitle: 'Sign in to access your profile and saved incubators.',
+                context: 'general',
+                returnPath: '/dashboard'
+              })
+            }
+            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
+          >
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
+              <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+            </div>
+            <span className="truncate font-bold">Sign In</span>
+          </button>
+        )}
       </div>
     </aside>
   );

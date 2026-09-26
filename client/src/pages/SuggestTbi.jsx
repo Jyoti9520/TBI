@@ -14,6 +14,7 @@ import {
   FileText
 } from 'lucide-react';
 import { tbiService } from '../services/tbiService';
+import { useAuth } from '../hooks/useAuth';
 
 const UNIVERSITY_TYPES = [
   'Central University',
@@ -40,6 +41,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const URL_REGEX = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/i;
 
 export const SuggestTbi = () => {
+  const { isAuthenticated, requireAuth } = useAuth();
   const [formData, setFormData] = useState({
     university: '',
     tbiName: '',
@@ -106,6 +108,17 @@ export const SuggestTbi = () => {
     e.preventDefault();
     setErrorMessage('');
     setIsSuccess(false);
+
+    if (!isAuthenticated) {
+      requireAuth(null, {
+        title: 'Login to suggest an Incubator',
+        subtitle: 'Please log in or create an account to submit incubator suggestions for review.',
+        contextMessage: 'Login required to submit and track your suggestion.',
+        context: 'suggest',
+        returnPath: '/suggest'
+      });
+      return;
+    }
 
     const errors = validate();
     if (Object.keys(errors).length > 0) {

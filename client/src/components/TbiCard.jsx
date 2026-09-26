@@ -27,7 +27,7 @@ export const TbiCard = ({
   isComparing = false,
   onToggleCompare
 }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, requireAuth } = useAuth();
   const navigate = useNavigate();
   const [isFavorited, setIsFavorited] = useState(tbi?.isFavorited || false);
   const [loadingFav, setLoadingFav] = useState(false);
@@ -57,7 +57,13 @@ export const TbiCard = ({
     e.stopPropagation();
 
     if (!isAuthenticated) {
-      navigate('/login');
+      requireAuth(null, {
+        title: 'Login to save TBIs',
+        subtitle: 'Create a free account or login to bookmark incubation centres to your personal list.',
+        contextMessage: `Login to save "${universityName || 'this TBI'}" to your collection.`,
+        context: 'save',
+        returnPath: window.location.pathname + window.location.search
+      });
       return;
     }
 

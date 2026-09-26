@@ -23,8 +23,7 @@ const QUICK_FILTERS = [
   { id: 'dst_tbi', label: 'DST TBI', type: 'incubatorType', value: 'DST TBI' },
   { id: 'nidhi_tbi', label: 'NIDHI-TBI', type: 'incubatorType', value: 'NIDHI-TBI' },
   { id: 'university_incubator', label: 'University Incubator', type: 'incubatorType', value: 'University Incubator' },
-  { id: 'section_8', label: 'Section 8 Incubator', type: 'incubatorType', value: 'Section 8 Incubator' },
-  { id: 'nearby', label: 'Nearby', type: 'nearby' }
+  { id: 'section_8', label: 'Section 8 Incubator', type: 'incubatorType', value: 'Section 8 Incubator' }
 ];
 
 export const Explore = () => {
@@ -89,6 +88,8 @@ export const Explore = () => {
         page,
         limit: 15,
         search: search.trim(),
+        sortBy: 'university',
+        order: 'ASC',
         ...filters
       };
       const res = await tbiService.getTbis(params);

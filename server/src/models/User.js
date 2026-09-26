@@ -28,6 +28,18 @@ const User = sequelize.define('User', {
     type: DataTypes.ENUM('USER', 'ADMIN'),
     defaultValue: 'USER'
   },
+  authProvider: {
+    type: DataTypes.STRING(50),
+    defaultValue: 'local'
+  },
+  googleId: {
+    type: DataTypes.STRING(255),
+    allowNull: true
+  },
+  avatar: {
+    type: DataTypes.STRING(500),
+    allowNull: true
+  },
   isActive: {
     type: DataTypes.BOOLEAN,
     defaultValue: true

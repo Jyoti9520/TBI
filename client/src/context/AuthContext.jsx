@@ -41,6 +41,14 @@ export const AuthProvider = ({ children }) => {
     return res;
   };
 
+  const googleLogin = async (googleData) => {
+    const res = await authService.googleLogin(googleData);
+    if (res.success && res.data) {
+      setUser(res.data);
+    }
+    return res;
+  };
+
   const register = async (data) => {
     const res = await authService.register(data);
     if (res.success && res.data) {
@@ -58,6 +66,46 @@ export const AuthProvider = ({ children }) => {
     setUser(prev => ({ ...prev, ...updated }));
   };
 
+  const [authModal, setAuthModal] = useState({ isOpen: false });
+
+  const openAuthModal = (options = {}) => {
+    setAuthModal({
+      isOpen: true,
+      title: options.title || 'Login to continue',
+      subtitle: options.subtitle || 'Create an account or login to access this feature and keep your TBI discoveries saved.',
+      contextMessage: options.contextMessage || '',
+      context: options.context || 'general',
+      returnPath: options.returnPath || (window.location.pathname + window.location.search),
+      onSuccess: options.onSuccess || null
+    });
+  };
+
+  const closeAuthModal = () => {
+    setAuthModal({ isOpen: false });
+  };
+
+  const requireAuth = (callback, options = {}) => {
+    if (user) {
+      if (typeof callback === 'function') {
+        callback();
+      }
+      return true;
+    }
+    openAuthModal({
+      ...options,
+      onSuccess: callback
+    });
+    return false;
+  };
+
+  useEffect(() => {
+    const handleAuthRequiredEvent = (e) => {
+      openAuthModal(e.detail || {});
+    };
+    window.addEventListener('auth-required', handleAuthRequiredEvent);
+    return () => window.removeEventListener('auth-required', handleAuthRequiredEvent);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -65,7 +113,12 @@ export const AuthProvider = ({ children }) => {
         loading,
         isAuthenticated: !!user,
         isAdmin: user?.role === 'ADMIN',
+        authModal,
+        openAuthModal,
+        closeAuthModal,
+        requireAuth,
         login,
+        googleLogin,
         register,
         logout,
         updateUser

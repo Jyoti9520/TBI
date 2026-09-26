@@ -27,7 +27,7 @@ import { StatusBadge } from '../components/StatusBadge';
 export const TbiDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, requireAuth } = useAuth();
 
   const [tbi, setTbi] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -66,7 +66,13 @@ export const TbiDetails = () => {
 
   const handleToggleFavorite = async () => {
     if (!isAuthenticated) {
-      navigate('/login');
+      requireAuth(null, {
+        title: 'Login to save TBIs',
+        subtitle: 'Create a free account or login to bookmark incubation centres to your personal list.',
+        contextMessage: `Login to save "${tbi?.university || 'this TBI'}" to your collection.`,
+        context: 'save',
+        returnPath: window.location.pathname
+      });
       return;
     }
 

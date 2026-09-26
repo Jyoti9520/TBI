@@ -17,13 +17,15 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-9 h-9 rounded-xl bg-[#7A0B1A] flex items-center justify-center text-white font-extrabold text-lg shadow-xs transition-transform duration-200 group-hover:scale-105 border border-[#5B0712]">
-              T
-            </div>
+          <Link to="/" className="flex items-center space-x-2.5 group">
+            <img
+              src="/tbi-nexus-logo.png"
+              alt="TBI Nexus"
+              className="w-9 h-9 rounded-xl object-cover shadow-xs transition-transform duration-200 group-hover:scale-105 border border-[#5B0712]"
+            />
             <div className="flex flex-col">
               <span className="font-extrabold text-[#7A0B1A] tracking-tight text-lg leading-tight">
-                TBI GLOBAL
+                TBI NEXUS
               </span>
               <span className="text-[10px] uppercase tracking-wider text-[#647C98] font-bold">
                 Incubator Directory
@@ -49,9 +51,18 @@ export const Navbar = () => {
                   to="/dashboard"
                   className="flex items-center space-x-2 text-sm text-[#243447] font-semibold px-3 py-1.5 rounded-lg hover:bg-[#FAF7F2] border border-slate-border transition-colors duration-200"
                 >
-                  <div className="w-6 h-6 rounded-full bg-[#7A0B1A] text-white text-xs flex items-center justify-center font-bold">
-                    {user?.name ? user.name[0].toUpperCase() : 'U'}
-                  </div>
+                  {user?.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name || 'User'}
+                      referrerPolicy="no-referrer"
+                      className="w-6 h-6 rounded-full object-cover border border-[#7A0B1A]"
+                    />
+                  ) : (
+                    <div className="w-6 h-6 rounded-full bg-[#7A0B1A] text-white text-xs flex items-center justify-center font-bold">
+                      {user?.name ? user.name[0].toUpperCase() : 'U'}
+                    </div>
+                  )}
                   <span className="max-w-[120px] truncate">{user?.name}</span>
                 </Link>
 

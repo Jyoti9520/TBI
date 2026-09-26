@@ -54,15 +54,16 @@ const getTbis = async (req, res) => {
       ];
     }
 
-    // Determine sort
-    let sortField = 'name';
+    // Determine sort (default: alphabetical A-Z by university)
+    let sortField = 'university';
     let sortOrder = 'ASC';
 
-    if (sortBy === 'university') sortField = 'university';
+    if (sortBy === 'name') sortField = 'name';
     else if (sortBy === 'city') sortField = 'city';
     else if (sortBy === 'status') sortField = 'status';
     else if (sortBy === 'createdAt') sortField = 'createdAt';
     else if (sortBy === 'id') sortField = 'id';
+    else if (sortBy === 'university') sortField = 'university';
 
     if (order && order.toUpperCase() === 'DESC') {
       sortOrder = 'DESC';

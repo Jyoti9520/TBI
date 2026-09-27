@@ -25,11 +25,12 @@ const getTbis = async (req, res) => {
 
     const where = {};
 
+    const likeOp = Op.iLike || Op.like;
     if (university) {
-      where.university = { [Op.like]: `%${university.trim()}%` };
+      where.university = { [likeOp]: `%${university.trim()}%` };
     }
     if (city) {
-      where.city = { [Op.like]: `%${city.trim()}%` };
+      where.city = { [likeOp]: `%${city.trim()}%` };
     }
     if (universityType) {
       where.universityType = universityType.trim();
@@ -44,13 +45,13 @@ const getTbis = async (req, res) => {
     if (search) {
       const q = `%${search.trim()}%`;
       where[Op.or] = [
-        { name: { [Op.like]: q } },
-        { university: { [Op.like]: q } },
-        { city: { [Op.like]: q } },
-        { incubatorType: { [Op.like]: q } },
-        { universityType: { [Op.like]: q } },
-        { email: { [Op.like]: q } },
-        { website: { [Op.like]: q } }
+        { name: { [likeOp]: q } },
+        { university: { [likeOp]: q } },
+        { city: { [likeOp]: q } },
+        { incubatorType: { [likeOp]: q } },
+        { universityType: { [likeOp]: q } },
+        { email: { [likeOp]: q } },
+        { website: { [likeOp]: q } }
       ];
     }
 
@@ -166,18 +167,19 @@ const searchTbis = async (req, res) => {
       return getTbis(req, res);
     }
 
+    const likeOp = Op.iLike || Op.like;
     const pattern = `%${q}%`;
 
     // Query matching records
     const where = {
       [Op.or]: [
-        { name: { [Op.like]: pattern } },
-        { university: { [Op.like]: pattern } },
-        { incubatorType: { [Op.like]: pattern } },
-        { city: { [Op.like]: pattern } },
-        { universityType: { [Op.like]: pattern } },
-        { email: { [Op.like]: pattern } },
-        { website: { [Op.like]: pattern } }
+        { name: { [likeOp]: pattern } },
+        { university: { [likeOp]: pattern } },
+        { incubatorType: { [likeOp]: pattern } },
+        { city: { [likeOp]: pattern } },
+        { universityType: { [likeOp]: pattern } },
+        { email: { [likeOp]: pattern } },
+        { website: { [likeOp]: pattern } }
       ]
     };
 
@@ -265,17 +267,18 @@ const getSuggestions = async (req, res) => {
       return res.status(200).json({ success: true, data: [] });
     }
 
+    const likeOp = Op.iLike || Op.like;
     const pattern = `%${q}%`;
 
     // Search across University, Name (TBI/Incubator), City, Incubator Type, and Status
     const rows = await TBI.findAll({
       where: {
         [Op.or]: [
-          { university: { [Op.like]: pattern } },
-          { name: { [Op.like]: pattern } },
-          { city: { [Op.like]: pattern } },
-          { incubatorType: { [Op.like]: pattern } },
-          { status: { [Op.like]: pattern } }
+          { university: { [likeOp]: pattern } },
+          { name: { [likeOp]: pattern } },
+          { city: { [likeOp]: pattern } },
+          { incubatorType: { [likeOp]: pattern } },
+          { status: { [likeOp]: pattern } }
         ]
       },
       attributes: [

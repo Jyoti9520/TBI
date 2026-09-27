@@ -1,4 +1,4 @@
-const { fn, col, literal } = require('sequelize');
+const { fn, col, literal, Op } = require('sequelize');
 const { TBI } = require('../models');
 const { isValidUrl, normalizeUrl } = require('../utils/normalizeData');
 
@@ -8,6 +8,15 @@ const { isValidUrl, normalizeUrl } = require('../utils/normalizeData');
 const getUniversities = async (req, res) => {
   try {
     const search = req.query.search ? req.query.search.trim() : '';
+
+    const likeOp = Op.iLike || Op.like;
+    const where = {};
+    if (search) {
+      where[Op.or] = [
+        { university: { [likeOp]: `%${search}%` } },
+        { city: { [likeOp]: `%${search}%` } }
+      ];
+    }
 
     const universities = await TBI.findAll({
       attributes: [
@@ -20,7 +29,7 @@ const getUniversities = async (req, res) => {
           'verifiedCount'
         ]
       ],
-      where: search ? { university: { [require('sequelize').Op.like]: `%${search}%` } } : {},
+      where,
       group: ['university'],
       order: [[literal('tbiCount'), 'DESC'], ['university', 'ASC']]
     });

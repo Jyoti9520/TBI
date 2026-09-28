@@ -63,7 +63,9 @@ export const getTbiDisplayData = (tbi) => {
       hasValidWebsite: false,
       displayHostname: null,
       status: 'Unverified',
-      firstLetter: 'U'
+      firstLetter: 'U',
+      schemes: [],
+      focusAreas: []
     };
   }
 

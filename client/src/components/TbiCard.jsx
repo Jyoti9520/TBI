@@ -49,7 +49,9 @@ export const TbiCard = ({
     hasValidWebsite,
     displayHostname,
     status,
-    firstLetter
+    firstLetter,
+    schemes,
+    focusAreas
   } = getTbiDisplayData(tbi);
 
   const handleToggleFavorite = async (e) => {

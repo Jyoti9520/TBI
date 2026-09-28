@@ -115,8 +115,45 @@ const getRoadmaps = async (req, res) => {
   }
 };
 
+// @desc    AI Grant Proposal Doctor: Generates a ready-to-submit proposal for screening committees
+// @route   POST /api/schemes/ai-proposal
+// @access  Public
+const generateAiProposal = async (req, res) => {
+  try {
+    const { generateProposal } = require('../utils/aiProposalEngine');
+    const { ideaTitle, rawDescription, sector, targetScheme, founderBackground } = req.body;
+
+    if (!ideaTitle || !rawDescription) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide both your idea title and a short description.'
+      });
+    }
+
+    const proposal = generateProposal({
+      ideaTitle,
+      rawDescription,
+      sector,
+      targetScheme,
+      founderBackground
+    });
+
+    return res.status(200).json({
+      success: true,
+      data: proposal
+    });
+  } catch (error) {
+    console.error('generateAiProposal error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to generate proposal outline'
+    });
+  }
+};
+
 module.exports = {
   getAllSchemes,
   matchEligibility,
-  getRoadmaps
+  getRoadmaps,
+  generateAiProposal
 };

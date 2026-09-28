@@ -14,5 +14,10 @@ export const schemeService = {
   async getRoadmaps() {
     const res = await api.get('/schemes/roadmaps');
     return res.data;
+  },
+
+  async generateAiProposal(data) {
+    const res = await api.post('/schemes/ai-proposal', data);
+    return res.data;
   }
 };

@@ -22,6 +22,7 @@ import { SuggestTbi } from './pages/SuggestTbi';
 import { Settings } from './pages/Settings';
 import { GrantRadar } from './pages/GrantRadar';
 import { Roadmap } from './pages/Roadmap';
+import { AiProposalDoctor } from './pages/AiProposalDoctor';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminTbis } from './pages/AdminTbis';
 import { AdminUsers } from './pages/AdminUsers';
@@ -46,6 +47,7 @@ export const App = () => {
           {/* Public Discovery Routes in App Layout */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/grants" element={<GrantRadar />} />
+          <Route path="/proposal-doctor" element={<AiProposalDoctor />} />
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/compare" element={<Compare />} />

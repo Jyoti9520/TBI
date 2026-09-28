@@ -104,6 +104,34 @@ export const GrantRadar = () => {
         </div>
       </div>
 
+      {/* AI Proposal Doctor Callout Banner */}
+      <div className="bg-gradient-to-r from-amber-500/10 via-[#7A0B1A]/5 to-[#7A0B1A]/10 border-2 border-[#D99A2B]/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+        <div className="flex items-center space-x-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-[#7A0B1A] text-white flex items-center justify-center shrink-0 shadow-sm">
+            <Sparkles className="w-6 h-6 text-[#D99A2B]" />
+          </div>
+          <div>
+            <div className="flex items-center space-x-2">
+              <span className="text-xs font-black uppercase tracking-wider text-[#7A0B1A]">AI Proposal &amp; Pitch Doctor</span>
+              <span className="text-[9px] font-bold px-1.5 py-0.5 bg-[#D99A2B] text-white rounded">NEW</span>
+            </div>
+            <h3 className="text-sm sm:text-base font-extrabold text-slate-900 mt-0.5">
+              Have a raw project idea? Convert it into a screening-ready DST NIDHI DPR v2.4 proposal.
+            </h3>
+            <p className="text-xs text-[#647C98]">
+              Automates TRL level classification, Bill of Materials (BOM) cost distribution, and patent defense moats.
+            </p>
+          </div>
+        </div>
+        <Link
+          to="/proposal-doctor"
+          className="px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-extrabold hover:bg-[#5B0712] transition shadow-xs flex items-center space-x-1.5 shrink-0"
+        >
+          <span>Launch AI Doctor</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
       {/* 2. Interactive Instant Eligibility Matcher Tool */}
       <div className="bg-white rounded-2xl border border-[#D9CAB3] p-6 shadow-card space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">

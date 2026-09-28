@@ -15,7 +15,8 @@ import {
   FileSpreadsheet,
   GitCompare,
   Target,
-  Route
+  Route,
+  Sparkles
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -64,6 +65,7 @@ export const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Grant Radar', path: '/grants', icon: Target, isNew: true },
+    { name: 'AI Grant Doctor', path: '/proposal-doctor', icon: Sparkles, isAi: true },
     { name: 'Campus Roadmap', path: '/roadmap', icon: Route, isNew: true },
     { name: 'Explore TBIs', path: '/explore', icon: Compass },
     { name: 'Universities', path: '/universities', icon: University },
@@ -131,6 +133,17 @@ export const Sidebar = () => {
                       }`}
                     >
                       New
+                    </span>
+                  )}
+                  {item.isAi && (
+                    <span
+                      className={`ml-auto text-[10px] px-2 py-0.5 rounded-full font-extrabold uppercase tracking-wider transition-colors ${
+                        isActive
+                          ? 'bg-white text-[#7A0B1A] shadow-xs'
+                          : 'bg-[#7A0B1A]/10 text-[#7A0B1A] border border-[#7A0B1A]/20'
+                      }`}
+                    >
+                      AI
                     </span>
                   )}
                   {item.name === 'Saved TBIs' && savedCount > 0 && (

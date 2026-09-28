@@ -39,6 +39,10 @@ export const Navbar = () => {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Grant Radar</span>
             </Link>
+            <Link to="/proposal-doctor" className="hover:text-[#7A0B1A] text-[#7A0B1A] transition flex items-center space-x-1">
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#7A0B1A]/10 border border-[#7A0B1A]/30">AI</span>
+              <span>Grant Doctor</span>
+            </Link>
             <Link to="/roadmap" className="hover:text-[#7A0B1A] transition">
               <span>Campus Roadmap</span>
             </Link>

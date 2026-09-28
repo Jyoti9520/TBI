@@ -37,7 +37,7 @@ export const Landing = () => {
     const fetchLandingData = async () => {
       try {
         const [statsRes, tbisRes, catsRes, unisRes] = await Promise.all([
-          adminService.getStats().catch(() => ({ success: false })),
+          tbiService.getStats().catch(() => adminService.getStats().catch(() => ({ success: false }))),
           tbiService.getTbis({ status: 'Verified', limit: 6 }),
           tbiService.getCategories(),
           tbiService.getUniversities({ limit: 6 })
@@ -121,6 +121,44 @@ export const Landing = () => {
               <Building2 className="w-4 h-4 text-[#D99A2B]" />
               <span>Browse Universities</span>
             </Link>
+          </div>
+
+          {/* Quick Grant Query Chips (The Instant Discovery Hook) */}
+          <div className="mt-8 pt-6 border-t border-[#D9CAB3]/50 w-full max-w-2xl">
+            <div className="text-[11px] font-bold text-[#647C98] uppercase tracking-wider mb-2.5 flex items-center justify-center space-x-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#D99A2B]" />
+              <span>Popular Grant &amp; Funding Searches:</span>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <Link
+                to="/explore?q=NIDHI"
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-[#D9CAB3] text-[#7A0B1A] hover:border-[#7A0B1A] hover:bg-[#FAF7F2] transition shadow-2xs flex items-center space-x-1.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>NIDHI-PRAYAS (₹10L)</span>
+              </Link>
+              <Link
+                to="/explore?q=TIDE"
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-[#D9CAB3] text-[#7A0B1A] hover:border-[#7A0B1A] hover:bg-[#FAF7F2] transition shadow-2xs flex items-center space-x-1.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                <span>MeitY TIDE 2.0 (AI/IoT)</span>
+              </Link>
+              <Link
+                to="/explore?q=BIRAC"
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-[#D9CAB3] text-[#7A0B1A] hover:border-[#7A0B1A] hover:bg-[#FAF7F2] transition shadow-2xs flex items-center space-x-1.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                <span>BIRAC BIG (₹50L)</span>
+              </Link>
+              <Link
+                to="/explore?q=EIR"
+                className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white border border-[#D9CAB3] text-[#7A0B1A] hover:border-[#7A0B1A] hover:bg-[#FAF7F2] transition shadow-2xs flex items-center space-x-1.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                <span>Founder Stipend (EIR)</span>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -222,40 +260,48 @@ export const Landing = () => {
         </div>
       </section>
 
-      {/* Dynamic Statistics Bar (Section 59 - Real DB calculations) */}
-      <section className="py-8 bg-surface border-b border-slate-border">
+      {/* Dynamic Statistics Bar (Section 59 - Real DB calculations + Ecosystem Metrics) */}
+      <section className="py-10 bg-white border-b border-[#D9CAB3]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
             <div className="p-2">
               <p className="text-3xl sm:text-4xl font-extrabold text-[#7A0B1A]">
-                {stats?.totalTbis ?? (loading ? '...' : '500+')}
+                {stats?.totalTbis ?? (loading ? '...' : '521')}
               </p>
-              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
-                Total TBIs
+              <p className="text-xs font-bold text-[#647C98] mt-1 uppercase tracking-wider">
+                Verified Hubs
+              </p>
+            </div>
+            <div className="p-2 border-l border-slate-100">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#D99A2B]">
+                ₹142.5 Cr+
+              </p>
+              <p className="text-xs font-bold text-[#647C98] mt-1 uppercase tracking-wider">
+                Annual Grants Pool
               </p>
             </div>
             <div className="p-2 border-l border-slate-100">
               <p className="text-3xl sm:text-4xl font-extrabold text-[#5B0712]">
                 {stats?.uniqueUniversities ?? (loading ? '...' : '350+')}
               </p>
-              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
+              <p className="text-xs font-bold text-[#647C98] mt-1 uppercase tracking-wider">
                 Universities
               </p>
             </div>
             <div className="p-2 border-l border-slate-100">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#7A0B1A]">
-                {stats?.uniqueCities ?? (loading ? '...' : '150+')}
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#16A36A]">
+                38 Cohorts
               </p>
-              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
-                Cities Covered
+              <p className="text-xs font-bold text-[#647C98] mt-1 uppercase tracking-wider">
+                Open Deadlines
               </p>
             </div>
-            <div className="p-2 border-l border-slate-100">
-              <p className="text-3xl sm:text-4xl font-extrabold text-[#2E6F40]">
-                {stats?.verifiedTbis ?? (loading ? '...' : '400+')}
+            <div className="p-2 border-l border-slate-100 col-span-2 md:col-span-1">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#243447]">
+                {stats?.uniqueCities ?? (loading ? '...' : '150+')}
               </p>
-              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
-                Verified Records
+              <p className="text-xs font-bold text-[#647C98] mt-1 uppercase tracking-wider">
+                Cities Across India
               </p>
             </div>
           </div>

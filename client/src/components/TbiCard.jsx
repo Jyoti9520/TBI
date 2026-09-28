@@ -189,7 +189,7 @@ export const TbiCard = ({
           </div>
         </div>
 
-        {/* Middle Section: University Name, TBI / Incubator Name, Incubator Type Badge */}
+        {/* Middle Section: University Name, TBI / Incubator Name */}
         <div>
           {/* University Name */}
           <h3 className="text-base font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors duration-200 line-clamp-2 leading-snug">
@@ -208,18 +208,33 @@ export const TbiCard = ({
             </span>
           </p>
 
-          {/* Incubator Type Badge */}
-          {incubatorType && (
-            <div className="mt-2.5">
-              <span className="inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] shadow-2xs">
-                {incubatorType}
-              </span>
+          {/* Grant & Scheme Badges (The Ynos/Intelligence Factor) */}
+          {schemes && schemes.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {schemes.slice(0, 2).map((s, idx) => (
+                <span
+                  key={idx}
+                  className={`inline-flex items-center space-x-1 text-[10px] font-bold px-2 py-0.5 rounded-md border ${s.badgeColor}`}
+                  title={`${s.name} - ${s.type}`}
+                >
+                  <span>{s.name}</span>
+                  <span className="opacity-75 font-normal">({s.amount})</span>
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Focus Area Tags */}
+          {focusAreas && focusAreas.length > 0 && (
+            <div className="mt-2 flex items-center space-x-1.5 text-[10px] text-[#647C98]">
+              <span className="font-semibold text-slate-700">Focus:</span>
+              <span className="truncate">{focusAreas.join(' • ')}</span>
             </div>
           )}
         </div>
 
         {/* Information Section: City with MapPin & Official Email with Mail icon */}
-        <div className="mt-4 space-y-1.5 text-xs text-[#647C98]">
+        <div className="mt-3 pt-2.5 border-t border-slate-100/80 space-y-1.5 text-xs text-[#647C98]">
           {/* City with MapPin icon */}
           <div className="flex items-center space-x-2">
             <div className="w-5 h-5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">

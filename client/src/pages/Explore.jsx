@@ -17,13 +17,14 @@ import {
 } from '../utils/compareStorage';
 
 const QUICK_FILTERS = [
-  { id: 'all', label: 'All' },
-  { id: 'verified', label: 'Verified', type: 'status', value: 'Verified' },
-  { id: 'under_verification', label: 'Under Verification', type: 'status', value: 'Under Verification' },
+  { id: 'all', label: 'All Ecosystem' },
+  { id: 'verified', label: '✓ Verified Hubs', type: 'status', value: 'Verified' },
+  { id: 'nidhi_prayas', label: '🎯 NIDHI-PRAYAS (₹10L)', type: 'search', value: 'PRAYAS' },
+  { id: 'nidhi_eir', label: '💸 NIDHI-EIR (Stipend)', type: 'search', value: 'EIR' },
+  { id: 'tide_meity', label: '⚡ MeitY TIDE (AI/IoT)', type: 'search', value: 'TIDE' },
+  { id: 'birac_bio', label: '🧬 Bio & HealthTech', type: 'search', value: 'Bio' },
   { id: 'dst_tbi', label: 'DST TBI', type: 'incubatorType', value: 'DST TBI' },
-  { id: 'nidhi_tbi', label: 'NIDHI-TBI', type: 'incubatorType', value: 'NIDHI-TBI' },
-  { id: 'university_incubator', label: 'University Incubator', type: 'incubatorType', value: 'University Incubator' },
-  { id: 'section_8', label: 'Section 8 Incubator', type: 'incubatorType', value: 'Section 8 Incubator' }
+  { id: 'section_8', label: 'Section 8 Hubs', type: 'incubatorType', value: 'Section 8 Incubator' }
 ];
 
 export const Explore = () => {
@@ -179,15 +180,26 @@ export const Explore = () => {
   const handleQuickFilterClick = (chip) => {
     if (chip.id === 'all') {
       setIsNearbyActive(false);
+      setSearch('');
       const nextFilters = { ...filters, status: '', incubatorType: '' };
       setFilters(nextFilters);
       setPage(1);
-      updateQueryParams(search, nextFilters, 1);
+      updateQueryParams('', nextFilters, 1);
       return;
     }
 
     if (chip.id === 'nearby') {
       handleNearbyFilter();
+      return;
+    }
+
+    if (chip.type === 'search') {
+      setIsNearbyActive(false);
+      const isCurrentlyActive = search === chip.value;
+      const nextSearch = isCurrentlyActive ? '' : chip.value;
+      setSearch(nextSearch);
+      setPage(1);
+      updateQueryParams(nextSearch, filters, 1);
       return;
     }
 
@@ -327,13 +339,15 @@ export const Explore = () => {
           {QUICK_FILTERS.map((chip) => {
             const isActive =
               chip.id === 'all'
-                ? !filters.status && !filters.incubatorType && !isNearbyActive
+                ? !filters.status && !filters.incubatorType && !isNearbyActive && !search
                 : chip.id === 'nearby'
                 ? isNearbyActive
                 : chip.type === 'status'
                 ? filters.status === chip.value
                 : chip.type === 'incubatorType'
                 ? filters.incubatorType === chip.value
+                : chip.type === 'search'
+                ? search === chip.value
                 : false;
 
             return (

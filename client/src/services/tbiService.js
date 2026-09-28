@@ -6,6 +6,11 @@ export const tbiService = {
     return res.data;
   },
 
+  async getStats() {
+    const res = await api.get('/tbis/stats');
+    return res.data;
+  },
+
   async getTbiById(id) {
     const res = await api.get(`/tbis/${id}`);
     return res.data;

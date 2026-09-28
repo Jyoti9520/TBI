@@ -85,34 +85,54 @@ export const Dashboard = () => {
     return 'Good evening';
   };
 
-  // Fetch real statistics from public endpoints (tbis, universities, categories)
+  // Fetch real global platform statistics from dedicated public endpoint
   useEffect(() => {
+    let active = true;
+
     const fetchMetrics = async () => {
       try {
-        const [allTbisRes, verifiedRes, unisRes, catsRes] = await Promise.all([
+        // Try dedicated public stats endpoint first
+        const statsRes = await tbiService.getStats().catch(() => null);
+        if (statsRes?.success && statsRes.data && active) {
+          setMetrics({
+            totalIncubators: statsRes.data.totalIncubators || 0,
+            totalUniversities: statsRes.data.totalUniversities || 0,
+            verifiedTbis: statsRes.data.verifiedTbis || 0,
+            citiesCovered: statsRes.data.citiesCovered || 0
+          });
+          return;
+        }
+
+        // Fallback: aggregation via individual services if stats endpoint fails
+        const [allTbisRes, verifiedRes, unisRes, catsRes] = await Promise.allSettled([
           tbiService.getTbis({ limit: 1 }),
           tbiService.getTbis({ status: 'Verified', limit: 1 }),
           tbiService.getUniversities(),
           tbiService.getCategories()
         ]);
 
-        const totalIncubators = allTbisRes.success ? (allTbisRes.total || 0) : 0;
-        const verifiedTbis = verifiedRes.success ? (verifiedRes.total || 0) : 0;
-        const totalUniversities = unisRes.success ? (unisRes.total || (unisRes.data ? unisRes.data.length : 0)) : 0;
-        const citiesCovered = (catsRes.success && catsRes.data?.cities) ? catsRes.data.cities.length : 0;
+        if (!active) return;
 
-        setMetrics({
-          totalIncubators,
-          totalUniversities,
-          verifiedTbis,
-          citiesCovered
-        });
+        const allTbis = allTbisRes.status === 'fulfilled' && allTbisRes.value?.success ? (allTbisRes.value.total || 0) : 0;
+        const verifiedTbis = verifiedRes.status === 'fulfilled' && verifiedRes.value?.success ? (verifiedRes.value.total || 0) : 0;
+        const unis = unisRes.status === 'fulfilled' && unisRes.value?.success ? (unisRes.value.total || (unisRes.value.data ? unisRes.value.data.length : 0)) : 0;
+        const cities = catsRes.status === 'fulfilled' && catsRes.value?.success && catsRes.value.data?.cities ? catsRes.value.data.cities.length : 0;
+
+        setMetrics((prev) => ({
+          totalIncubators: prev.totalIncubators || allTbis || 0,
+          totalUniversities: prev.totalUniversities || unis || 0,
+          verifiedTbis: prev.verifiedTbis || verifiedTbis || 0,
+          citiesCovered: prev.citiesCovered || cities || 0
+        }));
       } catch (err) {
         console.error('Error fetching dashboard statistics:', err);
       }
     };
 
     fetchMetrics();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const fetchTbis = async (currentPage = 1, currentSearch = '', currentFilters = {}) => {
@@ -130,6 +150,14 @@ export const Dashboard = () => {
         setPage(res.page || 1);
         setTotalPages(res.totalPages || 1);
         setTotalCount(res.total || 0);
+
+        // If metrics.totalIncubators has not been populated yet, capture the global total from the unfiltered request
+        if (!currentSearch && Object.values(currentFilters).every(v => !v)) {
+          setMetrics((prev) => ({
+            ...prev,
+            totalIncubators: prev.totalIncubators || res.total || 0
+          }));
+        }
       }
     } catch (err) {
       console.error('Fetch dashboard TBIs error:', err);
@@ -219,7 +247,7 @@ export const Dashboard = () => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
           title="Total Incubators"
-          value={metrics.totalIncubators || totalCount || '—'}
+          value={metrics.totalIncubators || '—'}
           icon={Rocket}
           color="navy"
           subtitle="Registered in directory"

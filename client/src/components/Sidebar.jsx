@@ -13,7 +13,9 @@ import {
   FolderTree,
   Users,
   FileSpreadsheet,
-  GitCompare
+  GitCompare,
+  Target,
+  Route
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -61,6 +63,8 @@ export const Sidebar = () => {
 
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { name: 'Grant Radar', path: '/grants', icon: Target, isNew: true },
+    { name: 'Campus Roadmap', path: '/roadmap', icon: Route, isNew: true },
     { name: 'Explore TBIs', path: '/explore', icon: Compass },
     { name: 'Universities', path: '/universities', icon: University },
     { name: 'Categories', path: '/categories', icon: Layers },
@@ -118,6 +122,17 @@ export const Sidebar = () => {
                     <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
                   </div>
                   <span className="truncate">{item.name}</span>
+                  {item.isNew && (
+                    <span
+                      className={`ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider transition-colors ${
+                        isActive
+                          ? 'bg-[#D99A2B] text-white'
+                          : 'bg-[#D99A2B]/15 text-[#D99A2B] border border-[#D99A2B]/30'
+                      }`}
+                    >
+                      New
+                    </span>
+                  )}
                   {item.name === 'Saved TBIs' && savedCount > 0 && (
                     <span
                       className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${

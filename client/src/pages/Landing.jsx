@@ -190,69 +190,75 @@ export const Landing = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
             <Link
-              to="/explore"
-              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+              to="/grants"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-white border border-[#D9CAB3] hover:border-[#7A0B1A] shadow-2xs hover:shadow-card transition-all duration-200 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                <Search className="w-5 h-5 text-[#7A0B1A]" />
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <Sparkles className="w-5 h-5 text-[#D99A2B]" />
               </div>
               <div>
-                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                  Search &amp; Filter
-                </p>
+                <div className="flex items-center space-x-1.5">
+                  <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                    Grant Radar
+                  </p>
+                  <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 uppercase">New</span>
+                </div>
                 <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
-                  Search by city, university, incubator scheme, and sector.
+                  Interactive eligibility calculator for ₹45L+ in non-dilutive grants.
                 </p>
               </div>
             </Link>
 
             <Link
-              to="/explore?status=Verified"
-              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+              to="/roadmap"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-white border border-[#D9CAB3] hover:border-[#7A0B1A] shadow-2xs hover:shadow-card transition-all duration-200 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                <ShieldCheck className="w-5 h-5 text-[#16A36A]" />
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <Compass className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <div>
+                <div className="flex items-center space-x-1.5">
+                  <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                    Campus Roadmap
+                  </p>
+                  <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-900 uppercase">Guide</span>
+                </div>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Step-by-step milestone path from dorm idea to seed funding.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              to="/explore"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-white border border-[#D9CAB3] hover:border-[#7A0B1A] shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <Search className="w-5 h-5 text-[#7A0B1A]" />
               </div>
               <div>
                 <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                  Verified Hubs
+                  Explore 521 TBIs
                 </p>
                 <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
-                  Direct official contact emails, directors, and websites.
+                  Search by scheme, city, university, and technology domain.
                 </p>
               </div>
             </Link>
 
             <Link
               to="/compare"
-              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-white border border-[#D9CAB3] hover:border-[#7A0B1A] shadow-2xs hover:shadow-card transition-all duration-200 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+              <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
                 <GitCompare className="w-5 h-5 text-[#7A0B1A]" />
               </div>
               <div>
                 <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                  Compare TBIs
+                  Compare Incubators
                 </p>
                 <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
-                  Side-by-side comparison of focus areas and amenities.
-                </p>
-              </div>
-            </Link>
-
-            <Link
-              to="/explore"
-              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
-                <MapPin className="w-5 h-5 text-[#D99A2B]" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
-                  Nearby Proximity
-                </p>
-                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
-                  Nationwide directory covering incubators in 150+ cities.
+                  Side-by-side comparison of focus areas, grants, and facilities.
                 </p>
               </div>
             </Link>

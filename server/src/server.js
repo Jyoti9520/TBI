@@ -54,6 +54,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/suggestions', suggestionRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/schemes', require('./routes/schemeRoutes'));
 
 // Error Handling
 app.use(notFound);

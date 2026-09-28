@@ -601,9 +601,48 @@ const deleteTbi = async (req, res) => {
   }
 };
 
+// @desc    Get global platform stats for public and dashboard use
+// @route   GET /api/tbis/stats
+// @access  Public
+const getGlobalStats = async (req, res) => {
+  try {
+    const [
+      totalIncubators,
+      verifiedTbis,
+      totalUniversities,
+      citiesCovered
+    ] = await Promise.all([
+      TBI.count(),
+      TBI.count({ where: { status: 'Verified' } }),
+      TBI.count({ distinct: true, col: 'university' }),
+      TBI.count({ distinct: true, col: 'city' })
+    ]);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        totalIncubators,
+        totalTbis: totalIncubators,
+        verifiedTbis,
+        totalUniversities,
+        uniqueUniversities: totalUniversities,
+        citiesCovered,
+        uniqueCities: citiesCovered
+      }
+    });
+  } catch (error) {
+    console.error('getGlobalStats error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error retrieving global statistics'
+    });
+  }
+};
+
 module.exports = {
   getTbis,
   getTbiById,
+  getGlobalStats,
   searchTbis,
   getSuggestions,
   getNearbyTbis,
@@ -611,3 +650,4 @@ module.exports = {
   updateTbi,
   deleteTbi
 };
+

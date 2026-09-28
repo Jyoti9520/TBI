@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getTbis,
   getTbiById,
+  getGlobalStats,
   searchTbis,
   getSuggestions,
   getNearbyTbis,
@@ -15,6 +16,7 @@ const { adminOnly } = require('../middleware/adminMiddleware');
 
 // Public with optional auth for favorite status
 router.get('/', optionalAuth, getTbis);
+router.get('/stats', getGlobalStats);
 router.get('/search', optionalAuth, searchTbis);
 router.get('/suggestions', getSuggestions);
 router.get('/nearby', getNearbyTbis);

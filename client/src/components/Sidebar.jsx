@@ -70,7 +70,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-surface border-r border-slate-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
+    <aside className="w-64 bg-white border-r border-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
       {/* Main Nav */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
@@ -92,38 +92,31 @@ export const Sidebar = () => {
                 }
               }}
               className={({ isActive }) =>
-                `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
+                `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ease-in-out group ${
                   isActive
-                    ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
-                    : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
+                    ? 'bg-primary text-white shadow-subtle font-semibold'
+                    : 'text-slate-secondary hover:text-dark hover:bg-slate-hover'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  {/* Subtle Left Accent Indicator */}
-                  {isActive && (
-                    <span
-                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
-                      aria-hidden="true"
-                    />
-                  )}
                   <div
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
                       isActive
-                        ? 'bg-white/15 text-white'
-                        : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
+                        ? 'bg-white/20 text-white'
+                        : 'text-slate-muted group-hover:text-primary group-hover:bg-primary-light'
                     }`}
                   >
-                    <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+                    <Icon className="w-4 h-4 transition-transform duration-150 group-hover:scale-105" />
                   </div>
                   <span className="truncate">{item.name}</span>
                   {item.name === 'Saved TBIs' && savedCount > 0 && (
                     <span
-                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-semibold transition-colors ${
                         isActive
-                          ? 'bg-white/20 text-white'
-                          : 'bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] group-hover:bg-[#7A0B1A]/10'
+                          ? 'bg-white/25 text-white'
+                          : 'bg-background-secondary text-slate-secondary border border-border group-hover:bg-primary-light group-hover:text-primary'
                       }`}
                     >
                       {savedCount}
@@ -131,10 +124,10 @@ export const Sidebar = () => {
                   )}
                   {item.name === 'Compare TBIs' && compareCount > 0 && (
                     <span
-                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-bold transition-colors ${
+                      className={`ml-auto text-[11px] px-2 py-0.5 rounded-full font-semibold transition-colors ${
                         isActive
-                          ? 'bg-white/20 text-white'
-                          : 'bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] group-hover:bg-[#7A0B1A]/10'
+                          ? 'bg-white/25 text-white'
+                          : 'bg-background-secondary text-slate-secondary border border-border group-hover:bg-primary-light group-hover:text-primary'
                       }`}
                     >
                       {compareCount}
@@ -148,37 +141,31 @@ export const Sidebar = () => {
 
         {/* Admin Navigation */}
         {isAdmin && (
-          <div className="pt-4 mt-3 border-t border-slate-border space-y-1">
-            <span className="px-3.5 text-[11px] font-bold text-[#647C98] uppercase tracking-wider">
+          <div className="pt-4 mt-3 border-t border-border space-y-1">
+            <span className="px-3.5 text-[11px] font-bold text-slate-muted uppercase tracking-wider">
               Administration
             </span>
             <NavLink
               to="/admin"
               end
               className={({ isActive }) =>
-                `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
+                `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ease-in-out group ${
                   isActive
-                    ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
-                    : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
+                    ? 'bg-primary text-white shadow-subtle font-semibold'
+                    : 'text-slate-secondary hover:text-dark hover:bg-slate-hover'
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  {isActive && (
-                    <span
-                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
-                      aria-hidden="true"
-                    />
-                  )}
                   <div
-                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
                       isActive
-                        ? 'bg-white/15 text-white'
-                        : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
+                        ? 'bg-white/20 text-white'
+                        : 'text-slate-muted group-hover:text-primary group-hover:bg-primary-light'
                     }`}
                   >
-                    <ShieldCheck className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+                    <ShieldCheck className="w-4 h-4 transition-transform duration-150 group-hover:scale-105" />
                   </div>
                   <span className="truncate">Admin Overview</span>
                 </>
@@ -187,22 +174,16 @@ export const Sidebar = () => {
             <NavLink
               to="/admin/tbis"
               className={({ isActive }) =>
-                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
+                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-150 ease-in-out group ${
                   isActive
-                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
-                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
+                    ? 'text-primary font-bold bg-primary-light'
+                    : 'text-slate-muted hover:text-dark hover:bg-slate-hover'
                 }`
               }
             >
-              {({ isActive }) => (
+              {() => (
                 <>
-                  {isActive && (
-                    <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <FolderTree className="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
+                  <FolderTree className="w-3.5 h-3.5 shrink-0 transition-transform duration-150 group-hover:scale-105" />
                   <span className="truncate">Manage TBIs</span>
                 </>
               )}
@@ -210,22 +191,16 @@ export const Sidebar = () => {
             <NavLink
               to="/admin/users"
               className={({ isActive }) =>
-                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
+                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-150 ease-in-out group ${
                   isActive
-                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
-                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
+                    ? 'text-primary font-bold bg-primary-light'
+                    : 'text-slate-muted hover:text-dark hover:bg-slate-hover'
                 }`
               }
             >
-              {({ isActive }) => (
+              {() => (
                 <>
-                  {isActive && (
-                    <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <Users className="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
+                  <Users className="w-3.5 h-3.5 shrink-0 transition-transform duration-150 group-hover:scale-105" />
                   <span className="truncate">Manage Users</span>
                 </>
               )}
@@ -233,22 +208,16 @@ export const Sidebar = () => {
             <NavLink
               to="/admin/import"
               className={({ isActive }) =>
-                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-200 ease-in-out group ${
+                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-150 ease-in-out group ${
                   isActive
-                    ? 'text-[#7A0B1A] font-bold bg-[#7A0B1A]/[0.08]'
-                    : 'text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.05]'
+                    ? 'text-primary font-bold bg-primary-light'
+                    : 'text-slate-muted hover:text-dark hover:bg-slate-hover'
                 }`
               }
             >
-              {({ isActive }) => (
+              {() => (
                 <>
-                  {isActive && (
-                    <span
-                      className="absolute left-3.5 top-1/2 -translate-y-1/2 w-1 h-3.5 rounded-full bg-[#D99A2B]"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <FileSpreadsheet className="w-3.5 h-3.5 shrink-0 transition-transform duration-200 group-hover:scale-105" />
+                  <FileSpreadsheet className="w-3.5 h-3.5 shrink-0 transition-transform duration-150 group-hover:scale-105" />
                   <span className="truncate">Import Dataset</span>
                 </>
               )}
@@ -258,7 +227,7 @@ export const Sidebar = () => {
       </nav>
 
       {/* Footer / Account options */}
-      <div className="p-3 border-t border-slate-border space-y-1">
+      <div className="p-3 border-t border-border space-y-1">
         <NavLink
           to="/settings"
           onClick={(e) => {
@@ -274,29 +243,23 @@ export const Sidebar = () => {
             }
           }}
           className={({ isActive }) =>
-            `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ease-in-out group ${
+            `relative flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ease-in-out group ${
               isActive
-                ? 'bg-[#7A0B1A] text-white shadow-xs font-semibold'
-                : 'text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06]'
+                ? 'bg-primary text-white shadow-subtle font-semibold'
+                : 'text-slate-secondary hover:text-dark hover:bg-slate-hover'
             }`
           }
         >
           {({ isActive }) => (
             <>
-              {isActive && (
-                <span
-                  className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-5 rounded-full bg-[#D99A2B] shadow-xs"
-                  aria-hidden="true"
-                />
-              )}
               <div
-                className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 ${
                   isActive
-                    ? 'bg-white/15 text-white'
-                    : 'text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]'
+                    ? 'bg-white/20 text-white'
+                    : 'text-slate-muted group-hover:text-primary group-hover:bg-primary-light'
                 }`}
               >
-                <Settings className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+                <Settings className="w-4 h-4 transition-transform duration-150 group-hover:scale-105" />
               </div>
               <span className="truncate">Settings</span>
             </>
@@ -306,10 +269,10 @@ export const Sidebar = () => {
         {isAuthenticated ? (
           <button
             onClick={handleLogout}
-            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#243447] hover:text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
+            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-secondary hover:text-status-error hover:bg-red-50 transition-all duration-150 ease-in-out group cursor-pointer"
           >
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#647C98] group-hover:text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
-              <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 text-slate-muted group-hover:text-status-error">
+              <LogOut className="w-4 h-4 transition-transform duration-150 group-hover:scale-105" />
             </div>
             <span className="truncate">Logout</span>
           </button>
@@ -323,12 +286,12 @@ export const Sidebar = () => {
                 returnPath: '/dashboard'
               })
             }
-            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-[#7A0B1A] hover:bg-[#7A0B1A]/[0.06] transition-all duration-200 ease-in-out group cursor-pointer"
+            className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-primary hover:bg-primary-light transition-all duration-150 ease-in-out group cursor-pointer"
           >
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-200 text-[#7A0B1A] group-hover:bg-[#7A0B1A]/[0.08]">
-              <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:scale-105" />
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors duration-150 text-primary">
+              <LogOut className="w-4 h-4 transition-transform duration-150 group-hover:scale-105" />
             </div>
-            <span className="truncate font-bold">Sign In</span>
+            <span className="truncate font-semibold">Sign In</span>
           </button>
         )}
       </div>

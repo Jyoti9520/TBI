@@ -86,9 +86,9 @@ export const Nearby = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <MapPin className="w-5 h-5 text-[#BC8034]" />
+        <h1 className="text-2xl sm:text-3xl font-bold text-dark font-heading flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+            <MapPin className="w-5 h-5 text-primary" />
           </div>
           <span>Nearby TBIs</span>
         </h1>
@@ -98,14 +98,14 @@ export const Nearby = () => {
       </div>
 
       {/* Location Status Banner */}
-      <div className="bg-surface p-5 rounded-2xl border border-slate-border shadow-card space-y-4">
+      <div className="bg-white p-5 rounded-xl border border-border shadow-card space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#D9CAB3] text-[#7A0B1A] flex items-center justify-center shrink-0 border border-[#8C7A6B]">
+            <div className="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center shrink-0 border border-blue-100">
               <Navigation className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-slate">
+              <h3 className="text-sm font-bold text-dark">
                 {geoState === 'granted'
                   ? 'Location Access Enabled'
                   : geoState === 'denied'
@@ -122,7 +122,7 @@ export const Nearby = () => {
             <button
               onClick={requestLocation}
               disabled={loading}
-              className="px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg hover:bg-[#5B0712] disabled:opacity-50 transition-colors shadow-sm border border-[#7A0B1A]"
+              className="px-4 py-2 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary-hover disabled:opacity-50 transition-colors shadow-sm cursor-pointer"
             >
               {loading ? 'Detecting...' : 'Detect My Location'}
             </button>
@@ -130,7 +130,7 @@ export const Nearby = () => {
         </div>
 
         {/* Manual City Selector Fallback (Section 39) */}
-        <div className="pt-4 border-t border-slate-100">
+        <div className="pt-4 border-t border-border">
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
             Or select your city manually
           </label>
@@ -139,10 +139,10 @@ export const Nearby = () => {
               <button
                 key={c.name}
                 onClick={() => handleCitySelect(c.name)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border cursor-pointer ${
                   selectedCity === c.name
-                    ? 'bg-[#7A0B1A] text-[#D9CAB3] border-[#7A0B1A] shadow-sm'
-                    : 'bg-surface text-slate border-slate-border hover:bg-[#D9CAB3]/40'
+                    ? 'bg-primary text-white border-primary shadow-xs'
+                    : 'bg-white text-slate-body border-border hover:bg-slate-hover'
                 }`}
               >
                 {c.name} ({c.count})

@@ -26,29 +26,29 @@ export const Categories = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <Layers className="w-5 h-5 text-[#8C7A6B]" />
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+            <Layers className="w-5 h-5 text-primary" />
           </div>
           <span>Incubator Categories</span>
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Explore incubators categorized by accreditation model, funding program, and institution type.
         </p>
       </div>
 
       {loading ? (
         <div className="space-y-6">
-          <div className="h-40 rounded-2xl bg-surface border border-slate-border animate-pulse" />
-          <div className="h-40 rounded-2xl bg-surface border border-slate-border animate-pulse" />
+          <div className="h-40 rounded-2xl bg-white border border-border animate-pulse" />
+          <div className="h-40 rounded-2xl bg-white border border-border animate-pulse" />
         </div>
       ) : (
         <>
           {/* Incubator Types */}
           <section className="space-y-4">
-            <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Layers className="w-5 h-5 text-[#5B0712]" />
-              <h2 className="text-lg font-bold text-[#7A0B1A]">Incubator Types & Programs</h2>
+            <div className="flex items-center space-x-2 border-b border-border pb-2">
+              <Layers className="w-5 h-5 text-primary" />
+              <h2 className="text-lg font-bold font-heading text-dark">Incubator Types & Programs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.incubatorTypes.map((cat) => (
@@ -59,9 +59,9 @@ export const Categories = () => {
 
           {/* University Types */}
           <section className="space-y-4">
-            <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <Building className="w-5 h-5 text-[#5B0712]" />
-              <h2 className="text-lg font-bold text-[#7A0B1A]">Institution Types</h2>
+            <div className="flex items-center space-x-2 border-b border-border pb-2">
+              <Building className="w-5 h-5 text-primary" />
+              <h2 className="text-lg font-bold font-heading text-dark">Institution Types</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categories.universityTypes.map((cat) => (
@@ -72,9 +72,9 @@ export const Categories = () => {
 
           {/* Cities Directory */}
           <section className="space-y-4">
-            <div className="flex items-center space-x-2 border-b border-slate-border pb-2">
-              <MapPin className="w-5 h-5 text-[#5B0712]" />
-              <h2 className="text-lg font-bold text-[#7A0B1A]">Top Cities with Active TBIs</h2>
+            <div className="flex items-center space-x-2 border-b border-border pb-2">
+              <MapPin className="w-5 h-5 text-primary" />
+              <h2 className="text-lg font-bold font-heading text-dark">Top Cities with Active TBIs</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {categories.cities.map((cat) => (

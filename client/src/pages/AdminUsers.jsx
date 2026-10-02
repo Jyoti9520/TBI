@@ -79,27 +79,27 @@ export const AdminUsers = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
-          <Users className="w-7 h-7 text-[#5B0712]" />
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-2">
+          <Users className="w-7 h-7 text-primary" />
           <span>User Management</span>
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Review accounts, grant administrative access, and manage access states ({totalCount} total).
         </p>
       </div>
 
       {toastMessage && (
-        <div className="p-3 bg-green-50 border border-green-200 text-status-success rounded-xl text-xs font-semibold animate-in fade-in">
+        <div className="p-3 bg-emerald-50 border border-emerald-200 text-status-success rounded-xl text-xs font-semibold animate-in fade-in">
           {toastMessage}
         </div>
       )}
 
       {/* Users Table */}
-      <div className="bg-surface border border-slate-border rounded-2xl shadow-card overflow-hidden">
+      <div className="bg-white border border-border rounded-2xl shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-border text-slate-muted uppercase tracking-wider font-bold">
+              <tr className="bg-slate-bg border-b border-border text-slate-muted uppercase tracking-wider font-semibold">
                 <th className="py-3 px-4">User</th>
                 <th className="py-3 px-4">Email</th>
                 <th className="py-3 px-4">Role</th>
@@ -108,7 +108,7 @@ export const AdminUsers = () => {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-border">
               {loading ? (
                 <tr>
                   <td colSpan="6" className="text-center py-12 text-slate-muted">
@@ -119,15 +119,15 @@ export const AdminUsers = () => {
                 users.map((u) => {
                   const isSelf = u.id === currentUser?.id;
                   return (
-                    <tr key={u.id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-4 font-bold text-slate">
+                    <tr key={u.id} className="hover:bg-slate-hover/70 transition-colors">
+                      <td className="py-3.5 px-4 font-semibold text-dark">
                         <div className="flex items-center space-x-2">
-                          <div className="w-7 h-7 rounded-full bg-[#D9CAB3] text-[#7A0B1A] font-bold flex items-center justify-center text-xs border border-[#8C7A6B]">
+                          <div className="w-7 h-7 rounded-full bg-primary-light text-primary font-bold flex items-center justify-center text-xs border border-blue-100">
                             {u.name ? u.name[0].toUpperCase() : 'U'}
                           </div>
                           <span>{u.name}</span>
                           {isSelf && (
-                            <span className="text-[10px] text-[#7A0B1A] font-bold bg-[#D9CAB3] px-1.5 py-0.5 rounded border border-[#8C7A6B]">
+                            <span className="text-[10px] text-primary font-semibold bg-primary-light px-1.5 py-0.5 rounded border border-blue-100">
                               You
                             </span>
                           )}

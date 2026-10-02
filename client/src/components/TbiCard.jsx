@@ -5,15 +5,12 @@ import {
   Mail,
   Globe,
   Heart,
-  BadgeCheck,
-  Clock,
   Navigation,
-  University,
-  Rocket,
   ArrowRight,
   Loader2,
   Check,
-  GitCompare
+  Building2,
+  Layers
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -38,7 +35,6 @@ export const TbiCard = ({
     setIsFavorited(tbi?.isFavorited || false);
   }, [tbi?.isFavorited]);
 
-  // Map backend dataset fields to clean UI representations
   const {
     universityName,
     incubatorName,
@@ -97,22 +93,19 @@ export const TbiCard = ({
     }
   };
 
-  const isVerified = status === 'Verified';
-  const isUnderVerification = status === 'Under Verification';
-
   return (
     <div
-      className={`rounded-xl p-5 shadow-subtle hover:shadow-card hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between group relative ${
+      className={`rounded-card p-5 shadow-card hover:shadow-hover hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between group relative bg-white border ${
         isComparing
-          ? 'bg-[#FAF7F2] border-2 border-[#7A0B1A]/80 shadow-xs ring-1 ring-[#7A0B1A]/20'
-          : 'bg-surface border border-slate-border hover:border-[#7A0B1A]/40'
+          ? 'border-primary ring-2 ring-primary/20'
+          : 'border-border hover:border-primary'
       }`}
     >
-      {/* Top Section: University/Logo/Initial & Favorite Heart Button */}
+      {/* Top Section: University Logo / Initial & Actions */}
       <div>
         <div className="flex items-start justify-between gap-3 mb-3.5">
-          {/* University Logo / Initial with subtle container */}
-          <div className="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center font-extrabold text-[#7A0B1A] text-lg shrink-0 shadow-xs overflow-hidden transition-transform duration-200 group-hover:scale-105">
+          {/* University Initial / Logo container */}
+          <div className="w-11 h-11 rounded-lg bg-background-secondary border border-border flex items-center justify-center font-bold text-primary text-base shrink-0 overflow-hidden transition-transform duration-200 group-hover:scale-105">
             {tbi?.logo ? (
               <img
                 src={tbi.logo}
@@ -130,13 +123,13 @@ export const TbiCard = ({
           <div className="flex items-center space-x-1.5">
             {/* Distance Badge if available */}
             {tbi?.distance !== null && tbi?.distance !== undefined && (
-              <span className="flex items-center space-x-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3]">
-                <Navigation className="w-3 h-3 text-[#7A0B1A]" />
+              <span className="flex items-center space-x-1 text-xs font-medium px-2 py-0.5 rounded-full bg-slate-hover text-primary border border-border">
+                <Navigation className="w-3 h-3 text-primary" />
                 <span>{tbi.distance} km</span>
               </span>
             )}
 
-            {/* Compare Checkbox / Button */}
+            {/* Compare Button */}
             {onToggleCompare && (
               <button
                 type="button"
@@ -145,10 +138,10 @@ export const TbiCard = ({
                   e.stopPropagation();
                   onToggleCompare(tbi);
                 }}
-                className={`inline-flex items-center space-x-1 px-2 py-1 rounded-lg text-[11px] font-semibold transition-all duration-200 cursor-pointer border ${
+                className={`inline-flex items-center space-x-1.5 px-2 py-1 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer border ${
                   isComparing
-                    ? 'bg-[#7A0B1A] text-white border-[#7A0B1A] shadow-xs'
-                    : 'bg-white text-slate-600 border-slate-200 hover:text-[#7A0B1A] hover:border-[#D9CAB3] hover:bg-[#FAF7F2]'
+                    ? 'bg-primary text-white border-primary shadow-subtle'
+                    : 'bg-white text-slate-secondary border-border hover:text-primary hover:border-primary hover:bg-slate-hover'
                 }`}
                 title={isComparing ? 'Remove from compare' : 'Add to compare (max 3)'}
                 aria-pressed={isComparing}
@@ -156,7 +149,7 @@ export const TbiCard = ({
                 <div
                   className={`w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors ${
                     isComparing
-                      ? 'bg-white text-[#7A0B1A] border-white'
+                      ? 'bg-white text-primary border-white'
                       : 'border-slate-300 bg-white'
                   }`}
                 >
@@ -172,16 +165,16 @@ export const TbiCard = ({
             <button
               onClick={handleToggleFavorite}
               disabled={loadingFav}
-              className={`p-2 rounded-full transition-all duration-200 cursor-pointer ${
+              className={`p-1.5 rounded-full transition-all duration-150 cursor-pointer ${
                 isFavorited
-                  ? 'text-red-500 bg-red-50 hover:bg-red-100 shadow-2xs'
-                  : 'text-slate-400 hover:text-red-500 hover:bg-red-50/60'
+                  ? 'text-red-500 bg-red-50 hover:bg-red-100'
+                  : 'text-slate-muted hover:text-red-500 hover:bg-red-50/60'
               }`}
               title={isFavorited ? 'Remove from saved' : 'Save to your TBIs'}
               aria-label={isFavorited ? 'Remove from saved' : 'Save to your TBIs'}
             >
               <Heart
-                className={`w-4 h-4 transition-colors duration-200 ${
+                className={`w-4 h-4 transition-colors duration-150 ${
                   isFavorited ? 'fill-red-500 text-red-500' : 'fill-none stroke-current'
                 } ${isAnimating ? 'animate-heart-pop' : ''}`}
               />
@@ -189,87 +182,72 @@ export const TbiCard = ({
           </div>
         </div>
 
-        {/* Middle Section: University Name, TBI / Incubator Name, Incubator Type Badge */}
+        {/* Middle Section: Titles */}
         <div>
-          {/* University Name */}
-          <h3 className="text-base font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors duration-200 line-clamp-2 leading-snug">
+          <h3 className="text-base font-bold text-dark group-hover:text-primary transition-colors duration-150 line-clamp-2 leading-snug font-heading">
             <Link to={`/tbi/${tbi.id}`} title={universityName}>
               {universityName}
             </Link>
           </h3>
 
-          {/* TBI / Incubator Name (with Rocket icon) */}
-          <p className="text-xs font-semibold text-[#7A0B1A] mt-1.5 flex items-center space-x-1.5 leading-snug">
-            <div className="w-5 h-5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
-              <Rocket className="w-3 h-3 text-[#7A0B1A]" />
-            </div>
+          <p className="text-xs font-medium text-slate-secondary mt-1 flex items-center space-x-1.5 leading-snug">
             <span className="truncate" title={incubatorName}>
               {incubatorName}
             </span>
           </p>
 
-          {/* Incubator Type Badge */}
           {incubatorType && (
             <div className="mt-2.5">
-              <span className="inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-[#FAF7F2] text-[#7A0B1A] border border-[#D9CAB3] shadow-2xs">
+              <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-background-secondary text-slate-secondary border border-border">
                 {incubatorType}
               </span>
             </div>
           )}
         </div>
 
-        {/* Information Section: City with MapPin & Official Email with Mail icon */}
-        <div className="mt-4 space-y-1.5 text-xs text-[#647C98]">
-          {/* City with MapPin icon */}
+        {/* Info Rows: City & Email */}
+        <div className="mt-4 space-y-1.5 text-xs text-slate-muted">
           <div className="flex items-center space-x-2">
-            <div className="w-5 h-5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
-              <MapPin className="w-3 h-3 text-[#7A0B1A]" />
-            </div>
-            <span className="truncate text-[#243447] font-medium" title={city}>
+            <MapPin className="w-3.5 h-3.5 text-slate-muted shrink-0" />
+            <span className="truncate text-slate-secondary font-medium" title={city}>
               {city}
             </span>
           </div>
 
-          {/* Official Email with Mail icon */}
           <div className="flex items-center space-x-2">
-            <div className="w-5 h-5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3]/70 flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
-              <Mail className="w-3 h-3 text-[#D99A2B]" />
-            </div>
+            <Mail className="w-3.5 h-3.5 text-slate-muted shrink-0" />
             {email ? (
               <a
                 href={`mailto:${email}`}
-                className="truncate hover:text-[#7A0B1A] hover:underline text-[#647C98] font-medium transition-colors duration-200"
+                className="truncate hover:text-primary hover:underline text-slate-secondary font-medium transition-colors"
                 title={`Send email to ${email}`}
               >
                 {email}
               </a>
             ) : (
-              <span className="text-[#647C98]/60 italic">Email not available</span>
+              <span className="text-slate-muted/60 italic">Email not available</span>
             )}
           </div>
         </div>
       </div>
 
-      {/* Bottom Section: Verification Status & View Details Button */}
-      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-        {/* Verification Status */}
+      {/* Bottom Section: Status Badge & View Button */}
+      <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
         <StatusBadge status={status} />
 
-        {/* View Details Button & Official Website */}
         <div className="flex items-center space-x-2">
           {hasValidWebsite && websiteUrl ? (
             <a
               href={websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg text-slate-muted hover:text-[#7A0B1A] hover:bg-[#FAF7F2] transition-colors duration-200"
+              className="p-1.5 rounded-lg text-slate-muted hover:text-primary hover:bg-slate-hover transition-colors"
               title={`Visit official website: ${displayHostname || websiteUrl}`}
             >
-              <Globe className="w-3.5 h-3.5 text-[#7A0B1A]" />
+              <Globe className="w-4 h-4 text-slate-muted hover:text-primary" />
             </a>
           ) : null}
 
-          {/* View Details Button with Arrow Animation and Loading State */}
           <Link
             to={`/tbi/${tbi.id}`}
             onClick={(e) => {
@@ -278,7 +256,7 @@ export const TbiCard = ({
               }
               setIsNavigating(true);
             }}
-            className="group/btn inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-semibold shadow-xs hover:shadow-sm active:scale-[0.97] active:translate-y-[1px] transition-all duration-200 select-none"
+            className="group/btn inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-subtle hover:shadow-card active:scale-[0.98] transition-all duration-150 select-none"
           >
             {isNavigating ? (
               <>
@@ -288,7 +266,7 @@ export const TbiCard = ({
             ) : (
               <>
                 <span>View Details</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 ease-out group-hover/btn:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-150 ease-out group-hover/btn:translate-x-0.5" />
               </>
             )}
           </Link>

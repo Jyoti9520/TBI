@@ -163,9 +163,9 @@ export const Signup = () => {
   return (
     <div>
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-extrabold text-[#7A0B1A]">Create your account</h2>
-        <p className="text-xs text-slate-muted mt-1">
-          Join TBI Nexus to discover and save innovation hubs
+        <h2 className="text-2xl font-bold font-heading text-dark">Create your account</h2>
+        <p className="text-xs text-slate-body mt-1">
+          Join TBI Global to discover and save innovation hubs
         </p>
       </div>
 
@@ -178,7 +178,7 @@ export const Signup = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
             Full Name
           </label>
           <div className="relative">
@@ -191,13 +191,13 @@ export const Signup = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Jyoti Negi"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
             Email Address
           </label>
           <div className="relative">
@@ -210,13 +210,13 @@ export const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@domain.com"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
             Password (Min 8 characters)
           </label>
           <div className="relative">
@@ -229,12 +229,12 @@ export const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-10 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full pl-10 pr-10 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-muted hover:text-slate"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-muted hover:text-dark"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
@@ -242,7 +242,7 @@ export const Signup = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
             Confirm Password
           </label>
           <div className="relative">
@@ -255,7 +255,7 @@ export const Signup = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
           </div>
         </div>
@@ -263,7 +263,7 @@ export const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 px-4 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors mt-2 border border-[#7A0B1A] cursor-pointer"
+          className="w-full py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-xs transition-colors mt-2 cursor-pointer"
         >
           {loading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -271,11 +271,11 @@ export const Signup = () => {
 
       <div className="mt-5">
         <div className="relative flex items-center justify-center my-4">
-          <div className="border-t border-slate-200 w-full" />
-          <span className="bg-surface px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <div className="border-t border-border w-full" />
+          <span className="bg-white px-3 text-xs font-semibold text-slate-muted uppercase tracking-wider">
             Or
           </span>
-          <div className="border-t border-slate-200 w-full" />
+          <div className="border-t border-border w-full" />
         </div>
 
         {/* Google Authentication Container */}
@@ -283,7 +283,7 @@ export const Signup = () => {
           <div ref={googleBtnRef} className="w-full flex justify-center empty:hidden" />
 
           {googleLoading && (
-            <div className="flex items-center space-x-2 mt-2 text-xs text-[#7A0B1A] font-semibold">
+            <div className="flex items-center space-x-2 mt-2 text-xs text-primary font-semibold">
               <Loader2 className="w-3.5 h-3.5 animate-spin" />
               <span>Verifying Google account...</span>
             </div>
@@ -294,11 +294,11 @@ export const Signup = () => {
               type="button"
               onClick={handleCustomGoogleClick}
               disabled={loading || googleLoading}
-              className="w-full py-2.5 px-4 bg-white hover:bg-slate-50 text-[#243447] font-semibold text-sm rounded-xl border border-slate-300 shadow-2xs hover:shadow-xs active:scale-[0.98] transition-all flex items-center justify-center space-x-2.5 cursor-pointer disabled:opacity-50"
+              className="w-full py-2.5 px-4 bg-white hover:bg-slate-hover text-dark font-semibold text-sm rounded-xl border border-border shadow-xs hover:shadow-xs active:scale-[0.98] transition-all flex items-center justify-center space-x-2.5 cursor-pointer disabled:opacity-50"
             >
               {googleLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin text-[#7A0B1A]" />
+                  <Loader2 className="w-4 h-4 animate-spin text-primary" />
                   <span>Connecting Google Account...</span>
                 </>
               ) : (
@@ -329,9 +329,9 @@ export const Signup = () => {
         </div>
       </div>
 
-      <div className="mt-5 text-center text-xs text-slate-muted border-t border-slate-100 pt-4">
+      <div className="mt-5 text-center text-xs text-slate-muted border-t border-border pt-4">
         <span>Already have an account? </span>
-        <Link to="/login" className="font-semibold text-[#5B0712] hover:underline">
+        <Link to="/login" className="font-semibold text-primary hover:underline">
           Login
         </Link>
       </div>

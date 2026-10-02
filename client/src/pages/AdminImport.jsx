@@ -49,11 +49,11 @@ export const AdminImport = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
-          <FileSpreadsheet className="w-7 h-7 text-[#5B0712]" />
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-2">
+          <FileSpreadsheet className="w-7 h-7 text-primary" />
           <span>Dataset Importer</span>
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Upload bulk incubator records in Excel (.xlsx), CSV, or JSON format.
         </p>
       </div>
@@ -66,11 +66,11 @@ export const AdminImport = () => {
       )}
 
       {/* Upload Box */}
-      <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card">
+      <div className="bg-white border border-border rounded-2xl p-6 sm:p-8 shadow-xs">
         <form onSubmit={handleImport} className="space-y-6">
-          <div className="border-2 border-dashed border-slate-border hover:border-teal rounded-2xl p-8 text-center bg-slate-50/50 transition-colors">
+          <div className="border-2 border-dashed border-border hover:border-primary rounded-2xl p-8 text-center bg-slate-bg transition-colors">
             <UploadCloud className="w-12 h-12 text-slate-muted mx-auto mb-3" />
-            <p className="text-sm font-bold text-slate">
+            <p className="text-sm font-bold text-dark">
               {file ? file.name : 'Select or drag your dataset file here'}
             </p>
             <p className="text-xs text-slate-muted mt-1">
@@ -86,23 +86,23 @@ export const AdminImport = () => {
             />
             <label
               htmlFor="dataset-upload"
-              className="mt-4 inline-block px-4 py-2 bg-white border border-slate-border rounded-xl text-xs font-semibold text-[#7A0B1A] hover:bg-[#D9CAB3]/30 cursor-pointer shadow-subtle transition-colors"
+              className="mt-4 inline-block px-4 py-2 bg-white border border-border rounded-xl text-xs font-semibold text-dark hover:bg-slate-hover cursor-pointer shadow-xs transition-colors"
             >
               Browse Files
             </label>
           </div>
 
           {/* Duplicate Resolution Strategy */}
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-border space-y-2">
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted">
+          <div className="p-4 rounded-xl bg-slate-bg border border-border space-y-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted">
               Duplicate Detection Strategy
             </label>
             <p className="text-xs text-slate-muted">
-              Records are matched on <span className="font-semibold text-slate">University + City + TBI Name</span>.
+              Records are matched on <span className="font-semibold text-dark">University + City + TBI Name</span>.
             </p>
 
             <div className="flex gap-4 pt-1">
-              <label className="flex items-center space-x-2 text-xs font-semibold text-slate cursor-pointer">
+              <label className="flex items-center space-x-2 text-xs font-medium text-dark cursor-pointer">
                 <input
                   type="radio"
                   name="dup"
@@ -113,7 +113,7 @@ export const AdminImport = () => {
                 <span>Update Existing Records</span>
               </label>
 
-              <label className="flex items-center space-x-2 text-xs font-semibold text-slate cursor-pointer">
+              <label className="flex items-center space-x-2 text-xs font-medium text-dark cursor-pointer">
                 <input
                   type="radio"
                   name="dup"
@@ -129,41 +129,41 @@ export const AdminImport = () => {
           <button
             type="submit"
             disabled={loading || !file}
-            className="w-full py-3 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#7A0B1A]"
+            className="w-full py-3 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-xs transition-colors cursor-pointer"
           >
             {loading ? 'Processing & Validating Records...' : 'Start Dataset Import'}
           </button>
         </form>
       </div>
 
-      {/* Dynamic Import Report (Section 46) */}
+      {/* Dynamic Import Report */}
       {report && (
-        <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card space-y-4 animate-in fade-in">
-          <div className="flex items-center space-x-2 border-b border-slate-border pb-3">
+        <div className="bg-white border border-border rounded-2xl p-6 sm:p-8 shadow-xs space-y-4 animate-in fade-in">
+          <div className="flex items-center space-x-2 border-b border-border pb-3">
             <CheckCircle2 className="w-5 h-5 text-status-success" />
-            <h3 className="text-base font-bold text-[#7A0B1A]">Import Report Summary</h3>
+            <h3 className="text-base font-bold font-heading text-dark">Import Report Summary</h3>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
-            <div className="p-3 bg-slate-50 rounded-xl">
+            <div className="p-3 bg-slate-bg rounded-xl">
               <p className="text-xs font-semibold text-slate-muted">Total Rows</p>
-              <p className="text-xl font-extrabold text-[#7A0B1A] mt-1">{report.totalRows}</p>
+              <p className="text-xl font-bold font-heading text-dark mt-1">{report.totalRows}</p>
             </div>
-            <div className="p-3 bg-green-50 rounded-xl">
+            <div className="p-3 bg-emerald-50 rounded-xl">
               <p className="text-xs font-semibold text-status-success">Valid</p>
-              <p className="text-xl font-extrabold text-status-success mt-1">{report.valid}</p>
+              <p className="text-xl font-bold font-heading text-status-success mt-1">{report.valid}</p>
             </div>
             <div className="p-3 bg-red-50 rounded-xl">
               <p className="text-xs font-semibold text-status-error">Invalid</p>
-              <p className="text-xl font-extrabold text-status-error mt-1">{report.invalid}</p>
+              <p className="text-xl font-bold font-heading text-status-error mt-1">{report.invalid}</p>
             </div>
-            <div className="p-3 bg-[#D9CAB3]/40 rounded-xl border border-[#8C7A6B]">
-              <p className="text-xs font-semibold text-[#5B0712]">Inserted</p>
-              <p className="text-xl font-extrabold text-[#5B0712] mt-1">{report.inserted}</p>
+            <div className="p-3 bg-primary-light rounded-xl border border-blue-100">
+              <p className="text-xs font-semibold text-primary">Inserted</p>
+              <p className="text-xl font-bold font-heading text-primary mt-1">{report.inserted}</p>
             </div>
             <div className="p-3 bg-amber-50 rounded-xl">
               <p className="text-xs font-semibold text-amber-700">Updated</p>
-              <p className="text-xl font-extrabold text-amber-700 mt-1">{report.updated}</p>
+              <p className="text-xl font-bold font-heading text-amber-700 mt-1">{report.updated}</p>
             </div>
             <div className="p-3 bg-slate-50 rounded-xl">
               <p className="text-xs font-semibold text-slate-muted">Skipped</p>

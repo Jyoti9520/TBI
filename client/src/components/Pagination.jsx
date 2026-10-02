@@ -47,10 +47,10 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           <button
             key={p}
             onClick={() => onPageChange(p)}
-            className={`min-w-[32px] h-8 flex items-center justify-center rounded-lg text-xs font-semibold transition-all ${
+            className={`min-w-[32px] h-8 flex items-center justify-center rounded-lg text-xs font-medium transition-all ${
               isCurrent
-                ? 'bg-[#7A0B1A] text-[#D9CAB3] shadow-sm font-bold border border-[#7A0B1A]'
-                : 'bg-surface text-slate border border-slate-border hover:bg-slate-50'
+                ? 'bg-primary text-white shadow-xs font-semibold'
+                : 'bg-white text-slate-body border border-border hover:bg-slate-hover'
             }`}
           >
             {p}

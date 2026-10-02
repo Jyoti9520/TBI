@@ -21,24 +21,24 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
   // If precise coordinates are unavailable in the database, do NOT invent data
   if (tbisWithCoords.length === 0) {
     return (
-      <div className="bg-surface border border-dashed border-[#D9CAB3] rounded-2xl p-10 sm:p-14 text-center shadow-card max-w-xl mx-auto my-6 animate-in fade-in duration-200">
-        <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#7A0B1A] shadow-xs">
+      <div className="bg-white border border-dashed border-border rounded-xl p-10 sm:p-14 text-center shadow-card max-w-xl mx-auto my-6 animate-in fade-in duration-200">
+        <div className="w-14 h-14 rounded-xl bg-slate-bg border border-border flex items-center justify-center mx-auto mb-4 text-primary shadow-xs">
           <MapPin className="w-7 h-7" />
         </div>
-        <h3 className="text-xl font-extrabold text-[#7A0B1A]">
+        <h3 className="text-xl font-bold text-dark font-heading">
           Map view is not available yet
         </h3>
-        <p className="text-sm font-semibold text-[#243447] mt-2">
+        <p className="text-sm font-semibold text-slate-body mt-2">
           Location coordinates are not available for these records.
         </p>
-        <p className="text-xs text-[#647C98] mt-1.5 leading-relaxed max-w-md mx-auto">
+        <p className="text-xs text-slate-muted mt-1.5 leading-relaxed max-w-md mx-auto">
           You can still explore TBIs by city using the search and filters.
         </p>
         <div className="mt-6 flex justify-center">
           <button
             type="button"
             onClick={onSwitchToList}
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-sm hover:bg-[#5B0712] active:scale-[0.98] transition-all cursor-pointer"
+            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-xs active:scale-[0.98] transition-all cursor-pointer"
           >
             <LayoutGrid className="w-4 h-4" />
             <span>Return to List →</span>
@@ -50,7 +50,7 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
 
   // When coordinates exist, render the map with markers and interactive popup
   return (
-    <div className="relative w-full h-[600px] bg-slate-100 rounded-2xl border border-slate-border overflow-hidden shadow-card">
+    <div className="relative w-full h-[600px] bg-slate-50 rounded-xl border border-border overflow-hidden shadow-card">
       <div className="absolute inset-0 flex items-center justify-center">
         {/* Markers container */}
         <div className="relative w-full h-full p-6">
@@ -65,8 +65,8 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                 onClick={() => setSelectedTbi(tbi)}
                 className={`absolute p-2 rounded-full shadow-md transition-transform duration-200 hover:scale-125 cursor-pointer ${
                   isSelected
-                    ? 'bg-[#7A0B1A] text-white ring-4 ring-[#5B0712]/30 scale-125 z-20'
-                    : 'bg-white text-[#5B0712] border border-[#D9CAB3] z-10'
+                    ? 'bg-primary text-white ring-4 ring-primary/20 scale-125 z-20'
+                    : 'bg-white text-primary border border-border hover:border-primary/50 z-10'
                 }`}
                 title={display.universityName}
               >
@@ -79,17 +79,17 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
 
       {/* Selected Marker Popup Card */}
       {selectedTbi && (
-        <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-surface border border-slate-border rounded-2xl p-5 shadow-hover z-30 animate-in fade-in slide-in-from-bottom-2 duration-200">
+        <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-white border border-border rounded-xl p-5 shadow-lg z-30 animate-in fade-in slide-in-from-bottom-2 duration-200">
           {(() => {
             const display = getTbiDisplayData(selectedTbi);
             return (
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900 line-clamp-1">
+                    <h4 className="text-sm font-bold text-dark line-clamp-1">
                       {display.universityName}
                     </h4>
-                    <p className="text-xs font-semibold text-[#5B0712] flex items-center space-x-1.5 mt-0.5 line-clamp-1">
+                    <p className="text-xs font-semibold text-primary flex items-center space-x-1.5 mt-0.5 line-clamp-1">
                       <Rocket className="w-3.5 h-3.5 shrink-0" />
                       <span>{display.incubatorName}</span>
                     </p>
@@ -97,7 +97,7 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                   <button
                     type="button"
                     onClick={() => setSelectedTbi(null)}
-                    className="p-1 rounded-lg text-slate-muted hover:text-slate-800 hover:bg-slate-100 transition-colors"
+                    className="p-1 rounded-lg text-slate-muted hover:text-dark hover:bg-slate-hover transition-colors"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -108,11 +108,11 @@ export const TbiMapView = ({ tbis = [], onSwitchToList }) => {
                   <span>{display.city}</span>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-2 border-t border-border flex items-center justify-between">
                   <StatusBadge status={display.status} size="sm" />
                   <Link
                     to={`/tbi/${selectedTbi.id}`}
-                    className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-bold shadow-xs active:scale-[0.98] transition-all"
+                    className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-xs active:scale-[0.98] transition-all"
                   >
                     <span>View Details →</span>
                   </Link>

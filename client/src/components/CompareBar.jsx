@@ -11,15 +11,15 @@ export const CompareBar = ({
   if (!selectedTbis || selectedTbis.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-t border-[#D9CAB3] shadow-lg animate-in slide-in-from-bottom duration-250">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-border shadow-lg animate-in slide-in-from-bottom duration-250">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           
           {/* Left: Count and item pills */}
           <div className="flex items-center gap-3 overflow-x-auto w-full sm:w-auto py-1 no-scrollbar">
-            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold shadow-xs">
+            <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-semibold shadow-xs">
               <span>{selectedTbis.length} {selectedTbis.length === 1 ? 'TBI' : 'TBIs'} selected</span>
-              <span className="text-[#D9CAB3] text-[10px] font-normal">(max 3)</span>
+              <span className="text-blue-200 text-[10px] font-normal">(max 3)</span>
             </div>
 
             {/* Selected item chips */}
@@ -29,7 +29,7 @@ export const CompareBar = ({
                 return (
                   <span
                     key={tbi.id}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#7A0B1A] max-w-[180px] sm:max-w-[200px]"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-bg border border-border text-xs font-medium text-dark max-w-[180px] sm:max-w-[200px]"
                   >
                     <span className="truncate" title={display.universityName}>
                       {display.universityName}
@@ -37,7 +37,7 @@ export const CompareBar = ({
                     <button
                       type="button"
                       onClick={() => onRemove(tbi.id)}
-                      className="text-slate-400 hover:text-status-error cursor-pointer p-0.5 rounded transition-colors"
+                      className="text-slate-muted hover:text-status-error cursor-pointer p-0.5 rounded transition-colors"
                       title="Remove"
                       aria-label={`Remove ${display.universityName}`}
                     >
@@ -52,7 +52,7 @@ export const CompareBar = ({
           {/* Right: Actions */}
           <div className="flex items-center justify-end gap-2.5 w-full sm:w-auto shrink-0">
             {selectedTbis.length === 1 && (
-              <span className="text-xs text-[#7A0B1A] font-semibold italic hidden sm:inline-block">
+              <span className="text-xs text-primary font-medium italic hidden sm:inline-block">
                 Select one more TBI to compare.
               </span>
             )}
@@ -60,7 +60,7 @@ export const CompareBar = ({
             <button
               type="button"
               onClick={onClearAll}
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-slate-200 transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-body hover:text-status-error hover:bg-red-50 border border-border transition-all cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Clear</span>
@@ -70,10 +70,10 @@ export const CompareBar = ({
               type="button"
               onClick={onCompare}
               disabled={selectedTbis.length < 2}
-              className={`inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-bold shadow-sm transition-all ${
+              className={`inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl text-xs font-semibold shadow-xs transition-all ${
                 selectedTbis.length >= 2
-                  ? 'bg-[#7A0B1A] hover:bg-[#5B0712] text-white active:scale-[0.98] cursor-pointer'
-                  : 'bg-slate-200 text-slate-400 cursor-not-allowed opacity-75'
+                  ? 'bg-primary hover:bg-primary-hover text-white active:scale-[0.98] cursor-pointer'
+                  : 'bg-slate-100 text-slate-muted cursor-not-allowed opacity-75'
               }`}
               title={selectedTbis.length < 2 ? 'Select at least 2 TBIs to compare' : 'Compare TBIs'}
             >

@@ -68,17 +68,17 @@ export const FilterPanel = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-slate/40 backdrop-blur-sm transition-opacity">
-      <div className="w-full max-w-md bg-surface h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-200 border-l border-slate-border">
+    <div className="fixed inset-0 z-50 flex justify-end bg-dark/50 backdrop-blur-xs transition-opacity">
+      <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-200 border-l border-border">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-border flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-[#7A0B1A]">
-            <Filter className="w-5 h-5 text-[#5B0712]" />
-            <h3 className="font-bold text-lg">Filter TBIs</h3>
+        <div className="px-6 py-4 border-b border-border flex items-center justify-between">
+          <div className="flex items-center space-x-2 text-dark">
+            <Filter className="w-5 h-5 text-primary" />
+            <h3 className="font-bold font-heading text-lg">Filter TBIs</h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-md text-slate-muted hover:text-slate hover:bg-slate-100 transition-colors"
+            className="p-1 rounded-lg text-slate-muted hover:text-dark hover:bg-slate-hover transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -88,7 +88,7 @@ export const FilterPanel = ({
         <div className="p-6 space-y-5 overflow-y-auto flex-1">
           {/* Status */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-2">
               Verification Status
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -97,10 +97,10 @@ export const FilterPanel = ({
                   key={st}
                   type="button"
                   onClick={() => handleChange('status', st)}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg border text-center transition-all ${
+                  className={`py-2 px-3 text-xs font-medium rounded-lg border text-center transition-all ${
                     localFilters.status === st
-                      ? 'bg-[#7A0B1A] text-[#D9CAB3] border-[#7A0B1A] shadow-sm font-bold'
-                      : 'bg-surface text-slate border-slate-border hover:bg-[#D9CAB3]/40'
+                      ? 'bg-primary text-white border-primary shadow-xs font-semibold'
+                      : 'bg-white text-slate-body border-border hover:bg-slate-hover'
                   }`}
                 >
                   {st === '' ? 'All Status' : st}
@@ -111,7 +111,7 @@ export const FilterPanel = ({
 
           {/* City */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-2">
               City
             </label>
             <input
@@ -119,7 +119,7 @@ export const FilterPanel = ({
               value={localFilters.city || ''}
               onChange={(e) => handleChange('city', e.target.value)}
               placeholder="e.g. Mohali, Chennai, Bengaluru..."
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712]"
+              className="w-full px-3.5 py-2 bg-white border border-border rounded-lg text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
             {options.cities.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-2">
@@ -128,7 +128,7 @@ export const FilterPanel = ({
                     key={c.name}
                     type="button"
                     onClick={() => handleChange('city', c.name)}
-                    className="text-[11px] px-2 py-0.5 rounded bg-[#D9CAB3] text-[#7A0B1A] hover:bg-[#5B0712] hover:text-[#D9CAB3] transition-colors font-medium border border-[#8C7A6B]"
+                    className="text-[11px] px-2.5 py-1 rounded-md bg-slate-bg text-slate-body hover:bg-primary-light hover:text-primary transition-colors font-medium border border-border"
                   >
                     {c.name}
                   </button>
@@ -139,7 +139,7 @@ export const FilterPanel = ({
 
           {/* University Name */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-2">
               University
             </label>
             <input
@@ -147,19 +147,19 @@ export const FilterPanel = ({
               value={localFilters.university || ''}
               onChange={(e) => handleChange('university', e.target.value)}
               placeholder="e.g. Chandigarh University..."
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712]"
+              className="w-full px-3.5 py-2 bg-white border border-border rounded-lg text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
           </div>
 
           {/* Incubator Type */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-2">
               Incubator Type
             </label>
             <select
               value={localFilters.incubatorType || ''}
               onChange={(e) => handleChange('incubatorType', e.target.value)}
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712]"
+              className="w-full px-3.5 py-2 bg-white border border-border rounded-lg text-sm text-dark focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             >
               <option value="">All Incubator Types</option>
               {options.incubatorTypes.map((t) => (
@@ -172,13 +172,13 @@ export const FilterPanel = ({
 
           {/* University Type */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-2">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-2">
               University Type
             </label>
             <select
               value={localFilters.universityType || ''}
               onChange={(e) => handleChange('universityType', e.target.value)}
-              className="w-full px-3.5 py-2 bg-surface border border-slate-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712]"
+              className="w-full px-3.5 py-2 bg-white border border-border rounded-lg text-sm text-dark focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             >
               <option value="">All University Types</option>
               {options.universityTypes.map((u) => (
@@ -191,11 +191,11 @@ export const FilterPanel = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-4 border-t border-slate-border bg-slate-50 flex items-center justify-between gap-3">
+        <div className="p-4 border-t border-border bg-slate-bg flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={handleReset}
-            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg border border-[#8C7A6B] text-xs font-bold bg-[#D9CAB3] text-[#7A0B1A] hover:bg-[#FAF7F2] transition-colors"
+            className="flex items-center space-x-1.5 px-4 py-2.5 rounded-lg border border-border text-xs font-semibold bg-white text-slate-body hover:bg-slate-hover transition-colors"
           >
             <RotateCcw className="w-4 h-4" />
             <span>Reset</span>
@@ -204,7 +204,7 @@ export const FilterPanel = ({
           <button
             type="button"
             onClick={handleApply}
-            className="flex-1 px-5 py-2.5 bg-[#7A0B1A] hover:bg-[#5B0712] text-[#D9CAB3] text-sm font-bold rounded-lg shadow-sm transition-colors text-center border border-[#7A0B1A]"
+            className="flex-1 px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-lg shadow-xs transition-colors text-center"
           >
             Apply Filters
           </button>

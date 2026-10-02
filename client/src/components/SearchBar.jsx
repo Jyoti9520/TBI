@@ -88,7 +88,6 @@ export const SearchBar = ({
     setSelectedIndex(-1);
   };
 
-  // Keyboard navigation: Arrow Up/Down, Enter, Escape
   const handleKeyDown = (e) => {
     if (e.key === 'Escape') {
       e.preventDefault();
@@ -135,7 +134,6 @@ export const SearchBar = ({
       return;
     }
 
-    // Default selection behavior: Navigate directly to TBI details
     if (item?.id) {
       navigate(`/tbi/${item.id}`);
     } else {
@@ -149,11 +147,11 @@ export const SearchBar = ({
   return (
     <div ref={wrapperRef} className="relative w-full flex items-center gap-2">
       <div className="relative flex-1">
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5B0712]">
+        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
           {loadingSuggestions ? (
-            <Loader2 className="h-4 w-4 animate-spin text-[#5B0712]" />
+            <Loader2 className="h-4 w-4 animate-spin text-primary" />
           ) : (
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4 text-slate-muted" />
           )}
         </div>
         <input
@@ -169,12 +167,12 @@ export const SearchBar = ({
           placeholder={placeholder}
           aria-autocomplete="list"
           aria-expanded={showSuggestions}
-          className="w-full pl-10 pr-9 py-2.5 bg-surface border border-slate-border rounded-xl text-sm text-slate placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#5B0712]/30 focus:border-[#5B0712] transition-all shadow-subtle"
+          className="w-full pl-10 pr-9 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-subtle"
         />
         {searchTerm && (
           <button
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-muted hover:text-slate transition-colors"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-muted hover:text-dark transition-colors cursor-pointer"
             title="Clear search"
             type="button"
           >
@@ -197,10 +195,10 @@ export const SearchBar = ({
         <button
           onClick={onFilterToggle}
           type="button"
-          className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-bold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-semibold transition-all shrink-0 cursor-pointer ${
             filterActive
-              ? 'bg-[#7A0B1A] text-[#D9CAB3] border-[#7A0B1A] shadow-sm'
-              : 'bg-surface text-[#7A0B1A] border-slate-border hover:bg-[#D9CAB3]/40 hover:border-[#5B0712]/50'
+              ? 'bg-primary text-white border-primary shadow-subtle'
+              : 'bg-white text-slate-secondary border-border hover:bg-slate-hover hover:border-slate-muted hover:text-dark'
           }`}
           title="Filter Results"
         >

@@ -222,16 +222,16 @@ export const Dashboard = () => {
     <div className={`space-y-6 ${selectedCompareTbis.length > 0 ? 'pb-24 sm:pb-20' : ''}`}>
       {/* 1. Header Greeting */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">
-          {user ? `${getGreeting()}, ${user.name}` : 'Welcome to TBI Nexus'}
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark">
+          {user ? `${getGreeting()}, ${user.name}` : 'Welcome to TBI Global'}
         </h1>
-        <p className="text-sm text-[#647C98] mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Discover innovation and technology business incubators around you.
         </p>
       </div>
 
-      {/* 2. Main Search (Visually prominent, placed immediately below greeting/subtitle) */}
-      <div className="bg-surface p-4 sm:p-5 rounded-2xl border-2 border-slate-200 shadow-card focus-within:border-[#7A0B1A] transition-colors duration-200">
+      {/* 2. Main Search */}
+      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-xs focus-within:border-primary transition-colors duration-200">
         <SearchBar
           value={search}
           onChange={(val) => setSearch(val)}
@@ -243,20 +243,20 @@ export const Dashboard = () => {
         />
       </div>
 
-      {/* 3. Statistics (4 real database count cards) */}
+      {/* 3. Statistics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
           title="Total Incubators"
           value={metrics.totalIncubators || '—'}
           icon={Rocket}
-          color="navy"
+          color="blue"
           subtitle="Registered in directory"
         />
         <StatsCard
           title="Universities"
           value={metrics.totalUniversities || '—'}
           icon={University}
-          color="teal"
+          color="cyan"
           subtitle="Host institutions"
         />
         <StatsCard
@@ -278,14 +278,14 @@ export const Dashboard = () => {
       {/* 4. Recently Viewed Section */}
       <RecentlyViewed items={recentlyViewed} />
 
-      {/* 5. Discovery Content (Main Grid Header & Cards) */}
+      {/* 5. Discovery Content */}
       <div className="flex items-center justify-between pt-2">
-        <h2 className="text-lg font-bold text-[#7A0B1A] flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-lg bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
-            <Compass className="w-4 h-4 text-[#7A0B1A]" />
+        <h2 className="text-lg font-bold font-heading text-dark flex items-center space-x-2">
+          <div className="w-8 h-8 rounded-lg bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+            <Compass className="w-4 h-4 text-primary" />
           </div>
           <span>Explore Incubators</span>
-          <span className="text-xs font-normal text-[#647C98]">
+          <span className="text-xs font-normal text-slate-muted">
             ({totalCount} available)
           </span>
         </h2>

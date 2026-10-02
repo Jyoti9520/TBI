@@ -51,15 +51,15 @@ export const CompareModal = ({
       <div className="relative w-full max-w-5xl bg-surface rounded-2xl border border-slate-border shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Modal Header */}
-        <div className="px-5 py-4 sm:px-6 bg-[#FAF7F2] border-b border-[#D9CAB3] flex items-center justify-between gap-3 shrink-0">
+        <div className="px-5 py-4 sm:px-6 bg-slate-bg border-b border-border flex items-center justify-between gap-3 shrink-0">
           <div>
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
+            <h2 className="text-lg sm:text-xl font-bold font-heading text-dark flex items-center space-x-2">
               <span>Compare TBIs</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#7A0B1A] text-white">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary text-white">
                 {selectedTbis.length} of 3
               </span>
             </h2>
-            <p className="text-xs text-[#647C98] mt-0.5">
+            <p className="text-xs text-slate-muted mt-0.5">
               Side-by-side comparison using verified directory records.
             </p>
           </div>
@@ -69,7 +69,7 @@ export const CompareModal = ({
               <button
                 type="button"
                 onClick={onClearAll}
-                className="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-[#647C98] hover:text-status-error hover:bg-red-50 border border-slate-border transition-colors cursor-pointer"
+                className="hidden sm:inline-flex items-center space-x-1 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-body hover:text-status-error hover:bg-red-50 border border-border transition-colors cursor-pointer"
               >
                 <Trash2 className="w-3.5 h-3.5" />
                 <span>Clear All</span>
@@ -78,7 +78,7 @@ export const CompareModal = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-muted hover:text-[#243447] hover:bg-[#FAF7F2] transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-slate-muted hover:text-dark hover:bg-slate-hover transition-colors cursor-pointer"
               title="Close modal"
               aria-label="Close modal"
             >
@@ -91,40 +91,40 @@ export const CompareModal = ({
         <div className="flex-1 overflow-auto p-4 sm:p-6">
           {selectedTbis.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-sm font-semibold text-[#647C98]">No TBIs selected for comparison.</p>
+              <p className="text-sm font-semibold text-slate-muted">No TBIs selected for comparison.</p>
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-4 px-4 py-2 rounded-xl bg-[#7A0B1A] text-white text-xs font-bold"
+                className="mt-4 px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-semibold"
               >
                 Return to Explore
               </button>
             </div>
           ) : (
-            <div className="overflow-x-auto border border-slate-border rounded-xl">
+            <div className="overflow-x-auto border border-border rounded-xl">
               <table className="w-full text-left border-collapse min-w-[640px]">
                 <thead>
-                  <tr className="bg-[#FAF7F2] border-b border-slate-border">
-                    <th className="p-3.5 sm:p-4 text-xs font-bold text-[#647C98] w-40 sm:w-48 uppercase tracking-wider">
+                  <tr className="bg-slate-bg border-b border-border">
+                    <th className="p-3.5 sm:p-4 text-xs font-bold text-slate-muted w-40 sm:w-48 uppercase tracking-wider">
                       Attribute
                     </th>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <th key={tbi.id} className="p-3.5 sm:p-4 text-left border-l border-slate-border">
+                        <th key={tbi.id} className="p-3.5 sm:p-4 text-left border-l border-border">
                           <div className="flex items-start justify-between gap-2">
                             <div>
-                              <div className="font-extrabold text-sm text-[#7A0B1A] leading-snug">
+                              <div className="font-bold text-sm text-dark leading-snug">
                                 {display.universityName}
                               </div>
-                              <div className="text-xs font-semibold text-[#647C98] mt-0.5 leading-snug">
+                              <div className="text-xs font-medium text-slate-muted mt-0.5 leading-snug">
                                 {display.incubatorName}
                               </div>
                             </div>
                             <button
                               type="button"
                               onClick={() => onRemove(tbi.id)}
-                              className="text-slate-400 hover:text-status-error p-1 rounded hover:bg-red-50 transition-colors cursor-pointer shrink-0"
+                              className="text-slate-muted hover:text-status-error p-1 rounded hover:bg-red-50 transition-colors cursor-pointer shrink-0"
                               title="Remove from comparison"
                               aria-label="Remove from comparison"
                             >
@@ -136,20 +136,20 @@ export const CompareModal = ({
                     })}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
+                <tbody className="divide-y divide-border text-xs sm:text-sm">
                   
                   {/* 1. University */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <University className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <University className="w-4 h-4 text-primary shrink-0" />
                         <span>University</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 font-medium text-slate-800 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 font-medium text-dark border-l border-border">
                           {display.universityName}
                         </td>
                       );
@@ -157,17 +157,17 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 2. City */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <MapPin className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <MapPin className="w-4 h-4 text-primary shrink-0" />
                         <span>City</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100 font-medium">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border font-medium">
                           {display.city || '—'}
                         </td>
                       );
@@ -175,24 +175,23 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 3. University Type */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <Building2 className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <Building2 className="w-4 h-4 text-primary shrink-0" />
                         <span>University Type</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
-                      // Only existing dataset field value, no fake invention
                       const val = tbi?.universityType && !tbi.universityType.includes('@') ? tbi.universityType.trim() : null;
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border">
                           {val ? (
-                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-xs font-semibold text-[#7A0B1A]">
+                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-slate-bg border border-border text-xs font-medium text-dark">
                               {val}
                             </span>
                           ) : (
-                            <span className="text-slate-400 italic">Not specified</span>
+                            <span className="text-slate-muted italic">Not specified</span>
                           )}
                         </td>
                       );
@@ -200,17 +199,17 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 4. Incubator / TBI Name */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <Rocket className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <Rocket className="w-4 h-4 text-primary shrink-0" />
                         <span>Incubator / TBI</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 font-medium text-slate-800 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 font-medium text-dark border-l border-border">
                           {display.incubatorName}
                         </td>
                       );
@@ -218,23 +217,23 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 5. Incubator Type */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <Layers className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <Layers className="w-4 h-4 text-primary shrink-0" />
                         <span>Incubator Type</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border">
                           {display.incubatorType ? (
-                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-[#D9CAB3]/40 border border-[#8C7A6B]/30 text-xs font-semibold text-[#7A0B1A]">
+                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary-light border border-blue-100 text-xs font-medium text-primary">
                               {display.incubatorType}
                             </span>
                           ) : (
-                            <span className="text-slate-400 italic">Not specified</span>
+                            <span className="text-slate-muted italic">Not specified</span>
                           )}
                         </td>
                       );
@@ -242,26 +241,26 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 6. Official Email */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <Mail className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <Mail className="w-4 h-4 text-primary shrink-0" />
                         <span>Official Email</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border">
                           {display.email ? (
                             <a
                               href={`mailto:${display.email}`}
-                              className="text-[#5B0712] hover:underline font-medium break-all"
+                              className="text-primary hover:underline font-medium break-all"
                             >
                               {display.email}
                             </a>
                           ) : (
-                            <span className="text-slate-400 italic">Not available</span>
+                            <span className="text-slate-muted italic">Not available</span>
                           )}
                         </td>
                       );
@@ -269,29 +268,29 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 7. Website */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <Globe className="w-4 h-4 text-[#5B0712] shrink-0" />
+                        <Globe className="w-4 h-4 text-primary shrink-0" />
                         <span>Website</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-700 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border">
                           {display.hasValidWebsite && display.websiteUrl ? (
                             <a
                               href={display.websiteUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center space-x-1 text-[#7A0B1A] hover:underline font-semibold"
+                              className="inline-flex items-center space-x-1 text-primary hover:underline font-medium"
                             >
                               <span className="truncate max-w-[180px]">{display.displayHostname || display.websiteUrl}</span>
                               <ArrowRight className="w-3 h-3 shrink-0" />
                             </a>
                           ) : (
-                            <span className="text-slate-400 italic text-xs">Website URL not available</span>
+                            <span className="text-slate-muted italic text-xs">Website URL not available</span>
                           )}
                         </td>
                       );
@@ -299,17 +298,17 @@ export const CompareModal = ({
                   </tr>
 
                   {/* 8. Status */}
-                  <tr className="hover:bg-slate-50/70 transition-colors">
-                    <td className="p-3.5 sm:p-4 font-bold text-slate-600 bg-slate-50/50">
+                  <tr className="hover:bg-slate-hover/60 transition-colors">
+                    <td className="p-3.5 sm:p-4 font-semibold text-slate-body bg-slate-bg/50">
                       <div className="flex items-center space-x-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#7A0B1A]" />
+                        <span className="w-2 h-2 rounded-full bg-primary" />
                         <span>Status</span>
                       </div>
                     </td>
                     {selectedTbis.map((tbi) => {
                       const display = getTbiDisplayData(tbi);
                       return (
-                        <td key={tbi.id} className="p-3.5 sm:p-4 border-l border-slate-100">
+                        <td key={tbi.id} className="p-3.5 sm:p-4 border-l border-border">
                           <StatusBadge status={display.status} />
                         </td>
                       );
@@ -317,14 +316,14 @@ export const CompareModal = ({
                   </tr>
 
                   {/* Actions / View Details row */}
-                  <tr className="bg-slate-50/60">
-                    <td className="p-3.5 sm:p-4 font-bold text-[#647C98]">Action</td>
+                  <tr className="bg-slate-bg/60">
+                    <td className="p-3.5 sm:p-4 font-bold text-slate-muted">Action</td>
                     {selectedTbis.map((tbi) => (
-                      <td key={tbi.id} className="p-3.5 sm:p-4 border-l border-slate-100">
+                      <td key={tbi.id} className="p-3.5 sm:p-4 border-l border-border">
                         <Link
                           to={`/tbi/${tbi.id}`}
                           onClick={onClose}
-                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs font-semibold shadow-xs hover:shadow active:scale-[0.97] transition-all"
+                          className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-xs hover:shadow active:scale-[0.97] transition-all"
                         >
                           <span>View Details</span>
                           <ArrowRight className="w-3.5 h-3.5" />
@@ -340,14 +339,14 @@ export const CompareModal = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-5 py-3 sm:px-6 bg-[#FAF7F2] border-t border-[#D9CAB3] flex items-center justify-between shrink-0">
+        <div className="px-5 py-3 sm:px-6 bg-slate-bg border-t border-border flex items-center justify-between shrink-0">
           <span className="text-xs text-slate-muted">
             Displaying only actual fields stored in the TBI database.
           </span>
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-surface border border-slate-border text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-white border border-border text-xs font-semibold text-slate-body hover:bg-slate-hover transition-colors cursor-pointer"
           >
             Close
           </button>

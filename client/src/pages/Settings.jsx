@@ -56,18 +56,18 @@ export const Settings = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 hover:scale-105">
-            <SettingsIcon className="w-5 h-5 text-[#5B0712]" />
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+            <SettingsIcon className="w-5 h-5 text-primary" />
           </div>
           <span>Account Settings</span>
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Manage your account profile details and authentication credentials.
         </p>
       </div>
 
-      <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card">
+      <div className="bg-white border border-border rounded-2xl p-6 sm:p-8 shadow-xs">
         {success && (
           <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center space-x-2">
             <BadgeCheck className="w-5 h-5 shrink-0 text-emerald-600" />
@@ -84,7 +84,7 @@ export const Settings = () => {
 
         <form onSubmit={handleUpdateProfile} className="space-y-5">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
               Full Name
             </label>
             <div className="relative">
@@ -96,32 +96,32 @@ export const Settings = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full pl-10 pr-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy"
+                className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
               Email Address (Fixed)
             </label>
             <input
               type="email"
               disabled
               value={user?.email || ''}
-              className="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-border rounded-xl text-sm text-slate-muted cursor-not-allowed"
+              className="w-full px-3.5 py-2.5 bg-slate-bg border border-border rounded-xl text-sm text-slate-muted cursor-not-allowed"
             />
           </div>
 
-          <hr className="border-slate-100 my-4" />
+          <hr className="border-border my-4" />
 
-          <h3 className="text-sm font-bold text-[#7A0B1A] flex items-center space-x-2">
-            <Lock className="w-4 h-4 text-[#5B0712]" />
+          <h3 className="text-sm font-bold font-heading text-dark flex items-center space-x-2">
+            <Lock className="w-4 h-4 text-primary" />
             <span>Change Password (Optional)</span>
           </h3>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
               Current Password
             </label>
             <input
@@ -129,13 +129,13 @@ export const Settings = () => {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712]"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
                 New Password
               </label>
               <input
@@ -143,12 +143,12 @@ export const Settings = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712]"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
                 Confirm New Password
               </label>
               <input
@@ -156,7 +156,7 @@ export const Settings = () => {
                 value={confirmNewPassword}
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712]"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ export const Settings = () => {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2.5 bg-[#7A0B1A] hover:bg-[#5B0712] disabled:opacity-50 text-[#D9CAB3] font-semibold text-sm rounded-xl shadow-sm transition-colors border border-[#7A0B1A]"
+              className="px-6 py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-xs transition-colors cursor-pointer"
             >
               {loading ? 'Saving...' : 'Save Settings'}
             </button>

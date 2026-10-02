@@ -169,13 +169,13 @@ export const FindMyTbi = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-              <Sparkles className="w-5 h-5 text-[#7A0B1A]" />
+          <h1 className="text-2xl sm:text-3xl font-bold text-dark font-heading flex items-center space-x-3">
+            <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+              <Sparkles className="w-5 h-5 text-primary" />
             </div>
             <span>Find Your TBI</span>
           </h1>
-          <p className="text-sm text-[#647C98] mt-1">
+          <p className="text-sm text-slate-muted mt-1">
             Answer a few questions and discover incubators that match your requirements.
           </p>
         </div>
@@ -184,7 +184,7 @@ export const FindMyTbi = () => {
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#647C98] hover:text-[#7A0B1A] hover:bg-[#FAF7F2] border border-slate-200 transition-all cursor-pointer self-start sm:self-auto"
+            className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-muted hover:text-dark hover:bg-slate-hover border border-border transition-all cursor-pointer self-start sm:self-auto"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Start Over</span>
@@ -194,15 +194,15 @@ export const FindMyTbi = () => {
 
       {/* Progress Indicator (when on steps 1, 2, 3) */}
       {step !== 'results' && (
-        <div className="bg-surface border border-slate-border rounded-2xl p-5 shadow-card">
+        <div className="bg-white border border-border rounded-xl p-5 shadow-card">
           <div className="flex items-center justify-between mb-3 text-xs">
-            <div className="flex items-center space-x-2 font-bold text-[#7A0B1A]">
-              <span className="w-6 h-6 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[11px] text-[#7A0B1A] font-extrabold">
+            <div className="flex items-center space-x-2 font-bold text-primary">
+              <span className="w-6 h-6 rounded-full bg-primary-light border border-blue-100 flex items-center justify-center text-[11px] text-primary font-bold">
                 {step}
               </span>
               <span>Step {step} of 3</span>
             </div>
-            <span className="text-[#647C98] font-medium hidden sm:inline">
+            <span className="text-slate-muted font-medium hidden sm:inline">
               {step === 1 && 'Location Preference'}
               {step === 2 && 'Incubator Program & Type'}
               {step === 3 && 'Institution & Verification'}
@@ -210,9 +210,9 @@ export const FindMyTbi = () => {
           </div>
 
           {/* Progress Bar */}
-          <div className="w-full bg-[#FAF7F2] h-2.5 rounded-full overflow-hidden border border-[#D9CAB3]/60">
+          <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden border border-border">
             <div
-              className="bg-gradient-to-r from-[#7A0B1A] to-[#5B0712] h-full transition-all duration-300 ease-out rounded-full"
+              className="bg-primary h-full transition-all duration-300 ease-out rounded-full"
               style={{ width: `${(step / 3) * 100}%` }}
             />
           </div>
@@ -223,16 +223,16 @@ export const FindMyTbi = () => {
       {/* STEP 1: LOCATION                                               */}
       {/* ============================================================== */}
       {step === 1 && (
-        <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card space-y-6">
+        <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-6">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] text-xs font-bold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
               <MapPin className="w-3.5 h-3.5" />
               <span>Location</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#243447]">
+            <h2 className="text-xl sm:text-2xl font-bold text-dark font-heading">
               Where are you looking?
             </h2>
-            <p className="text-sm text-[#647C98]">
+            <p className="text-sm text-slate-muted">
               Select a specific city or choose any city across India.
             </p>
           </div>
@@ -243,25 +243,25 @@ export const FindMyTbi = () => {
             onClick={() => setSelectedCity('')}
             className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between ${
               selectedCity === ''
-                ? 'bg-[#FAF7F2] border-[#7A0B1A] ring-2 ring-[#7A0B1A]/20 shadow-xs'
-                : 'bg-white border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]/40'
+                ? 'bg-primary-light border-primary ring-2 ring-primary/20 shadow-xs'
+                : 'bg-white border-border hover:border-slate-300 hover:bg-slate-hover'
             }`}
           >
             <div className="flex items-center space-x-3">
               <div
-                className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${
                   selectedCity === ''
-                    ? 'bg-[#7A0B1A] text-white'
-                    : 'bg-[#FAF7F2] text-[#647C98] border border-[#D9CAB3]'
+                    ? 'bg-primary text-white'
+                    : 'bg-slate-bg text-slate-muted border border-border'
                 }`}
               >
                 <Compass className="w-5 h-5" />
               </div>
               <div>
-                <p className="font-bold text-[#243447] text-sm sm:text-base">
+                <p className="font-bold text-dark text-sm sm:text-base">
                   Any city (Pan-India)
                 </p>
-                <p className="text-xs text-[#647C98]">
+                <p className="text-xs text-slate-muted">
                   Discover TBIs across all states and union territories.
                 </p>
               </div>
@@ -269,7 +269,7 @@ export const FindMyTbi = () => {
             <div
               className={`w-5 h-5 rounded-full border flex items-center justify-center ${
                 selectedCity === ''
-                  ? 'border-[#7A0B1A] bg-[#7A0B1A] text-white'
+                  ? 'border-primary bg-primary text-white'
                   : 'border-slate-300 bg-white'
               }`}
             >
@@ -279,25 +279,25 @@ export const FindMyTbi = () => {
 
           {/* City Search & Select */}
           <div className="space-y-3 pt-2">
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#647C98]">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted">
               Or choose a specific city ({options.cities.length} available)
             </label>
 
             <div className="relative">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#647C98]" />
+              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-muted" />
               <input
                 type="text"
                 value={citySearch}
                 onChange={(e) => setCitySearch(e.target.value)}
                 placeholder="Type to filter cities (e.g. Mohali, Chennai, Bengaluru, Delhi)..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#7A0B1A]/30 focus:border-[#7A0B1A] transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
               />
             </div>
 
             {/* Quick-pick popular cities */}
             {!citySearch && popularCities.length > 0 && (
               <div className="space-y-1.5 pt-1">
-                <span className="text-[11px] font-semibold text-[#647C98]">Frequent hubs:</span>
+                <span className="text-[11px] font-semibold text-slate-muted">Frequent hubs:</span>
                 <div className="flex flex-wrap gap-2">
                   {popularCities.map((c) => {
                     const isSelected = selectedCity === c.name;
@@ -308,8 +308,8 @@ export const FindMyTbi = () => {
                         onClick={() => setSelectedCity(c.name)}
                         className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-[#7A0B1A] text-white border-[#7A0B1A] shadow-xs'
-                            : 'bg-white text-[#243447] border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]'
+                            ? 'bg-primary text-white border-primary shadow-xs'
+                            : 'bg-white text-slate-body border-border hover:border-slate-300 hover:bg-slate-hover'
                         }`}
                       >
                         {c.name} ({c.count})
@@ -322,7 +322,7 @@ export const FindMyTbi = () => {
 
             {/* Filtered cities list */}
             {citySearch && (
-              <div className="max-h-56 overflow-y-auto border border-slate-border rounded-xl divide-y divide-slate-100 bg-white">
+              <div className="max-h-56 overflow-y-auto border border-border rounded-lg divide-y divide-border bg-white">
                 {filteredCities.length > 0 ? (
                   filteredCities.map((c) => {
                     const isSelected = selectedCity === c.name;
@@ -331,22 +331,22 @@ export const FindMyTbi = () => {
                         key={c.name}
                         type="button"
                         onClick={() => setSelectedCity(c.name)}
-                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
-                          isSelected ? 'bg-[#FAF7F2] font-bold text-[#7A0B1A]' : 'text-[#243447]'
+                        className={`w-full text-left px-4 py-2.5 text-xs sm:text-sm flex items-center justify-between hover:bg-slate-hover transition-colors cursor-pointer ${
+                          isSelected ? 'bg-primary-light font-bold text-primary' : 'text-slate-body'
                         }`}
                       >
                         <span className="flex items-center space-x-2">
-                          <MapPin className="w-3.5 h-3.5 text-[#647C98]" />
+                          <MapPin className="w-3.5 h-3.5 text-slate-muted" />
                           <span>{c.name}</span>
                         </span>
-                        <span className="text-xs text-[#647C98] font-normal">
+                        <span className="text-xs text-slate-muted font-normal">
                           {c.count} {c.count === 1 ? 'TBI' : 'TBIs'}
                         </span>
                       </button>
                     );
                   })
                 ) : (
-                  <div className="p-4 text-center text-xs text-[#647C98]">
+                  <div className="p-4 text-center text-xs text-slate-muted">
                     No cities matching "{citySearch}". You can choose "Any city" or refine your query.
                   </div>
                 )}
@@ -356,7 +356,7 @@ export const FindMyTbi = () => {
 
           {/* Selected city banner if chosen */}
           {selectedCity && (
-            <div className="p-3 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-between text-xs text-[#7A0B1A] font-semibold">
+            <div className="p-3 rounded-lg bg-primary-light border border-blue-100 flex items-center justify-between text-xs text-primary font-semibold">
               <span className="flex items-center space-x-1.5">
                 <MapPin className="w-4 h-4" />
                 <span>Selected: <strong>{selectedCity}</strong></span>
@@ -364,7 +364,7 @@ export const FindMyTbi = () => {
               <button
                 type="button"
                 onClick={() => setSelectedCity('')}
-                className="text-[#647C98] hover:text-[#7A0B1A] underline text-[11px]"
+                className="text-slate-muted hover:text-primary underline text-[11px] cursor-pointer"
               >
                 Clear to Any city
               </button>
@@ -379,7 +379,7 @@ export const FindMyTbi = () => {
                 setStep(2);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold shadow-sm hover:bg-[#5B0712] active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-sm hover:bg-primary-hover active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Continue →</span>
             </button>
@@ -391,16 +391,16 @@ export const FindMyTbi = () => {
       {/* STEP 2: INCUBATOR TYPE                                         */}
       {/* ============================================================== */}
       {step === 2 && (
-        <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card space-y-6">
+        <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-6">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] text-xs font-bold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
               <Building2 className="w-3.5 h-3.5" />
               <span>Incubator Model</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#243447]">
+            <h2 className="text-xl sm:text-2xl font-bold text-dark font-heading">
               What type of incubator are you looking for?
             </h2>
-            <p className="text-sm text-[#647C98]">
+            <p className="text-sm text-slate-muted">
               Select a specialized government/institutional model or browse any type.
             </p>
           </div>
@@ -412,23 +412,23 @@ export const FindMyTbi = () => {
               onClick={() => setSelectedIncubatorType('')}
               className={`p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer flex items-center justify-between sm:col-span-2 ${
                 selectedIncubatorType === ''
-                  ? 'bg-[#FAF7F2] border-[#7A0B1A] ring-2 ring-[#7A0B1A]/20 shadow-xs'
-                  : 'bg-white border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]/40'
+                  ? 'bg-primary-light border-primary ring-2 ring-primary/20 shadow-xs'
+                  : 'bg-white border-border hover:border-slate-300 hover:bg-slate-hover'
               }`}
             >
               <div className="flex items-center space-x-3">
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
+                  className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
                     selectedIncubatorType === ''
-                      ? 'bg-[#7A0B1A] text-white'
-                      : 'bg-[#FAF7F2] text-[#647C98] border border-[#D9CAB3]'
+                      ? 'bg-primary text-white'
+                      : 'bg-slate-bg text-slate-muted border border-border'
                   }`}
                 >
                   <Compass className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="font-bold text-[#243447] text-sm">Any type</p>
-                  <p className="text-xs text-[#647C98]">
+                  <p className="font-bold text-dark text-sm">Any type</p>
+                  <p className="text-xs text-slate-muted">
                     Include DST TBI, NIDHI-TBI, University, Section 8, and all models.
                   </p>
                 </div>
@@ -436,7 +436,7 @@ export const FindMyTbi = () => {
               <div
                 className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                   selectedIncubatorType === ''
-                    ? 'border-[#7A0B1A] bg-[#7A0B1A] text-white'
+                    ? 'border-primary bg-primary text-white'
                     : 'border-slate-300 bg-white'
                 }`}
               >
@@ -454,15 +454,15 @@ export const FindMyTbi = () => {
                   onClick={() => setSelectedIncubatorType(typeObj.name)}
                   className={`p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer flex items-center justify-between ${
                     isSelected
-                      ? 'bg-[#FAF7F2] border-[#7A0B1A] ring-2 ring-[#7A0B1A]/20 shadow-xs'
-                      : 'bg-white border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]/40'
+                      ? 'bg-primary-light border-primary ring-2 ring-primary/20 shadow-xs'
+                      : 'bg-white border-border hover:border-slate-300 hover:bg-slate-hover'
                   }`}
                 >
                   <div className="pr-3">
-                    <p className="font-bold text-[#243447] text-sm leading-tight">
+                    <p className="font-bold text-dark text-sm leading-tight">
                       {typeObj.name}
                     </p>
-                    <p className="text-xs text-[#647C98] mt-1 font-medium">
+                    <p className="text-xs text-slate-muted mt-1 font-medium">
                       {typeObj.count} registered {typeObj.count === 1 ? 'centre' : 'centres'}
                       {typeObj.verifiedCount > 0 && ` • ${typeObj.verifiedCount} verified`}
                     </p>
@@ -470,7 +470,7 @@ export const FindMyTbi = () => {
                   <div
                     className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                       isSelected
-                        ? 'border-[#7A0B1A] bg-[#7A0B1A] text-white'
+                        ? 'border-primary bg-primary text-white'
                         : 'border-slate-300 bg-white'
                     }`}
                   >
@@ -482,14 +482,14 @@ export const FindMyTbi = () => {
           </div>
 
           {/* Navigation Buttons */}
-          <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+          <div className="pt-4 flex items-center justify-between border-t border-border">
             <button
               type="button"
               onClick={() => {
                 setStep(1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-xl border border-slate-border text-[#647C98] hover:text-[#243447] hover:bg-slate-50 text-sm font-semibold transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg border border-border text-slate-muted hover:text-dark hover:bg-slate-hover text-sm font-semibold transition-all cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -500,7 +500,7 @@ export const FindMyTbi = () => {
                 setStep(3);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold shadow-sm hover:bg-[#5B0712] active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-sm hover:bg-primary-hover active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Continue →</span>
             </button>
@@ -512,23 +512,23 @@ export const FindMyTbi = () => {
       {/* STEP 3: UNIVERSITY TYPE & VERIFICATION STATUS                  */}
       {/* ============================================================== */}
       {step === 3 && (
-        <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card space-y-8">
+        <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-8">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] text-xs font-bold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
               <GraduationCap className="w-3.5 h-3.5" />
               <span>Institution & Status</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#243447]">
+            <h2 className="text-xl sm:text-2xl font-bold text-dark font-heading">
               Specify Institution Type or Verification
             </h2>
-            <p className="text-sm text-[#647C98]">
+            <p className="text-sm text-slate-muted">
               Refine by host university classification or accreditation status.
             </p>
           </div>
 
           {/* Section A: University Type */}
           <div className="space-y-3">
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#647C98]">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted">
               University Type
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -545,10 +545,10 @@ export const FindMyTbi = () => {
                     key={item.label}
                     type="button"
                     onClick={() => setSelectedUniversityType(item.value)}
-                    className={`py-3 px-3 rounded-xl border text-center font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+                    className={`py-3 px-3 rounded-lg border text-center font-semibold text-xs sm:text-sm transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-[#7A0B1A] text-white border-[#7A0B1A] shadow-xs'
-                        : 'bg-white text-[#243447] border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]'
+                        ? 'bg-primary text-white border-primary shadow-xs'
+                        : 'bg-white text-dark border-border hover:border-slate-300 hover:bg-slate-hover'
                     }`}
                   >
                     {item.label}
@@ -558,7 +558,7 @@ export const FindMyTbi = () => {
             </div>
             {options.universityTypes.length > 0 && (
               <div className="pt-1">
-                <span className="text-[11px] text-[#647C98] font-medium">
+                <span className="text-[11px] text-slate-muted font-medium">
                   Other models in directory:
                 </span>
                 <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -572,10 +572,10 @@ export const FindMyTbi = () => {
                           key={u.name}
                           type="button"
                           onClick={() => setSelectedUniversityType(u.name)}
-                          className={`text-[11px] px-2.5 py-1 rounded-lg border font-medium transition-all cursor-pointer ${
+                          className={`text-[11px] px-2.5 py-1 rounded-md border font-medium transition-all cursor-pointer ${
                             isSelected
-                              ? 'bg-[#7A0B1A] text-white border-[#7A0B1A]'
-                              : 'bg-white text-[#647C98] border-slate-200 hover:text-[#7A0B1A] hover:bg-[#FAF7F2]'
+                              ? 'bg-primary text-white border-primary'
+                              : 'bg-white text-slate-muted border-border hover:text-primary hover:bg-slate-hover'
                           }`}
                         >
                           {u.name} ({u.count})
@@ -588,8 +588,8 @@ export const FindMyTbi = () => {
           </div>
 
           {/* Section B: Verification Status */}
-          <div className="space-y-3 pt-2 border-t border-slate-100">
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#647C98]">
+          <div className="space-y-3 pt-2 border-t border-border">
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-muted">
               Verification Status
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -616,20 +616,20 @@ export const FindMyTbi = () => {
                     onClick={() => setSelectedStatus(st.value)}
                     className={`p-4 rounded-xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                       isSelected
-                        ? 'bg-[#FAF7F2] border-[#7A0B1A] ring-2 ring-[#7A0B1A]/20 shadow-xs'
-                        : 'bg-white border-slate-border hover:border-[#D9CAB3] hover:bg-[#FAF7F2]/40'
+                        ? 'bg-primary-light border-primary ring-2 ring-primary/20 shadow-xs'
+                        : 'bg-white border-border hover:border-slate-300 hover:bg-slate-hover'
                     }`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-bold text-sm text-[#243447]">{st.label}</span>
+                        <span className="font-bold text-sm text-dark">{st.label}</span>
                         {isSelected && (
-                          <div className="w-4 h-4 rounded-full bg-[#7A0B1A] text-white flex items-center justify-center">
+                          <div className="w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center">
                             <Check className="w-2.5 h-2.5 stroke-[3]" />
                           </div>
                         )}
                       </div>
-                      <p className="text-xs text-[#647C98]">{st.desc}</p>
+                      <p className="text-xs text-slate-muted">{st.desc}</p>
                     </div>
                   </button>
                 );
@@ -638,24 +638,24 @@ export const FindMyTbi = () => {
           </div>
 
           {/* Criteria Summary Card */}
-          <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] space-y-2">
-            <div className="text-xs font-bold text-[#7A0B1A] uppercase tracking-wider">
+          <div className="p-4 rounded-xl bg-slate-bg border border-border space-y-2">
+            <div className="text-xs font-bold text-primary uppercase tracking-wider">
               Selected Discovery Filters
             </div>
             <div className="flex flex-wrap gap-2">
-              <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#D9CAB3] text-[#243447] font-semibold">
+              <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-border text-dark font-semibold">
                 📍 City: {selectedCity || 'Any'}
               </span>
-              <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#D9CAB3] text-[#243447] font-semibold">
+              <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-border text-dark font-semibold">
                 🏢 Type: {selectedIncubatorType || 'Any'}
               </span>
               {selectedUniversityType && (
-                <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#D9CAB3] text-[#243447] font-semibold">
+                <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-border text-dark font-semibold">
                   🎓 Institution: {selectedUniversityType}
                 </span>
               )}
               {selectedStatus && (
-                <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-[#D9CAB3] text-[#243447] font-semibold">
+                <span className="text-xs px-2.5 py-1 rounded-md bg-white border border-border text-dark font-semibold">
                   ✓ Status: {selectedStatus}
                 </span>
               )}
@@ -663,14 +663,14 @@ export const FindMyTbi = () => {
           </div>
 
           {/* Navigation Buttons */}
-          <div className="pt-4 flex items-center justify-between border-t border-slate-100">
+          <div className="pt-4 flex items-center justify-between border-t border-border">
             <button
               type="button"
               onClick={() => {
                 setStep(2);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center space-x-1.5 px-4 py-2.5 rounded-xl border border-slate-border text-[#647C98] hover:text-[#243447] hover:bg-slate-50 text-sm font-semibold transition-all cursor-pointer"
+              className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg border border-border text-slate-muted hover:text-dark hover:bg-slate-hover text-sm font-semibold transition-all cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back</span>
@@ -678,7 +678,7 @@ export const FindMyTbi = () => {
             <button
               type="button"
               onClick={handleFindTbis}
-              className="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold shadow-card hover:bg-[#5B0712] active:scale-[0.98] transition-all cursor-pointer"
+              className="inline-flex items-center space-x-2 px-7 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-sm hover:bg-primary-hover active:scale-[0.98] transition-all cursor-pointer"
             >
               <Sparkles className="w-4 h-4" />
               <span>Find My TBIs →</span>
@@ -693,17 +693,17 @@ export const FindMyTbi = () => {
       {step === 'results' && (
         <div className="space-y-6">
           {/* Results Summary Header */}
-          <div className="bg-surface border border-slate-border rounded-2xl p-5 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-white border border-border rounded-xl p-5 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <div className="flex items-center space-x-2 text-xs text-[#647C98] mb-1">
+              <div className="flex items-center space-x-2 text-xs text-slate-muted mb-1">
                 <span>Guided Discovery</span>
                 <span>•</span>
-                <span className="text-[#7A0B1A] font-bold">Filtered Results</span>
+                <span className="text-primary font-bold">Filtered Results</span>
               </div>
-              <h2 className="text-xl font-bold text-[#243447]">
+              <h2 className="text-xl font-bold text-dark font-heading">
                 TBIs matching your selected criteria
               </h2>
-              <p className="text-xs text-[#647C98] mt-0.5">
+              <p className="text-xs text-slate-muted mt-0.5">
                 {loadingResults
                   ? 'Searching directory...'
                   : `${totalCount} matching ${totalCount === 1 ? 'TBI' : 'TBIs'} found`}
@@ -715,7 +715,7 @@ export const FindMyTbi = () => {
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#7A0B1A] bg-[#FAF7F2] border border-[#D9CAB3] hover:bg-white transition-all cursor-pointer"
+                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-primary bg-primary-light border border-blue-100 hover:bg-blue-100 transition-all cursor-pointer"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Adjust Criteria</span>
@@ -723,7 +723,7 @@ export const FindMyTbi = () => {
               <button
                 type="button"
                 onClick={handleReset}
-                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-[#647C98] hover:text-[#7A0B1A] hover:bg-slate-50 border border-slate-200 transition-all cursor-pointer"
+                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-muted hover:text-dark hover:bg-slate-hover border border-border transition-all cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Start Over</span>
@@ -733,38 +733,38 @@ export const FindMyTbi = () => {
 
           {/* Active criteria pills */}
           <div className="flex flex-wrap items-center gap-2 px-1">
-            <span className="text-xs font-semibold text-[#647C98]">Filters applied:</span>
+            <span className="text-xs font-semibold text-slate-muted">Filters applied:</span>
             {selectedCity ? (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
                 <MapPin className="w-3 h-3" />
                 <span>City: {selectedCity}</span>
               </span>
             ) : (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-[#647C98] font-medium">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-muted font-medium">
                 City: Any
               </span>
             )}
 
             {selectedIncubatorType ? (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
                 <Building2 className="w-3 h-3" />
                 <span>Type: {selectedIncubatorType}</span>
               </span>
             ) : (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-[#647C98] font-medium">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-muted font-medium">
                 Type: Any
               </span>
             )}
 
             {selectedUniversityType && (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
                 <GraduationCap className="w-3 h-3" />
                 <span>Institution: {selectedUniversityType}</span>
               </span>
             )}
 
             {selectedStatus && (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#D9CAB3] text-[#7A0B1A] font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
                 <ShieldCheck className="w-3 h-3" />
                 <span>Status: {selectedStatus}</span>
               </span>
@@ -773,28 +773,28 @@ export const FindMyTbi = () => {
 
           {/* Results Grid or Empty State */}
           {!loadingResults && results.length === 0 ? (
-            <div className="text-center py-16 px-4 bg-surface border border-dashed border-[#D9CAB3] rounded-2xl max-w-lg mx-auto my-8 shadow-card">
-              <div className="w-14 h-14 rounded-2xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center mx-auto mb-4 text-[#7A0B1A] shadow-xs">
+            <div className="text-center py-16 px-4 bg-white border border-dashed border-border rounded-xl max-w-lg mx-auto my-8 shadow-card">
+              <div className="w-14 h-14 rounded-xl bg-slate-bg border border-border flex items-center justify-center mx-auto mb-4 text-primary shadow-xs">
                 <Compass className="w-7 h-7" />
               </div>
-              <h2 className="text-lg font-bold text-[#243447] mb-1.5">
+              <h2 className="text-lg font-bold text-dark mb-1.5 font-heading">
                 No TBIs match these criteria.
               </h2>
-              <p className="text-sm text-[#647C98] mb-6 max-w-sm mx-auto">
+              <p className="text-sm text-slate-muted mb-6 max-w-sm mx-auto">
                 Try selecting "Any city" or choosing a broader incubator type to discover available centres.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl border border-[#D9CAB3] bg-[#FAF7F2] text-[#7A0B1A] text-xs font-bold hover:bg-white transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2 rounded-lg border border-border bg-white text-dark text-xs font-semibold hover:bg-slate-hover transition-all cursor-pointer"
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
                   <span>Try different filters</span>
                 </button>
                 <Link
                   to="/explore"
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2.5 bg-[#7A0B1A] text-white text-xs font-bold rounded-xl shadow-sm hover:bg-[#5B0712] transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2 bg-primary text-white text-xs font-semibold rounded-lg shadow-sm hover:bg-primary-hover transition-all"
                 >
                   <span>Explore All TBIs →</span>
                 </Link>

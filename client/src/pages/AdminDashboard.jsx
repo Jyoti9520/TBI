@@ -64,11 +64,11 @@ export const AdminDashboard = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-2">
-            <Shield className="w-7 h-7 text-[#5B0712]" />
+          <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-2">
+            <Shield className="w-7 h-7 text-primary" />
             <span>Administrator Control Center</span>
           </h1>
-          <p className="text-sm text-slate-muted mt-1">
+          <p className="text-sm text-slate-body mt-1">
             Global ecosystem oversight, data governance, and review queue.
           </p>
         </div>
@@ -76,14 +76,14 @@ export const AdminDashboard = () => {
         <div className="flex items-center space-x-2 shrink-0">
           <Link
             to="/admin/import"
-            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#5B0712] transition-colors border border-[#7A0B1A]"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-primary text-white text-xs font-semibold rounded-lg shadow-xs hover:bg-primary-hover transition-colors"
           >
             <FileSpreadsheet className="w-4 h-4" />
             <span>Import Dataset</span>
           </Link>
           <Link
             to="/admin/tbis"
-            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-surface border border-slate-border text-slate text-xs font-semibold rounded-lg hover:bg-slate-50 transition-colors"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-white border border-border text-dark text-xs font-semibold rounded-lg hover:bg-slate-hover transition-colors"
           >
             <span>Manage TBIs</span>
           </Link>
@@ -91,18 +91,18 @@ export const AdminDashboard = () => {
       </div>
 
       {toastMessage && (
-        <div className="p-3 bg-green-50 border border-green-200 text-status-success rounded-xl text-xs font-semibold animate-in fade-in">
+        <div className="p-3 bg-emerald-50 border border-emerald-200 text-status-success rounded-xl text-xs font-semibold animate-in fade-in">
           {toastMessage}
         </div>
       )}
 
-      {/* Dynamic Statistics Cards Grid (Section 42) */}
+      {/* Dynamic Statistics Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
           title="Total TBIs"
           value={stats?.totalTbis}
           icon={Building2}
-          color="navy"
+          color="blue"
         />
         <StatsCard
           title="Verified Status"
@@ -120,7 +120,7 @@ export const AdminDashboard = () => {
           title="Registered Users"
           value={stats?.totalUsers}
           icon={Users}
-          color="teal"
+          color="cyan"
         />
       </div>
 
@@ -129,13 +129,13 @@ export const AdminDashboard = () => {
           title="Unique Universities"
           value={stats?.uniqueUniversities}
           icon={Building2}
-          color="navy"
+          color="blue"
         />
         <StatsCard
           title="Unique Cities"
           value={stats?.uniqueCities}
           icon={MapPin}
-          color="teal"
+          color="cyan"
         />
         <StatsCard
           title="Pending Suggestions"
@@ -146,10 +146,10 @@ export const AdminDashboard = () => {
       </div>
 
       {/* Pending Suggestions Review Section */}
-      <div className="bg-surface border border-slate-border rounded-2xl p-6 shadow-card space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <h2 className="text-base font-bold text-[#7A0B1A] flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-[#5B0712]" />
+      <div className="bg-white border border-border rounded-2xl p-6 shadow-xs space-y-4">
+        <div className="flex items-center justify-between border-b border-border pb-3">
+          <h2 className="text-base font-bold font-heading text-dark flex items-center space-x-2">
+            <Clock className="w-4 h-4 text-primary" />
             <span>Pending Community Suggestions ({suggestions.length})</span>
           </h2>
         </div>

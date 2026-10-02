@@ -36,13 +36,13 @@ export const Saved = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <Bookmark className="w-5 h-5 text-[#5B0712]" />
+        <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+            <Bookmark className="w-5 h-5 text-primary" />
           </div>
           <span>Saved TBIs</span>
         </h1>
-        <p className="text-sm text-slate-muted mt-1">
+        <p className="text-sm text-slate-body mt-1">
           Your bookmarked technology business incubators and incubation centres.
         </p>
       </div>
@@ -50,19 +50,19 @@ export const Saved = () => {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="h-64 rounded-xl bg-surface border border-slate-border animate-pulse p-5" />
+            <div key={i} className="h-64 rounded-xl bg-white border border-border animate-pulse p-5" />
           ))}
         </div>
       ) : favorites.length === 0 ? (
-        <div className="text-center py-16 px-4 bg-surface border border-dashed border-slate-border rounded-2xl max-w-md mx-auto my-8">
+        <div className="text-center py-16 px-4 bg-white border border-dashed border-border rounded-2xl max-w-md mx-auto my-8">
           <Bookmark className="w-10 h-10 text-slate-muted mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate mb-1">No Saved TBIs</h3>
+          <h3 className="text-base font-bold font-heading text-dark mb-1">No Saved TBIs</h3>
           <p className="text-sm text-slate-muted mb-5">
             You haven't bookmarked any technology business incubators yet.
           </p>
           <Link
             to="/explore"
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-[#7A0B1A] text-[#D9CAB3] text-xs font-semibold rounded-lg shadow-sm hover:bg-[#5B0712] transition-colors border border-[#7A0B1A]"
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-primary text-white text-xs font-semibold rounded-lg shadow-xs hover:bg-primary-hover transition-colors"
           >
             <Compass className="w-4 h-4" />
             <span>Explore TBIs</span>

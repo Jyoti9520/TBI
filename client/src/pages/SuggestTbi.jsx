@@ -173,9 +173,9 @@ export const SuggestTbi = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
-            <PlusCircle className="w-5 h-5 text-[#5B0712]" />
+        <h1 className="text-2xl sm:text-3xl font-bold text-dark font-heading flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+            <PlusCircle className="w-5 h-5 text-primary" />
           </div>
           <span>Suggest a TBI</span>
         </h1>
@@ -185,17 +185,17 @@ export const SuggestTbi = () => {
       </div>
 
       {/* Main Submission Form Card */}
-      <div className="bg-surface border border-slate-border rounded-2xl p-6 sm:p-8 shadow-card">
+      <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card">
         
         {/* Success Banner */}
         {isSuccess && (
-          <div className="mb-6 p-5 rounded-2xl bg-emerald-50/90 border border-emerald-200 text-emerald-900 animate-in fade-in duration-200">
+          <div className="mb-6 p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 animate-in fade-in duration-200">
             <div className="flex items-start space-x-3">
               <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-700">
                 <BadgeCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-sm font-extrabold text-emerald-900 flex items-center space-x-1">
+                <h3 className="text-sm font-bold text-emerald-900 flex items-center space-x-1">
                   <span>✓ Suggestion submitted successfully</span>
                 </h3>
                 <p className="text-xs text-emerald-800 mt-1 leading-relaxed">
@@ -208,7 +208,7 @@ export const SuggestTbi = () => {
 
         {/* Global Error Banner */}
         {errorMessage && (
-          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-status-error text-xs sm:text-sm flex items-center space-x-2.5">
+          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-center space-x-2.5">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{errorMessage}</span>
           </div>
@@ -220,7 +220,7 @@ export const SuggestTbi = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <Building2 className="w-3.5 h-3.5 text-[#5B0712]" />
+                <Building2 className="w-3.5 h-3.5 text-primary" />
                 <span>University Name <span className="text-red-500 font-bold">*</span></span>
               </label>
               <input
@@ -229,10 +229,10 @@ export const SuggestTbi = () => {
                 value={formData.university}
                 onChange={handleChange}
                 placeholder="e.g. Delhi Technological University"
-                className={`w-full px-3.5 py-2.5 bg-surface border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
                   validationErrors.university
                     ? 'border-red-400 focus:ring-red-200 focus:border-red-500'
-                    : 'border-slate-border focus:ring-[#5B0712]/20 focus:border-[#5B0712]'
+                    : 'border-border focus:ring-primary/20 focus:border-primary'
                 }`}
               />
               {validationErrors.university && (
@@ -244,7 +244,7 @@ export const SuggestTbi = () => {
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <Rocket className="w-3.5 h-3.5 text-[#5B0712]" />
+                <Rocket className="w-3.5 h-3.5 text-primary" />
                 <span>Incubator / TBI Name <span className="text-red-500 font-bold">*</span></span>
               </label>
               <input
@@ -253,10 +253,10 @@ export const SuggestTbi = () => {
                 value={formData.tbiName}
                 onChange={handleChange}
                 placeholder="e.g. DTU Innovation and Incubation Foundation"
-                className={`w-full px-3.5 py-2.5 bg-surface border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
                   validationErrors.tbiName
                     ? 'border-red-400 focus:ring-red-200 focus:border-red-500'
-                    : 'border-slate-border focus:ring-[#5B0712]/20 focus:border-[#5B0712]'
+                    : 'border-border focus:ring-primary/20 focus:border-primary'
                 }`}
               />
               {validationErrors.tbiName && (
@@ -271,7 +271,7 @@ export const SuggestTbi = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <MapPin className="w-3.5 h-3.5 text-[#5B0712]" />
+                <MapPin className="w-3.5 h-3.5 text-primary" />
                 <span>City <span className="text-red-500 font-bold">*</span></span>
               </label>
               <input
@@ -280,10 +280,10 @@ export const SuggestTbi = () => {
                 value={formData.city}
                 onChange={handleChange}
                 placeholder="e.g. New Delhi"
-                className={`w-full px-3.5 py-2.5 bg-surface border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
                   validationErrors.city
                     ? 'border-red-400 focus:ring-red-200 focus:border-red-500'
-                    : 'border-slate-border focus:ring-[#5B0712]/20 focus:border-[#5B0712]'
+                    : 'border-border focus:ring-primary/20 focus:border-primary'
                 }`}
               />
               {validationErrors.city && (
@@ -295,14 +295,14 @@ export const SuggestTbi = () => {
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <Building2 className="w-3.5 h-3.5 text-[#5B0712]" />
+                <Building2 className="w-3.5 h-3.5 text-primary" />
                 <span>University Type</span>
               </label>
               <select
                 name="universityType"
                 value={formData.universityType}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712] transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer"
               >
                 <option value="">Select University Type (Optional)</option>
                 {UNIVERSITY_TYPES.map((type) => (
@@ -318,14 +318,14 @@ export const SuggestTbi = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <Layers className="w-3.5 h-3.5 text-[#5B0712]" />
+                <Layers className="w-3.5 h-3.5 text-primary" />
                 <span>Incubator Type</span>
               </label>
               <select
                 name="incubatorType"
                 value={formData.incubatorType}
                 onChange={handleChange}
-                className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712] transition-all cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-white border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer"
               >
                 <option value="">Select Incubator Type (Optional)</option>
                 {INCUBATOR_TYPES.map((type) => (
@@ -338,7 +338,7 @@ export const SuggestTbi = () => {
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-                <Mail className="w-3.5 h-3.5 text-[#5B0712]" />
+                <Mail className="w-3.5 h-3.5 text-primary" />
                 <span>Official Email</span>
               </label>
               <input
@@ -347,10 +347,10 @@ export const SuggestTbi = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="contact@incubator.edu.in"
-                className={`w-full px-3.5 py-2.5 bg-surface border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
+                className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
                   validationErrors.email
                     ? 'border-red-400 focus:ring-red-200 focus:border-red-500'
-                    : 'border-slate-border focus:ring-[#5B0712]/20 focus:border-[#5B0712]'
+                    : 'border-border focus:ring-primary/20 focus:border-primary'
                 }`}
               />
               {validationErrors.email && (
@@ -364,7 +364,7 @@ export const SuggestTbi = () => {
           {/* Row 4: Website */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-              <Globe className="w-3.5 h-3.5 text-[#5B0712]" />
+              <Globe className="w-3.5 h-3.5 text-primary" />
               <span>Website</span>
             </label>
             <input
@@ -373,10 +373,10 @@ export const SuggestTbi = () => {
               value={formData.website}
               onChange={handleChange}
               placeholder="https://incubator.edu.in"
-              className={`w-full px-3.5 py-2.5 bg-surface border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
+              className={`w-full px-3.5 py-2.5 bg-white border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 transition-all ${
                 validationErrors.website
                   ? 'border-red-400 focus:ring-red-200 focus:border-red-500'
-                  : 'border-slate-border focus:ring-[#5B0712]/20 focus:border-[#5B0712]'
+                  : 'border-border focus:ring-primary/20 focus:border-primary'
               }`}
             />
             {validationErrors.website && (
@@ -389,7 +389,7 @@ export const SuggestTbi = () => {
           {/* Row 5: Additional Information */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center space-x-1">
-              <FileText className="w-3.5 h-3.5 text-[#5B0712]" />
+              <FileText className="w-3.5 h-3.5 text-primary" />
               <span>Additional Information</span>
             </label>
             <textarea
@@ -398,12 +398,12 @@ export const SuggestTbi = () => {
               value={formData.description}
               onChange={handleChange}
               placeholder="Provide any additional context, key domain specializations (e.g. AI/DeepTech, AgriTech, MedTech), lab infrastructure, or notable achievements..."
-              className="w-full px-3.5 py-2.5 bg-surface border border-slate-border rounded-xl text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-[#5B0712]/20 focus:border-[#5B0712] transition-all"
+              className="w-full px-3.5 py-2.5 bg-white border border-border rounded-lg text-sm placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
             />
           </div>
 
           {/* Form Actions */}
-          <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-xs text-slate-muted">
               Fields marked with <span className="text-red-500 font-bold">*</span> are required.
             </span>
@@ -411,7 +411,7 @@ export const SuggestTbi = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-2.5 bg-[#7A0B1A] hover:bg-[#490911] disabled:opacity-50 text-white font-bold text-sm rounded-xl shadow-xs hover:shadow-sm active:scale-[0.98] transition-all cursor-pointer border border-[#7A0B1A]"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-2.5 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-lg shadow-sm active:scale-[0.98] transition-all cursor-pointer"
             >
               {loading ? (
                 <>

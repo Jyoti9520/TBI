@@ -74,104 +74,116 @@ export const Landing = () => {
     <div className="min-h-screen flex flex-col bg-white selection:bg-primary-light selection:text-primary">
       <Navbar />
 
-      {/* Hero Section: Modern Corporate Technology Ecosystem */}
-      <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-border bg-gradient-to-b from-background-secondary via-white to-white">
+      {/* Hero Section: Dark Tech Ecosystem with Glowing Perspective Wave (YNOS Aesthetic) */}
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 bg-[#0a0a0c] text-white overflow-hidden border-b border-white/10">
+        {/* Background 3D Perspective Glowing Grid Effect */}
+        <div className="absolute inset-0 perspective-grid-container pointer-events-none opacity-80">
+          <div className="perspective-grid-plane" />
+        </div>
+
+        {/* Ambient Radial Glows */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[350px] bg-gradient-to-b from-orange-500/20 via-orange-600/10 to-transparent blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#0a0a0c] to-transparent pointer-events-none" />
+
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Ecosystem Authority Tag */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-primary-light border border-blue-200/80 mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-              National Technology Incubator Directory
-            </span>
+          {/* YNOS-style Sub-pills: OPPORTUNITIES • GROWTH • FUNDING • IMPACT */}
+          <div className="inline-flex items-center space-x-2 text-xs sm:text-sm font-bold tracking-widest text-orange-400 uppercase mb-6">
+            <span>OPPORTUNITIES</span>
+            <span className="text-orange-500/70">•</span>
+            <span>GROWTH</span>
+            <span className="text-orange-500/70">•</span>
+            <span>INCUBATION</span>
+            <span className="text-orange-500/70">•</span>
+            <span>IMPACT</span>
           </div>
 
           {/* Main Hero Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-dark tracking-tight leading-[1.12] max-w-4xl mx-auto font-heading">
-            Discover Technology Business Incubators
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.14] max-w-4xl mx-auto font-heading">
+            Navigate the Indian Technology &amp; Incubator Ecosystem with Ease &amp; Accuracy
           </h1>
 
           {/* Supporting Description */}
-          <p className="mt-5 text-base sm:text-lg text-slate-secondary max-w-2xl mx-auto leading-relaxed">
-            The unified directory for India's technology business incubators, university innovation labs, and startup ecosystems. Search 500+ verified hubs.
+          <p className="mt-5 text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal">
+            TBI Nexus is a national intelligence hub that saves time, effort, and cost with the most comprehensive, up-to-date insights across Technology Business Incubators, Universities, Labs, Government Schemes, and Startup Hubs.
           </p>
 
-          {/* Professional Search Input Bar */}
+          {/* Action CTAs */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/signup"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-white text-dark hover:bg-slate-100 text-sm font-bold tracking-wide uppercase shadow-lg hover:shadow-orange-500/20 transition-all active:scale-[0.98]"
+            >
+              <span>SIGN-UP FOR FREE</span>
+            </Link>
+            <Link
+              to="/explore"
+              className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-lg bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm font-semibold tracking-wide transition-all"
+            >
+              <Compass className="w-4 h-4 text-orange-400" />
+              <span>Explore 500+ TBIs</span>
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+
+          {/* Search Input Bar embedded in Hero */}
           <form
             onSubmit={handleSearchSubmit}
-            className="mt-8 sm:mt-10 max-w-2xl mx-auto flex items-center bg-white p-2 rounded-card border border-border shadow-subtle hover:border-slate-muted focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all duration-150"
+            className="mt-10 max-w-2xl mx-auto flex items-center bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/20 shadow-2xl focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-400/30 transition-all duration-150"
           >
-            <div className="pl-3 pr-2 text-slate-muted">
-              <Search className="w-5 h-5 text-slate-muted" />
+            <div className="pl-3 pr-2 text-slate-400">
+              <Search className="w-5 h-5 text-orange-400" />
             </div>
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by university, city, incubator name, or technology sector..."
-              className="w-full text-sm font-normal text-dark placeholder:text-slate-muted/70 focus:outline-none bg-transparent"
+              className="w-full text-sm font-normal text-white placeholder:text-slate-400 focus:outline-none bg-transparent"
             />
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-subtle transition-all active:scale-[0.98] shrink-0 cursor-pointer"
+              className="px-5 py-2.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md transition-all active:scale-[0.98] shrink-0 cursor-pointer"
             >
               Search
             </button>
           </form>
-
-          {/* Action CTAs */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3.5">
-            <Link
-              to="/explore"
-              className="inline-flex items-center space-x-2 px-6 py-2.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-subtle hover:shadow-card transition-all"
-            >
-              <span>Explore All Incubators</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/universities"
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-btn bg-white border border-border text-dark text-sm font-semibold hover:bg-slate-hover hover:border-slate-muted transition-all"
-            >
-              <Building2 className="w-4 h-4 text-slate-muted" />
-              <span>Browse Universities</span>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Clean Statistics Bar */}
-      <section className="py-8 bg-background-secondary border-b border-border">
+      {/* Orange Accent Metrics Strip (YNOS-style) */}
+      <section className="py-4 bg-[#f97316] text-white border-b border-orange-600 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-border">
-            <div className="p-2">
-              <p className="text-3xl sm:text-4xl font-extrabold text-dark font-heading">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
+            <div className="p-1">
+              <p className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
                 {stats?.totalTbis ?? (loading ? '...' : '521')}
               </p>
-              <p className="text-xs font-semibold text-slate-muted mt-1 uppercase tracking-wider">
+              <p className="text-[11px] font-bold text-orange-100 uppercase tracking-wider">
                 Total Incubators
               </p>
             </div>
-            <div className="p-2">
-              <p className="text-3xl sm:text-4xl font-extrabold text-primary font-heading">
+            <div className="p-1">
+              <p className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
                 {stats?.uniqueUniversities ?? (loading ? '...' : '350+')}
               </p>
-              <p className="text-xs font-semibold text-slate-muted mt-1 uppercase tracking-wider">
-                Universities &amp; Colleges
+              <p className="text-[11px] font-bold text-orange-100 uppercase tracking-wider">
+                Host Universities
               </p>
             </div>
-            <div className="p-2">
-              <p className="text-3xl sm:text-4xl font-extrabold text-dark font-heading">
+            <div className="p-1">
+              <p className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
                 {stats?.uniqueCities ?? (loading ? '...' : '150+')}
               </p>
-              <p className="text-xs font-semibold text-slate-muted mt-1 uppercase tracking-wider">
+              <p className="text-[11px] font-bold text-orange-100 uppercase tracking-wider">
                 Cities Across India
               </p>
             </div>
-            <div className="p-2">
-              <p className="text-3xl sm:text-4xl font-extrabold text-status-success font-heading">
+            <div className="p-1">
+              <p className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
                 {stats?.verifiedTbis ?? (loading ? '...' : '400+')}
               </p>
-              <p className="text-xs font-semibold text-slate-muted mt-1 uppercase tracking-wider">
-                Verified Records
+              <p className="text-[11px] font-bold text-orange-100 uppercase tracking-wider">
+                Accredited Hubs
               </p>
             </div>
           </div>

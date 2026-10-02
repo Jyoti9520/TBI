@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, LogOut, ShieldCheck, Compass, Building2, Layers, GitCompare } from 'lucide-react';
+import { User, LogOut, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
 export const Navbar = () => {
@@ -45,38 +45,6 @@ export const Navbar = () => {
               </span>
             </div>
           </Link>
-
-          {/* Center Links */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-secondary">
-            <Link
-              to="/explore"
-              className="hover:text-primary transition-colors flex items-center space-x-1.5"
-            >
-              <Compass className="w-4 h-4 text-slate-muted" />
-              <span>Explore TBIs</span>
-            </Link>
-            <Link
-              to="/universities"
-              className="hover:text-primary transition-colors flex items-center space-x-1.5"
-            >
-              <Building2 className="w-4 h-4 text-slate-muted" />
-              <span>Universities</span>
-            </Link>
-            <Link
-              to="/categories"
-              className="hover:text-primary transition-colors flex items-center space-x-1.5"
-            >
-              <Layers className="w-4 h-4 text-slate-muted" />
-              <span>Categories</span>
-            </Link>
-            <Link
-              to="/compare"
-              className="hover:text-primary transition-colors flex items-center space-x-1.5"
-            >
-              <GitCompare className="w-4 h-4 text-slate-muted" />
-              <span>Compare</span>
-            </Link>
-          </nav>
 
           {/* Right Action: Login / Signup or User Profile */}
           <div className="flex items-center space-x-3">

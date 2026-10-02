@@ -63,9 +63,7 @@ export const getTbiDisplayData = (tbi) => {
       hasValidWebsite: false,
       displayHostname: null,
       status: 'Unverified',
-      firstLetter: 'U',
-      schemes: [],
-      focusAreas: []
+      firstLetter: 'U'
     };
   }
 
@@ -136,29 +134,6 @@ export const getTbiDisplayData = (tbi) => {
     }
   }
 
-  // Derive realistic grant & scheme tags based on incubator type and university status
-  const schemes = [];
-  const focusAreas = [];
-  const nameAndType = `${universityName} ${incubatorName} ${incubatorType || ''}`.toLowerCase();
-
-  if (nameAndType.includes('technology') || nameAndType.includes('tbi') || nameAndType.includes('iit') || nameAndType.includes('nit') || nameAndType.includes('iiit')) {
-    schemes.push({ name: 'NIDHI-PRAYAS', amount: '₹10L', type: 'Grant', badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200' });
-    schemes.push({ name: 'NIDHI-EIR', amount: '₹30k/mo', type: 'Fellowship', badgeColor: 'bg-blue-50 text-blue-800 border-blue-200' });
-    focusAreas.push('DeepTech', 'IoT & AI');
-  }
-  if (nameAndType.includes('bio') || nameAndType.includes('medical') || nameAndType.includes('health') || nameAndType.includes('pharma')) {
-    schemes.push({ name: 'BIRAC BIG', amount: '₹50L', type: 'Grant', badgeColor: 'bg-purple-50 text-purple-800 border-purple-200' });
-    focusAreas.push('BioTech', 'HealthCare');
-  }
-  if (nameAndType.includes('agri') || nameAndType.includes('rural') || nameAndType.includes('farm')) {
-    schemes.push({ name: 'R-ABI / NABARD', amount: '₹25L', type: 'Grant', badgeColor: 'bg-amber-50 text-amber-800 border-amber-200' });
-    focusAreas.push('AgriTech', 'Rural Tech');
-  }
-  if (schemes.length === 0) {
-    schemes.push({ name: 'SISFS Seed Support', amount: 'Up to ₹50L', type: 'Seed Fund', badgeColor: 'bg-[#FAF7F2] text-[#7A0B1A] border-[#D9CAB3]' });
-    focusAreas.push('General Tech', 'Early Stage');
-  }
-
   return {
     universityName,
     incubatorName,
@@ -170,8 +145,6 @@ export const getTbiDisplayData = (tbi) => {
     hasValidWebsite,
     displayHostname,
     status,
-    firstLetter,
-    schemes,
-    focusAreas
+    firstLetter
   };
 };

@@ -2,534 +2,515 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Search,
-  Sparkles,
-  Target,
-  ArrowRight,
-  ShieldCheck,
-  Building2,
-  FileText,
   Compass,
-  Zap,
-  TrendingUp,
-  Cpu,
-  Layers,
-  Award,
+  Building2,
   CheckCircle2,
+  Layers,
+  ArrowRight,
+  Sparkles,
+  MapPin,
   ExternalLink,
-  ChevronRight,
-  ChevronDown,
-  Clock,
-  Filter,
-  Users,
-  Route
+  ShieldCheck,
+  TrendingUp,
+  Globe2,
+  GitCompare,
+  ChevronDown
 } from 'lucide-react';
-import { ModernNavbar } from '../components/ModernNavbar';
+import { Navbar } from '../components/Navbar';
+import { tbiService } from '../services/tbiService';
+import { adminService } from '../services/adminService';
 import { TbiCard } from '../components/TbiCard';
 import { SkeletonCard } from '../components/SkeletonCard';
-import { tbiService } from '../services/tbiService';
-import { schemeService } from '../services/schemeService';
 
 export const Landing = () => {
   const [query, setQuery] = useState('');
-  const [selectedSchemeFilter, setSelectedSchemeFilter] = useState('ALL');
   const [stats, setStats] = useState(null);
-  const [topTbis, setTopTbis] = useState([]);
-  const [schemes, setSchemes] = useState([]);
+  const [featuredTbis, setFeaturedTbis] = useState([]);
+  const [popularCategories, setPopularCategories] = useState([]);
+  const [topUniversities, setTopUniversities] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Instant Interactive Eligibility Micro-Widget State
-  const [stage, setStage] = useState('idea');
-  const [domain, setDomain] = useState('DeepTech / Hardware');
-  const [calculatedGrant, setCalculatedGrant] = useState('₹10,00,000 (NIDHI-PRAYAS)');
-
   useEffect(() => {
-    if (stage === 'idea') {
-      setCalculatedGrant('₹30,000 / mo Stipend (NIDHI-EIR)');
-    } else if (stage === 'prototype') {
-      setCalculatedGrant('₹10,00,000 Non-Dilutive Grant (NIDHI-PRAYAS)');
-    } else if (stage === 'pilot') {
-      setCalculatedGrant('₹50,00,000 Commercialization Fund (BIRAC / SISFS)');
-    }
-  }, [stage, domain]);
+    let active = true;
 
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchLandingData = async () => {
       try {
-        const [statsRes, tbisRes, schemesRes] = await Promise.all([
-          tbiService.getStats().catch(() => ({ success: false })),
-          tbiService.getTbis({ limit: 6, status: 'Verified' }).catch(() => ({ success: false })),
-          schemeService.getSchemes().catch(() => ({ success: false }))
+        const [statsRes, tbisRes, catsRes, unisRes] = await Promise.all([
+          adminService.getStats().catch(() => ({ success: false })),
+          tbiService.getTbis({ status: 'Verified', limit: 6 }).catch(() => ({ success: false })),
+          tbiService.getCategories().catch(() => ({ success: false })),
+          tbiService.getUniversities({ limit: 6 }).catch(() => ({ success: false }))
         ]);
 
-        if (statsRes?.success && statsRes.data) setStats(statsRes.data);
-        if (tbisRes?.success && Array.isArray(tbisRes.data)) setTopTbis(tbisRes.data);
-        if (schemesRes?.success && Array.isArray(schemesRes.data)) setSchemes(schemesRes.data);
+        if (active) {
+          if (statsRes?.success && statsRes.data) setStats(statsRes.data);
+          if (tbisRes?.success && Array.isArray(tbisRes.data)) setFeaturedTbis(tbisRes.data);
+          if (catsRes?.success && catsRes.data?.incubatorTypes && Array.isArray(catsRes.data.incubatorTypes)) {
+            setPopularCategories(catsRes.data.incubatorTypes.slice(0, 6));
+          }
+          if (unisRes?.success && Array.isArray(unisRes.data)) setTopUniversities(unisRes.data.slice(0, 6));
+        }
       } catch (err) {
-        console.error('Failed to load landing data:', err);
+        console.error('Landing load error:', err);
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
-    fetchData();
+
+    fetchLandingData();
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      navigate(`/explore?q=${encodeURIComponent(query.trim())}`);
+  const handleSearchSubmit = (searchTerm) => {
+    const term = typeof searchTerm === 'string' ? searchTerm : query;
+    if (term && term.trim()) {
+      navigate(`/explore?q=${encodeURIComponent(term.trim())}`);
     } else {
       navigate('/explore');
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#243447] flex flex-col font-sans selection:bg-[#7A0B1A] selection:text-white">
-      {/* 1. High-End Modern Navbar with Mega Menu */}
-      <ModernNavbar />
+    <div className="min-h-screen flex flex-col bg-background selection:bg-[#D9CAB3] selection:text-[#7A0B1A]">
+      <Navbar />
 
-      {/* 2. Hero Section: Architectural Cleanliness + High-Value Intelligence Hook */}
-      <section className="relative pt-12 pb-20 overflow-hidden border-b border-[#D9CAB3]/60 bg-gradient-to-b from-[#FAF7F2] via-white to-[#FAF7F2]">
-        {/* Subtle Decorative Technical Grid & Radial Gradients */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#7A0B1A0a_1px,transparent_1px),linear-gradient(to_bottom,#7A0B1A0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-[#D99A2B]/10 to-[#7A0B1A]/10 blur-3xl pointer-events-none rounded-full" />
+      {/* Hero Section (First Viewport: Navbar -> Badge -> Headline -> Description -> CTA -> Scroll Indicator) */}
+      <section className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-between pt-8 sm:pt-12 pb-4 sm:pb-6 border-b border-slate-border bg-gradient-to-b from-[#D9CAB3]/25 via-[#FAF7F2] to-[#FAF7F2] overflow-hidden">
+        {/* Extremely Subtle Ambient Warm Glow */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_40%,rgba(217,202,179,0.22),transparent_70%)]" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto space-y-6">
-            {/* Top Ecosystem Authority Badge */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white border border-[#D9CAB3] shadow-2xs hover:border-[#7A0B1A] transition cursor-pointer">
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-xs font-bold text-[#7A0B1A] tracking-wide">
-                521 DST &amp; MeitY Technology Business Incubators Mapped
-              </span>
-              <span className="text-slate-300">|</span>
-              <span className="text-xs font-semibold text-[#647C98]">Live Seed &amp; Grant Radar</span>
-            </div>
+        {/* Top Spacer for Vertical Balance */}
+        <div className="hidden sm:block sm:h-2" />
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#7A0B1A] tracking-tight leading-[1.08] font-display">
-              Where India's Next DeepTech <br />
-              <span className="relative inline-block text-[#5B0712]">
-                Breakthroughs
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#D99A2B]" viewBox="0 0 100 12" preserveAspectRatio="none">
-                  <path d="M0,8 Q50,0 100,8" stroke="currentColor" strokeWidth="4" fill="none" />
-                </svg>
-              </span>{' '}
-              Get Funded.
-            </h1>
+        {/* Centered Hero Content */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center my-auto flex flex-col items-center relative z-10">
+          {/* 1. Ecosystem Subheading / Tagline */}
+          <p className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#7A0B1A]/80 mb-4 sm:mb-6">
+            India's Verified University &amp; Startup Incubator Ecosystem
+          </p>
 
-            {/* Sub-headline addressing the real pain point */}
-            <p className="text-base sm:text-xl text-[#647C98] max-w-2xl mx-auto font-normal leading-relaxed">
-              Don't dilute early equity. Discover ₹142+ Crore in non-dilutive DST NIDHI-PRAYAS grants, founder EIR stipends, and university prototyping labs across India.
-            </p>
+          {/* 2. Main Hero Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[68px] font-extrabold text-[#7A0B1A] tracking-tight leading-[1.12] sm:leading-[1.14] max-w-3xl mx-auto">
+            Discover Where{' '}
+            <span className="text-[#5B0712] underline decoration-[#D99A2B] decoration-4 underline-offset-8">
+              Innovation
+            </span>{' '}
+            Begins.
+          </h1>
 
-            {/* Omni-Search Box with Integrated Filters */}
-            <div className="max-w-2xl mx-auto pt-2">
-              <form
-                onSubmit={handleSearch}
-                className="bg-white p-2 rounded-2xl border-2 border-[#D9CAB3] hover:border-[#7A0B1A] focus-within:border-[#7A0B1A] focus-within:ring-4 focus-within:ring-[#7A0B1A]/10 shadow-card transition-all duration-300 flex items-center"
-              >
-                <div className="pl-3 pr-2 text-[#7A0B1A]">
-                  <Search className="w-5 h-5 text-[#7A0B1A]" />
-                </div>
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search by college (IIT Delhi, VIT), scheme (PRAYAS), or domain (Robotics)..."
-                  className="w-full text-xs sm:text-sm font-medium text-[#243447] placeholder:text-[#647C98]/70 focus:outline-none bg-transparent"
-                />
-                <button
-                  type="submit"
-                  className="px-5 sm:px-6 py-3 rounded-xl bg-[#7A0B1A] hover:bg-[#5B0712] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition active:scale-[0.98] shrink-0 cursor-pointer flex items-center space-x-1.5"
-                >
-                  <span>Search</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
+          {/* 3. Short Supporting Description */}
+          <p className="mt-6 sm:mt-8 text-base sm:text-lg lg:text-xl text-[#647C98] max-w-2xl mx-auto font-normal leading-relaxed">
+            Discover verified university incubators, innovation hubs, and startup ecosystems across India.
+          </p>
 
-              {/* Instant Filter Pills */}
-              <div className="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs font-semibold">
-                <span className="text-[#647C98] font-bold text-[11px] uppercase tracking-wider">Fast Track:</span>
-                <Link
-                  to="/grants"
-                  className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 hover:bg-emerald-100 transition flex items-center space-x-1"
-                >
-                  <Target className="w-3 h-3 text-emerald-600" />
-                  <span>Grant Radar (₹10L-₹50L)</span>
-                </Link>
-                <Link
-                  to="/proposal-doctor"
-                  className="px-2.5 py-1 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 hover:bg-amber-100 transition flex items-center space-x-1"
-                >
-                  <Sparkles className="w-3 h-3 text-[#D99A2B]" />
-                  <span>AI Proposal Doctor</span>
-                </Link>
-                <Link
-                  to="/explore?q=NIDHI-PRAYAS"
-                  className="px-2.5 py-1 rounded-lg bg-white border border-[#D9CAB3] text-[#7A0B1A] hover:border-[#7A0B1A] transition"
-                >
-                  PRAYAS Centers (85)
-                </Link>
-                <Link
-                  to="/explore?q=IIT"
-                  className="px-2.5 py-1 rounded-lg bg-white border border-[#D9CAB3] text-slate-700 hover:border-[#7A0B1A] transition"
-                >
-                  IIT Incubators (23)
-                </Link>
-              </div>
-            </div>
+          {/* 4. Primary and Secondary Action CTAs */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              to="/explore"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-xl bg-[#7A0B1A] text-white text-sm font-bold hover:bg-[#5B0712] active:scale-[0.98] transition-all duration-200 shadow-sm hover:shadow-md border border-[#7A0B1A]"
+            >
+              <span>Explore Incubators →</span>
+            </Link>
+            <Link
+              to="/universities"
+              className="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-white border border-[#D9CAB3] text-[#7A0B1A] text-sm font-bold hover:bg-[#FAF7F2] hover:border-[#7A0B1A] active:scale-[0.98] transition-all duration-200 shadow-2xs"
+            >
+              <Building2 className="w-4 h-4 text-[#D99A2B]" />
+              <span>Browse Universities</span>
+            </Link>
           </div>
+        </div>
 
-          {/* 3. Interactive Floating Intelligence Deck (Real-time Calculator Card) */}
-          <div className="mt-14 max-w-5xl mx-auto bg-white rounded-3xl border border-[#D9CAB3] shadow-card p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-md bg-[#7A0B1A]/10 text-[#7A0B1A] text-[11px] font-extrabold uppercase tracking-wider">
-                <Zap className="w-3.5 h-3.5 text-[#D99A2B]" />
-                <span>Instant Founder Grant Calculator</span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-black text-[#7A0B1A]">
-                Calculate how much government funding your project can unlock without equity.
-              </h2>
-              <p className="text-xs sm:text-sm text-[#647C98]">
-                Select your venture stage below to view immediate non-dilutive eligibility across university hubs:
-              </p>
-
-              {/* Selector Tabs */}
-              <div className="grid grid-cols-3 gap-2 pt-2">
-                <button
-                  onClick={() => setStage('idea')}
-                  className={`p-3 rounded-xl border text-left transition cursor-pointer ${
-                    stage === 'idea'
-                      ? 'border-[#7A0B1A] bg-[#7A0B1A]/5 shadow-xs'
-                      : 'border-[#D9CAB3] bg-white hover:border-[#7A0B1A]/50'
-                  }`}
-                >
-                  <div className="text-[10px] font-bold uppercase text-[#647C98]">TRL 2 - 3</div>
-                  <div className="text-xs font-extrabold text-[#7A0B1A]">Idea / Research</div>
-                </button>
-
-                <button
-                  onClick={() => setStage('prototype')}
-                  className={`p-3 rounded-xl border text-left transition cursor-pointer ${
-                    stage === 'prototype'
-                      ? 'border-[#7A0B1A] bg-[#7A0B1A]/5 shadow-xs'
-                      : 'border-[#D9CAB3] bg-white hover:border-[#7A0B1A]/50'
-                  }`}
-                >
-                  <div className="text-[10px] font-bold uppercase text-[#647C98]">TRL 3 - 5</div>
-                  <div className="text-xs font-extrabold text-[#7A0B1A]">Prototype / MVP</div>
-                </button>
-
-                <button
-                  onClick={() => setStage('pilot')}
-                  className={`p-3 rounded-xl border text-left transition cursor-pointer ${
-                    stage === 'pilot'
-                      ? 'border-[#7A0B1A] bg-[#7A0B1A]/5 shadow-xs'
-                      : 'border-[#D9CAB3] bg-white hover:border-[#7A0B1A]/50'
-                  }`}
-                >
-                  <div className="text-[10px] font-bold uppercase text-[#647C98]">TRL 6+</div>
-                  <div className="text-xs font-extrabold text-[#7A0B1A]">Market Pilot</div>
-                </button>
-              </div>
-            </div>
-
-            {/* Calculated Output Box */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#7A0B1A] to-[#5B0712] rounded-2xl p-6 text-white shadow-md relative overflow-hidden flex flex-col justify-between h-full space-y-4">
-              <div>
-                <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-300">
-                  Recommended Grant Match
-                </span>
-                <div className="text-2xl sm:text-3xl font-black text-white mt-1 leading-tight">
-                  {calculatedGrant}
-                </div>
-                <div className="mt-3 text-xs text-slate-200 space-y-1">
-                  <div className="flex items-center space-x-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>0% Equity dilution (100% Grant-in-aid)</span>
-                  </div>
-                  <div className="flex items-center space-x-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span>Access to FabLabs &amp; CNC prototyping</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-2 border-t border-white/20 flex items-center justify-between">
-                <Link
-                  to="/proposal-doctor"
-                  className="text-xs font-bold text-amber-300 hover:text-white flex items-center space-x-1"
-                >
-                  <span>Generate DPR Proposal</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-                <Link
-                  to="/grants"
-                  className="px-3.5 py-1.5 rounded-lg bg-white text-[#7A0B1A] text-xs font-extrabold hover:bg-slate-100 transition shadow-2xs"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-          </div>
+        {/* 5. Subtle Scroll Indicator */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center pt-4 pb-2">
+          <a
+            href="#explore-features"
+            className="inline-flex flex-col items-center space-y-1.5 text-xs font-semibold text-[#647C98] hover:text-[#7A0B1A] transition-colors cursor-pointer group"
+          >
+            <span className="text-[11px] tracking-wider uppercase opacity-75 group-hover:opacity-100 transition-opacity">
+              Scroll to explore
+            </span>
+            <ChevronDown className="w-4 h-4 text-[#7A0B1A] animate-bounce" />
+          </a>
         </div>
       </section>
 
-      {/* 4. Live Ecosystem Metric Bar (Verifiable Numbers) */}
-      <section className="py-8 bg-white border-b border-[#D9CAB3]">
+      {/* Feature Cards Section (Below the fold) */}
+      <section id="explore-features" className="py-16 md:py-20 bg-surface border-b border-slate-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
-            <div className="p-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#7A0B1A]">
-                {stats?.totalTbis ?? '521'}
-              </div>
-              <div className="text-xs font-bold text-[#647C98] uppercase tracking-wider mt-1">
-                Empanelled TBIs
-              </div>
-            </div>
-            <div className="p-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#D99A2B]">
-                ₹142.5 Cr+
-              </div>
-              <div className="text-xs font-bold text-[#647C98] uppercase tracking-wider mt-1">
-                Annual Grant Pool
-              </div>
-            </div>
-            <div className="p-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#16A36A]">
-                0%
-              </div>
-              <div className="text-xs font-bold text-[#647C98] uppercase tracking-wider mt-1">
-                Equity Dilution
-              </div>
-            </div>
-            <div className="p-2">
-              <div className="text-3xl sm:text-4xl font-black text-[#5B0712]">
-                {stats?.uniqueCities ?? '150+'}
-              </div>
-              <div className="text-xs font-bold text-[#647C98] uppercase tracking-wider mt-1">
-                Cities Across India
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. What Makes TBI Nexus Different: DeepTech vs Generic Incubation */}
-      <section className="py-16 sm:py-20 bg-[#FAF7F2] border-b border-[#D9CAB3]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <h2 className="text-xs font-extrabold uppercase tracking-widest text-[#7A0B1A]">
-              Infrastructure Intelligence
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A] tracking-tight">
+              Explore TBI Nexus
             </h2>
-            <h3 className="text-3xl sm:text-4xl font-black text-[#5B0712] mt-1 font-display">
-              Engineered for DeepTech, Hardware &amp; Student Innovators
-            </h3>
-            <p className="text-sm text-[#647C98] mt-2">
-              Private accelerators demand 7% equity for generic advice. TBI Nexus connects you directly with funded university research hubs offering physical equipment and grants.
+            <p className="mt-2 text-sm text-[#647C98]">
+              Comprehensive discovery and benchmarking tools for India's technology incubation infrastructure.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Feature 1 */}
-            <div className="bg-white rounded-2xl border border-[#D9CAB3] p-7 shadow-card hover:border-[#7A0B1A] transition-all group flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] group-hover:bg-[#7A0B1A] group-hover:text-white transition">
-                  <Target className="w-6 h-6 text-[#D99A2B] group-hover:text-amber-300" />
-                </div>
-                <h4 className="text-lg font-extrabold text-[#7A0B1A]">
-                  Grant &amp; Scheme Radar
-                </h4>
-                <p className="text-xs text-[#647C98] leading-relaxed">
-                  Real-time database of DST NIDHI-PRAYAS, MeitY TIDE 2.0, BIRAC BIG, and SISFS programs with direct deadlines and university host lists.
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+            <Link
+              to="/explore"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <Search className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Search &amp; Filter
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Search by city, university, incubator scheme, and sector.
                 </p>
               </div>
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded">
-                  ₹10L - ₹50L Non-Dilutive
-                </span>
-                <Link to="/grants" className="text-xs font-extrabold text-[#7A0B1A] hover:underline flex items-center">
-                  <span>Explore</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Link>
-              </div>
-            </div>
+            </Link>
 
-            {/* Feature 2: AI Proposal Doctor */}
-            <div className="bg-white rounded-2xl border-2 border-[#D99A2B]/40 p-7 shadow-card hover:border-[#7A0B1A] transition-all group flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 px-3 py-1 bg-[#D99A2B] text-white text-[9px] font-extrabold uppercase tracking-wider rounded-bl-xl">
-                FLAGSHIP AI
+            <Link
+              to="/explore?status=Verified"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <ShieldCheck className="w-5 h-5 text-[#16A36A]" />
               </div>
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-[#7A0B1A]">
-                  <Sparkles className="w-6 h-6 text-[#D99A2B]" />
-                </div>
-                <h4 className="text-lg font-extrabold text-[#7A0B1A]">
-                  AI Grant Proposal Doctor
-                </h4>
-                <p className="text-xs text-[#647C98] leading-relaxed">
-                  Enter your raw idea in plain words. Our engine formats it into a screening-ready DST DPR proposal with TRL ratings, patent moats, and BOM allocations.
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Verified Hubs
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Direct official contact emails, directors, and websites.
                 </p>
               </div>
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-1 rounded">
-                  DST DPR Spec v2.4
-                </span>
-                <Link to="/proposal-doctor" className="text-xs font-extrabold text-[#7A0B1A] hover:underline flex items-center">
-                  <span>Launch Tool</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Link>
-              </div>
-            </div>
+            </Link>
 
-            {/* Feature 3: Campus Roadmap */}
-            <div className="bg-white rounded-2xl border border-[#D9CAB3] p-7 shadow-card hover:border-[#7A0B1A] transition-all group flex flex-col justify-between">
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#D9CAB3] flex items-center justify-center text-[#7A0B1A] group-hover:bg-[#7A0B1A] group-hover:text-white transition">
-                  <Route className="w-6 h-6 text-[#7A0B1A] group-hover:text-white" />
-                </div>
-                <h4 className="text-lg font-extrabold text-[#7A0B1A]">
-                  Campus-to-Company Roadmap
-                </h4>
-                <p className="text-xs text-[#647C98] leading-relaxed">
-                  Clear visual roadmap showing college students and faculty how to file provisional patents, access university labs, and register on Startup India.
+            <Link
+              to="/compare"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <GitCompare className="w-5 h-5 text-[#7A0B1A]" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Compare TBIs
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Side-by-side comparison of focus areas and amenities.
                 </p>
               </div>
-              <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-[11px] font-bold text-blue-800 bg-blue-50 px-2 py-1 rounded">
-                  4-Phase Milestone Path
-                </span>
-                <Link to="/roadmap" className="text-xs font-extrabold text-[#7A0B1A] hover:underline flex items-center">
-                  <span>View Path</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </Link>
+            </Link>
+
+            <Link
+              to="/explore"
+              className="flex items-start space-x-3.5 p-5 rounded-2xl bg-[#FAF7F2]/60 border border-[#D9CAB3] hover:border-[#7A0B1A]/50 hover:bg-white shadow-2xs hover:shadow-card transition-all duration-200 group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#D9CAB3] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform duration-200">
+                <MapPin className="w-5 h-5 text-[#D99A2B]" />
               </div>
+              <div>
+                <p className="text-sm font-bold text-[#243447] group-hover:text-[#7A0B1A] transition-colors">
+                  Nearby Proximity
+                </p>
+                <p className="text-xs text-[#647C98] mt-1 leading-relaxed">
+                  Nationwide directory covering incubators in 150+ cities.
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic Statistics Bar (Section 59 - Real DB calculations) */}
+      <section className="py-8 bg-surface border-b border-slate-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="p-2">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#7A0B1A]">
+                {stats?.totalTbis ?? (loading ? '...' : '500+')}
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
+                Total TBIs
+              </p>
+            </div>
+            <div className="p-2 border-l border-slate-100">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#5B0712]">
+                {stats?.uniqueUniversities ?? (loading ? '...' : '350+')}
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
+                Universities
+              </p>
+            </div>
+            <div className="p-2 border-l border-slate-100">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#7A0B1A]">
+                {stats?.uniqueCities ?? (loading ? '...' : '150+')}
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
+                Cities Covered
+              </p>
+            </div>
+            <div className="p-2 border-l border-slate-100">
+              <p className="text-3xl sm:text-4xl font-extrabold text-[#2E6F40]">
+                {stats?.verifiedTbis ?? (loading ? '...' : '400+')}
+              </p>
+              <p className="text-xs sm:text-sm font-bold text-slate-muted mt-1 uppercase tracking-wider">
+                Verified Records
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Featured High-Profile TBIs Preview */}
-      <section className="py-16 sm:py-20 bg-white border-b border-[#D9CAB3]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      {/* Featured TBIs Section (Section 60) */}
+      <section className="py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <div className="flex items-center space-x-2 text-[#5B0712] text-xs font-bold uppercase tracking-wider mb-1">
+              <ShieldCheck className="w-4 h-4 text-[#5B0712]" />
+              <span>Verified Ecosystems</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">Featured TBIs</h2>
+            <p className="text-sm text-slate-muted mt-1">
+              Technology business incubators with verified credentials and contact details.
+            </p>
+          </div>
+          <Link
+            to="/explore"
+            className="inline-flex items-center space-x-1.5 text-sm font-bold text-[#5B0712] hover:text-[#7A0B1A] transition-colors shrink-0"
+          >
+            <span>View all incubators</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {featuredTbis.map((tbi) => (
+              <TbiCard key={tbi.id} tbi={tbi} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Popular Incubator Categories (Section 37) */}
+      {popularCategories.length > 0 && (
+        <section className="py-16 bg-surface border-y border-slate-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-2xl font-extrabold text-[#7A0B1A]">Explore by Incubator Type</h2>
+                <p className="text-sm text-slate-muted mt-1">
+                  Browse incubators based on institutional recognition and funding programs.
+                </p>
+              </div>
+              <Link
+                to="/categories"
+                className="text-sm font-bold text-[#5B0712] hover:underline flex items-center space-x-1"
+              >
+                <span>All Categories</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {popularCategories.map((cat) => (
+                <Link
+                  key={cat.name}
+                  to={`/explore?incubatorType=${encodeURIComponent(cat.name)}`}
+                  className="p-4 rounded-xl border border-slate-border bg-background hover:bg-white hover:border-[#5B0712] hover:shadow-hover transition-all flex items-center justify-between group"
+                >
+                  <div className="flex items-center space-x-3 overflow-hidden">
+                    <div className="w-9 h-9 rounded-lg bg-[#D9CAB3] text-[#7A0B1A] flex items-center justify-center font-bold text-xs shrink-0 group-hover:bg-[#5B0712] group-hover:text-[#D9CAB3] transition-colors">
+                      <Layers className="w-4 h-4" />
+                    </div>
+                    <div className="truncate">
+                      <p className="text-sm font-bold text-slate group-hover:text-[#5B0712] truncate">
+                        {cat.name}
+                      </p>
+                      <p className="text-xs text-slate-muted">{cat.count} TBIs registered</p>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#5B0712] group-hover:translate-x-1 transition-all" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Top Universities Section */}
+      {topUniversities.length > 0 && (
+        <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex items-center justify-between mb-8">
             <div>
-              <span className="text-xs font-extrabold text-[#D99A2B] uppercase tracking-wider block">
-                Top Incubation Facilities
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-[#7A0B1A] mt-1 font-display">
-                Featured Innovation Hubs
-              </h3>
-              <p className="text-xs sm:text-sm text-[#647C98] mt-1">
-                Verified university incubators with active funding programs and advanced prototyping infrastructure.
+              <h2 className="text-2xl font-extrabold text-[#7A0B1A]">Leading Innovation Universities</h2>
+              <p className="text-sm text-slate-muted mt-1">
+                Colleges and universities pioneering entrepreneurial ecosystems.
               </p>
             </div>
             <Link
-              to="/explore"
-              className="inline-flex items-center space-x-1.5 text-xs font-extrabold text-[#7A0B1A] hover:text-[#5B0712] transition shrink-0"
+              to="/universities"
+              className="text-sm font-bold text-[#5B0712] hover:underline flex items-center space-x-1"
             >
-              <span>Explore all 521 TBIs</span>
+              <span>View All Universities</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <SkeletonCard key={i} />
-              ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topUniversities.map((uni) => (
+              <Link
+                key={uni.university}
+                to={`/explore?university=${encodeURIComponent(uni.university)}`}
+                className="p-4 rounded-xl border border-slate-border bg-surface hover:shadow-hover hover:border-[#5B0712] transition-all flex items-center justify-between group"
+              >
+                <div className="flex items-center space-x-3 overflow-hidden">
+                  <div className="w-9 h-9 rounded-lg bg-[#D9CAB3]/60 text-[#7A0B1A] flex items-center justify-center shrink-0">
+                    <Building2 className="w-4 h-4 text-[#5B0712]" />
+                  </div>
+                  <div className="truncate">
+                    <p className="text-sm font-bold text-slate group-hover:text-[#5B0712] truncate">
+                      {uni.university}
+                    </p>
+                    <p className="text-xs text-slate-muted">{uni.city} • {uni.tbiCount} TBI</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-slate-muted group-hover:text-[#5B0712] group-hover:translate-x-0.5 transition-all shrink-0" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* How It Works */}
+      <section className="py-16 bg-[#F5EFE6] border-t border-slate-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#7A0B1A]">How TBI Global Works</h2>
+          <p className="text-sm text-slate-muted mt-2 max-w-lg mx-auto">
+            A frictionless directory empowering researchers, students, and founders.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
+              <div className="w-10 h-10 rounded-xl bg-[#7A0B1A] text-[#D9CAB3] flex items-center justify-center font-bold mb-4 shadow-sm border border-[#7A0B1A]">
+                1
+              </div>
+              <h3 className="text-base font-bold text-slate mb-1">Search & Filter</h3>
+              <p className="text-sm text-slate-muted">
+                Search across 500+ authentic records by university, incubator category, city, or status.
+              </p>
             </div>
-          ) : topTbis.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {topTbis.slice(0, 6).map((tbi) => (
-                <TbiCard key={tbi.id || tbi.name} tbi={tbi} />
-              ))}
+
+            <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
+              <div className="w-10 h-10 rounded-xl bg-[#5B0712] text-[#D9CAB3] flex items-center justify-center font-bold mb-4 shadow-sm">
+                2
+              </div>
+              <h3 className="text-base font-bold text-slate mb-1">Inspect Verified Details</h3>
+              <p className="text-sm text-slate-muted">
+                Review verified status, official contact emails, and verified portal links without fabricated information.
+              </p>
             </div>
-          ) : (
-            <div className="p-8 text-center text-xs text-[#647C98] bg-[#FAF7F2] rounded-2xl border border-[#D9CAB3]">
-              Connecting to live university database... <Link to="/explore" className="text-[#7A0B1A] font-bold underline">Explore all 521 TBIs directly →</Link>
+
+            <div className="bg-surface p-6 rounded-2xl border border-slate-border shadow-card text-left">
+              <div className="w-10 h-10 rounded-xl bg-[#D9CAB3] text-[#7A0B1A] flex items-center justify-center font-bold mb-4 shadow-sm border border-[#8C7A6B]">
+                3
+              </div>
+              <h3 className="text-base font-bold text-slate mb-1">Save & Connect</h3>
+              <p className="text-sm text-slate-muted">
+                Bookmark incubation centres to your personal dashboard and reach out directly to incubation officers.
+              </p>
             </div>
-          )}
+          </div>
         </div>
       </section>
 
-      {/* 7. Bottom High-Impact CTA */}
-      <section className="py-16 bg-gradient-to-r from-[#7A0B1A] via-[#650814] to-[#4A050E] text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 text-amber-200 text-xs font-bold">
-            <Sparkles className="w-3.5 h-3.5 text-[#D99A2B]" />
-            <span>Start Building with 100% Non-Dilutive Capital</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-            Stop waiting for venture capital to build your physical prototype.
+      {/* CTA styled with #7A0B1A and #D9CAB3 */}
+      <section className="py-14 bg-gradient-to-r from-[#7A0B1A] via-[#7A0B1A] to-[#5B0712] text-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#FAF7F2]">
+            Ready to find the right incubator for your next idea?
           </h2>
-          <p className="text-sm sm:text-base text-slate-200 max-w-xl mx-auto font-normal">
-            Apply to university-backed prototyping grants, access high-end lab machinery, and convert research into commercially viable ventures.
+          <p className="mt-3 text-sm sm:text-base text-[#D9CAB3] max-w-xl mx-auto">
+            Join founders and researchers discovering incubation opportunities across university ecosystems.
           </p>
-          <div className="pt-2 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
-              to="/proposal-doctor"
-              className="px-7 py-3.5 rounded-xl bg-[#D99A2B] hover:bg-[#c48820] text-slate-900 text-sm font-black transition shadow-md"
+              to="/signup"
+              className="px-6 py-2.5 rounded-xl bg-[#D9CAB3] hover:bg-[#FAF7F2] text-[#7A0B1A] text-sm font-bold transition-colors shadow-sm"
             >
-              Draft Grant Proposal with AI →
+              Get Started Free
             </Link>
             <Link
               to="/explore"
-              className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 transition"
+              className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-[#D9CAB3] text-sm font-semibold border border-[#D9CAB3]/30 transition-colors"
             >
-              Browse 521 Incubators
+              Explore Directory
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 8. Modern Footer */}
-      <footer className="bg-white border-t border-[#D9CAB3] py-12 text-xs text-[#647C98]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <img src="/tbi-nexus-logo.png" alt="TBI Nexus" className="w-7 h-7 rounded-lg border border-[#7A0B1A]" />
-              <span className="font-extrabold text-base text-[#7A0B1A]">TBI NEXUS</span>
+      {/* Footer (Section 61) */}
+      <footer className="bg-surface border-t border-slate-border py-12 text-sm text-slate-muted">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="flex items-center space-x-2.5 text-[#7A0B1A] font-bold text-base mb-2">
+                <img
+                  src="/tbi-nexus-logo.png"
+                  alt="TBI Nexus"
+                  className="w-7 h-7 rounded-lg object-cover border border-[#5B0712] shadow-2xs"
+                />
+                <span>TBI NEXUS</span>
+              </div>
+              <p className="text-xs text-slate-muted mt-1 leading-relaxed">
+                Find. Connect. Innovate.
+                <br />
+                The comprehensive discovery platform for university and startup incubation centres.
+              </p>
             </div>
-            <p className="leading-relaxed">
-              India's comprehensive Technology Business Incubator &amp; Government Grant Intelligence Network.
+
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#7A0B1A] mb-3">Explore</h4>
+              <ul className="space-y-2 text-xs">
+                <li><Link to="/explore" className="hover:text-[#5B0712]">Explore TBIs</Link></li>
+                <li><Link to="/universities" className="hover:text-[#5B0712]">Universities</Link></li>
+                <li><Link to="/categories" className="hover:text-[#5B0712]">Categories</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#7A0B1A] mb-3">Platform</h4>
+              <ul className="space-y-2 text-xs">
+                <li><Link to="/compare" className="hover:text-[#5B0712]">Compare TBIs</Link></li>
+                <li><Link to="/suggest" className="hover:text-[#5B0712]">Suggest a TBI</Link></li>
+                <li><Link to="/saved" className="hover:text-[#5B0712]">Saved TBIs</Link></li>
+                <li><Link to="/dashboard" className="hover:text-[#5B0712]">Dashboard</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#7A0B1A] mb-3">Administration</h4>
+              <ul className="space-y-2 text-xs">
+                <li><Link to="/login" className="hover:text-[#5B0712]">Admin Login</Link></li>
+                <li><Link to="/admin" className="hover:text-[#5B0712]">Admin Portal</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
+            <p>© 2026 TBI Nexus. All rights reserved.</p>
+            <p className="mt-2 sm:mt-0 text-[11px]">
+              Independent incubator discovery directory grounded in verified university records.
             </p>
           </div>
-
-          <div>
-            <h5 className="font-extrabold text-[#7A0B1A] uppercase tracking-wider mb-3">Discovery</h5>
-            <ul className="space-y-2">
-              <li><Link to="/explore" className="hover:text-[#7A0B1A]">Explore 521 TBIs</Link></li>
-              <li><Link to="/universities" className="hover:text-[#7A0B1A]">Colleges &amp; Universities</Link></li>
-              <li><Link to="/categories" className="hover:text-[#7A0B1A]">Incubation Categories</Link></li>
-              <li><Link to="/compare" className="hover:text-[#7A0B1A]">Compare TBIs</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-extrabold text-[#7A0B1A] uppercase tracking-wider mb-3">Grant Intelligence</h5>
-            <ul className="space-y-2">
-              <li><Link to="/grants" className="hover:text-[#7A0B1A]">National Grant Radar</Link></li>
-              <li><Link to="/proposal-doctor" className="hover:text-[#7A0B1A]">AI Grant Proposal Doctor</Link></li>
-              <li><Link to="/roadmap" className="hover:text-[#7A0B1A]">Campus-to-Company Roadmap</Link></li>
-              <li><Link to="/suggest" className="hover:text-[#7A0B1A]">Suggest a New TBI</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-extrabold text-[#7A0B1A] uppercase tracking-wider mb-3">Portal</h5>
-            <ul className="space-y-2">
-              <li><Link to="/login" className="hover:text-[#7A0B1A]">Student &amp; Founder Login</Link></li>
-              <li><Link to="/admin" className="hover:text-[#7A0B1A]">Admin Control Center</Link></li>
-              <li><Link to="/dashboard" className="hover:text-[#7A0B1A]">User Dashboard</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-slate-400">
-          <p>© 2026 TBI Nexus India. Grounded in verified DST, MeitY &amp; BIRAC records.</p>
-          <p className="mt-2 sm:mt-0 font-semibold text-slate-500">Built for Indian Student &amp; DeepTech Founders</p>
         </div>
       </footer>
     </div>

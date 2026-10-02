@@ -28,31 +28,10 @@ export const Navbar = () => {
                 TBI NEXUS
               </span>
               <span className="text-[10px] uppercase tracking-wider text-[#647C98] font-bold">
-                Incubation &amp; Grant Network
+                Incubator Directory
               </span>
             </div>
           </Link>
-
-          {/* Quick Header Links */}
-          <nav className="hidden md:flex items-center space-x-6 text-xs font-bold text-[#647C98]">
-            <Link to="/grants" className="hover:text-[#7A0B1A] transition flex items-center space-x-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Grant Radar</span>
-            </Link>
-            <Link to="/proposal-doctor" className="hover:text-[#7A0B1A] text-[#7A0B1A] transition flex items-center space-x-1">
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#7A0B1A]/10 border border-[#7A0B1A]/30">AI</span>
-              <span>Grant Doctor</span>
-            </Link>
-            <Link to="/roadmap" className="hover:text-[#7A0B1A] transition">
-              <span>Campus Roadmap</span>
-            </Link>
-            <Link to="/explore" className="hover:text-[#7A0B1A] transition">
-              <span>Explore TBIs</span>
-            </Link>
-            <Link to="/universities" className="hover:text-[#7A0B1A] transition">
-              <span>Universities</span>
-            </Link>
-          </nav>
 
           {/* Right Action: Only Login and Sign Up (or User/Logout if logged in) */}
           <div className="flex items-center space-x-3">

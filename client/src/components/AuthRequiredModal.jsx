@@ -59,14 +59,14 @@ export const AuthRequiredModal = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/60 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
       onClick={closeAuthModal}
       role="dialog"
       aria-modal="true"
       aria-labelledby="auth-modal-title"
     >
       <div
-        className="relative w-full max-w-md bg-white rounded-2xl border border-border shadow-2xl p-6 sm:p-7 overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-md bg-[#131318] rounded-2xl border border-white/10 shadow-2xl p-6 sm:p-7 overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Subtle decorative top accent line */}
@@ -84,7 +84,7 @@ export const AuthRequiredModal = () => {
 
         {/* Header Icon & Title */}
         <div className="flex flex-col items-center text-center mt-2">
-          <div className="w-14 h-14 rounded-2xl bg-primary-light border border-blue-100 flex items-center justify-center shadow-xs mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-primary-light border border-orange-200 flex items-center justify-center shadow-xs mb-4">
             {getContextIcon()}
           </div>
 

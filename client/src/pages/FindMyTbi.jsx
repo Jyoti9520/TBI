@@ -170,7 +170,7 @@ export const FindMyTbi = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-dark font-heading flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+            <div className="w-10 h-10 rounded-xl bg-primary-light border border-orange-200 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
               <Sparkles className="w-5 h-5 text-primary" />
             </div>
             <span>Find Your TBI</span>
@@ -197,7 +197,7 @@ export const FindMyTbi = () => {
         <div className="bg-white border border-border rounded-xl p-5 shadow-card">
           <div className="flex items-center justify-between mb-3 text-xs">
             <div className="flex items-center space-x-2 font-bold text-primary">
-              <span className="w-6 h-6 rounded-full bg-primary-light border border-blue-100 flex items-center justify-center text-[11px] text-primary font-bold">
+              <span className="w-6 h-6 rounded-full bg-primary-light border border-orange-200 flex items-center justify-center text-[11px] text-primary font-bold">
                 {step}
               </span>
               <span>Step {step} of 3</span>
@@ -225,7 +225,7 @@ export const FindMyTbi = () => {
       {step === 1 && (
         <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-6">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-orange-200 text-primary text-xs font-semibold mb-2">
               <MapPin className="w-3.5 h-3.5" />
               <span>Location</span>
             </div>
@@ -356,7 +356,7 @@ export const FindMyTbi = () => {
 
           {/* Selected city banner if chosen */}
           {selectedCity && (
-            <div className="p-3 rounded-lg bg-primary-light border border-blue-100 flex items-center justify-between text-xs text-primary font-semibold">
+            <div className="p-3 rounded-lg bg-primary-light border border-orange-200 flex items-center justify-between text-xs text-primary font-semibold">
               <span className="flex items-center space-x-1.5">
                 <MapPin className="w-4 h-4" />
                 <span>Selected: <strong>{selectedCity}</strong></span>
@@ -393,7 +393,7 @@ export const FindMyTbi = () => {
       {step === 2 && (
         <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-6">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-orange-200 text-primary text-xs font-semibold mb-2">
               <Building2 className="w-3.5 h-3.5" />
               <span>Incubator Model</span>
             </div>
@@ -514,7 +514,7 @@ export const FindMyTbi = () => {
       {step === 3 && (
         <div className="bg-white border border-border rounded-xl p-6 sm:p-8 shadow-card space-y-8">
           <div className="space-y-1">
-            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-blue-100 text-primary text-xs font-semibold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-primary-light border border-orange-200 text-primary text-xs font-semibold mb-2">
               <GraduationCap className="w-3.5 h-3.5" />
               <span>Institution & Status</span>
             </div>
@@ -715,7 +715,7 @@ export const FindMyTbi = () => {
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-primary bg-primary-light border border-blue-100 hover:bg-blue-100 transition-all cursor-pointer"
+                className="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-lg text-xs font-semibold text-primary bg-primary-light border border-orange-200 hover:bg-orange-100 transition-all cursor-pointer"
               >
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>Adjust Criteria</span>
@@ -735,7 +735,7 @@ export const FindMyTbi = () => {
           <div className="flex flex-wrap items-center gap-2 px-1">
             <span className="text-xs font-semibold text-slate-muted">Filters applied:</span>
             {selectedCity ? (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-orange-200 text-primary font-medium flex items-center space-x-1">
                 <MapPin className="w-3 h-3" />
                 <span>City: {selectedCity}</span>
               </span>
@@ -746,7 +746,7 @@ export const FindMyTbi = () => {
             )}
 
             {selectedIncubatorType ? (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-orange-200 text-primary font-medium flex items-center space-x-1">
                 <Building2 className="w-3 h-3" />
                 <span>Type: {selectedIncubatorType}</span>
               </span>
@@ -757,14 +757,14 @@ export const FindMyTbi = () => {
             )}
 
             {selectedUniversityType && (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-orange-200 text-primary font-medium flex items-center space-x-1">
                 <GraduationCap className="w-3 h-3" />
                 <span>Institution: {selectedUniversityType}</span>
               </span>
             )}
 
             {selectedStatus && (
-              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-blue-100 text-primary font-medium flex items-center space-x-1">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-primary-light border border-orange-200 text-primary font-medium flex items-center space-x-1">
                 <ShieldCheck className="w-3 h-3" />
                 <span>Status: {selectedStatus}</span>
               </span>

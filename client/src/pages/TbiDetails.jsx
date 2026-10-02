@@ -173,11 +173,11 @@ export const TbiDetails = () => {
       </div>
 
       {/* Hero Header Card */}
-      <div className="bg-white border border-border rounded-2xl p-6 sm:p-8 shadow-xs space-y-6">
+      <div className="bg-[#131318] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
           <div className="flex items-start space-x-4">
             {/* Avatar / Logo */}
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-bg border border-border flex items-center justify-center font-bold font-heading text-primary text-2xl sm:text-3xl shrink-0 shadow-xs overflow-hidden">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#1c1c24] border border-white/10 flex items-center justify-center font-bold font-heading text-orange-400 text-2xl sm:text-3xl shrink-0 shadow-lg overflow-hidden">
               {tbi.logo ? (
                 <img
                   src={tbi.logo}
@@ -197,20 +197,20 @@ export const TbiDetails = () => {
                 <StatusBadge status={displayStatus} />
 
                 {incubatorType && (
-                  <span className="text-xs font-medium text-primary bg-primary-light px-2.5 py-0.5 rounded-md border border-blue-100">
+                  <span className="text-xs font-medium text-orange-400 bg-orange-500/15 px-2.5 py-0.5 rounded-md border border-orange-500/30">
                     {incubatorType}
                   </span>
                 )}
               </div>
 
               {/* Primary Title: University Name */}
-              <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark leading-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold font-heading text-white leading-tight">
                 {universityName}
               </h1>
 
               {/* Secondary prominent info: Incubator / TBI Name */}
-              <p className="text-base font-medium text-slate-body mt-1.5 flex items-center space-x-2">
-                <Rocket className="w-4 h-4 shrink-0 text-primary" />
+              <p className="text-base font-medium text-slate-300 mt-1.5 flex items-center space-x-2">
+                <Rocket className="w-4 h-4 shrink-0 text-orange-400" />
                 <span>{incubatorName}</span>
               </p>
             </div>
@@ -220,7 +220,7 @@ export const TbiDetails = () => {
           <div className="flex items-center space-x-2 shrink-0">
             <button
               onClick={handleShare}
-              className="p-2.5 rounded-xl border border-border text-slate-muted hover:text-dark hover:bg-slate-hover transition-colors"
+              className="p-2.5 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
               title="Copy share link"
             >
               <Share2 className="w-4 h-4" />
@@ -231,8 +231,8 @@ export const TbiDetails = () => {
               disabled={savingFav}
               className={`flex items-center space-x-1.5 px-4 py-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
                 isFavorited
-                  ? 'bg-red-50 text-red-600 border-red-200 shadow-xs'
-                  : 'bg-white text-slate-body border-border hover:bg-slate-hover hover:text-red-500'
+                  ? 'bg-red-500/15 text-red-400 border-red-500/30 shadow-xs'
+                  : 'bg-[#1a1a22] text-slate-300 border-white/10 hover:bg-[#22222e] hover:text-red-400'
               }`}
             >
               <Heart
@@ -246,24 +246,24 @@ export const TbiDetails = () => {
         </div>
 
         {copied && (
-          <div className="text-xs font-semibold text-primary bg-primary-light px-3 py-1.5 rounded-lg border border-blue-100 text-center animate-in fade-in">
+          <div className="text-xs font-semibold text-orange-400 bg-orange-500/15 px-3 py-1.5 rounded-lg border border-orange-500/30 text-center animate-in fade-in">
             Link copied to clipboard!
           </div>
         )}
 
-        <hr className="border-border" />
+        <hr className="border-white/10" />
 
         {/* Detailed Metadata Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
           <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-lg bg-slate-bg border border-border flex items-center justify-center shrink-0 mt-0.5">
-              <University className="w-4 h-4 text-primary" />
+            <div className="w-8 h-8 rounded-lg bg-[#1c1c24] border border-white/10 flex items-center justify-center shrink-0 mt-0.5">
+              <University className="w-4 h-4 text-orange-400" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-muted">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 University
               </p>
-              <p className="font-semibold text-dark mt-0.5">{universityName}</p>
+              <p className="font-semibold text-white mt-0.5">{universityName}</p>
             </div>
           </div>
 

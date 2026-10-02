@@ -47,13 +47,13 @@ export const CompareModal = ({
   // 8. Status
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-5xl bg-surface rounded-2xl border border-slate-border shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
+      <div className="relative w-full max-w-5xl bg-[#131318] rounded-2xl border border-white/10 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         
         {/* Modal Header */}
-        <div className="px-5 py-4 sm:px-6 bg-slate-bg border-b border-border flex items-center justify-between gap-3 shrink-0">
+        <div className="px-5 py-4 sm:px-6 bg-[#0e0e12] border-b border-white/10 flex items-center justify-between gap-3 shrink-0">
           <div>
-            <h2 className="text-lg sm:text-xl font-bold font-heading text-dark flex items-center space-x-2">
+            <h2 className="text-lg sm:text-xl font-bold font-heading text-white flex items-center space-x-2">
               <span>Compare TBIs</span>
               <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary text-white">
                 {selectedTbis.length} of 3
@@ -229,7 +229,7 @@ export const CompareModal = ({
                       return (
                         <td key={tbi.id} className="p-3.5 sm:p-4 text-slate-body border-l border-border">
                           {display.incubatorType ? (
-                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary-light border border-blue-100 text-xs font-medium text-primary">
+                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary-light border border-orange-200 text-xs font-medium text-primary">
                               {display.incubatorType}
                             </span>
                           ) : (

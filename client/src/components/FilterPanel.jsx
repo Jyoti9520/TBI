@@ -68,17 +68,17 @@ export const FilterPanel = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-dark/50 backdrop-blur-xs transition-opacity">
-      <div className="w-full max-w-md bg-white h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-200 border-l border-border">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-md transition-opacity">
+      <div className="w-full max-w-md bg-[#131318] text-white h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-200 border-l border-white/10">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-dark">
+        <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0e0e12]">
+          <div className="flex items-center space-x-2 text-white">
             <Filter className="w-5 h-5 text-primary" />
             <h3 className="font-bold font-heading text-lg">Filter TBIs</h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-slate-muted hover:text-dark hover:bg-slate-hover transition-colors"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

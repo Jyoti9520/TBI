@@ -70,7 +70,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-border flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
+    <aside className="w-64 bg-[#0d0d11] border-r border-white/10 flex flex-col h-[calc(100vh-4rem)] sticky top-16 select-none shrink-0">
       {/* Main Nav */}
       <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
         {navItems.map((item) => {

@@ -47,7 +47,7 @@ export const Compare = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary-light border border-orange-200 flex items-center justify-center shrink-0">
               <GitCompare className="w-5 h-5 text-primary" />
             </div>
             <span>Compare TBIs</span>
@@ -81,7 +81,7 @@ export const Compare = () => {
       {/* Empty State or Less than 2 items State */}
       {selectedTbis.length === 0 ? (
         <div className="text-center py-16 px-4 bg-white border border-dashed border-border rounded-2xl max-w-lg mx-auto my-8 shadow-xs">
-          <div className="w-14 h-14 rounded-2xl bg-primary-light border border-blue-100 flex items-center justify-center mx-auto mb-4 text-primary shadow-xs">
+          <div className="w-14 h-14 rounded-2xl bg-primary-light border border-orange-200 flex items-center justify-center mx-auto mb-4 text-primary shadow-xs">
             <GitCompare className="w-7 h-7" />
           </div>
           <h2 className="text-lg font-bold font-heading text-dark mb-1.5">Compare TBIs</h2>
@@ -290,7 +290,7 @@ export const Compare = () => {
                     return (
                       <td key={tbi.id} className="p-4 text-slate-body border-l border-border">
                         {display.incubatorType ? (
-                          <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary-light border border-blue-100 text-xs font-medium text-primary">
+                          <span className="inline-block px-2.5 py-0.5 rounded-md bg-primary-light border border-orange-200 text-xs font-medium text-primary">
                             {display.incubatorType}
                           </span>
                         ) : (

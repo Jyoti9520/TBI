@@ -71,7 +71,7 @@ export const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white selection:bg-primary-light selection:text-primary">
+    <div className="min-h-screen flex flex-col bg-[#0a0a0c] text-white selection:bg-orange-500 selection:text-white">
       <Navbar />
 
       {/* Hero Section: Dark Tech Ecosystem with Glowing Perspective Wave (YNOS Aesthetic) */}
@@ -111,7 +111,7 @@ export const Landing = () => {
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/signup"
-              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-white text-dark hover:bg-slate-100 text-sm font-bold tracking-wide uppercase shadow-lg hover:shadow-orange-500/20 transition-all active:scale-[0.98]"
+              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold tracking-wide uppercase shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98]"
             >
               <span>SIGN-UP FOR FREE</span>
             </Link>
@@ -128,7 +128,7 @@ export const Landing = () => {
           {/* Search Input Bar embedded in Hero */}
           <form
             onSubmit={handleSearchSubmit}
-            className="mt-10 max-w-2xl mx-auto flex items-center bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/20 shadow-2xl focus-within:border-orange-400 focus-within:ring-2 focus-within:ring-orange-400/30 transition-all duration-150"
+            className="mt-10 max-w-2xl mx-auto flex items-center bg-[#131318]/90 backdrop-blur-md p-2 rounded-xl border border-white/20 shadow-2xl focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-500/30 transition-all duration-150"
           >
             <div className="pl-3 pr-2 text-slate-400">
               <Search className="w-5 h-5 text-orange-400" />
@@ -191,13 +191,13 @@ export const Landing = () => {
       </section>
 
       {/* Core Platform Capabilities */}
-      <section className="py-14 sm:py-16 bg-white border-b border-border">
+      <section className="py-14 sm:py-16 bg-[#0a0a0c] border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-dark tracking-tight font-heading">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-heading">
               Platform Features
             </h2>
-            <p className="mt-2 text-sm text-slate-muted">
+            <p className="mt-2 text-sm text-slate-400">
               Structured discovery and benchmarking tools for researchers, founders, and institutions.
             </p>
           </div>
@@ -205,60 +205,60 @@ export const Landing = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <Link
               to="/explore"
-              className="p-5 rounded-card bg-white border border-border hover:border-primary hover:shadow-hover transition-all duration-150 group"
+              className="p-5 rounded-card bg-[#131318] border border-white/10 hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all duration-150 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary-light text-primary flex items-center justify-center mb-4 transition-colors">
-                <Search className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-lg bg-orange-500/15 text-orange-400 flex items-center justify-center mb-4 transition-colors">
+                <Search className="w-5 h-5 text-orange-400" />
               </div>
-              <p className="text-sm font-bold text-dark group-hover:text-primary transition-colors">
+              <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
                 Smart Search &amp; Filter
               </p>
-              <p className="text-xs text-slate-muted mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
                 Filter by city, university type, incubation recognition, and status.
               </p>
             </Link>
 
             <Link
               to="/explore?status=Verified"
-              className="p-5 rounded-card bg-white border border-border hover:border-primary hover:shadow-hover transition-all duration-150 group"
+              className="p-5 rounded-card bg-[#131318] border border-white/10 hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all duration-150 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-50 text-status-success flex items-center justify-center mb-4 transition-colors">
-                <ShieldCheck className="w-5 h-5 text-status-success" />
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center mb-4 transition-colors">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
               </div>
-              <p className="text-sm font-bold text-dark group-hover:text-primary transition-colors">
+              <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
                 Verified Hubs
               </p>
-              <p className="text-xs text-slate-muted mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
                 Official contact records, director names, and verified portal links.
               </p>
             </Link>
 
             <Link
               to="/compare"
-              className="p-5 rounded-card bg-white border border-border hover:border-primary hover:shadow-hover transition-all duration-150 group"
+              className="p-5 rounded-card bg-[#131318] border border-white/10 hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all duration-150 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary-light text-primary flex items-center justify-center mb-4 transition-colors">
-                <GitCompare className="w-5 h-5 text-primary" />
+              <div className="w-10 h-10 rounded-lg bg-orange-500/15 text-orange-400 flex items-center justify-center mb-4 transition-colors">
+                <GitCompare className="w-5 h-5 text-orange-400" />
               </div>
-              <p className="text-sm font-bold text-dark group-hover:text-primary transition-colors">
+              <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
                 Compare Incubators
               </p>
-              <p className="text-xs text-slate-muted mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
                 Side-by-side comparison of focus areas, facilities, and university backing.
               </p>
             </Link>
 
             <Link
               to="/universities"
-              className="p-5 rounded-card bg-white border border-border hover:border-primary hover:shadow-hover transition-all duration-150 group"
+              className="p-5 rounded-card bg-[#131318] border border-white/10 hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all duration-150 group"
             >
-              <div className="w-10 h-10 rounded-lg bg-sky-50 text-secondary-accent flex items-center justify-center mb-4 transition-colors">
-                <Building2 className="w-5 h-5 text-secondary-accent" />
+              <div className="w-10 h-10 rounded-lg bg-orange-500/15 text-orange-400 flex items-center justify-center mb-4 transition-colors">
+                <Building2 className="w-5 h-5 text-orange-400" />
               </div>
-              <p className="text-sm font-bold text-dark group-hover:text-primary transition-colors">
+              <p className="text-sm font-bold text-white group-hover:text-orange-400 transition-colors">
                 University Hubs
               </p>
-              <p className="text-xs text-slate-muted mt-1.5 leading-relaxed">
+              <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
                 Explore premier IIT, NIT, Central, and State university incubation systems.
               </p>
             </Link>
@@ -307,20 +307,20 @@ export const Landing = () => {
 
       {/* Popular Incubator Categories */}
       {popularCategories.length > 0 && (
-        <section className="py-14 sm:py-16 bg-background-secondary border-y border-border">
+        <section className="py-14 sm:py-16 bg-[#0e0e12] border-y border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h2 className="text-2xl font-extrabold text-dark font-heading">
+                <h2 className="text-2xl font-extrabold text-white font-heading">
                   Explore by Incubator Type
                 </h2>
-                <p className="text-sm text-slate-muted mt-1">
+                <p className="text-sm text-slate-400 mt-1">
                   Browse incubators based on institutional recognition and funding programs.
                 </p>
               </div>
               <Link
                 to="/categories"
-                className="text-sm font-semibold text-primary hover:underline flex items-center space-x-1"
+                className="text-sm font-semibold text-orange-400 hover:text-orange-300 flex items-center space-x-1"
               >
                 <span>All Categories</span>
                 <ArrowRight className="w-4 h-4" />
@@ -332,20 +332,20 @@ export const Landing = () => {
                 <Link
                   key={cat.name}
                   to={`/explore?incubatorType=${encodeURIComponent(cat.name)}`}
-                  className="p-4 rounded-card border border-border bg-white hover:border-primary hover:shadow-hover transition-all flex items-center justify-between group"
+                  className="p-4 rounded-card border border-white/10 bg-[#131318] hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all flex items-center justify-between group"
                 >
                   <div className="flex items-center space-x-3 overflow-hidden">
-                    <div className="w-9 h-9 rounded-lg bg-primary-light text-primary flex items-center justify-center font-bold text-xs shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-orange-500/15 text-orange-400 flex items-center justify-center font-bold text-xs shrink-0 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                       <Layers className="w-4 h-4" />
                     </div>
                     <div className="truncate">
-                      <p className="text-sm font-bold text-dark group-hover:text-primary truncate">
+                      <p className="text-sm font-bold text-white group-hover:text-orange-400 truncate">
                         {cat.name}
                       </p>
-                      <p className="text-xs text-slate-muted">{cat.count} TBIs registered</p>
+                      <p className="text-xs text-slate-400">{cat.count} TBIs registered</p>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-slate-muted group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all shrink-0" />
                 </Link>
               ))}
             </div>
@@ -358,16 +358,16 @@ export const Landing = () => {
         <section className="py-14 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-extrabold text-dark font-heading">
+              <h2 className="text-2xl font-extrabold text-white font-heading">
                 Leading Innovation Universities
               </h2>
-              <p className="text-sm text-slate-muted mt-1">
+              <p className="text-sm text-slate-400 mt-1">
                 Colleges and universities pioneering entrepreneurial ecosystems.
               </p>
             </div>
             <Link
               to="/universities"
-              className="text-sm font-semibold text-primary hover:underline flex items-center space-x-1"
+              className="text-sm font-semibold text-orange-400 hover:text-orange-300 flex items-center space-x-1"
             >
               <span>View All Universities</span>
               <ArrowRight className="w-4 h-4" />
@@ -379,20 +379,20 @@ export const Landing = () => {
               <Link
                 key={uni.university}
                 to={`/explore?university=${encodeURIComponent(uni.university)}`}
-                className="p-4 rounded-card border border-border bg-white hover:border-primary hover:shadow-hover transition-all flex items-center justify-between group"
+                className="p-4 rounded-card border border-white/10 bg-[#131318] hover:border-orange-500 hover:shadow-orange-500/10 hover:shadow-hover transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center space-x-3 overflow-hidden">
-                  <div className="w-9 h-9 rounded-lg bg-background-secondary text-primary border border-border flex items-center justify-center shrink-0">
-                    <Building2 className="w-4 h-4 text-primary" />
+                  <div className="w-9 h-9 rounded-lg bg-orange-500/15 text-orange-400 border border-orange-500/20 flex items-center justify-center shrink-0">
+                    <Building2 className="w-4 h-4 text-orange-400" />
                   </div>
                   <div className="truncate">
-                    <p className="text-sm font-bold text-dark group-hover:text-primary truncate">
+                    <p className="text-sm font-bold text-white group-hover:text-orange-400 truncate">
                       {uni.university}
                     </p>
-                    <p className="text-xs text-slate-muted">{uni.city} • {uni.tbiCount} TBI</p>
+                    <p className="text-xs text-slate-400">{uni.city} • {uni.tbiCount} TBI</p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-slate-muted group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all shrink-0" />
               </Link>
             ))}
           </div>
@@ -400,42 +400,42 @@ export const Landing = () => {
       )}
 
       {/* How TBI Nexus Works */}
-      <section className="py-14 sm:py-16 bg-background-secondary border-t border-border">
+      <section className="py-14 sm:py-16 bg-[#0e0e12] border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-dark font-heading">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
             How TBI Nexus Works
           </h2>
-          <p className="text-sm text-slate-muted mt-2 max-w-lg mx-auto">
+          <p className="text-sm text-slate-400 mt-2 max-w-lg mx-auto">
             A reliable directory connecting founders, students, and research institutions.
           </p>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="bg-white p-6 rounded-card border border-border shadow-subtle">
-              <div className="w-9 h-9 rounded-lg bg-primary-light text-primary flex items-center justify-center font-bold text-sm mb-4">
+            <div className="bg-[#131318] p-6 rounded-card border border-white/10 shadow-subtle hover:border-orange-500/50 transition-colors">
+              <div className="w-9 h-9 rounded-lg bg-orange-500 text-white flex items-center justify-center font-bold text-sm mb-4">
                 1
               </div>
-              <h3 className="text-base font-bold text-dark mb-1">Search &amp; Filter</h3>
-              <p className="text-sm text-slate-secondary">
+              <h3 className="text-base font-bold text-white mb-1">Search &amp; Filter</h3>
+              <p className="text-sm text-slate-400">
                 Search across 500+ authentic records by university, incubator category, city, or status.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-card border border-border shadow-subtle">
-              <div className="w-9 h-9 rounded-lg bg-primary-light text-primary flex items-center justify-center font-bold text-sm mb-4">
+            <div className="bg-[#131318] p-6 rounded-card border border-white/10 shadow-subtle hover:border-orange-500/50 transition-colors">
+              <div className="w-9 h-9 rounded-lg bg-orange-500 text-white flex items-center justify-center font-bold text-sm mb-4">
                 2
               </div>
-              <h3 className="text-base font-bold text-dark mb-1">Inspect Verified Details</h3>
-              <p className="text-sm text-slate-secondary">
+              <h3 className="text-base font-bold text-white mb-1">Inspect Verified Details</h3>
+              <p className="text-sm text-slate-400">
                 Review verified status, official contact emails, and verified portal links without fabricated info.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-card border border-border shadow-subtle">
-              <div className="w-9 h-9 rounded-lg bg-primary-light text-primary flex items-center justify-center font-bold text-sm mb-4">
+            <div className="bg-[#131318] p-6 rounded-card border border-white/10 shadow-subtle hover:border-orange-500/50 transition-colors">
+              <div className="w-9 h-9 rounded-lg bg-orange-500 text-white flex items-center justify-center font-bold text-sm mb-4">
                 3
               </div>
-              <h3 className="text-base font-bold text-dark mb-1">Save &amp; Connect</h3>
-              <p className="text-sm text-slate-secondary">
+              <h3 className="text-base font-bold text-white mb-1">Save &amp; Connect</h3>
+              <p className="text-sm text-slate-400">
                 Bookmark incubation centres to your personal dashboard and reach out directly to incubation officers.
               </p>
             </div>

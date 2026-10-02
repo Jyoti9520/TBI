@@ -27,7 +27,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="flex items-center px-3 py-1.5 rounded-lg border border-slate-border text-xs font-semibold text-slate bg-surface hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center px-3 py-1.5 rounded-lg border border-white/10 text-xs font-semibold text-slate-300 bg-[#131318] hover:bg-[#1f1f28] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
       >
         <ChevronLeft className="w-4 h-4 mr-1" />
         <span>Prev</span>
@@ -36,7 +36,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {getPageNumbers().map((p, idx) => {
         if (p === '...') {
           return (
-            <span key={`ellipsis-${idx}`} className="px-2 py-1.5 text-xs text-slate-muted">
+            <span key={`ellipsis-${idx}`} className="px-2 py-1.5 text-xs text-slate-500">
               ...
             </span>
           );
@@ -50,7 +50,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             className={`min-w-[32px] h-8 flex items-center justify-center rounded-lg text-xs font-medium transition-all ${
               isCurrent
                 ? 'bg-primary text-white shadow-xs font-semibold'
-                : 'bg-white text-slate-body border border-border hover:bg-slate-hover'
+                : 'bg-[#131318] text-slate-300 border border-white/10 hover:bg-[#1f1f28] hover:border-orange-500/50'
             }`}
           >
             {p}
@@ -61,7 +61,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="flex items-center px-3 py-1.5 rounded-lg border border-slate-border text-xs font-semibold text-slate bg-surface hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center px-3 py-1.5 rounded-lg border border-white/10 text-xs font-semibold text-slate-300 bg-[#131318] hover:bg-[#1f1f28] disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
       >
         <span>Next</span>
         <ChevronRight className="w-4 h-4 ml-1" />

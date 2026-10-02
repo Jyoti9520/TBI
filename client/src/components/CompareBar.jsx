@@ -11,7 +11,7 @@ export const CompareBar = ({
   if (!selectedTbis || selectedTbis.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-border shadow-lg animate-in slide-in-from-bottom duration-250">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#131318]/95 backdrop-blur-md border-t border-white/10 shadow-2xl animate-in slide-in-from-bottom duration-250">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           
@@ -19,7 +19,7 @@ export const CompareBar = ({
           <div className="flex items-center gap-3 overflow-x-auto w-full sm:w-auto py-1 no-scrollbar">
             <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-semibold shadow-xs">
               <span>{selectedTbis.length} {selectedTbis.length === 1 ? 'TBI' : 'TBIs'} selected</span>
-              <span className="text-blue-200 text-[10px] font-normal">(max 3)</span>
+              <span className="text-orange-100 text-[10px] font-normal">(max 3)</span>
             </div>
 
             {/* Selected item chips */}
@@ -29,7 +29,7 @@ export const CompareBar = ({
                 return (
                   <span
                     key={tbi.id}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-bg border border-border text-xs font-medium text-dark max-w-[180px] sm:max-w-[200px]"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#1c1c24] border border-white/10 text-xs font-medium text-white max-w-[180px] sm:max-w-[200px]"
                   >
                     <span className="truncate" title={display.universityName}>
                       {display.universityName}

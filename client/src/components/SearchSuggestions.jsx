@@ -39,9 +39,9 @@ export const SearchSuggestions = ({
   if (!visible) return null;
 
   return (
-    <div className="absolute left-0 right-0 top-full mt-2 bg-white border border-border rounded-xl shadow-lg overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+    <div className="absolute left-0 right-0 top-full mt-2 bg-[#131318] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-1 duration-150">
       {/* Dropdown Header */}
-      <div className="px-4 py-2 border-b border-border bg-slate-bg flex items-center justify-between text-[11px] font-bold text-slate-body uppercase tracking-wider">
+      <div className="px-4 py-2 border-b border-white/10 bg-[#0e0e12] flex items-center justify-between text-[11px] font-bold text-slate-300 uppercase tracking-wider">
         <span>Suggested Incubators</span>
         {suggestions.length > 0 && (
           <span className="text-[10px] lowercase font-normal text-slate-400">

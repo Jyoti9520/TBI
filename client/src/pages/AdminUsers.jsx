@@ -122,12 +122,12 @@ export const AdminUsers = () => {
                     <tr key={u.id} className="hover:bg-slate-hover/70 transition-colors">
                       <td className="py-3.5 px-4 font-semibold text-dark">
                         <div className="flex items-center space-x-2">
-                          <div className="w-7 h-7 rounded-full bg-primary-light text-primary font-bold flex items-center justify-center text-xs border border-blue-100">
+                          <div className="w-7 h-7 rounded-full bg-primary-light text-primary font-bold flex items-center justify-center text-xs border border-orange-200">
                             {u.name ? u.name[0].toUpperCase() : 'U'}
                           </div>
                           <span>{u.name}</span>
                           {isSelf && (
-                            <span className="text-[10px] text-primary font-semibold bg-primary-light px-1.5 py-0.5 rounded border border-blue-100">
+                            <span className="text-[10px] text-primary font-semibold bg-primary-light px-1.5 py-0.5 rounded border border-orange-200">
                               You
                             </span>
                           )}

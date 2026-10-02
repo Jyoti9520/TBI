@@ -4,14 +4,14 @@ import { University, MapPin, ArrowRight } from 'lucide-react';
 
 export const UniversityCard = ({ university }) => {
   return (
-    <div className="bg-white border border-border rounded-xl p-5 shadow-xs hover:shadow-card hover:-translate-y-0.5 hover:border-primary/50 transition-all duration-200 ease-out flex flex-col justify-between group">
+    <div className="bg-[#131318] border border-white/10 rounded-xl p-5 shadow-lg hover:shadow-orange-500/10 hover:-translate-y-0.5 hover:border-orange-500/50 transition-all duration-200 ease-out flex flex-col justify-between group">
       <div>
         {/* University Icon Container */}
-        <div className="w-11 h-11 rounded-xl bg-slate-bg border border-border flex items-center justify-center text-primary mb-3.5 transition-transform duration-200 group-hover:scale-105 group-hover:bg-primary-light">
-          <University className="w-5 h-5 text-primary" />
+        <div className="w-11 h-11 rounded-xl bg-[#1c1c24] border border-white/10 flex items-center justify-center text-orange-400 mb-3.5 transition-transform duration-200 group-hover:scale-105 group-hover:bg-orange-500/20">
+          <University className="w-5 h-5 text-orange-400" />
         </div>
 
-        <h3 className="text-base font-bold font-heading text-dark group-hover:text-primary transition-colors duration-200 line-clamp-2 leading-snug">
+        <h3 className="text-base font-bold font-heading text-white group-hover:text-orange-400 transition-colors duration-200 line-clamp-2 leading-snug">
           {university.university}
         </h3>
 
@@ -30,7 +30,7 @@ export const UniversityCard = ({ university }) => {
       </div>
 
       <div className="mt-5 pt-3.5 border-t border-border flex items-center justify-between">
-        <span className="text-xs font-semibold text-primary bg-primary-light px-2.5 py-1 rounded-md border border-blue-100">
+        <span className="text-xs font-semibold text-primary bg-primary-light px-2.5 py-1 rounded-md border border-orange-200">
           {university.tbiCount} {university.tbiCount === 1 ? 'TBI' : 'TBIs'}
         </span>
 

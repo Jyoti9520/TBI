@@ -7,61 +7,62 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Modern Enterprise Blue Palette
+        // Full Black & Orange Ecosystem Palette
         background: {
-          DEFAULT: '#FFFFFF',
-          secondary: '#F8FAFC',
+          DEFAULT: '#0a0a0c',
+          secondary: '#111115',
         },
-        surface: '#FFFFFF',
+        surface: '#111115',
 
         primary: {
-          DEFAULT: '#2563EB',
-          hover: '#1D4ED8',
-          light: '#EFF6FF',
-          dark: '#1E40AF',
+          DEFAULT: '#F97316', // Orange-500
+          hover: '#EA580C',   // Orange-600
+          light: '#271911',   // Dark Orange subtle
+          dark: '#C2410C',    // Orange-700
         },
 
         secondary: {
-          accent: '#0EA5E9',
+          accent: '#FB923C', // Orange-400
         },
 
-        // Dark Neutrals for text and high-contrast elements
+        // Dark Neutrals for text and high-contrast dark elements
         dark: {
-          DEFAULT: '#0F172A',
-          secondary: '#1E293B',
-          muted: '#334155',
+          DEFAULT: '#FFFFFF',
+          secondary: '#E2E8F0',
+          muted: '#94A3B8',
         },
 
-        // Backward-compatible slate colors mapping cleanly to the new palette
+        // Backward-compatible slate colors mapping cleanly to dark theme
         slate: {
-          DEFAULT: '#0F172A',
-          secondary: '#475569',
-          muted: '#64748B',
-          border: '#E2E8F0',
-          hover: '#EFF6FF',
+          DEFAULT: '#FFFFFF',
+          secondary: '#CBD5E1',
+          muted: '#94A3B8',
+          border: '#27272a',
+          hover: '#1c1c22',
+          bg: '#141419',
         },
 
         // Border colors
         border: {
-          DEFAULT: '#E2E8F0',
-          hover: '#CBD5E1',
-          focus: '#2563EB',
+          DEFAULT: '#27272a',
+          hover: '#3f3f46',
+          focus: '#F97316',
         },
 
         // Semantic status
         status: {
-          success: '#16A34A',
-          warning: '#F59E0B',
-          error: '#DC2626',
-          info: '#2563EB',
+          success: '#22c55e',
+          warning: '#f59e0b',
+          error: '#ef4444',
+          info: '#F97316',
         },
 
-        // Replaced Brand / Legacy semantic aliases mapped directly to clean Modern Blue
+        // Replaced Brand / Legacy semantic aliases mapped directly to Orange
         burgundy: {
-          DEFAULT: '#2563EB',
-          dark: '#1D4ED8',
-          light: '#3B82F6',
-          subtle: '#EFF6FF',
+          DEFAULT: '#F97316',
+          dark: '#EA580C',
+          light: '#FB923C',
+          subtle: '#FFF7ED',
         },
         navy: {
           DEFAULT: '#0F172A',
@@ -77,17 +78,17 @@ export default {
           900: '#0F172A',
         },
         amber: {
-          DEFAULT: '#0EA5E9',
-          50: '#F0F9FF',
-          100: '#E0F2FE',
-          200: '#BAE6FD',
-          300: '#7DD3FC',
-          400: '#38BDF8',
-          500: '#0EA5E9',
-          600: '#0284C7',
-          700: '#0369A1',
-          800: '#075985',
-          900: '#0C4A6E',
+          DEFAULT: '#F97316',
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97316',
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
         },
       },
       fontFamily: {

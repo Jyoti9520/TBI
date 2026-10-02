@@ -174,7 +174,7 @@ export const SuggestTbi = () => {
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-dark font-heading flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-orange-200 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-200 hover:scale-105">
             <PlusCircle className="w-5 h-5 text-primary" />
           </div>
           <span>Suggest a TBI</span>

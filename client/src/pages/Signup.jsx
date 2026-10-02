@@ -163,14 +163,14 @@ export const Signup = () => {
   return (
     <div>
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold font-heading text-dark">Create your account</h2>
-        <p className="text-xs text-slate-body mt-1">
+        <h2 className="text-2xl font-bold font-heading text-white">Create your account</h2>
+        <p className="text-xs text-slate-400 mt-1">
           Join TBI Global to discover and save innovation hubs
         </p>
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-status-error text-xs flex items-center space-x-2">
+        <div className="mb-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs flex items-center space-x-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
@@ -178,11 +178,11 @@ export const Signup = () => {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
             Full Name
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
               <User className="w-4 h-4" />
             </div>
             <input
@@ -191,17 +191,17 @@ export const Signup = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Jyoti Negi"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-[#1a1a22] border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
             Email Address
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
               <Mail className="w-4 h-4" />
             </div>
             <input
@@ -210,17 +210,17 @@ export const Signup = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@domain.com"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-[#1a1a22] border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
             Password (Min 8 characters)
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
               <Lock className="w-4 h-4" />
             </div>
             <input
@@ -229,12 +229,12 @@ export const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-10 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              className="w-full pl-10 pr-10 py-2.5 bg-[#1a1a22] border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-muted hover:text-dark"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
@@ -242,11 +242,11 @@ export const Signup = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-muted mb-1.5">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
             Confirm Password
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-muted">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
               <Lock className="w-4 h-4" />
             </div>
             <input
@@ -255,7 +255,7 @@ export const Signup = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full pl-10 pr-3.5 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              className="w-full pl-10 pr-3.5 py-2.5 bg-[#1a1a22] border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
             />
           </div>
         </div>
@@ -263,7 +263,7 @@ export const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-xs transition-colors mt-2 cursor-pointer"
+          className="w-full py-2.5 px-4 bg-primary hover:bg-primary-hover disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-lg shadow-orange-500/20 transition-colors mt-2 cursor-pointer"
         >
           {loading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -271,11 +271,11 @@ export const Signup = () => {
 
       <div className="mt-5">
         <div className="relative flex items-center justify-center my-4">
-          <div className="border-t border-border w-full" />
-          <span className="bg-white px-3 text-xs font-semibold text-slate-muted uppercase tracking-wider">
+          <div className="border-t border-white/10 w-full" />
+          <span className="bg-[#131318] px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
             Or
           </span>
-          <div className="border-t border-border w-full" />
+          <div className="border-t border-white/10 w-full" />
         </div>
 
         {/* Google Authentication Container */}

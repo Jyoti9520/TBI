@@ -9,7 +9,7 @@ export const DashboardLayout = () => {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-[#0a0a0c] text-white">
       <Navbar />
       <div className="flex-1 flex max-w-7xl w-full mx-auto">
         <div className="hidden md:block">

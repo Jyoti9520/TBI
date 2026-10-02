@@ -167,12 +167,12 @@ export const SearchBar = ({
           placeholder={placeholder}
           aria-autocomplete="list"
           aria-expanded={showSuggestions}
-          className="w-full pl-10 pr-9 py-2.5 bg-white border border-border rounded-xl text-sm text-dark placeholder:text-slate-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-subtle"
+          className="w-full pl-10 pr-9 py-2.5 bg-[#1a1a22] border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all shadow-subtle"
         />
         {searchTerm && (
           <button
             onClick={handleClear}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-muted hover:text-dark transition-colors cursor-pointer"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white transition-colors cursor-pointer"
             title="Clear search"
             type="button"
           >
@@ -198,7 +198,7 @@ export const SearchBar = ({
           className={`flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-semibold transition-all shrink-0 cursor-pointer ${
             filterActive
               ? 'bg-primary text-white border-primary shadow-subtle'
-              : 'bg-white text-slate-secondary border-border hover:bg-slate-hover hover:border-slate-muted hover:text-dark'
+              : 'bg-[#1a1a22] text-slate-300 border-white/10 hover:bg-[#22222e] hover:border-orange-500/50 hover:text-white'
           }`}
           title="Filter Results"
         >

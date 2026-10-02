@@ -252,7 +252,7 @@ export const Explore = () => {
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-orange-200 flex items-center justify-center shrink-0">
             <Compass className="w-5 h-5 text-primary" />
           </div>
           <span>Explore TBIs Directory</span>
@@ -263,7 +263,7 @@ export const Explore = () => {
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-border shadow-xs space-y-3.5">
+      <div className="bg-[#131318] p-4 rounded-2xl border border-white/10 shadow-lg space-y-3.5">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="flex-1">
             <SearchBar
@@ -278,14 +278,14 @@ export const Explore = () => {
           </div>
 
           {/* List / Map View Toggle */}
-          <div className="flex items-center space-x-1.5 bg-slate-bg p-1.5 rounded-xl border border-border shrink-0 self-start sm:self-auto">
+          <div className="flex items-center space-x-1.5 bg-[#0a0a0c] p-1.5 rounded-xl border border-white/10 shrink-0 self-start sm:self-auto">
             <button
               type="button"
               onClick={() => setViewMode('list')}
               className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 cursor-pointer ${
                 viewMode === 'list'
                   ? 'bg-primary text-white shadow-xs'
-                  : 'bg-white text-slate-body border border-border hover:bg-slate-hover'
+                  : 'bg-[#181820] text-slate-300 border border-white/10 hover:bg-[#20202a]'
               }`}
               title="List View"
             >
@@ -312,7 +312,7 @@ export const Explore = () => {
               className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150 cursor-pointer ${
                 viewMode === 'map'
                   ? 'bg-primary text-white shadow-xs'
-                  : 'bg-white text-slate-body border border-border hover:bg-slate-hover'
+                  : 'bg-[#181820] text-slate-300 border border-white/10 hover:bg-[#20202a]'
               }`}
               title="Map View"
             >
@@ -344,7 +344,7 @@ export const Explore = () => {
                 className={`px-3.5 py-1.5 rounded-full text-xs whitespace-nowrap transition-all duration-200 cursor-pointer border ${
                   isActive
                     ? 'bg-primary text-white border-primary shadow-xs font-semibold'
-                    : 'bg-white text-slate-body border-border hover:bg-slate-hover hover:border-slate-300 font-medium'
+                    : 'bg-[#1a1a22] text-slate-300 border-white/10 hover:bg-[#22222e] hover:border-orange-500/50 font-medium'
                 }`}
               >
                 {chip.label}
@@ -359,7 +359,7 @@ export const Explore = () => {
             <span className="text-xs font-semibold text-slate-muted">Active:</span>
 
             {search && (
-              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-blue-100 text-xs font-medium">
+              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-orange-200 text-xs font-medium">
                 <span>Query: "{search}"</span>
                 <button onClick={() => handleSearch('')} className="hover:text-status-error">
                   <X className="w-3 h-3" />
@@ -368,7 +368,7 @@ export const Explore = () => {
             )}
 
             {isNearbyActive && (
-              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-blue-100 text-xs font-medium shadow-xs">
+              <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-orange-200 text-xs font-medium shadow-xs">
                 <span>Nearby Locations</span>
                 <button
                   onClick={() => {
@@ -387,7 +387,7 @@ export const Explore = () => {
               return (
                 <span
                   key={k}
-                  className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-blue-100 text-xs font-medium shadow-xs"
+                  className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-primary-light text-primary border border-orange-200 text-xs font-medium shadow-xs"
                 >
                   <span className="capitalize">{k}: {v}</span>
                   <button onClick={() => removeFilterBadge(k)} className="hover:text-status-error">

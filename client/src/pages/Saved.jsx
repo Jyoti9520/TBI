@@ -37,7 +37,7 @@ export const Saved = () => {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold font-heading text-dark flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-primary-light border border-orange-200 flex items-center justify-center shrink-0">
             <Bookmark className="w-5 h-5 text-primary" />
           </div>
           <span>Saved TBIs</span>

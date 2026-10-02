@@ -231,7 +231,7 @@ export const Dashboard = () => {
       </div>
 
       {/* 2. Main Search */}
-      <div className="bg-white p-3 sm:p-4 rounded-2xl border border-border shadow-xs focus-within:border-primary transition-colors duration-200">
+      <div className="bg-[#131318] p-3 sm:p-4 rounded-2xl border border-white/10 shadow-lg focus-within:border-primary transition-colors duration-200">
         <SearchBar
           value={search}
           onChange={(val) => setSearch(val)}
@@ -281,7 +281,7 @@ export const Dashboard = () => {
       {/* 5. Discovery Content */}
       <div className="flex items-center justify-between pt-2">
         <h2 className="text-lg font-bold font-heading text-dark flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-lg bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-primary-light border border-orange-200 flex items-center justify-center shrink-0">
             <Compass className="w-4 h-4 text-primary" />
           </div>
           <span>Explore Incubators</span>

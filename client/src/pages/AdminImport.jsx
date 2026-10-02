@@ -157,7 +157,7 @@ export const AdminImport = () => {
               <p className="text-xs font-semibold text-status-error">Invalid</p>
               <p className="text-xl font-bold font-heading text-status-error mt-1">{report.invalid}</p>
             </div>
-            <div className="p-3 bg-primary-light rounded-xl border border-blue-100">
+            <div className="p-3 bg-primary-light rounded-xl border border-orange-200">
               <p className="text-xs font-semibold text-primary">Inserted</p>
               <p className="text-xl font-bold font-heading text-primary mt-1">{report.inserted}</p>
             </div>

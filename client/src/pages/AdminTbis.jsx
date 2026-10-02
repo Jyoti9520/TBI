@@ -258,7 +258,7 @@ export const AdminTbis = () => {
                       </td>
                       <td className="py-3.5 px-4 text-slate-body">{display.city || '—'}</td>
                       <td className="py-3.5 px-4">
-                        <span className="px-2 py-0.5 rounded bg-primary-light text-primary font-medium text-[11px] border border-blue-100">
+                        <span className="px-2 py-0.5 rounded bg-primary-light text-primary font-medium text-[11px] border border-orange-200">
                           {display.incubatorType || 'TBI'}
                         </span>
                       </td>

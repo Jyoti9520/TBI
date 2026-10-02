@@ -6,24 +6,24 @@ import { StatusBadge } from './StatusBadge';
 
 export const RecentlyViewed = ({ items = [] }) => {
   return (
-    <div className="bg-white rounded-2xl border border-border p-5 shadow-xs">
+    <div className="bg-[#131318] rounded-2xl border border-white/10 p-5 shadow-lg">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-base font-bold font-heading text-dark flex items-center space-x-2">
-          <div className="w-7 h-7 rounded-lg bg-primary-light border border-blue-100 flex items-center justify-center shrink-0">
-            <History className="w-4 h-4 text-primary" />
+        <h2 className="text-base font-bold font-heading text-white flex items-center space-x-2">
+          <div className="w-7 h-7 rounded-lg bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0">
+            <History className="w-4 h-4 text-orange-400" />
           </div>
           <span>Recently Viewed</span>
         </h2>
         {items.length > 0 && (
-          <span className="text-xs font-medium text-slate-muted">
+          <span className="text-xs font-medium text-slate-400">
             {items.length} {items.length === 1 ? 'item' : 'items'}
           </span>
         )}
       </div>
 
       {items.length === 0 ? (
-        <div className="py-6 px-4 text-center rounded-xl bg-slate-bg border border-dashed border-border">
-          <p className="text-xs font-medium text-slate-muted">
+        <div className="py-6 px-4 text-center rounded-xl bg-[#0a0a0c] border border-dashed border-white/10">
+          <p className="text-xs font-medium text-slate-400">
             No recently viewed TBIs yet.
           </p>
         </div>
@@ -34,7 +34,7 @@ export const RecentlyViewed = ({ items = [] }) => {
             return (
               <div
                 key={tbi.id}
-                className="group relative flex flex-col justify-between p-3.5 rounded-xl bg-white border border-border hover:border-primary/40 hover:shadow-card hover:-translate-y-0.5 transition-all duration-200 ease-out"
+                className="group relative flex flex-col justify-between p-3.5 rounded-xl bg-[#1a1a22] border border-white/10 hover:border-orange-500/50 hover:shadow-orange-500/10 hover:-translate-y-0.5 transition-all duration-200 ease-out"
               >
                 <div>
                   {/* Top: Small Avatar / Icon and Status Badge */}

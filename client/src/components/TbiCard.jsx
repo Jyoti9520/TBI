@@ -95,17 +95,17 @@ export const TbiCard = ({
 
   return (
     <div
-      className={`rounded-card p-5 shadow-card hover:shadow-hover hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between group relative bg-white border ${
+      className={`rounded-card p-5 shadow-card hover:shadow-orange-500/10 hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col justify-between group relative bg-[#131318] border ${
         isComparing
-          ? 'border-primary ring-2 ring-primary/20'
-          : 'border-border hover:border-primary'
+          ? 'border-primary ring-2 ring-primary/30'
+          : 'border-white/10 hover:border-primary/60'
       }`}
     >
       {/* Top Section: University Logo / Initial & Actions */}
       <div>
         <div className="flex items-start justify-between gap-3 mb-3.5">
           {/* University Initial / Logo container */}
-          <div className="w-11 h-11 rounded-lg bg-background-secondary border border-border flex items-center justify-center font-bold text-primary text-base shrink-0 overflow-hidden transition-transform duration-200 group-hover:scale-105">
+          <div className="w-11 h-11 rounded-lg bg-[#1c1c24] border border-white/10 flex items-center justify-center font-bold text-primary text-base shrink-0 overflow-hidden transition-transform duration-200 group-hover:scale-105">
             {tbi?.logo ? (
               <img
                 src={tbi.logo}
@@ -123,7 +123,7 @@ export const TbiCard = ({
           <div className="flex items-center space-x-1.5">
             {/* Distance Badge if available */}
             {tbi?.distance !== null && tbi?.distance !== undefined && (
-              <span className="flex items-center space-x-1 text-xs font-medium px-2 py-0.5 rounded-full bg-slate-hover text-primary border border-border">
+              <span className="flex items-center space-x-1 text-xs font-medium px-2 py-0.5 rounded-full bg-primary-light text-primary border border-orange-500/30">
                 <Navigation className="w-3 h-3 text-primary" />
                 <span>{tbi.distance} km</span>
               </span>
@@ -141,7 +141,7 @@ export const TbiCard = ({
                 className={`inline-flex items-center space-x-1.5 px-2 py-1 rounded-md text-xs font-medium transition-all duration-150 cursor-pointer border ${
                   isComparing
                     ? 'bg-primary text-white border-primary shadow-subtle'
-                    : 'bg-white text-slate-secondary border-border hover:text-primary hover:border-primary hover:bg-slate-hover'
+                    : 'bg-[#1a1a22] text-slate-secondary border-white/10 hover:text-primary hover:border-primary/60 hover:bg-[#22222c]'
                 }`}
                 title={isComparing ? 'Remove from compare' : 'Add to compare (max 3)'}
                 aria-pressed={isComparing}
@@ -150,7 +150,7 @@ export const TbiCard = ({
                   className={`w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors ${
                     isComparing
                       ? 'bg-white text-primary border-white'
-                      : 'border-slate-300 bg-white'
+                      : 'border-white/20 bg-transparent'
                   }`}
                 >
                   {isComparing ? (

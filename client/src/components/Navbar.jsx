@@ -23,8 +23,8 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b transition-all duration-200 ${
-        scrolled ? 'border-border shadow-sm' : 'border-border/60'
+      className={`sticky top-0 z-40 bg-[#0a0a0c]/90 backdrop-blur-md border-b transition-all duration-200 ${
+        scrolled ? 'border-white/15 shadow-lg shadow-black/40' : 'border-white/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

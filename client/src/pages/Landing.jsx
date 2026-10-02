@@ -23,6 +23,8 @@ import {
   Users
 } from 'lucide-react';
 import { ModernNavbar } from '../components/ModernNavbar';
+import { TbiCard } from '../components/TbiCard';
+import { SkeletonCard } from '../components/SkeletonCard';
 import { tbiService } from '../services/tbiService';
 import { schemeService } from '../services/schemeService';
 
@@ -55,13 +57,13 @@ export const Landing = () => {
       try {
         const [statsRes, tbisRes, schemesRes] = await Promise.all([
           tbiService.getStats().catch(() => ({ success: false })),
-          tbiService.getTbis({ limit: 6, status: 'Verified' }),
+          tbiService.getTbis({ limit: 6, status: 'Verified' }).catch(() => ({ success: false })),
           schemeService.getSchemes().catch(() => ({ success: false }))
         ]);
 
-        if (statsRes.success) setStats(statsRes.data);
-        if (tbisRes.success) setTopTbis(tbisRes.data);
-        if (schemesRes.success) setSchemes(schemesRes.data);
+        if (statsRes?.success && statsRes.data) setStats(statsRes.data);
+        if (tbisRes?.success && Array.isArray(tbisRes.data)) setTopTbis(tbisRes.data);
+        if (schemesRes?.success && Array.isArray(schemesRes.data)) setSchemes(schemesRes.data);
       } catch (err) {
         console.error('Failed to load landing data:', err);
       } finally {
@@ -431,59 +433,23 @@ export const Landing = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topTbis.slice(0, 6).map((tbi) => (
-              <div
-                key={tbi.id}
-                className="bg-[#FAF7F2] rounded-2xl border border-[#D9CAB3] hover:border-[#7A0B1A] p-5 shadow-2xs hover:shadow-card transition flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white border border-[#D9CAB3] text-[#7A0B1A]">
-                      {tbi.city || 'India'}
-                    </span>
-                    <span className="flex items-center space-x-1 text-[10px] font-bold text-emerald-700 bg-emerald-100/60 px-2 py-0.5 rounded">
-                      <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                      <span>DST Verified</span>
-                    </span>
-                  </div>
-
-                  <h4 className="text-base font-extrabold text-[#7A0B1A] group-hover:text-[#5B0712] transition leading-snug">
-                    {tbi.name}
-                  </h4>
-                  <p className="text-xs text-slate-600 font-semibold mt-1">
-                    {tbi.university || 'Affiliated University'}
-                  </p>
-
-                  <div className="mt-4 pt-3 border-t border-[#D9CAB3]/50 flex flex-wrap gap-1.5">
-                    {tbi.targetSector && (
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-white text-slate-700 font-semibold border border-slate-200">
-                        {tbi.targetSector}
-                      </span>
-                    )}
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-amber-50 text-[#7A0B1A] font-bold border border-amber-200">
-                      NIDHI-PRAYAS
-                    </span>
-                  </div>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-slate-200 flex items-center justify-between">
-                  <Link
-                    to={`/tbi/${tbi.id}`}
-                    className="text-xs font-bold text-[#7A0B1A] hover:underline"
-                  >
-                    View Labs &amp; Faculty →
-                  </Link>
-                  <Link
-                    to={`/compare?add=${tbi.id}`}
-                    className="text-[11px] font-medium text-[#647C98] hover:text-[#7A0B1A]"
-                  >
-                    + Compare
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <SkeletonCard key={i} />
+              ))}
+            </div>
+          ) : topTbis.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {topTbis.slice(0, 6).map((tbi) => (
+                <TbiCard key={tbi.id || tbi.name} tbi={tbi} />
+              ))}
+            </div>
+          ) : (
+            <div className="p-8 text-center text-xs text-[#647C98] bg-[#FAF7F2] rounded-2xl border border-[#D9CAB3]">
+              Connecting to live university database... <Link to="/explore" className="text-[#7A0B1A] font-bold underline">Explore all 521 TBIs directly →</Link>
+            </div>
+          )}
         </div>
       </section>
 

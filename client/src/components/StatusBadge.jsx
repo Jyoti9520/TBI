@@ -34,10 +34,11 @@ export const StatusBadge = ({ status, size = 'md' }) => {
 
   return (
     <span
-      className={`inline-flex items-center space-x-1.5 font-medium text-slate-300 bg-zinc-800/80 rounded-md border border-zinc-700/80 whitespace-nowrap shadow-xs ${containerPadding}`}
+      className={`inline-flex items-center space-x-1.5 font-bold text-slate-900 bg-slate-100/95 rounded-md border border-slate-300 whitespace-nowrap shadow-xs ${containerPadding}`}
+      style={{ color: '#0f172a' }}
     >
-      <Circle className={`${circleClass} text-zinc-400 shrink-0`} />
-      <span className="text-zinc-200">Unverified</span>
+      <Circle className={`${circleClass} text-slate-700 shrink-0`} style={{ stroke: '#0f172a' }} />
+      <span className="text-black font-extrabold" style={{ color: '#000000' }}>Unverified</span>
     </span>
   );
 };

@@ -13,9 +13,9 @@ export const StatusBadge = ({ status, size = 'md' }) => {
   if (isVerified) {
     return (
       <span
-        className={`inline-flex items-center space-x-1.5 font-semibold text-emerald-700 bg-emerald-50 rounded-md border border-emerald-200/80 whitespace-nowrap ${containerPadding}`}
+        className={`inline-flex items-center space-x-1.5 font-semibold text-emerald-400 bg-emerald-950/60 rounded-md border border-emerald-500/30 whitespace-nowrap ${containerPadding}`}
       >
-        <BadgeCheck className={`${iconClass} text-emerald-600 shrink-0`} />
+        <BadgeCheck className={`${iconClass} text-emerald-400 shrink-0`} />
         <span>Verified</span>
       </span>
     );
@@ -24,9 +24,9 @@ export const StatusBadge = ({ status, size = 'md' }) => {
   if (isUnderVerification) {
     return (
       <span
-        className={`inline-flex items-center space-x-1.5 font-semibold text-amber-700 bg-amber-50 rounded-md border border-amber-200/80 whitespace-nowrap ${containerPadding}`}
+        className={`inline-flex items-center space-x-1.5 font-semibold text-amber-300 bg-amber-950/60 rounded-md border border-amber-500/30 whitespace-nowrap ${containerPadding}`}
       >
-        <Clock className={`${iconClass} text-amber-600 shrink-0`} />
+        <Clock className={`${iconClass} text-amber-400 shrink-0`} />
         <span>Under Verification</span>
       </span>
     );
@@ -34,10 +34,10 @@ export const StatusBadge = ({ status, size = 'md' }) => {
 
   return (
     <span
-      className={`inline-flex items-center space-x-1.5 font-semibold text-slate-secondary bg-slate-100 rounded-md border border-slate-200 whitespace-nowrap ${containerPadding}`}
+      className={`inline-flex items-center space-x-1.5 font-medium text-slate-300 bg-zinc-800/80 rounded-md border border-zinc-700/80 whitespace-nowrap shadow-xs ${containerPadding}`}
     >
-      <Circle className={`${circleClass} text-slate-muted shrink-0`} />
-      <span>Unverified</span>
+      <Circle className={`${circleClass} text-zinc-400 shrink-0`} />
+      <span className="text-zinc-200">Unverified</span>
     </span>
   );
 };

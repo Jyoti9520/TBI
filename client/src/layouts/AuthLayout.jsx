@@ -5,19 +5,21 @@ export const AuthLayout = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-[#0a0a0c] text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link to="/" className="inline-flex items-center space-x-2.5">
+        <Link to="/" className="inline-flex items-center space-x-3.5 group">
           <img
-            src="/tbi-nexus-logo.png"
+            src="/tbi-campus-icon.png"
             alt="TBI Campus"
-            className="w-10 h-10 rounded-xl object-contain shadow-xs border border-white/10"
+            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]"
           />
-          <span className="font-bold font-heading text-2xl tracking-tight text-white">
-            TBI <span className="text-orange-500">CAMPUS</span>
-          </span>
+          <div className="flex flex-col text-left">
+            <span className="font-extrabold font-heading text-2xl tracking-tight text-white leading-none">
+              TBI <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-400">CAMPUS</span>
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-orange-400/90 font-semibold mt-1 leading-none">
+              National Incubator Directory
+            </span>
+          </div>
         </Link>
-        <p className="text-xs uppercase tracking-widest text-orange-400 font-semibold mt-1">
-          National Incubator Directory
-        </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">

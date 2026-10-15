@@ -496,13 +496,15 @@ export const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
             <div className="col-span-2">
-              <div className="flex items-center space-x-2.5 text-white font-bold text-base mb-2.5">
+              <div className="flex items-center space-x-3 text-white font-bold text-base mb-2.5">
                 <img
-                  src="/tbi-nexus-logo.png"
+                  src="/tbi-campus-icon.png"
                   alt="TBI Campus"
-                  className="w-8 h-8 rounded-lg object-contain border border-slate-700 shadow-subtle"
+                  className="h-8 w-auto object-contain drop-shadow-[0_0_10px_rgba(249,115,22,0.35)]"
                 />
-                <span className="font-heading">TBI <span className="text-orange-500">CAMPUS</span></span>
+                <span className="font-heading font-extrabold tracking-tight text-lg">
+                  TBI <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-400">CAMPUS</span>
+                </span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
                 The comprehensive national directory for university and startup technology business incubators across India. Grounded in verified institutional records.

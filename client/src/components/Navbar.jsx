@@ -29,18 +29,25 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <img
-              src="/tbi-nexus-logo.png"
-              alt="TBI Campus"
-              className="w-9 h-9 rounded-lg object-contain transition-transform duration-200 group-hover:scale-105"
-            />
-            <div className="flex flex-col">
-              <span className="font-extrabold text-white tracking-tight text-base sm:text-lg leading-tight group-hover:text-primary transition-colors">
-                TBI <span className="text-primary font-black">CAMPUS</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
+          {/* Brand Logo & Lockup */}
+          <Link to="/" className="flex items-center space-x-3.5 group select-none">
+            <div className="relative flex items-center justify-center">
+              <img
+                src="/tbi-campus-icon.png"
+                alt="TBI Campus Emblem"
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_12px_rgba(249,115,22,0.35)]"
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-baseline space-x-1.5 font-heading">
+                <span className="font-extrabold text-white text-lg sm:text-xl tracking-tight leading-none">
+                  TBI
+                </span>
+                <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-orange-400 text-lg sm:text-xl tracking-wider leading-none">
+                  CAMPUS
+                </span>
+              </div>
+              <span className="text-[9.5px] uppercase tracking-[0.16em] text-slate-400 font-semibold mt-1 leading-none group-hover:text-slate-300 transition-colors">
                 National Incubator Directory
               </span>
             </div>

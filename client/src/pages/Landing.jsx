@@ -456,7 +456,7 @@ export const Landing = () => {
       </section>
 
       {/* Clean Call To Action */}
-      <section className="py-14 bg-dark text-white">
+      <section className="py-16 bg-[#0e0e12] border-t border-b border-white/10 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-heading">
             Ready to find the right incubator for your next venture?
@@ -483,7 +483,7 @@ export const Landing = () => {
             )}
             <Link
               to="/explore"
-              className="px-6 py-2.5 rounded-btn bg-dark-secondary hover:bg-slate-800 text-white text-sm font-semibold border border-slate-700 transition-colors"
+              className="px-6 py-2.5 rounded-btn bg-white/10 hover:bg-white/15 text-white text-sm font-semibold border border-white/15 transition-colors"
             >
               Explore Directory
             </Link>
@@ -492,7 +492,7 @@ export const Landing = () => {
       </section>
 
       {/* Redesigned Corporate Dark Footer */}
-      <footer className="bg-dark text-slate-400 border-t border-slate-800 py-12 text-sm">
+      <footer className="bg-[#070709] text-slate-400 border-t border-white/10 py-12 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-8">
             <div className="col-span-2">
@@ -545,10 +545,10 @@ export const Landing = () => {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-            <p>© 2026 TBI Nexus. All rights reserved.</p>
+          <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+            <p>© 2026 TBI Campus. All rights reserved.</p>
             <p className="mt-2 sm:mt-0 text-[11px]">
-              Independent technology incubator discovery platform.
+              National technology incubator directory.
             </p>
           </div>
         </div>

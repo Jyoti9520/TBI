@@ -8,15 +8,15 @@ export const AuthLayout = () => {
         <Link to="/" className="inline-flex items-center space-x-2.5">
           <img
             src="/tbi-nexus-logo.png"
-            alt="TBI Global"
-            className="w-10 h-10 rounded-xl object-cover shadow-xs border border-white/10"
+            alt="TBI Campus"
+            className="w-10 h-10 rounded-xl object-contain shadow-xs border border-white/10"
           />
           <span className="font-bold font-heading text-2xl tracking-tight text-white">
-            TBI GLOBAL
+            TBI <span className="text-orange-500">CAMPUS</span>
           </span>
         </Link>
         <p className="text-xs uppercase tracking-widest text-orange-400 font-semibold mt-1">
-          Technology Business Incubators
+          National Incubator Directory
         </p>
       </div>
 

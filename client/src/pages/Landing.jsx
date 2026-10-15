@@ -477,13 +477,13 @@ export const Landing = () => {
               <div className="flex items-center space-x-2.5 text-white font-bold text-base mb-2.5">
                 <img
                   src="/tbi-nexus-logo.png"
-                  alt="TBI Nexus"
-                  className="w-7 h-7 rounded-lg object-cover border border-slate-700 shadow-subtle"
+                  alt="TBI Campus"
+                  className="w-8 h-8 rounded-lg object-contain border border-slate-700 shadow-subtle"
                 />
-                <span className="font-heading">TBI NEXUS</span>
+                <span className="font-heading">TBI <span className="text-orange-500">CAMPUS</span></span>
               </div>
               <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-                The comprehensive discovery platform for university and startup technology business incubators. Grounded in verified institutional records.
+                The comprehensive national directory for university and startup technology business incubators across India. Grounded in verified institutional records.
               </p>
             </div>
 

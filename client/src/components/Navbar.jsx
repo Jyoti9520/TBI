@@ -33,14 +33,14 @@ export const Navbar = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <img
               src="/tbi-nexus-logo.png"
-              alt="TBI Nexus"
-              className="w-8 h-8 rounded-lg object-cover border border-border shadow-subtle transition-transform duration-200 group-hover:scale-105"
+              alt="TBI Campus"
+              className="w-9 h-9 rounded-lg object-contain transition-transform duration-200 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="font-extrabold text-dark tracking-tight text-base sm:text-lg leading-tight group-hover:text-primary transition-colors">
-                TBI NEXUS
+              <span className="font-extrabold text-white tracking-tight text-base sm:text-lg leading-tight group-hover:text-primary transition-colors">
+                TBI <span className="text-primary font-black">CAMPUS</span>
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-muted font-semibold">
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">
                 National Incubator Directory
               </span>
             </div>

@@ -14,6 +14,8 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const userRoutes = require('./routes/userRoutes');
 const suggestionRoutes = require('./routes/suggestionRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const investorRoutes = require('./routes/investorRoutes');
+const fundingRoutes = require('./routes/fundingRoutes');
 
 dotenv.config();
 
@@ -54,6 +56,8 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/suggestions', suggestionRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/investors', investorRoutes);
+app.use('/api/funding', fundingRoutes);
 
 // Error Handling
 app.use(notFound);

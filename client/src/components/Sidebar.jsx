@@ -13,7 +13,9 @@ import {
   FolderTree,
   Users,
   FileSpreadsheet,
-  GitCompare
+  GitCompare,
+  Landmark,
+  Briefcase
 } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 import { userService } from '../services/userService';
@@ -62,6 +64,7 @@ export const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Explore TBIs', path: '/explore', icon: Compass },
+    { name: 'Funding & Investors', path: '/funding', icon: Landmark },
     { name: 'Universities', path: '/universities', icon: University },
     { name: 'Categories', path: '/categories', icon: Layers },
     { name: 'Compare TBIs', path: '/compare', icon: GitCompare },
@@ -185,6 +188,23 @@ export const Sidebar = () => {
                 <>
                   <FolderTree className="w-3.5 h-3.5 shrink-0 transition-transform duration-150 group-hover:scale-105" />
                   <span className="truncate">Manage TBIs</span>
+                </>
+              )}
+            </NavLink>
+            <NavLink
+              to="/admin/investors"
+              className={({ isActive }) =>
+                `relative flex items-center space-x-2.5 px-3.5 py-2 rounded-lg text-xs font-semibold pl-10 transition-all duration-150 ease-in-out group ${
+                  isActive
+                    ? 'text-primary font-bold bg-primary-light'
+                    : 'text-slate-muted hover:text-dark hover:bg-slate-hover'
+                }`
+              }
+            >
+              {() => (
+                <>
+                  <Briefcase className="w-3.5 h-3.5 shrink-0 transition-transform duration-150 group-hover:scale-105" />
+                  <span className="truncate">Manage Investors</span>
                 </>
               )}
             </NavLink>

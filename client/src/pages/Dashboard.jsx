@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Compass, Bookmark, BadgeCheck, University, Rocket, MapPin } from 'lucide-react';
+import { Compass, Bookmark, BadgeCheck, University, Rocket, MapPin, Landmark, ArrowRight, TrendingUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { SearchBar } from '../components/SearchBar';
 import { FilterPanel } from '../components/FilterPanel';
@@ -273,6 +274,46 @@ export const Dashboard = () => {
           color="amber"
           subtitle="Pan-India presence"
         />
+      </div>
+
+      {/* 3.1 Funding & Investors Shortcut Card */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#171720] via-[#1a1412] to-[#141419] border border-orange-500/25 p-5 sm:p-6 shadow-xl group hover:border-orange-500/50 transition-all duration-300">
+        <div className="absolute -right-6 -bottom-6 w-36 h-36 bg-orange-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-orange-500/20 transition-all" />
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+          <div className="flex items-start space-x-4">
+            <div className="w-12 h-12 rounded-xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center shrink-0 text-orange-400 group-hover:scale-105 transition-transform">
+              <Landmark className="w-6 h-6 text-orange-400" />
+            </div>
+            <div>
+              <div className="inline-flex items-center space-x-2 text-[10px] font-extrabold uppercase tracking-widest text-orange-400 mb-1">
+                <span>NEW FEATURE</span>
+                <span>•</span>
+                <span>CAPITAL ECOSYSTEM</span>
+              </div>
+              <h3 className="text-lg font-bold font-heading text-white group-hover:text-orange-400 transition-colors">
+                Funding &amp; Investor Directory
+              </h3>
+              <p className="text-xs text-slate-400 max-w-xl mt-1 leading-relaxed">
+                Connect with verified early-stage venture funds, angel networks, institutional grants (PRAYAS, EIR, BIG), and active TBI investors across India.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-3 w-full sm:w-auto shrink-0">
+            <Link
+              to="/funding/grants"
+              className="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-xs font-semibold transition-all text-center flex-1 sm:flex-initial"
+            >
+              Explore Grants
+            </Link>
+            <Link
+              to="/funding"
+              className="inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-bold shadow-md shadow-orange-500/20 transition-all active:scale-[0.98] flex-1 sm:flex-initial"
+            >
+              <span>Browse Investors</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
       </div>
 
       {/* 4. Recently Viewed Section */}

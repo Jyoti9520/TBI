@@ -1,6 +1,6 @@
 const { fn, col, literal, Op } = require('sequelize');
 const xlsx = require('xlsx');
-const { TBI, User, Suggestion } = require('../models');
+const { TBI, User, Suggestion, Investor, FundingOpportunity } = require('../models');
 const { normalizeStatus, cleanString } = require('../utils/normalizeData');
 
 // @desc    Get Admin Dashboard dynamic statistics
@@ -16,7 +16,10 @@ const getStats = async (req, res) => {
       uniqueUniversities,
       uniqueCities,
       totalUsers,
-      pendingSuggestions
+      pendingSuggestions,
+      totalInvestors,
+      verifiedInvestors,
+      totalFundingOpportunities
     ] = await Promise.all([
       TBI.count(),
       TBI.count({ where: { status: 'Verified' } }),
@@ -25,7 +28,10 @@ const getStats = async (req, res) => {
       TBI.count({ distinct: true, col: 'university' }),
       TBI.count({ distinct: true, col: 'city' }),
       User.count(),
-      Suggestion.count({ where: { status: 'Pending' } })
+      Suggestion.count({ where: { status: 'Pending' } }),
+      Investor.count({ where: { isArchived: false } }),
+      Investor.count({ where: { verificationStatus: 'Verified', isArchived: false } }),
+      FundingOpportunity.count({ where: { isArchived: false } })
     ]);
 
     return res.status(200).json({
@@ -38,7 +44,10 @@ const getStats = async (req, res) => {
         uniqueUniversities,
         uniqueCities,
         totalUsers,
-        pendingSuggestions
+        pendingSuggestions,
+        totalInvestors,
+        verifiedInvestors,
+        totalFundingOpportunities
       }
     });
   } catch (error) {

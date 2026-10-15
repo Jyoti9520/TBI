@@ -118,7 +118,18 @@ const getTbis = async (req, res) => {
 const getTbiById = async (req, res) => {
   try {
     const { id } = req.params;
-    const tbi = await TBI.findByPk(id);
+    const { Investor } = require('../models');
+    const tbi = await TBI.findByPk(id, {
+      include: [
+        {
+          model: Investor,
+          as: 'connectedInvestors',
+          through: { attributes: ['connectionType', 'description', 'verifiedProofUrl'] },
+          where: { isArchived: false },
+          required: false
+        }
+      ]
+    });
 
     if (!tbi) {
       return res.status(404).json({

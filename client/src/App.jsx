@@ -24,6 +24,9 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminTbis } from './pages/AdminTbis';
 import { AdminUsers } from './pages/AdminUsers';
 import { AdminImport } from './pages/AdminImport';
+import { Funding } from './pages/Funding';
+import { InvestorDetails } from './pages/InvestorDetails';
+import { AdminInvestors } from './pages/AdminInvestors';
 import { NotFound } from './pages/NotFound';
 
 export const App = () => {
@@ -44,6 +47,9 @@ export const App = () => {
           {/* Public Discovery Routes in App Layout */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/funding" element={<Funding />} />
+          <Route path="/funding/grants" element={<Funding />} />
+          <Route path="/funding/investor/:id" element={<InvestorDetails />} />
           <Route path="/compare" element={<Compare />} />
           <Route path="/tbi/:id" element={<TbiDetails />} />
           <Route path="/universities" element={<Universities />} />
@@ -84,6 +90,14 @@ export const App = () => {
             element={
               <AdminRoute>
                 <AdminTbis />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/investors"
+            element={
+              <AdminRoute>
+                <AdminInvestors />
               </AdminRoute>
             }
           />

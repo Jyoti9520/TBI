@@ -14,7 +14,10 @@ import {
   Layers,
   Phone,
   Share2,
-  Calendar
+  Calendar,
+  Landmark,
+  Briefcase,
+  ArrowRight
 } from 'lucide-react';
 import { tbiService } from '../services/tbiService';
 import { userService } from '../services/userService';
@@ -360,6 +363,65 @@ export const TbiDetails = () => {
             </p>
           </div>
         )}
+
+        {/* Verified Connected Investors & Capital Partners */}
+        {Array.isArray(tbi.connectedInvestors) && tbi.connectedInvestors.length > 0 && (
+          <div className="pt-5 border-t border-white/10 space-y-3">
+            <div className="flex items-center space-x-2">
+              <Landmark className="w-4 h-4 text-orange-400" />
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white font-heading">
+                Verified Connected Investors &amp; Capital Partners
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {tbi.connectedInvestors.map(inv => (
+                <div key={inv.id} className="p-3.5 rounded-xl bg-[#0a0a0c] border border-white/5 flex items-center justify-between">
+                  <div>
+                    <Link to={`/funding/investor/${inv.id}`} className="font-bold text-white text-xs sm:text-sm hover:text-orange-400 transition-colors">
+                      {inv.name}
+                    </Link>
+                    <p className="text-[11px] text-slate-400">
+                      {inv.type} • {inv.ticketRangeDisplay || 'Undisclosed'}
+                    </p>
+                    {inv.InvestorTbiConnection?.description && (
+                      <p className="text-[10px] text-emerald-400 mt-1 italic">
+                        {inv.InvestorTbiConnection.description}
+                      </p>
+                    )}
+                  </div>
+                  <Link
+                    to={`/funding/investor/${inv.id}`}
+                    className="shrink-0 p-2 text-slate-400 hover:text-white"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Relevant National Funding Schemes & Grants Card */}
+        <div className="pt-5 border-t border-white/10">
+          <div className="p-4 rounded-xl bg-gradient-to-r from-orange-500/10 via-amber-500/5 to-transparent border border-orange-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center space-x-1.5 text-orange-400 text-xs font-bold">
+                <Landmark className="w-3.5 h-3.5" />
+                <span>Applicable Grants for this Incubator</span>
+              </div>
+              <p className="text-xs text-slate-300 mt-1">
+                Founders pre-incubated or incubated at this TBI can qualify for DST NIDHI PRAYAS (up to ₹10L), EIR fellowships, and Startup India Seed Fund (SISFS).
+              </p>
+            </div>
+            <Link
+              to="/funding/grants"
+              className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold shrink-0 transition-colors"
+            >
+              <span>Explore Grants</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

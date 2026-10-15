@@ -14,12 +14,14 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
+import { useAuth } from '../hooks/useAuth';
 import { tbiService } from '../services/tbiService';
 import { adminService } from '../services/adminService';
 import { TbiCard } from '../components/TbiCard';
 import { SkeletonCard } from '../components/SkeletonCard';
 
 export const Landing = () => {
+  const { isAuthenticated, user } = useAuth();
   const [query, setQuery] = useState('');
   const [stats, setStats] = useState(null);
   const [featuredTbis, setFeaturedTbis] = useState([]);
@@ -109,12 +111,22 @@ export const Landing = () => {
 
           {/* Action CTAs */}
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/signup"
-              className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold tracking-wide uppercase shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98]"
-            >
-              <span>SIGN-UP FOR FREE</span>
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold tracking-wide uppercase shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98]"
+              >
+                <span>GO TO DASHBOARD</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            ) : (
+              <Link
+                to="/signup"
+                className="inline-flex items-center space-x-2 px-8 py-3.5 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold tracking-wide uppercase shadow-lg shadow-orange-500/25 transition-all active:scale-[0.98]"
+              >
+                <span>SIGN-UP FOR FREE</span>
+              </Link>
+            )}
             <Link
               to="/explore"
               className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-lg bg-white/10 hover:bg-white/15 text-white border border-white/20 text-sm font-semibold tracking-wide transition-all"
@@ -453,12 +465,22 @@ export const Landing = () => {
             Join founders and researchers discovering incubation opportunities across university ecosystems.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link
-              to="/signup"
-              className="px-6 py-2.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-sm font-semibold transition-colors shadow-subtle"
-            >
-              Get Started Free
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                to="/dashboard"
+                className="px-6 py-2.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-sm font-semibold transition-colors shadow-subtle flex items-center space-x-1.5"
+              >
+                <span>Go to Dashboard</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            ) : (
+              <Link
+                to="/signup"
+                className="px-6 py-2.5 rounded-btn bg-primary hover:bg-primary-hover text-white text-sm font-semibold transition-colors shadow-subtle"
+              >
+                Get Started Free
+              </Link>
+            )}
             <Link
               to="/explore"
               className="px-6 py-2.5 rounded-btn bg-dark-secondary hover:bg-slate-800 text-white text-sm font-semibold border border-slate-700 transition-colors"
